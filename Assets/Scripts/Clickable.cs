@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [RequireComponent(typeof(Collider2D))]
 public class Clickable : MonoBehaviour
