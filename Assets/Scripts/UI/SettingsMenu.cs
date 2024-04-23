@@ -15,21 +15,21 @@ public class SettingsMenu : MonoBehaviour
     public void SetMaster()
     {
         float volume = MasterSlider.value;
-        mixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+        mixer.SetFloat("mastervolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("mastervolume", volume);
     }
 
     public void SetMusic()
     {
         float volume = MusicSlider.value;
-        mixer.SetFloat("MyMusic", Mathf.Log10(volume) * 20);
+        mixer.SetFloat("musicvolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicvolume", volume);
     }
 
     public void SetSFX()
     {
         float volume = SFXSlider.value;
-        mixer.SetFloat("MySFX", Mathf.Log10(volume) * 20);
+        mixer.SetFloat("SFXvolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXvolume", volume);
     }
 

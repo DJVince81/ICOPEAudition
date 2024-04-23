@@ -7,24 +7,24 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void PlayGame()
     {
-        audioManager.PlaySFX(audioManager.buttonSound);
+        //audioManager.PlaySFX(audioManager.buttonSound);
         SceneManager.LoadScene("GameScene");
     }
 
     public void Option()
     {
-        audioManager.PlaySFX(audioManager.buttonSound);
+        //audioManager.PlaySFX(audioManager.buttonSound);
     }
 
 
     public void QuitGame()
     {
         Application.Quit();
-        audioManager.PlaySFX(audioManager.buttonSound);
+        //audioManager.PlaySFX(audioManager.buttonSound);
     }
 }
