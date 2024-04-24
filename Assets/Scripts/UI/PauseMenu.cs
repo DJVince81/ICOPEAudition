@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Option()
@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Home()
     {
-        SceneManager.LoadScene("MenuScene");
+        //SceneManager.LoadScene("MenuScene");
     }
 }
 

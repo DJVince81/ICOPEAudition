@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         //audioManager.PlaySFX(audioManager.buttonSound);
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
     }
 
     public void Option()
