@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Option()
     {
-        gameObject.SetActive(false);
+
     }
 
     public void Home()
