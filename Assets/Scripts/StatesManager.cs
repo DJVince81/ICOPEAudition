@@ -113,8 +113,34 @@ public class StatesManager : MonoBehaviour
         }
     }
 
+    private void DoActionOnState()
+    {
+        isOk = false;
+        switch (State)
+        {
+            case States.MAIN_MENU:
+                break;
+            case States.GAME_E0:
+                break;
+            case States.GAME_E1:
+                break;
+            case States.GAME_E2:
+                break;
+            case States.GAME_E3:
+                break;
+            case States.GAME_E4:
+                break;
+            case States.GAME_E5:
+                break;
+        }
+    }
+
     void Update()
     {
-        if (!paused) UpdateStates();
+        if (!paused)
+        {
+            UpdateStates();
+            DoActionOnState();
+        }
     }
 }
