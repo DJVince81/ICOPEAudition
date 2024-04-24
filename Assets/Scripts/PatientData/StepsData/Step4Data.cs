@@ -81,4 +81,9 @@ public class Step4Data : StepData
 		// Ignore goesToNextStep as it is the last step
 		audiometryResult = (AudiometryResult)Random.Range(0, 5);
 	}
+
+	public override bool LeadsToNextStep()
+	{
+		return false; // Step is the last one
+	}
 }

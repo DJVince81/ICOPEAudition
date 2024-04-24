@@ -81,4 +81,9 @@ public class Step2Data : StepData
 			videoOtoscopyResult = (VideoOtoscopyResult)Random.Range(1, 4);
 		}
 	}
+
+	public override bool LeadsToNextStep()
+	{
+		return IsActionCorrect(0);
+	}
 }

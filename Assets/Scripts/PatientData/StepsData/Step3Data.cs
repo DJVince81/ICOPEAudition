@@ -105,4 +105,9 @@ public class Step3Data : StepData
 			weberTestResult = (WeberTestResult)Random.Range(1, 3);
 		}
 	}
+
+	public override bool LeadsToNextStep()
+	{
+		return IsActionCorrect(0);
+	}
 }

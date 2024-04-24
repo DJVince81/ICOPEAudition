@@ -63,4 +63,9 @@ public class Step1Data : StepData
 
 		}
 	}
+
+	public override bool LeadsToNextStep()
+	{
+		return IsActionCorrect(0);
+	}
 }
