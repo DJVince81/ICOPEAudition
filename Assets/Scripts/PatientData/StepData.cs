@@ -2,6 +2,23 @@ using UnityEngine;
 
 public abstract class StepData : ScriptableObject
 {
+	protected GameData _gameData;
+
+	public void Awake()
+	{
+		_gameData = Resources.Load<GameData>("GameData");
+	}
+
+	/// <summary>
+	/// Returns the prefab of the document for the step, need to initialize the document after adding it to the scene with UpdateStepDocumentWithData
+	/// </summary>
+	/// <returns>The prefab of the document for the step</returns>
+	public abstract GameObject GetStepDocumentPrefab();
+	/// <summary>
+	/// Updates the step document with the data for the step
+	/// </summary>
+	/// <param name="stepDocument">The document corresponding to the step, needs to be initialized</param>
+	public abstract void UpdateStepDocumentWithData(GameObject stepDocument);
 	/// <summary>
 	/// Returns the possible diagnostics for the step
 	/// </summary>
@@ -12,7 +29,6 @@ public abstract class StepData : ScriptableObject
 	/// </summary>
 	/// <returns>An array of strings representing the possible actions</returns>
 	public abstract string[] GetPossibleActions();
-
 	/// <summary>
 	/// Checks if the diagnostic made by the player corresponds to the data
 	/// </summary>
@@ -35,11 +51,4 @@ public abstract class StepData : ScriptableObject
 	/// </summary>
 	/// <returns>True if the step leads to the next step, false otherwise</returns>
 	public abstract bool LeadsToNextStep();
-
-	protected GameData gameData;
-
-    public void Awake()
-    {
-        gameData = Resources.Load<GameData>("GameData");
-    }
 }

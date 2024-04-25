@@ -12,7 +12,7 @@ public enum AudiometryResult
 [CreateAssetMenu(fileName = "Step4Data", menuName = "StepsData/Step4Data", order = 4)]
 public class Step4Data : StepData
 {
-    private static readonly string[] _possibleDiagnostics = {
+	private static readonly string[] _possibleDiagnostics = {
 		"Rien à signaler",
 		"Pathologie simple",
 		"Pathologie complexe"
@@ -29,19 +29,22 @@ public class Step4Data : StepData
 	public Step4Data() : base()
 	{
 		audiometryResult = AudiometryResult.NormalAudiogram;
-    }
+	}
 
-	public Sprite GetAudiometrySprite()
+	public override GameObject GetStepDocumentPrefab()
 	{
-		return audiometryResult switch
+		return _gameData.step4Content;
+	}
+
+	public override void UpdateStepDocumentWithData(GameObject stepDocument)
+	{
+		stepDocument.TryGetComponent(out Step4Content step4Content);
+		if (step4Content == null)
 		{
-			AudiometryResult.NormalAudiogram => gameData.normalAudiogramImage,
-			AudiometryResult.PerceptionSymmetry => gameData.perceptionSymmetryImage,
-			AudiometryResult.Asymmetry => gameData.asymmetryImage,
-			AudiometryResult.Transmission => gameData.transmissionImage,
-			AudiometryResult.InvertedSymmetry => gameData.invertedSymmetryImage,
-			_ => null
-		};
+			Debug.LogError("The step document prefab does not have the required component");
+			return;
+		}
+		step4Content.DisplayAudiogramImage(audiometryResult);
 	}
 
 	public override string[] GetPossibleDiagnostics()

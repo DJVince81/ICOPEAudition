@@ -23,6 +23,22 @@ public class Step1Data : StepData
 		goNoGoAnswers = new bool[6];
 	}
 
+	public override GameObject GetStepDocumentPrefab()
+	{
+		return _gameData.step1Content;
+	}
+
+	public override void UpdateStepDocumentWithData(GameObject stepDocument)
+	{
+		stepDocument.TryGetComponent(out Step1Content step1Content);
+		if (step1Content == null)
+		{
+			Debug.LogError("The step document prefab does not have the required component");
+			return;
+		}
+		step1Content.SetTicks(goNoGoAnswers);
+	}
+
 	public override string[] GetPossibleDiagnostics()
 	{
 		return _possibleDiagnostic;

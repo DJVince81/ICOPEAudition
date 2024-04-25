@@ -46,6 +46,23 @@ public class Step3Data : StepData
 		hhiesAnswers = new HHIESAnswer[10];
 	}
 
+	public override GameObject GetStepDocumentPrefab()
+	{
+		return _gameData.step3Content;
+	}
+
+	public override void UpdateStepDocumentWithData(GameObject stepDocument)
+	{
+		stepDocument.TryGetComponent(out Step3Content step3Content);
+		if (step3Content == null)
+		{
+			Debug.LogError("The step document prefab does not have the required component");
+			return;
+		}
+		step3Content.SetWeberResultText(weberTestResult);
+		step3Content.SetAffectedEarText(affectedEar);
+	}
+
 	public int GetHHIESScore()
 	{
 		int score = 0;

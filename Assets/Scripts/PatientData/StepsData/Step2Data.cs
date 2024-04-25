@@ -11,7 +11,7 @@ public enum VideoOtoscopyResult
 [CreateAssetMenu(fileName = "Step2Data", menuName = "StepsData/Step2Data", order = 2)]
 public class Step2Data : StepData
 {
-    private static readonly string[] _possibleDiagnostics = {
+	private static readonly string[] _possibleDiagnostics = {
 		"Tympans normaux",
 		"Bouchon de cérumen",
 		"Pathologie du tympan",
@@ -26,10 +26,26 @@ public class Step2Data : StepData
 
 	public VideoOtoscopyResult videoOtoscopyResult;
 
-    public Step2Data()
-    {
+	public Step2Data()
+	{
 		videoOtoscopyResult = VideoOtoscopyResult.NormalEardrum;
-    }
+	}
+
+	public override GameObject GetStepDocumentPrefab()
+	{
+		return _gameData.step2Content;
+	}
+
+	public override void UpdateStepDocumentWithData(GameObject stepDocument)
+	{
+		stepDocument.TryGetComponent(out Step2Content step2Content);
+		if (step2Content == null)
+		{
+			Debug.LogError("The step document prefab does not have the required component");
+			return;
+		}
+		step2Content.DisplayVideoOtoscopyImage(videoOtoscopyResult);
+	}
 
 	public override string[] GetPossibleDiagnostics()
 	{
@@ -39,18 +55,6 @@ public class Step2Data : StepData
 	public override string[] GetPossibleActions()
 	{
 		return _possibleActions;
-	}
-
-	public Sprite GetVideoOtoscopySprite()
-	{
-		return videoOtoscopyResult switch
-		{
-			VideoOtoscopyResult.NormalEardrum => gameData.normalEardrumImage,
-			VideoOtoscopyResult.CerumenImpaction => gameData.cerumenImpactionImage,
-			VideoOtoscopyResult.TympanicPathology => gameData.tympanicPathologyImage,
-			VideoOtoscopyResult.DuctPathology => gameData.ductPathologyImage,
-			_ => null
-		};
 	}
 
 	public override bool IsDiagnosticCorrect(int chosenIndex)

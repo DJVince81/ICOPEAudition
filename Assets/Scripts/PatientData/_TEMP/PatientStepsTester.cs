@@ -36,7 +36,7 @@ public class PatientStepsTester : MonoBehaviour
             }
             else if (steps[i] is Step2Data step2Data)
             {
-                Debug.Log($"Video-otoscopy image name: {step2Data.GetVideoOtoscopySprite().name}");
+                // Debug.Log($"Video-otoscopy image name: {step2Data.GetVideoOtoscopySprite().name}");
             }
             else if (steps[i] is Step3Data step3Data)
             {
@@ -45,7 +45,7 @@ public class PatientStepsTester : MonoBehaviour
             }
             else if (steps[i] is Step4Data step4Data)
             {
-                Debug.Log($"Audiogram image name: {step4Data.GetAudiometrySprite().name}");
+                // Debug.Log($"Audiogram image name: {step4Data.GetAudiometrySprite().name}");
             }
 
             for (int j = 0; j < steps[i].GetPossibleDiagnostics().Length; j++)

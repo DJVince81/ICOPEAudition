@@ -23,6 +23,22 @@ public class Step0Data : StepData
 		whisperTestData = new bool[3];
 	}
 
+	public override GameObject GetStepDocumentPrefab()
+	{
+		return _gameData.step0Content;
+	}
+
+	public override void UpdateStepDocumentWithData(GameObject stepDocument)
+	{
+		stepDocument.TryGetComponent(out Step0Content step0Content);
+		if (step0Content == null)
+		{
+			Debug.LogError("The step document prefab does not have the required component");
+			return;
+		}
+		step0Content.SetYesNoTexts(whisperTestData);
+	}
+
 	public override string[] GetPossibleDiagnostics()
 	{
 		return _possibleDiagnostic;
