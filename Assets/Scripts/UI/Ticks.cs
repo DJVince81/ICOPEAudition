@@ -10,9 +10,9 @@ public class Ticks : MonoBehaviour
 
     public void DisplayValue(bool value)
     {
-        _yesTickChecked.enabled = value;
-        _yesTickUnchecked.enabled = !value;
-        _noTickChecked.enabled = !value;
-        _noTickUnchecked.enabled = value;
+        _yesTickChecked.gameObject.SetActive(value);
+        _yesTickUnchecked.gameObject.SetActive(!value);
+        _noTickChecked.gameObject.SetActive(!value);
+        _noTickUnchecked.gameObject.SetActive(value);
     }
 }
