@@ -51,14 +51,13 @@ public class Step0Data : StepData
 
 	public override bool IsDiagnosticCorrect(int chosenIndex)
 	{
-		// If the patient has a problem (at least one answer is Yes), the chosen diagnostic should be the one of index 1
-		return whisperTestData.Contains(true) == (chosenIndex == 1);
+		// There is a problem if one of the whisper test answers is wrong, or if the patient declares there is a problem
+		return (!whisperTestData[0] || !whisperTestData[1] || whisperTestData[2]) == (chosenIndex == 1);
 	}
 
 	public override bool IsActionCorrect(int chosenIndex)
 	{
-		// If the patient has a problem (at least one answer is Yes), the chosen action should be the one of index 1
-		return whisperTestData.Contains(true) == (chosenIndex == 1);
+		return IsDiagnosticCorrect(chosenIndex);
 	}
 
 	public override void RandomizeData(bool goesToNextStep)
@@ -69,17 +68,17 @@ public class Step0Data : StepData
 			{
 				whisperTestData[i] = Random.Range(0, 2) == 1;
 			}
-			if (!whisperTestData.Contains(true)) // If all answers are No, we need to have at least one Yes
+			if (whisperTestData[0] && whisperTestData[1] && !whisperTestData[2])
 			{
-				whisperTestData[Random.Range(0, whisperTestData.Length)] = true;
+				int indexToChange = Random.Range(0, whisperTestData.Length);
+				whisperTestData[indexToChange] = !whisperTestData[indexToChange];
 			}
 		}
 		else
 		{
-			for (int i = 0; i < whisperTestData.Length; i++)
-			{
-				whisperTestData[i] = false;
-			}
+			whisperTestData[0] = true;
+			whisperTestData[1] = true;
+			whisperTestData[2] = false;
 		}
 	}
 
