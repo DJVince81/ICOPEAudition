@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public enum AudiometryResult
@@ -57,13 +56,7 @@ public class Step4Data : StepData
 
 	public override bool IsDiagnosticCorrect(int chosenIndex)
 	{
-		return chosenIndex switch
-		{
-			0 => audiometryResult == AudiometryResult.NormalAudiogram,
-			1 => audiometryResult == AudiometryResult.PerceptionSymmetry,
-			2 => audiometryResult != AudiometryResult.NormalAudiogram && audiometryResult != AudiometryResult.PerceptionSymmetry,
-			_ => false
-		};
+		return IsActionCorrect(chosenIndex);
 	}
 
 	public override bool IsActionCorrect(int chosenIndex)

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public abstract class StepData : ScriptableObject
@@ -41,6 +40,6 @@ public abstract class StepData : ScriptableObject
 
     public void Awake()
     {
-        gameData = (GameData)AssetDatabase.LoadAssetAtPath("Assets/Data/GameData.asset", typeof(GameData));
+        gameData = Resources.Load<GameData>("GameData");
     }
 }
