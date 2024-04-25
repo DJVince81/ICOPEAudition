@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public abstract class StepData : ScriptableObject
@@ -35,4 +36,11 @@ public abstract class StepData : ScriptableObject
 	/// </summary>
 	/// <returns>True if the step leads to the next step, false otherwise</returns>
 	public abstract bool LeadsToNextStep();
+
+	protected GameData gameData;
+
+    public void Awake()
+    {
+        gameData = (GameData)AssetDatabase.LoadAssetAtPath("Assets/Data/GameData.asset", typeof(GameData));
+    }
 }

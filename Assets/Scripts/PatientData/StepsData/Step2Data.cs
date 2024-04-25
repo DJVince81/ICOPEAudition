@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 public enum VideoOtoscopyResult
 {
@@ -12,7 +13,7 @@ public enum VideoOtoscopyResult
 [CreateAssetMenu(fileName = "Step2Data", menuName = "StepsData/Step2Data", order = 2)]
 public class Step2Data : StepData
 {
-	private static readonly string[] _possibleDiagnostics = {
+    private static readonly string[] _possibleDiagnostics = {
 		"Tympans normaux",
 		"Bouchon de cérumen",
 		"Pathologie du tympan",
@@ -27,10 +28,10 @@ public class Step2Data : StepData
 
 	public VideoOtoscopyResult videoOtoscopyResult;
 
-	public Step2Data()
-	{
+    public Step2Data()
+    {
 		videoOtoscopyResult = VideoOtoscopyResult.NormalEardrum;
-	}
+    }
 
 	public override string[] GetPossibleDiagnostics()
 	{
@@ -46,10 +47,10 @@ public class Step2Data : StepData
 	{
 		return videoOtoscopyResult switch
 		{
-			VideoOtoscopyResult.NormalEardrum => GameData.instance.normalEardrumImage,
-			VideoOtoscopyResult.CerumenImpaction => GameData.instance.cerumenImpactionImage,
-			VideoOtoscopyResult.TympanicPathology => GameData.instance.tympanicPathologyImage,
-			VideoOtoscopyResult.DuctPathology => GameData.instance.ductPathologyImage,
+			VideoOtoscopyResult.NormalEardrum => gameData.normalEardrumImage,
+			VideoOtoscopyResult.CerumenImpaction => gameData.cerumenImpactionImage,
+			VideoOtoscopyResult.TympanicPathology => gameData.tympanicPathologyImage,
+			VideoOtoscopyResult.DuctPathology => gameData.ductPathologyImage,
 			_ => null
 		};
 	}

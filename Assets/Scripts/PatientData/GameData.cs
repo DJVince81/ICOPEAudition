@@ -1,8 +1,7 @@
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameData", menuName = "GameData", order = 1)]
-public class GameData : ScriptableSingleton<GameData>
+public class GameData : ScriptableObject
 {
 	[Header("Video Otoscopy Images")]
 	public Sprite normalEardrumImage;

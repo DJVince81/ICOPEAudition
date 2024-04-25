@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public enum AudiometryResult
@@ -12,7 +13,7 @@ public enum AudiometryResult
 [CreateAssetMenu(fileName = "Step4Data", menuName = "StepsData/Step4Data", order = 4)]
 public class Step4Data : StepData
 {
-	private static readonly string[] _possibleDiagnostics = {
+    private static readonly string[] _possibleDiagnostics = {
 		"Rien à signaler",
 		"Pathologie simple",
 		"Pathologie complexe"
@@ -26,20 +27,20 @@ public class Step4Data : StepData
 
 	public AudiometryResult audiometryResult;
 
-	public Step4Data()
+	public Step4Data() : base()
 	{
 		audiometryResult = AudiometryResult.NormalAudiogram;
-	}
+    }
 
 	public Sprite GetAudiometrySprite()
 	{
 		return audiometryResult switch
 		{
-			AudiometryResult.NormalAudiogram => GameData.instance.normalAudiogramImage,
-			AudiometryResult.PerceptionSymmetry => GameData.instance.perceptionSymmetryImage,
-			AudiometryResult.Asymmetry => GameData.instance.asymmetryImage,
-			AudiometryResult.Transmission => GameData.instance.transmissionImage,
-			AudiometryResult.InvertedSymmetry => GameData.instance.invertedSymmetryImage,
+			AudiometryResult.NormalAudiogram => gameData.normalAudiogramImage,
+			AudiometryResult.PerceptionSymmetry => gameData.perceptionSymmetryImage,
+			AudiometryResult.Asymmetry => gameData.asymmetryImage,
+			AudiometryResult.Transmission => gameData.transmissionImage,
+			AudiometryResult.InvertedSymmetry => gameData.invertedSymmetryImage,
 			_ => null
 		};
 	}
