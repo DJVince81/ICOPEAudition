@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2349030b67e8f49b534f82ce24f7dc, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  normalEardrumImage: {fileID: 21300000, guid: acfb280c7bb94ff4593c50f9c1595306, type: 3}
-  cerumenImpactionImage: {fileID: 21300000, guid: e6b2770fea4527645b7fefe3b1506c8a, type: 3}
-  tympanicPathologyImage: {fileID: 21300000, guid: ec1b28cc5bceb3c418178f0a5242a0a6, type: 3}
-  ductPathologyImage: {fileID: 21300000, guid: d430c12915c736f49bb71ef2fb97a1f6, type: 3}
-  normalAudiogramImage: {fileID: 21300000, guid: 7f3e162513b9bdf4495dee1d3beb87a3, type: 3}
-  perceptionSymmetryImage: {fileID: 21300000, guid: 88a4fea7a37379c42b8be6f3f471b4ac, type: 3}
-  asymmetryImage: {fileID: 21300000, guid: a1b5f260a754d4545844fd663ab81bab, type: 3}
-  transmissionImage: {fileID: 21300000, guid: cb90b81f883684549b9fd9840152cdaa, type: 3}
-  invertedSymmetryImage: {fileID: 21300000, guid: 7a48fa8465e839b449e5f3a18596b156, type: 3}
+  step0Content: {fileID: 5191365302047748043, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
+  step1Content: {fileID: 8638760125926157624, guid: 5811e9de43d44b0469214a5f66960bcf, type: 3}
+  step2Content: {fileID: 2637854495545148307, guid: 0dfa1f2ec56bf224c8d36a8a0d7d27f1, type: 3}
+  step3Content: {fileID: 7897846173193477323, guid: 3d60bee60e699c2449836fff32353975, type: 3}
+  step4Content: {fileID: 7897846173193477323, guid: 5baa77f19adfb164f8b4699087a7609a, type: 3}

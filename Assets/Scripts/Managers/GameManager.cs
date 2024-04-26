@@ -1,23 +1,28 @@
 using TMPro;
 using UnityEngine;
 
-[RequireComponent (typeof(StatesManager))]
+[RequireComponent(typeof(StatesManager))]
+[RequireComponent(typeof(StepManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private TextMeshProUGUI DebugTMP;
-
     public StatesManager StatesManager { get; private set; }
+
+    public StepManager StepManager { get; private set; }
 
     internal void LoadStep(int e)
     {
-        DebugTMP.text = DebugTMP.text + "\n\rStep " + e;
+        if (e == 0)
+        {
+            StepManager.Initialize();
+        }
+        StepManager.LoadStep(e);
     }
 
     internal void LoadMainMenu()
     {
-        DebugTMP.text = DebugTMP.text + "\n\rMain Menu";
+        Debug.Log("Main Menu");
     }
 
     public void TogglePause()
@@ -40,15 +45,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         StatesManager = GetComponent<StatesManager>();
+        StepManager = GetComponent<StepManager>();
     }
 
     void Start()
     {
         StatesManager.ReturnMainMenu();
-    }
-
-    void Update()
-    {
-        
+        TogglePause(); //TODO Remove after Main Menu Implementation
     }
 }
