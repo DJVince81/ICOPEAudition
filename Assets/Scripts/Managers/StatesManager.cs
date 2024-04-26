@@ -18,9 +18,14 @@ public class StatesManager : MonoBehaviour
     internal bool paused;
     private bool isOk;
 
-    public void ChangeState()
+    public void ChangeState(int choosenDiagIndex = -1, int choosenActionIndex = -1)
     {
-        isOk = true;
+        if (State == States.MAIN_MENU)
+        {
+            isOk = true;
+            return;
+        }
+        GameManager.Instance.StepManager.IsStepCorrect((int)State -1, choosenDiagIndex, choosenActionIndex);
     }
 
     public void ReturnMainMenu()

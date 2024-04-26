@@ -73,4 +73,10 @@ public class StepManager : MonoBehaviour
             else _actionButtons[i].gameObject.SetActive(false);
         }
     }
+
+    internal bool IsStepCorrect(int stepIndex, int choosenDiagIndex, int choosenActionIndex)
+    {
+        StepData currentStep = _steps[stepIndex];
+        return currentStep.IsDiagnosticCorrect(choosenDiagIndex) && currentStep.IsActionCorrect(choosenActionIndex);
+    }
 }
