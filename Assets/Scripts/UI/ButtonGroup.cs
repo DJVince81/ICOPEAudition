@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ButtonGroup : MonoBehaviour
 {
-    [HideInInspector] public int selectedButtonIndex = -1;
+    public int SelectedButtonIndex { get; private set; }
 
     private Button[] _buttons;
 
@@ -14,13 +14,18 @@ public class ButtonGroup : MonoBehaviour
         {
             button.onClick.AddListener(() => OnButtonClicked(button));
         }
+        ResetButtons();
     }
 
     private void OnButtonClicked(Button clickedButton)
     {
-        foreach (Button button in _buttons)
+        for (int i = 0; i < _buttons.Length; i++)
         {
-            button.interactable = button == clickedButton;
+            _buttons[i].interactable = _buttons[i] != clickedButton;
+            if (!_buttons[i].interactable)
+            {
+                SelectedButtonIndex = i;
+            }
         }
     }
 
@@ -30,5 +35,6 @@ public class ButtonGroup : MonoBehaviour
         {
             button.interactable = true;
         }
+        SelectedButtonIndex = -1;
     }
 }

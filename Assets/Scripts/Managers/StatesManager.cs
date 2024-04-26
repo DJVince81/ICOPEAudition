@@ -9,8 +9,7 @@ public class StatesManager : MonoBehaviour
         GAME_E1,
         GAME_E2,
         GAME_E3,
-        GAME_E4,
-        GAME_E5
+        GAME_E4
     }
 
     private States State;
@@ -18,14 +17,14 @@ public class StatesManager : MonoBehaviour
     internal bool paused;
     private bool isOk;
 
-    public void ChangeState(int choosenDiagIndex = -1, int choosenActionIndex = -1)
+    public void ChangeState()
     {
         if (State == States.MAIN_MENU)
         {
             isOk = true;
             return;
         }
-        GameManager.Instance.StepManager.IsStepCorrect((int)State -1, choosenDiagIndex, choosenActionIndex);
+        isOk = GameManager.Instance.StepManager.IsStepCorrect((int)State -1);
     }
 
     public void ReturnMainMenu()
@@ -74,13 +73,6 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E4:
                 if (isOk)
                 {
-                    State = States.GAME_E5;
-                    DoActionOnChangeState();
-                }
-                break;
-            case States.GAME_E5:
-                if (isOk)
-                {
                     State = States.MAIN_MENU;
                     DoActionOnChangeState();
                 }
@@ -112,9 +104,6 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E4:
                 GameManager.Instance.LoadStep(4);
                 break;
-            case States.GAME_E5:
-                GameManager.Instance.LoadStep(5);
-                break;
         }
     }
 
@@ -134,8 +123,6 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E3:
                 break;
             case States.GAME_E4:
-                break;
-            case States.GAME_E5:
                 break;
         }
     }

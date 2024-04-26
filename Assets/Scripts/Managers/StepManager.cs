@@ -77,9 +77,10 @@ public class StepManager : MonoBehaviour
         _actionButtonGroup.ResetButtons();
     }
 
-    internal bool IsStepCorrect(int stepIndex, int choosenDiagIndex, int choosenActionIndex)
+    internal bool IsStepCorrect(int stepIndex)
     {
         StepData currentStep = _steps[stepIndex];
-        return currentStep.IsDiagnosticCorrect(choosenDiagIndex) && currentStep.IsActionCorrect(choosenActionIndex);
+        if ((_diagButtonGroup.SelectedButtonIndex == -1) || (_actionButtonGroup.SelectedButtonIndex == -1)) return false;
+        return currentStep.IsDiagnosticCorrect(_diagButtonGroup.SelectedButtonIndex) && currentStep.IsActionCorrect(_actionButtonGroup.SelectedButtonIndex);
     }
 }

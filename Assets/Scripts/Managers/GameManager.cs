@@ -33,20 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState()
     {
-        if (!StatesManager.paused)
-        {
-            StatesManager.ChangeState(GetSelectedDiag(), GetSelectedAction());
-        }
-    }
-
-    private int GetSelectedAction()
-    {
-        return 0;
-    }
-
-    private int GetSelectedDiag()
-    {
-        return 0;
+        if (!StatesManager.paused) StatesManager.ChangeState();
     }
 
     void Awake()
