@@ -7,6 +7,8 @@ public class StepManager : MonoBehaviour
     [SerializeField] private Transform _documentContentParent;
     [SerializeField] private Button[] _diagButtons;
     [SerializeField] private Button[] _actionButtons;
+    [SerializeField] private ButtonGroup _diagButtonGroup;
+    [SerializeField] private ButtonGroup _actionButtonGroup;
 
     private PatientData _patientData;
     private StepData[] _steps;
@@ -34,8 +36,8 @@ public class StepManager : MonoBehaviour
 
         StepData currentStep = _steps[stepIndex];
 
-        // Remove all children of the parent
-        for (int i = 0; i < _documentContentParent.childCount; i++)
+        // Remove all children of the parent in reverse order
+        for (int i = _documentContentParent.childCount - 1; i >= 0; i--)
         {
             Destroy(_documentContentParent.GetChild(i).gameObject);
         }
@@ -50,8 +52,6 @@ public class StepManager : MonoBehaviour
         currentStep.UpdateStepDocumentWithData(newContent);
 
         string[] diags = currentStep.GetPossibleDiagnostics();
-        Debug.Log(diags);
-        Debug.Log(_diagButtons);
         for (int i = 0; i < _diagButtons.Length; i++)
         {
             if (i < diags.Length)
@@ -72,6 +72,9 @@ public class StepManager : MonoBehaviour
             }
             else _actionButtons[i].gameObject.SetActive(false);
         }
+
+        _diagButtonGroup.ResetButtons();
+        _actionButtonGroup.ResetButtons();
     }
 
     internal bool IsStepCorrect(int stepIndex, int choosenDiagIndex, int choosenActionIndex)
