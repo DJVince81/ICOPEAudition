@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
     public int price;
-    private bool placed = false;
     public TextMeshProUGUI priceText;
-    public GameObject image;
+    public GameObject target;
 
     void Start()
     {
@@ -18,11 +17,12 @@ public class Item : MonoBehaviour
 
     public void pay(Shop shop)
     {
-        if (shop.getMoney() >= price && !placed)
+        if (shop.getMoney() >= price)
         {
             shop.changeMoney(-price);
-            image.SetActive(true);
-            placed = true;
+            target.SetActive(true);
+            Button button = gameObject.GetComponent<Button>();
+            button.interactable = false;
         }
     }
 }
