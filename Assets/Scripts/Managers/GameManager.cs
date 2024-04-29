@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _stepMenu;
 
-    [SerializeField] private int _numberOfSteps;
-
     internal void LoadStep(int stepIndex)
     {
         if (stepIndex == 0)
@@ -23,10 +21,6 @@ public class GameManager : MonoBehaviour
             ClearScreen();
             _stepMenu.SetActive(true);
             StepManager.Initialize();
-        }
-        if (stepIndex > _numberOfSteps)
-        {
-
         }
         StepManager.LoadStep(stepIndex);
     }
@@ -48,12 +42,12 @@ public class GameManager : MonoBehaviour
     {
         ClearScreen();
         _gameMenu.SetActive(true);
-        TogglePause();
+        if (StatesManager.paused) TogglePause();
     }
 
     public void LaunchGame()
     {
-        Debug.Log("Launch Game");
+        Debug.Log("Launch Game ");
         StatesManager.ChangeState();
     }
 

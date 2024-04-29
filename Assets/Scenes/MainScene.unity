@@ -3782,7 +3782,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2068618407}
   m_HandleRect: {fileID: 2068618406}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5086,7 +5086,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 375652770}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9852216
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6318,7 +6318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.5001221, y: -2.999939}
+  m_AnchoredPosition: {x: 1.499939, y: -2.9999619}
   m_SizeDelta: {x: 1141.3511, y: 183}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &487407144
@@ -11332,6 +11332,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 730478441}
+        m_TargetAssemblyTypeName: StatesManager, Assembly-CSharp
+        m_MethodName: ReturnMainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
