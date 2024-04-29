@@ -5,6 +5,7 @@ public class StatesManager : MonoBehaviour
     private enum States
     {
         MAIN_MENU,
+        GAME_MENU,
         GAME_E0,
         GAME_E1,
         GAME_E2,
@@ -15,7 +16,7 @@ public class StatesManager : MonoBehaviour
     private States State;
 
     internal bool paused;
-    private bool isOk;
+    private bool isOk = false;
 
     public void ChangeState()
     {
@@ -24,7 +25,12 @@ public class StatesManager : MonoBehaviour
             isOk = true;
             return;
         }
-        isOk = GameManager.Instance.StepManager.IsStepCorrect((int)State -1);
+        if (State == States.GAME_MENU)
+        {
+            isOk = true;
+            return;
+        }
+        isOk = GameManager.Instance.StepManager.IsStepCorrect((int)State - 2);
     }
 
     public void ReturnMainMenu()
@@ -39,44 +45,25 @@ public class StatesManager : MonoBehaviour
         switch (State)
         {
             case States.MAIN_MENU:
-                State = States.GAME_E0;
-                DoActionOnChangeState();
-                break;
+            case States.GAME_MENU:
             case States.GAME_E0:
-                if (isOk)
-                {
-                    State = States.GAME_E1;
-                    DoActionOnChangeState();
-                }
-                break;
             case States.GAME_E1:
-                if (isOk)
-                {
-                    State = States.GAME_E2;
-                    DoActionOnChangeState();
-                }
-                break;
             case States.GAME_E2:
-                if (isOk)
-                {
-                    State = States.GAME_E3;
-                    DoActionOnChangeState();
-                }
-                break;
             case States.GAME_E3:
                 if (isOk)
                 {
-                    State = States.GAME_E4;
+                    State++;
                     DoActionOnChangeState();
                 }
                 break;
             case States.GAME_E4:
                 if (isOk)
                 {
-                    State = States.MAIN_MENU;
+                    State = States.GAME_MENU;
                     DoActionOnChangeState();
                 }
                 break;
+                //(States.GAME_MENU -> States.MAIN_MENU) see ReturnMainMenu method
         }
         if (State == States.MAIN_MENU) paused = true;
     }
@@ -88,6 +75,9 @@ public class StatesManager : MonoBehaviour
         {
             case States.MAIN_MENU:
                 GameManager.Instance.LoadMainMenu();
+                break;
+            case States.GAME_MENU:
+                GameManager.Instance.LoadGameMenu();
                 break;
             case States.GAME_E0:
                 GameManager.Instance.LoadStep(0);
@@ -114,6 +104,8 @@ public class StatesManager : MonoBehaviour
         {
             case States.MAIN_MENU:
                 break;
+            case States.GAME_MENU:
+                break;
             case States.GAME_E0:
                 break;
             case States.GAME_E1:
@@ -127,9 +119,9 @@ public class StatesManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (!paused)
+        if (!paused || (State == States.MAIN_MENU))
         {
             UpdateStates();
             DoActionOnState();

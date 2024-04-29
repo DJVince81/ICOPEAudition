@@ -10,18 +10,51 @@ public class GameManager : MonoBehaviour
 
     public StepManager StepManager { get; private set; }
 
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _stepMenu;
+
+    [SerializeField] private int _numberOfSteps;
+
     internal void LoadStep(int stepIndex)
     {
         if (stepIndex == 0)
         {
+            ClearScreen();
+            _stepMenu.SetActive(true);
             StepManager.Initialize();
+        }
+        if (stepIndex > _numberOfSteps)
+        {
+
         }
         StepManager.LoadStep(stepIndex);
     }
 
+    internal void ClearScreen()
+    {
+        _mainMenu.SetActive(false);
+        _gameMenu.SetActive(false);
+        _stepMenu.SetActive(false);
+    }
+
     internal void LoadMainMenu()
     {
-        StepManager.HideSteps();
+        ClearScreen();
+        _mainMenu.SetActive(true);
+    }
+
+    internal void LoadGameMenu()
+    {
+        ClearScreen();
+        _gameMenu.SetActive(true);
+        TogglePause();
+    }
+
+    public void LaunchGame()
+    {
+        Debug.Log("Launch Game");
+        StatesManager.ChangeState();
     }
 
     public void TogglePause()
@@ -50,6 +83,5 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StatesManager.ReturnMainMenu();
-        TogglePause();
     }
 }

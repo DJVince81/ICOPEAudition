@@ -3,6 +3,12 @@ using UnityEngine;
 public abstract class StepData : ScriptableObject
 {
 	protected GameData _gameData;
+	public bool IsEndStep { get; private set; }
+
+	public StepData(bool endStep = false)
+	{
+		IsEndStep = endStep;
+	}
 
 	public void Awake()
 	{

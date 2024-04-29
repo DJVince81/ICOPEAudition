@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class StepManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _stepsContainer;
     [SerializeField] private Transform _documentContentParent;
     [SerializeField] private Button[] _diagButtons;
     [SerializeField] private Button[] _actionButtons;
@@ -18,8 +17,6 @@ public class StepManager : MonoBehaviour
 
     internal void Initialize()
     {
-        _stepsContainer.SetActive(true);
-
         _patientData = ScriptableObject.CreateInstance<PatientData>();
 
         _patientData.RandomizeData(4);
@@ -29,20 +26,20 @@ public class StepManager : MonoBehaviour
         _isInit = true;
     }
 
-    internal void HideSteps()
-    {
-        _stepsContainer.SetActive(false);
-    }
-
     internal void LoadStep(int e)
     {
-        if (_isInit) DisplayStep(e % _steps.Length);
+        if (_isInit) DisplayStep(e);
     }
     private void DisplayStep(int stepIndex)
     {
         Debug.Log($"Displaying step {stepIndex}");
 
         StepData currentStep = _steps[stepIndex];
+
+        if (currentStep.IsEndStep)
+        {
+            GameManager.Instance.ChangeState();
+        }
 
         // Remove all children of the parent in reverse order
         for (int i = _documentContentParent.childCount - 1; i >= 0; i--)
