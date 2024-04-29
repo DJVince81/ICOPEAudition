@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class StepManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _stepsContainer;
     [SerializeField] private Transform _documentContentParent;
     [SerializeField] private Button[] _diagButtons;
     [SerializeField] private Button[] _actionButtons;
@@ -17,6 +18,8 @@ public class StepManager : MonoBehaviour
 
     internal void Initialize()
     {
+        _stepsContainer.SetActive(true);
+
         _patientData = ScriptableObject.CreateInstance<PatientData>();
 
         _patientData.RandomizeData(4);
@@ -24,6 +27,11 @@ public class StepManager : MonoBehaviour
         _steps = _patientData.GetStepDatas();
 
         _isInit = true;
+    }
+
+    internal void HideSteps()
+    {
+        _stepsContainer.SetActive(false);
     }
 
     internal void LoadStep(int e)

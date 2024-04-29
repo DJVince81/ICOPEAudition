@@ -1,5 +1,3 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(StatesManager))]
@@ -12,18 +10,18 @@ public class GameManager : MonoBehaviour
 
     public StepManager StepManager { get; private set; }
 
-    internal void LoadStep(int e)
+    internal void LoadStep(int stepIndex)
     {
-        if (e == 0)
+        if (stepIndex == 0)
         {
             StepManager.Initialize();
         }
-        StepManager.LoadStep(e);
+        StepManager.LoadStep(stepIndex);
     }
 
     internal void LoadMainMenu()
     {
-        Debug.Log("Main Menu");
+        StepManager.HideSteps();
     }
 
     public void TogglePause()
@@ -52,6 +50,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StatesManager.ReturnMainMenu();
-        TogglePause(); //TODO Remove after Main Menu Implementation
+        TogglePause();
     }
 }
