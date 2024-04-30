@@ -1,28 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class Item : MonoBehaviour
 {
-    public int price;
-    public TextMeshProUGUI priceText;
-    public GameObject target;
+    [SerializeField] private int _price;
+    [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private GameObject _objectToDisplay;
+
+    private Button _button;
 
     void Start()
     {
-        priceText.text = price.ToString();
+        _priceText.text = _price.ToString();
+        _button = gameObject.GetComponent<Button>();
+        _button.onClick.AddListener(Buy);
     }
 
-    public void pay(Shop shop)
+    public void Buy()
     {
-        if (shop.getMoney() >= price)
+        if (GameManager.Instance.Money >= _price)
         {
-            shop.changeMoney(-price);
-            target.SetActive(true);
-            Button button = gameObject.GetComponent<Button>();
-            button.interactable = false;
+            GameManager.Instance.Money -= _price;
+            _objectToDisplay.SetActive(true);
+            _button.interactable = false;
         }
     }
 }

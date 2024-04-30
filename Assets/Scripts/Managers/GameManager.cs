@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(StatesManager))]
@@ -7,9 +8,26 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public StatesManager StatesManager { get; private set; }
-
     public StepManager StepManager { get; private set; }
 
+    public int Money
+    {
+        get
+        {
+            return _money;
+        }
+        set
+        {
+            _money = value;
+            _moneyText.text = _money.ToString();
+        }
+    }
+
+    [Header("Money")]
+    [SerializeField] private int _money = 20;
+    [SerializeField] private TextMeshProUGUI _moneyText;
+
+    [Header("Menus")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _stepMenu;
@@ -72,6 +90,8 @@ public class GameManager : MonoBehaviour
 
         StatesManager = GetComponent<StatesManager>();
         StepManager = GetComponent<StepManager>();
+
+        _moneyText.text = _money.ToString();
     }
 
     void Start()

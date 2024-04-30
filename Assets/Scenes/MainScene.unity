@@ -303,9 +303,9 @@ RectTransform:
   m_Father: {fileID: 374897093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 795.2903, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18441358
 MonoBehaviour:
@@ -1353,8 +1353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -98.113335}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -71.11685}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &68822356
 MonoBehaviour:
@@ -1890,8 +1890,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -422.45334}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -314.4674}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &116243711
 MonoBehaviour:
@@ -2132,8 +2132,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 400726987}
   m_HandleRect: {fileID: 400726986}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: -0.00012208521
+  m_Size: 0.9990603
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3128,8 +3128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -98.113335}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -71.11685}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &228796805
 MonoBehaviour:
@@ -3750,9 +3750,9 @@ RectTransform:
   m_Father: {fileID: 275327449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &263461817
 MonoBehaviour:
@@ -3797,7 +3797,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2068618407}
   m_HandleRect: {fileID: 2068618406}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5053,9 +5053,9 @@ RectTransform:
   m_Father: {fileID: 275327449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 3}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &335031855
 MonoBehaviour:
@@ -5100,7 +5100,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 375652771}
   m_HandleRect: {fileID: 375652770}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5197,9 +5197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 40
-  priceText: {fileID: 152223304}
-  target: {fileID: 1177518956}
+  _price: 40
+  _priceText: {fileID: 152223304}
+  _objectToDisplay: {fileID: 1177518956}
 --- !u!114 &336523272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5243,19 +5243,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 336523273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 336523271}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &336523273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5477,8 +5465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 341.33472, y: -216.22667}
-  m_SizeDelta: {x: 400, y: 432.45334}
+  m_AnchoredPosition: {x: 620.00006, y: -162.2337}
+  m_SizeDelta: {x: 400, y: 324.4674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &372957578
 MonoBehaviour:
@@ -5537,7 +5525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &374897089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5670,7 +5658,7 @@ RectTransform:
   m_Father: {fileID: 2005314678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5795,7 +5783,7 @@ RectTransform:
   m_Father: {fileID: 1109485197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.9990603}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6195,7 +6183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.21902, y: -0.057272002}
+  m_AnchoredPosition: {x: 384.21902, y: -0.16990948}
   m_SizeDelta: {x: 768.43805, y: 2400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &458110618
@@ -6333,7 +6321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.4998779, y: -3.000061}
+  m_AnchoredPosition: {x: 1.5, y: -3.0000153}
   m_SizeDelta: {x: 1141.3511, y: 183}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &487407144
@@ -7502,7 +7490,6 @@ GameObject:
   - component: {fileID: 605014814}
   - component: {fileID: 605014813}
   - component: {fileID: 605014812}
-  - component: {fileID: 605014811}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -7510,19 +7497,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &605014811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605014810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56a0966edd855bb46bb4f71a3125b4b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyText: {fileID: 667593892}
 --- !u!114 &605014812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7755,8 +7729,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 641864821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2870903, y: 0}
-  m_AnchorMax: {x: 0.7129097, y: 1}
+  m_AnchorMin: {x: 0.19905952, y: 0}
+  m_AnchorMax: {x: 0.8009404, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8000,7 +7974,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 962636650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5710766}
+  m_AnchorMin: {x: 0, y: 0.57124215}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -9078,6 +9052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49563c7d23b90214195f64ee0793e4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _money: 200
+  _moneyText: {fileID: 667593892}
   _mainMenu: {fileID: 374897088}
   _gameMenu: {fileID: 1059808830}
   _stepMenu: {fileID: 819833200}
@@ -9706,10 +9682,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 935784261}
-  - {fileID: 231225715}
-  - {fileID: 862237600}
-  - {fileID: 1177518957}
   - {fileID: 698545680}
+  - {fileID: 231225715}
+  - {fileID: 1177518957}
+  - {fileID: 862237600}
   - {fileID: 1033075130}
   m_Father: {fileID: 948441017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10351,9 +10327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 60
-  priceText: {fileID: 1725764528}
-  target: {fileID: 1033075126}
+  _price: 60
+  _priceText: {fileID: 1725764528}
+  _objectToDisplay: {fileID: 1033075126}
 --- !u!114 &861752339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10397,19 +10373,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 861752340}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 861752338}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &861752340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11440,7 +11404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 3190, y: 1064}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &948441018
@@ -11813,8 +11777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -206.22667}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -152.2337}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &993542104
 MonoBehaviour:
@@ -12963,9 +12927,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
-  priceText: {fileID: 641866178}
-  target: {fileID: 862237599}
+  _price: 50
+  _priceText: {fileID: 641866178}
+  _objectToDisplay: {fileID: 862237599}
 --- !u!114 &1067990125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13009,19 +12973,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1067990126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1067990124}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1067990126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13555,8 +13507,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -206.22667}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -152.2337}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1107107370
 MonoBehaviour:
@@ -15996,7 +15948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1221.3347, y: -266.22668}
+  m_AnchoredPosition: {x: 1500, y: -212.2337}
   m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1453717860
@@ -16271,7 +16223,7 @@ RectTransform:
   m_Father: {fileID: 97509751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.6026087, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16624,9 +16576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 10
-  priceText: {fileID: 1595060877}
-  target: {fileID: 935784260}
+  _price: 10
+  _priceText: {fileID: 1595060877}
+  _objectToDisplay: {fileID: 935784260}
 --- !u!114 &1552208017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16670,19 +16622,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552208018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1552208016}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1552208018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17125,9 +17065,9 @@ RectTransform:
   m_Father: {fileID: 275327449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1575994668
 MonoBehaviour:
@@ -18096,9 +18036,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 30
-  priceText: {fileID: 150113358}
-  target: {fileID: 231225714}
+  _price: 30
+  _priceText: {fileID: 150113358}
+  _objectToDisplay: {fileID: 231225714}
 --- !u!114 &1623656276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18142,19 +18082,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1623656277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1623656275}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1623656277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18821,8 +18749,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 801.3347, y: -216.22667}
-  m_SizeDelta: {x: 400, y: 432.45334}
+  m_AnchoredPosition: {x: 1080, y: -162.2337}
+  m_SizeDelta: {x: 400, y: 324.4674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685734788
 MonoBehaviour:
@@ -19032,8 +18960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -314.34}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -233.35056}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1701322867
 MonoBehaviour:
@@ -20655,7 +20583,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1478235429}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.6026087
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20872,8 +20800,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 681.3347, y: -1305.4924}
-  m_SizeDelta: {x: 1362.6694, y: 432.45334}
+  m_AnchoredPosition: {x: 960.00006, y: -917.7663}
+  m_SizeDelta: {x: 1920.0001, y: 324.4674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866266411
 MonoBehaviour:
@@ -21041,8 +20969,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 637398995}
   m_HandleRect: {fileID: 637398994}
   m_Direction: 0
-  m_Value: 0.50000006
-  m_Size: 0.42581943
+  m_Value: 0.49999994
+  m_Size: 0.6018809
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21330,8 +21258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -314.34}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -233.35056}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1892806224
 MonoBehaviour:
@@ -22051,8 +21979,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 681.3347, y: -544.6329}
-  m_SizeDelta: {x: 1362.6694, y: 1089.2657}
+  m_AnchoredPosition: {x: 960.00006, y: -377.7663}
+  m_SizeDelta: {x: 1920.0001, y: 755.5326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002842373
 MonoBehaviour:
@@ -22356,8 +22284,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -422.45334}
-  m_SizeDelta: {x: 420, y: 88.113335}
+  m_AnchoredPosition: {x: 420, y: -314.4674}
+  m_SizeDelta: {x: 420, y: 61.11685}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2011151808
 MonoBehaviour:
@@ -22657,8 +22585,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 646090431}
   m_HandleRect: {fileID: 646090430}
   m_Direction: 2
-  m_Value: 1.0000418
-  m_Size: 0.42892343
+  m_Value: 1.000124
+  m_Size: 0.42875785
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22954,9 +22882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cfc398eac633428eefb39d5ef92db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 20
-  priceText: {fileID: 2085320683}
-  target: {fileID: 698545679}
+  _price: 20
+  _priceText: {fileID: 2085320683}
+  _objectToDisplay: {fileID: 698545679}
 --- !u!114 &2025944648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23000,19 +22928,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2025944649}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2025944647}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: pay
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 605014811}
-          m_ObjectArgumentAssemblyTypeName: Shop, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2025944649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23217,7 +23133,7 @@ RectTransform:
   m_Father: {fileID: 1293149029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
