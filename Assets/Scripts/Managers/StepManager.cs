@@ -65,6 +65,7 @@ public class StepManager : MonoBehaviour
             _ => new Vector2(rect.sizeDelta.x, 800),
         };
         currentStep.UpdateStepDocumentWithData(newContent);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(newContent.GetComponent<RectTransform>());
 
         string[] diags = currentStep.GetPossibleDiagnostics();
         for (int i = 0; i < _diagButtons.Length; i++)
