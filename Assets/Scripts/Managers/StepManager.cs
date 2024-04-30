@@ -22,7 +22,8 @@ public class StepManager : MonoBehaviour
     internal void Initialize()
     {
         _patientData = ScriptableObject.CreateInstance<PatientData>();
-        _patientData.RandomizeData(4);
+        int stepToReach = Random.Range(0, 5);
+        _patientData.RandomizeData(stepToReach);
         _steps = _patientData.GetStepDatas();
 
         _isInit = true;
