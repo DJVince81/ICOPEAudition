@@ -9,32 +9,41 @@ public class StepManager : MonoBehaviour
     [SerializeField] private Button[] _actionButtons;
     [SerializeField] private ButtonGroup _diagButtonGroup;
     [SerializeField] private ButtonGroup _actionButtonGroup;
+    [SerializeField] private Button _confirmButton;
+    [SerializeField] private Button _nextButton;
 
     private PatientData _patientData;
     private StepData[] _steps;
+    private int _currentStepIndex = 0;
 
+    public bool WasCorrectlyAnswered { get; private set; } = false;
     private bool _isInit = false;
 
     internal void Initialize()
     {
         _patientData = ScriptableObject.CreateInstance<PatientData>();
-
         _patientData.RandomizeData(4);
-
         _steps = _patientData.GetStepDatas();
 
         _isInit = true;
     }
 
-    internal void LoadStep(int e)
+    private StepData GetCurrentStep()
     {
-        if (_isInit) DisplayStep(e);
+        return _steps[_currentStepIndex];
     }
-    private void DisplayStep(int stepIndex)
-    {
-        Debug.Log($"Displaying step {stepIndex}");
 
-        StepData currentStep = _steps[stepIndex];
+    internal void LoadStep(int stepIndex)
+    {
+        _currentStepIndex = stepIndex;
+        if (_isInit) DisplayStep();
+        WasCorrectlyAnswered = false;
+    }
+    private void DisplayStep()
+    {
+        Debug.Log($"Displaying step {_currentStepIndex}/{_steps.Length - 1}");
+
+        StepData currentStep = GetCurrentStep();
 
         if (currentStep.IsEndStep)
         {
@@ -49,7 +58,7 @@ public class StepManager : MonoBehaviour
 
         GameObject newContent = Instantiate(currentStep.GetStepDocumentPrefab(), _documentContentParent);
         RectTransform rect = _documentContentParent.GetComponent<RectTransform>();
-        rect.sizeDelta = stepIndex switch
+        rect.sizeDelta = _currentStepIndex switch
         {
             1 => new Vector2(rect.sizeDelta.x, 2300),
             _ => new Vector2(rect.sizeDelta.x, 800),
@@ -78,14 +87,42 @@ public class StepManager : MonoBehaviour
             else _actionButtons[i].gameObject.SetActive(false);
         }
 
-        _diagButtonGroup.ResetButtons();
-        _actionButtonGroup.ResetButtons();
+        _diagButtonGroup.Reset();
+        _actionButtonGroup.Reset();
+
+        _confirmButton.interactable = true;
+        _nextButton.interactable = false;
     }
 
-    internal bool IsStepCorrect(int stepIndex)
+    private bool CheckDiagnosticsValidity()
     {
-        StepData currentStep = _steps[stepIndex];
-        if ((_diagButtonGroup.SelectedButtonIndex == -1) || (_actionButtonGroup.SelectedButtonIndex == -1)) return false;
-        return currentStep.IsDiagnosticCorrect(_diagButtonGroup.SelectedButtonIndex) && currentStep.IsActionCorrect(_actionButtonGroup.SelectedButtonIndex);
+        StepData currentStep = GetCurrentStep();
+        if (_diagButtonGroup.SelectedButtonIndex == -1) return false;
+        int selecedButtonIndex = _diagButtonGroup.SelectedButtonIndex;
+        bool isCorrect = currentStep.IsDiagnosticCorrect(selecedButtonIndex);
+        _diagButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        return isCorrect;
+    }
+
+    private bool CheckActionsValidity()
+    {
+        StepData currentStep = GetCurrentStep();
+        if (_actionButtonGroup.SelectedButtonIndex == -1) return false;
+        int selecedButtonIndex = _actionButtonGroup.SelectedButtonIndex;
+        bool isCorrect = currentStep.IsActionCorrect(selecedButtonIndex);
+        _actionButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        return isCorrect;
+    }
+
+    public void CheckAnswersValidity()
+    {
+        bool isDiagValid = CheckDiagnosticsValidity();
+        bool isActionValid = CheckActionsValidity();
+        if (isDiagValid && isActionValid)
+        {
+            WasCorrectlyAnswered = true;
+            _confirmButton.interactable = false;
+            _nextButton.interactable = true;
+        }
     }
 }

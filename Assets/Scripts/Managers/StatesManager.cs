@@ -30,7 +30,7 @@ public class StatesManager : MonoBehaviour
             isOk = true;
             return;
         }
-        isOk = GameManager.Instance.StepManager.IsStepCorrect((int)State - 2);
+        isOk = GameManager.Instance.StepManager.WasCorrectlyAnswered;
     }
 
     public void ReturnMainMenu()
