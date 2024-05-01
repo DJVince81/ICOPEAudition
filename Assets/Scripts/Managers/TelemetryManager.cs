@@ -1,19 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class TelemetryManager : MonoBehaviour
 {
-    [SerializeField] private string serverURL = "https://icope.rodriguez-vincent.fr/datas_manager.php";
+    [SerializeField] private string serverURL = "https://icope.rodriguez-vincent.fr/";
+    [SerializeField] private string datasManagerPHP = "datas_manager.php";
+    [SerializeField] private string uuidPHP = "uuid.php";
 
     XmlDocument xmlDocument = null;
+    private string uuid;
+
+    IEnumerator Start()
+    {
+        uuid = PlayerPrefs.GetString("UUID", string.Empty);
+        if (uuid == string.Empty)
+        {
+            UnityWebRequest webRequest = UnityWebRequest.Get($"{serverURL}{uuidPHP}");
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                uuid = webRequest.downloadHandler.text;
+                PlayerPrefs.SetString("UUID", uuid);
+                PlayerPrefs.Save();
+            }
+            else
+            {
+                Debug.LogError("Erreur lors de la récupération de l'UUID : " + webRequest.error);
+            }
+        }
+    }
 
     public void TestXMLDocument()
     {
@@ -40,16 +61,18 @@ public class TelemetryManager : MonoBehaviour
         StringBuilder xmlBuilder = new();
 
         xmlBuilder.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-        xmlBuilder.AppendLine("<Data>");
+        xmlBuilder.AppendLine("<Root>");
+        xmlBuilder.AppendLine($"\t<Data uuid=\"{uuid}\">");
 
         foreach (object data in dataList)
         {
-            xmlBuilder.AppendLine("\t<Item Type=\"" + data.GetType().ToString() + "\">");
+            xmlBuilder.AppendLine($"\t\t<Item Type=\"{data.GetType()}\">");
 
             string dataString = data switch
             {
                 int intValue => intValue.ToString(),
                 float floatValue => floatValue.ToString(),
+                double doubleValue => doubleValue.ToString(),
                 string stringValue => stringValue,
                 bool boolValue => boolValue.ToString(),
                 DateTime dateTimeValue => dateTimeValue.ToString("o"),
@@ -58,13 +81,14 @@ public class TelemetryManager : MonoBehaviour
 
             if (dataString != null)
             {
-                xmlBuilder.AppendLine("\t\t" + dataString);
+                xmlBuilder.AppendLine($"\t\t\t{dataString}");
             }
 
-            xmlBuilder.AppendLine("\t</Item>");
+            xmlBuilder.AppendLine("\t\t</Item>");
         }
 
-        xmlBuilder.AppendLine("</Data>");
+        xmlBuilder.AppendLine("\t</Data>");
+        xmlBuilder.AppendLine("</Root>");
 
         XmlDocument xmlDoc = new();
         xmlDoc.LoadXml(xmlBuilder.ToString());
@@ -81,7 +105,7 @@ public class TelemetryManager : MonoBehaviour
     {
         string xmlString = xmlDocument.OuterXml;
 
-        using UnityWebRequest request = new(serverURL, "POST");
+        using UnityWebRequest request = new($"{serverURL}{datasManagerPHP}", "POST");
         byte[] xmlData = Encoding.UTF8.GetBytes(xmlString);
         request.uploadHandler = new UploadHandlerRaw(xmlData);
         request.downloadHandler = new DownloadHandlerBuffer();
