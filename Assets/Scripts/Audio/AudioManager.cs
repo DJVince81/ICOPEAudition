@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
-
     }
 
     public IEnumerator FadeOut()
@@ -33,6 +32,4 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
-
-
 }
