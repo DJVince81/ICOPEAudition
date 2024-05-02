@@ -46,13 +46,20 @@ public class StatesManager : MonoBehaviour
         {
             case States.MAIN_MENU:
             case States.GAME_MENU:
+                if (isOk)
+                {
+                    State++;
+                    DoActionOnChangeState();
+                }
+                break;
             case States.GAME_E0:
             case States.GAME_E1:
             case States.GAME_E2:
             case States.GAME_E3:
                 if (isOk)
                 {
-                    State++;
+                    if (GameManager.Instance.StepManager.IsLastStep()) State = States.GAME_MENU;
+                    else State++;
                     DoActionOnChangeState();
                 }
                 break;

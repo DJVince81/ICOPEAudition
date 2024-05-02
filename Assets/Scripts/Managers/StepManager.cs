@@ -14,10 +14,16 @@ public class StepManager : MonoBehaviour
 
     private PatientData _patientData;
     private StepData[] _steps;
-    private int _currentStepIndex = 0;
+    private int _currentStepIndex = -1;
 
     public bool WasCorrectlyAnswered { get; private set; } = false;
     private bool _isInit = false;
+
+    private void Start()
+    {
+        _diagButtonGroup.OnButtonSelected += UpdateConfirmButton;
+        _actionButtonGroup.OnButtonSelected += UpdateConfirmButton;
+    }
 
     internal void Initialize()
     {
@@ -31,6 +37,11 @@ public class StepManager : MonoBehaviour
 
     private StepData GetCurrentStep()
     {
+        if (_currentStepIndex < 0 || _currentStepIndex >= _steps.Length)
+        {
+            Debug.LogError("No step loaded");
+            return null;
+        }
         return _steps[_currentStepIndex];
     }
 
@@ -42,15 +53,9 @@ public class StepManager : MonoBehaviour
     }
     private void DisplayStep()
     {
-        Debug.Log($"Displaying step {_currentStepIndex}/{_steps.Length - 1}");
         GameManager.Instance.TelemetryManager.IncrNbShowSteps(_currentStepIndex);
 
         StepData currentStep = GetCurrentStep();
-
-        if (currentStep.IsEndStep)
-        {
-            GameManager.Instance.ChangeState();
-        }
 
         // Remove all children of the parent in reverse order
         for (int i = _documentContentParent.childCount - 1; i >= 0; i--)
@@ -93,34 +98,44 @@ public class StepManager : MonoBehaviour
         _diagButtonGroup.Reset();
         _actionButtonGroup.Reset();
 
-        _confirmButton.interactable = true;
+        _confirmButton.interactable = false;
         _nextButton.interactable = false;
+
+        UpdateConfirmButton();
     }
 
-    private bool CheckDiagnosticsValidity()
+    private bool CheckDiagnosticsValidity(int selectedDiagIndex)
     {
         StepData currentStep = GetCurrentStep();
-        if (_diagButtonGroup.SelectedButtonIndex == -1) return false;
-        int selecedButtonIndex = _diagButtonGroup.SelectedButtonIndex;
-        bool isCorrect = currentStep.IsDiagnosticCorrect(selecedButtonIndex);
-        _diagButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        bool isCorrect = currentStep.IsDiagnosticCorrect(selectedDiagIndex);
         return isCorrect;
     }
 
-    private bool CheckActionsValidity()
+    private bool CheckActionsValidity(int selectedButtonIndex)
     {
         StepData currentStep = GetCurrentStep();
-        if (_actionButtonGroup.SelectedButtonIndex == -1) return false;
-        int selecedButtonIndex = _actionButtonGroup.SelectedButtonIndex;
-        bool isCorrect = currentStep.IsActionCorrect(selecedButtonIndex);
-        _actionButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        bool isCorrect = currentStep.IsActionCorrect(selectedButtonIndex);
         return isCorrect;
     }
 
     public void CheckAnswersValidity()
     {
-        bool isDiagValid = CheckDiagnosticsValidity();
-        bool isActionValid = CheckActionsValidity();
+        int selectedDiagIndex = _diagButtonGroup.SelectedButtonIndex;
+        int selectedActionIndex = _actionButtonGroup.SelectedButtonIndex;
+
+        if (selectedDiagIndex == -1 || selectedActionIndex == -1)
+        {
+            Debug.LogError("No answer selected");
+            return;
+        }
+
+        bool isDiagValid = CheckDiagnosticsValidity(selectedDiagIndex);
+        bool isActionValid = CheckActionsValidity(selectedActionIndex);
+
+        _diagButtonGroup.SetAnswerValidity(selectedDiagIndex, isDiagValid);
+        _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
+        UpdateConfirmButton();
+
         if (isDiagValid && isActionValid)
         {
             WasCorrectlyAnswered = true;
@@ -132,5 +147,15 @@ public class StepManager : MonoBehaviour
             if (!isDiagValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsDiag(_currentStepIndex);
             if (!isActionValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsAction(_currentStepIndex);
         }
+    }
+
+    private void UpdateConfirmButton()
+    {
+        _confirmButton.interactable = _diagButtonGroup.SelectedButtonIndex != -1 && _actionButtonGroup.SelectedButtonIndex != -1;
+    }
+
+    public bool IsLastStep()
+    {
+        return !GetCurrentStep().LeadsToNextStep();
     }
 }

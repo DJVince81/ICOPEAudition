@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ButtonGroup : MonoBehaviour
 {
+    public event System.Action OnButtonSelected;
+
     public int SelectedButtonIndex { get; private set; }
 
-    private AnswerButton[] _answerButtons;
+    private AnswerButton[] _answerButtons = new AnswerButton[0];
 
     private void Start()
     {
@@ -13,6 +15,7 @@ public class ButtonGroup : MonoBehaviour
         {
             answerButton.AssociatedButton.onClick.AddListener(() => OnButtonClicked(answerButton));
         }
+
         Reset();
     }
 
@@ -26,6 +29,7 @@ public class ButtonGroup : MonoBehaviour
                 SelectedButtonIndex = i;
             }
         }
+        OnButtonSelected?.Invoke();
     }
 
     public void Reset()
@@ -46,6 +50,7 @@ public class ButtonGroup : MonoBehaviour
     public void SetWrongAnswer(int index)
     {
         _answerButtons[index].SetIncorrect();
+        SelectedButtonIndex = -1;
     }
 
     public void SetAnswerValidity(int index, bool isCorrect)
