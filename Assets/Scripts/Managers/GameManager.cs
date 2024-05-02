@@ -3,12 +3,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(StatesManager))]
 [RequireComponent(typeof(StepManager))]
+[RequireComponent(typeof(TelemetryManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public StatesManager StatesManager { get; private set; }
     public StepManager StepManager { get; private set; }
+    public TelemetryManager TelemetryManager { get; private set; }
 
     public int Money
     {
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _moneyText;
 
     [Header("Menus")]
+
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _stepMenu;
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         StatesManager = GetComponent<StatesManager>();
         StepManager = GetComponent<StepManager>();
+        TelemetryManager = GetComponent<TelemetryManager>();
 
         _moneyText.text = _money.ToString();
     }
