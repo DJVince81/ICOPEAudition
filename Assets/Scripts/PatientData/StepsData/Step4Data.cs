@@ -26,10 +26,10 @@ public class Step4Data : StepData
 
 	public AudiometryResult audiometryResult;
 
-	public Step4Data() : base(true)
+	public Step4Data()
 	{
 		audiometryResult = AudiometryResult.NormalAudiogram;
-    }
+	}
 
 	public override GameObject GetStepDocumentPrefab()
 	{

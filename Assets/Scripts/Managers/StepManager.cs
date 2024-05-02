@@ -14,7 +14,7 @@ public class StepManager : MonoBehaviour
 
     private PatientData _patientData;
     private StepData[] _steps;
-    private int _currentStepIndex = 0;
+    private int _currentStepIndex = -1;
 
     public bool WasCorrectlyAnswered { get; private set; } = false;
     private bool _isInit = false;
@@ -37,6 +37,11 @@ public class StepManager : MonoBehaviour
 
     private StepData GetCurrentStep()
     {
+        if (_currentStepIndex < 0 || _currentStepIndex >= _steps.Length)
+        {
+            Debug.LogError("No step loaded");
+            return null;
+        }
         return _steps[_currentStepIndex];
     }
 
@@ -48,14 +53,7 @@ public class StepManager : MonoBehaviour
     }
     private void DisplayStep()
     {
-        Debug.Log($"Displaying step {_currentStepIndex}/{_steps.Length - 1}");
-
         StepData currentStep = GetCurrentStep();
-
-        if (currentStep.IsEndStep)
-        {
-            GameManager.Instance.ChangeState();
-        }
 
         // Remove all children of the parent in reverse order
         for (int i = _documentContentParent.childCount - 1; i >= 0; i--)
@@ -147,5 +145,10 @@ public class StepManager : MonoBehaviour
     private void UpdateConfirmButton()
     {
         _confirmButton.interactable = _diagButtonGroup.SelectedButtonIndex != -1 && _actionButtonGroup.SelectedButtonIndex != -1;
+    }
+
+    public bool IsLastStep()
+    {
+        return !GetCurrentStep().LeadsToNextStep();
     }
 }
