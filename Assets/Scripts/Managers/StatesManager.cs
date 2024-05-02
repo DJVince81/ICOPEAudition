@@ -59,6 +59,7 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E4:
                 if (isOk)
                 {
+                    GameManager.Instance.TelemetryManager.IncrWins();
                     State = States.GAME_MENU;
                     DoActionOnChangeState();
                 }

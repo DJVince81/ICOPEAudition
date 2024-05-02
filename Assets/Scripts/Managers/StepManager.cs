@@ -43,6 +43,7 @@ public class StepManager : MonoBehaviour
     private void DisplayStep()
     {
         Debug.Log($"Displaying step {_currentStepIndex}/{_steps.Length - 1}");
+        GameManager.Instance.TelemetryManager.IncrNbShowSteps(_currentStepIndex);
 
         StepData currentStep = GetCurrentStep();
 
@@ -125,6 +126,11 @@ public class StepManager : MonoBehaviour
             WasCorrectlyAnswered = true;
             _confirmButton.interactable = false;
             _nextButton.interactable = true;
+        }
+        else
+        {
+            if (!isDiagValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsDiag(_currentStepIndex);
+            if (!isActionValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsAction(_currentStepIndex);
         }
     }
 }

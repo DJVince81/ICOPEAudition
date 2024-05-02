@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
             ClearScreen();
             _stepMenu.SetActive(true);
             StepManager.Initialize();
+            TelemetryManager.IncrGames();
         }
         StepManager.LoadStep(stepIndex);
     }

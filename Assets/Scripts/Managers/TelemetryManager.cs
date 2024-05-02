@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using UnityEngine;
@@ -10,52 +11,123 @@ public class TelemetryManager : MonoBehaviour
 {
     [SerializeField] private string serverURL = "https://icope.rodriguez-vincent.fr/";
     [SerializeField] private string datasManagerPHP = "datas_manager.php";
+    [SerializeField] private string getDatasPHP = "get_datas.php";
     [SerializeField] private string uuidPHP = "uuid.php";
 
     XmlDocument xmlDocument = null;
     private string uuid;
-    private int nbWins, nbGames;
-    private List<int> nbShowSteps = new();
-    private List<int> nbLosesStepsDiag = new();
-    private List<int> nbLosesStepsAction = new();
-    private double gameTime;
+    [SerializeField] private int nbWins = 0, nbGames = 0;
+    private List<int> nbShowSteps = new() { 0, 0, 0, 0, 0 };
+    private List<int> nbLosesStepsDiag = new() { 0, 0, 0, 0, 0 };
+    private List<int> nbLosesStepsAction = new() { 0, 0, 0, 0, 0 };
+    [SerializeField] private float gameTime, lastSessionTime;
+    [SerializeField] private List<string> answers = new() { "", "", "", "" };
+
+    internal void IncrGames() => nbGames++;
+    internal void IncrWins() => nbWins++;
+    internal void IncrNbShowSteps(int i) => nbShowSteps[i % nbShowSteps.Count]++;
+    internal void IncrNbLosesStepsDiag(int i) => nbLosesStepsDiag[i % nbLosesStepsDiag.Count]++;
+    internal void IncrNbLosesStepsAction(int i) => nbLosesStepsAction[i % nbLosesStepsAction.Count]++;
 
     IEnumerator Start()
     {
         uuid = PlayerPrefs.GetString("UUID", string.Empty);
-        if (uuid == string.Empty)
+        if (string.IsNullOrEmpty(uuid))
         {
-            UnityWebRequest webRequest = UnityWebRequest.Get($"{serverURL}{uuidPHP}");
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.Success)
+            using (UnityWebRequest webRequest = UnityWebRequest.Get($"{serverURL}{uuidPHP}"))
             {
-                uuid = webRequest.downloadHandler.text;
-                PlayerPrefs.SetString("UUID", uuid);
-                PlayerPrefs.Save();
+                yield return webRequest.SendWebRequest();
+
+                if (webRequest.result == UnityWebRequest.Result.Success)
+                {
+                    uuid = webRequest.downloadHandler.text;
+                    PlayerPrefs.SetString("UUID", uuid);
+                    PlayerPrefs.Save();
+                }
+                else
+                {
+                    Debug.LogError("Erreur lors de la récupération de l'UUID : " + webRequest.error);
+                }
+            }
+        }
+
+        using (UnityWebRequest www = UnityWebRequest.Get($"{serverURL}{getDatasPHP}?uuid={uuid}"))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                InitVariables();
             }
             else
             {
-                Debug.LogError("Erreur lors de la récupération de l'UUID : " + webRequest.error);
+                string response = www.downloadHandler.text;
+                string[] variables = response.Split(';');
+                variables = variables.Select(v => v.Replace("_*_POINT_COMMA_*_", ";")).ToArray();
+
+                InitVariables();
+
+                if (variables.Length >= 15)
+                {
+                    if (int.TryParse(variables[1].Trim(), out nbGames) &&
+                        int.TryParse(variables[2].Trim(), out nbWins) &&
+                        float.TryParse(variables[14].Trim(), out lastSessionTime))
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            if (variables.Length > 4 + i && variables.Length > 9 + i &&
+                                int.TryParse(variables[4 + i].Trim(), out int diag) &&
+                                int.TryParse(variables[9 + i].Trim(), out int action))
+                            {
+                                nbLosesStepsDiag[i] = diag;
+                                nbLosesStepsAction[i] = action;
+                            }
+                        }
+                        answers = new() {"", "", "", ""};
+                        if (variables[15].Length >= 2) answers[0] = variables[15].Substring(1, variables[15].Length - 2);
+                        else answers[0] = "";
+                        if (variables[16].Length >= 2) answers[1] = variables[16].Substring(1, variables[16].Length - 2);
+                        else answers[1] = "";
+                        if (variables[17].Length >= 2) answers[2] = variables[17].Substring(1, variables[17].Length - 2);
+                        else answers[2] = "";
+                        if (variables[18].Length >= 2) answers[3] = variables[18].Substring(1, variables[18].Length - 2);
+                        else answers[3] = "";
+                    }
+                }
             }
         }
-        nbGames = 7;
-        nbWins = 4;
+
+        gameTime = Time.realtimeSinceStartup;
+        StartCoroutine(AutoSave());
+    }
+
+    private void InitVariables()
+    {
+        lastSessionTime = nbGames = nbWins = 0;
         for (int i = 0; i < 5; i++)
         {
-            nbShowSteps.Add(5);
-            nbLosesStepsDiag.Add(i);
-            nbLosesStepsAction.Add(i + 10);
+            nbLosesStepsDiag[i] = nbLosesStepsAction[i] = 0;
         }
-        gameTime = 724.82;
+        answers = new() { "", "", "", "" };
+    }
+
+    private IEnumerator AutoSave()
+    {
+        while ( true )
+        {
+            yield return new WaitForSeconds(5f);
+            SaveDatas();
+        }
     }
 
     public void SaveDatas()
     {
         if (nbGames > 0)
         {
+            float timeElapsed = (Time.realtimeSinceStartup - gameTime) + lastSessionTime;
             /*
              * Nombre de patients traités
+             * Nombre de patients traités réussis
              * Pourcentage réussite
              * Nombre erreurs étape 1
              * Nombre erreurs étape 2
@@ -71,6 +143,7 @@ public class TelemetryManager : MonoBehaviour
             object[] dataList =
             {
                 nbGames,
+                nbWins,
                 (double) nbWins/nbGames * 100,
                 nbLosesStepsDiag[0],
                 nbLosesStepsAction[0],
@@ -82,13 +155,12 @@ public class TelemetryManager : MonoBehaviour
                 nbLosesStepsAction[3],
                 nbLosesStepsDiag[4],
                 nbLosesStepsAction[4],
-                gameTime,
-                "Answer 1",
-                "Answer 2",
-                "Answer 3",
-                "Answer 4",
+                timeElapsed,
+                answers[0],
+                answers[1],
+                answers[2],
+                answers[3],
             };
-            Debug.Log(dataList);
             xmlDocument = ConvertToXML(dataList);
             SaveToServer();
         }
@@ -165,5 +237,21 @@ public class TelemetryManager : MonoBehaviour
             Debug.Log("XML file successfully sent to server.");
             Debug.Log("Server response : " + request.downloadHandler.text);
         }
+    }
+}
+
+public static class JsonHelper
+{
+    public static T[] GetJsonArray<T>(string json)
+    {
+        string newJson = "{\"array\":" + json + "}";
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
+        return wrapper.array;
+    }
+
+    [System.Serializable]
+    private class Wrapper<T>
+    {
+        public T[] array;
     }
 }
