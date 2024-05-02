@@ -19,6 +19,12 @@ public class StepManager : MonoBehaviour
     public bool WasCorrectlyAnswered { get; private set; } = false;
     private bool _isInit = false;
 
+    private void Start()
+    {
+        _diagButtonGroup.OnButtonSelected += UpdateConfirmButton;
+        _actionButtonGroup.OnButtonSelected += UpdateConfirmButton;
+    }
+
     internal void Initialize()
     {
         _patientData = ScriptableObject.CreateInstance<PatientData>();
@@ -92,39 +98,54 @@ public class StepManager : MonoBehaviour
         _diagButtonGroup.Reset();
         _actionButtonGroup.Reset();
 
-        _confirmButton.interactable = true;
+        _confirmButton.interactable = false;
         _nextButton.interactable = false;
+
+        UpdateConfirmButton();
     }
 
-    private bool CheckDiagnosticsValidity()
+    private bool CheckDiagnosticsValidity(int selectedDiagIndex)
     {
         StepData currentStep = GetCurrentStep();
-        if (_diagButtonGroup.SelectedButtonIndex == -1) return false;
-        int selecedButtonIndex = _diagButtonGroup.SelectedButtonIndex;
-        bool isCorrect = currentStep.IsDiagnosticCorrect(selecedButtonIndex);
-        _diagButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        bool isCorrect = currentStep.IsDiagnosticCorrect(selectedDiagIndex);
         return isCorrect;
     }
 
-    private bool CheckActionsValidity()
+    private bool CheckActionsValidity(int selectedButtonIndex)
     {
         StepData currentStep = GetCurrentStep();
-        if (_actionButtonGroup.SelectedButtonIndex == -1) return false;
-        int selecedButtonIndex = _actionButtonGroup.SelectedButtonIndex;
-        bool isCorrect = currentStep.IsActionCorrect(selecedButtonIndex);
-        _actionButtonGroup.SetAnswerValidity(selecedButtonIndex, isCorrect);
+        bool isCorrect = currentStep.IsActionCorrect(selectedButtonIndex);
         return isCorrect;
     }
 
     public void CheckAnswersValidity()
     {
-        bool isDiagValid = CheckDiagnosticsValidity();
-        bool isActionValid = CheckActionsValidity();
+        int selectedDiagIndex = _diagButtonGroup.SelectedButtonIndex;
+        int selectedActionIndex = _actionButtonGroup.SelectedButtonIndex;
+
+        if (selectedDiagIndex == -1 || selectedActionIndex == -1)
+        {
+            Debug.LogError("No answer selected");
+            return;
+        }
+
+        bool isDiagValid = CheckDiagnosticsValidity(selectedDiagIndex);
+        bool isActionValid = CheckActionsValidity(selectedActionIndex);
+
+        _diagButtonGroup.SetAnswerValidity(selectedDiagIndex, isDiagValid);
+        _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
+        UpdateConfirmButton();
+
         if (isDiagValid && isActionValid)
         {
             WasCorrectlyAnswered = true;
             _confirmButton.interactable = false;
             _nextButton.interactable = true;
         }
+    }
+
+    private void UpdateConfirmButton()
+    {
+        _confirmButton.interactable = _diagButtonGroup.SelectedButtonIndex != -1 && _actionButtonGroup.SelectedButtonIndex != -1;
     }
 }
