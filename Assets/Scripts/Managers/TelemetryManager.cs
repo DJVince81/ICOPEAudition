@@ -14,6 +14,11 @@ public class TelemetryManager : MonoBehaviour
 
     XmlDocument xmlDocument = null;
     private string uuid;
+    private int nbWins, nbGames;
+    private List<int> nbShowSteps = new();
+    private List<int> nbLosesStepsDiag = new();
+    private List<int> nbLosesStepsAction = new();
+    private double gameTime;
 
     IEnumerator Start()
     {
@@ -34,21 +39,59 @@ public class TelemetryManager : MonoBehaviour
                 Debug.LogError("Erreur lors de la récupération de l'UUID : " + webRequest.error);
             }
         }
+        nbGames = 7;
+        nbWins = 4;
+        for (int i = 0; i < 5; i++)
+        {
+            nbShowSteps.Add(5);
+            nbLosesStepsDiag.Add(i);
+            nbLosesStepsAction.Add(i + 10);
+        }
+        gameTime = 724.82;
     }
 
-    public void TestXMLDocument()
+    public void SaveDatas()
     {
-        object[] dataList =
+        if (nbGames > 0)
         {
-            (int) 42,
-            (string) "hello world",
-            (string) "caractères spéciaux @.",
-            (bool) true,
-            (DateTime) DateTime.Now,
-            (float) 0.51f,
-        };
-        xmlDocument = ConvertToXML(dataList);
-        SaveToServer();
+            /*
+             * Nombre de patients traités
+             * Pourcentage réussite
+             * Nombre erreurs étape 1
+             * Nombre erreurs étape 2
+             * Nombre erreurs étape 3
+             * Nombre erreurs étape 4
+             * Nombre erreurs étape 5
+             * Temps passé sur le jeu
+             * Questionnaire de satisfaction (Q1)
+             * Questionnaire de satisfaction (Q2)
+             * Questionnaire de satisfaction (Q3)
+             * Questionnaire de satisfaction (Q4)
+             */
+            object[] dataList =
+            {
+                nbGames,
+                (double) nbWins/nbGames * 100,
+                nbLosesStepsDiag[0],
+                nbLosesStepsAction[0],
+                nbLosesStepsDiag[1],
+                nbLosesStepsAction[1],
+                nbLosesStepsDiag[2],
+                nbLosesStepsAction[2],
+                nbLosesStepsDiag[3],
+                nbLosesStepsAction[3],
+                nbLosesStepsDiag[4],
+                nbLosesStepsAction[4],
+                gameTime,
+                "Answer 1",
+                "Answer 2",
+                "Answer 3",
+                "Answer 4",
+            };
+            Debug.Log(dataList);
+            xmlDocument = ConvertToXML(dataList);
+            SaveToServer();
+        }
     }
 
     public XmlDocument ConvertToXML(object[] dataList)

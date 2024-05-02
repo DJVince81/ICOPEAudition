@@ -5211,8 +5211,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 375652771}
   m_HandleRect: {fileID: 375652770}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.98932385
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6578,7 +6578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.5, y: -2.9999924}
+  m_AnchoredPosition: {x: 1.5, y: -3.0000534}
   m_SizeDelta: {x: 1141.3511, y: 183}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &487407144
@@ -15170,7 +15170,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 730478444}
         m_TargetAssemblyTypeName: TelemetryManager, Assembly-CSharp
-        m_MethodName: TestXMLDocument
+        m_MethodName: SaveDatas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
