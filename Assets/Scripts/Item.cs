@@ -24,6 +24,8 @@ public class Item : MonoBehaviour
         {
             GameManager.Instance.Money -= _price;
             _objectToDisplay.SetActive(true);
+            GameManager.Instance.AddBuyedItem(_objectToDisplay.name);
+            GameManager.Instance.AddBuyedItem(gameObject.name);
             _button.interactable = false;
         }
     }

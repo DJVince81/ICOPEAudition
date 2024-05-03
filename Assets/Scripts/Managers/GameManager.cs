@@ -1,6 +1,7 @@
 using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(StatesManager))]
 [RequireComponent(typeof(StepManager))]
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public TelemetryManager TelemetryManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
 
+    public List<Item> items;
+
     public int Money
     {
         get
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
         {
             int previousMoney = _money;
             _money = value;
+            PlayerPrefs.SetInt("money", _money);
             OnMoneyChanged?.Invoke(_money, _money - previousMoney);
         }
     }
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _mainPanel;
+    [SerializeField] private GameObject _shopPanel;
 
     internal void LoadStep(int stepIndex)
     {
@@ -147,5 +152,40 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StatesManager.ReturnMainMenu();
+        LoadListItems();
+
+        _money = PlayerPrefs.GetInt("money", 20);
+    }
+
+    private void LoadListItems()
+    {
+        Transform items = _gameMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        string[] savedItems = PlayerPrefs.GetString("items", "").Split(";");
+        Debug.Log(PlayerPrefs.GetString("items", ""));
+        for (int i = 0; i < items.childCount; i++)
+        {
+            foreach (string item in savedItems)
+            {
+                Transform loadedItem = items.GetChild(i);
+                if (item.Equals(loadedItem.name)) loadedItem.gameObject.SetActive(true);
+            }
+        }
+
+        Transform itemButtons = _shopPanel.transform.GetChild(0).GetChild(0).GetChild(1);
+        for (int i = 0; i < itemButtons.childCount; i++)
+        {
+            foreach (string item in savedItems)
+            {
+                Transform loadedItem = itemButtons.GetChild(i);
+                if (item.Equals(loadedItem.name)) loadedItem.gameObject.GetComponent<Button>().interactable = false;
+            }
+        }
+    }
+
+    internal void AddBuyedItem(string name)
+    {
+        PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
+        PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetString("items", ""));
     }
 }
