@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioManager))]
 public class GameManager : MonoBehaviour
 {
+    public event System.Action<int, int> OnMoneyChanged;
+
     public static GameManager Instance;
 
     public StatesManager StatesManager { get; private set; }
@@ -23,18 +25,19 @@ public class GameManager : MonoBehaviour
         }
         set
         {
+            int previousMoney = _money;
             _money = value;
-            _moneyText.text = _money.ToString();
+            OnMoneyChanged?.Invoke(_money, _money - previousMoney);
         }
     }
 
     [Header("Money")]
     [SerializeField] private int _money = 20;
-    [SerializeField] private TextMeshProUGUI _moneyText;
 
     [Header("Menus")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private TipsPanel _tipsPanel;
     [SerializeField] private GameObject _stepMenu;
 
     [Header("Panels")]
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
         AudioManager.PlaySFX("ambiant", "AMBIANT");
         ClearScreen();
         _gameMenu.SetActive(true);
+        _tipsPanel.Display();
         if (StatesManager.paused) TogglePause();
     }
 

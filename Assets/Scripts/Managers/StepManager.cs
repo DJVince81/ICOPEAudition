@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class StepManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Transform _documentContentParent;
     [SerializeField] private Button[] _diagButtons;
     [SerializeField] private Button[] _actionButtons;
@@ -12,9 +13,17 @@ public class StepManager : MonoBehaviour
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _nextButton;
 
+    [Header("Money")]
+    [SerializeField] private int _moneyAnsweredCorrectly = 10;
+    [SerializeField] private int _moneyBonusFirstTry = 20;
+    [SerializeField] private int _moneyPatientFinished = 50;
+
+
     private PatientData _patientData;
     private StepData[] _steps;
     private int _currentStepIndex = -1;
+
+    private int _currentMoneyBonus = 0;
 
     public bool WasCorrectlyAnswered { get; private set; } = false;
     private bool _isInit = false;
@@ -53,6 +62,7 @@ public class StepManager : MonoBehaviour
         _currentStepIndex = stepIndex;
         if (_isInit) DisplayStep();
         WasCorrectlyAnswered = false;
+        _currentMoneyBonus = _moneyBonusFirstTry;
     }
     private void DisplayStep()
     {
@@ -70,7 +80,7 @@ public class StepManager : MonoBehaviour
         RectTransform rect = _documentContentParent.GetComponent<RectTransform>();
         rect.sizeDelta = _currentStepIndex switch
         {
-            1 => new Vector2(rect.sizeDelta.x, 2300),
+            1 => new Vector2(rect.sizeDelta.x, 2800),
             _ => new Vector2(rect.sizeDelta.x, 800),
         };
         currentStep.UpdateStepDocumentWithData(newContent);
@@ -107,14 +117,14 @@ public class StepManager : MonoBehaviour
         UpdateConfirmButton();
     }
 
-    private bool CheckDiagnosticsValidity(int selectedDiagIndex)
+    private bool IsDiagnosticValid(int selectedDiagIndex)
     {
         StepData currentStep = GetCurrentStep();
         bool isCorrect = currentStep.IsDiagnosticCorrect(selectedDiagIndex);
         return isCorrect;
     }
 
-    private bool CheckActionsValidity(int selectedButtonIndex)
+    private bool IsActionValid(int selectedButtonIndex)
     {
         StepData currentStep = GetCurrentStep();
         bool isCorrect = currentStep.IsActionCorrect(selectedButtonIndex);
@@ -132,8 +142,14 @@ public class StepManager : MonoBehaviour
             return;
         }
 
-        bool isDiagValid = CheckDiagnosticsValidity(selectedDiagIndex);
-        bool isActionValid = CheckActionsValidity(selectedActionIndex);
+        bool isDiagValid = IsDiagnosticValid(selectedDiagIndex);
+        bool isActionValid = IsActionValid(selectedActionIndex);
+
+        // Update money
+        int numberOfPossibleErrors = GetCurrentStep().GetPossibleDiagnostics().Length + GetCurrentStep().GetPossibleActions().Length - 2;
+        if (!isDiagValid) _currentMoneyBonus -= _moneyBonusFirstTry / numberOfPossibleErrors;
+        if (!isActionValid) _currentMoneyBonus -= _moneyBonusFirstTry / numberOfPossibleErrors;
+        _currentMoneyBonus = Mathf.Max(0, _currentMoneyBonus);
 
         _diagButtonGroup.SetAnswerValidity(selectedDiagIndex, isDiagValid);
         _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
@@ -158,6 +174,10 @@ public class StepManager : MonoBehaviour
             {
                 GameManager.Instance.AudioManager.PlaySFX("answer_correct3");
             }
+            // Give money
+            int gain = _moneyAnsweredCorrectly + _currentMoneyBonus;
+            if (IsLastStep()) gain += _moneyPatientFinished;
+            GameManager.Instance.Money += gain;
         }
         else
         {
