@@ -140,7 +140,6 @@ public class GameManager : MonoBehaviour
         TelemetryManager = GetComponent<TelemetryManager>();
         AudioManager = GetComponent<AudioManager>();
 
-        _moneyText.text = _money.ToString();
         AudioManager.LoopBgm(true);
         AudioManager.LoopSfx(true, "AMBIANT");
     }
