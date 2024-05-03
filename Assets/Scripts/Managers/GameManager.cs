@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         ClearScreen();
         _gameMenu.SetActive(true);
         _tipsPanel.Display();
+        AudioManager.PlayBGM("skyline");
         if (StatesManager.paused) TogglePause();
     }
 
@@ -182,7 +183,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal void AddBuyedItem(string name)
+    internal void AddBoughtItem(string name)
     {
         PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
         PlayerPrefs.Save();

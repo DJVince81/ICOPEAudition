@@ -13,6 +13,11 @@ public class SettingsMenu : MonoBehaviour
 
     [SerializeField] private Toggle toggleFullScreen;
 
+    private void Start()
+    {
+        Init();
+    }
+
     public void Init()
     {
         bool isFullScreen = PlayerPrefs.GetInt("fullScreen", 0) == 1;

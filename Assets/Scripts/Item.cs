@@ -24,9 +24,10 @@ public class Item : MonoBehaviour
         {
             GameManager.Instance.Money -= _price;
             _objectToDisplay.SetActive(true);
-            GameManager.Instance.AddBuyedItem(_objectToDisplay.name);
-            GameManager.Instance.AddBuyedItem(gameObject.name);
+            GameManager.Instance.AddBoughtItem(_objectToDisplay.name);
+            GameManager.Instance.AddBoughtItem(gameObject.name);
             _button.interactable = false;
+            GameManager.Instance.AudioManager.PlaySFX("money_down");
         }
     }
 }
