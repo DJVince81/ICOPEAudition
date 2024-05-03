@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private TipsPanel _tipsPanel;
     [SerializeField] private GameObject _stepMenu;
 
     internal void LoadStep(int stepIndex)
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         ClearScreen();
         _gameMenu.SetActive(true);
+        _tipsPanel.Display();
         if (StatesManager.paused) TogglePause();
     }
 
