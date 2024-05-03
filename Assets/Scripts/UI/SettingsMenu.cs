@@ -44,15 +44,6 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("SFXvolume", volume);
     }
 
-    private void Start()
-    {
-        mixer.SetFloat("mastervolume", Mathf.Log10(PlayerPrefs.GetFloat("mastervolume", 0.5f)) * 20);
-        mixer.SetFloat("musicvolume", Mathf.Log10(PlayerPrefs.GetFloat("musicvolume", 0.5f)) * 20);
-        mixer.SetFloat("SFXvolume", Mathf.Log10(PlayerPrefs.GetFloat("SFXvolume", 0.5f)) * 20);
-        gameObject.SetActive(false);
-    }
-
-
     public void SetFullscreen()
     {
         bool isFullScreen = toggleFullScreen.isOn;

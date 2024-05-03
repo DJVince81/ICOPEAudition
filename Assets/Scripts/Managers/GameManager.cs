@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(StatesManager))]
@@ -110,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseSettings()
     {
-        if ( StatesManager.State == StatesManager.States.MAIN_MENU)
+        if (StatesManager.State == StatesManager.States.MAIN_MENU)
         {
             _mainPanel.SetActive(true);
         }
