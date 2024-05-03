@@ -80,7 +80,7 @@ public class StepManager : MonoBehaviour
         RectTransform rect = _documentContentParent.GetComponent<RectTransform>();
         rect.sizeDelta = _currentStepIndex switch
         {
-            1 => new Vector2(rect.sizeDelta.x, 2300),
+            1 => new Vector2(rect.sizeDelta.x, 2800),
             _ => new Vector2(rect.sizeDelta.x, 800),
         };
         currentStep.UpdateStepDocumentWithData(newContent);

@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -376,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_text
       value: "\xCAtes-vous devenu sourd brutalement ou avez-vous une surdit\xE9 qui
-        varie dans le temps\u202F?"
+        varie dans le temps\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -486,11 +486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_text
-      value: "Avez-vous des vertiges, c\u2019est-\xE0-dire \xAB la t\xEAte qui tourne
-        \xBB (l'impression que tout tourne autour de vous de droite \xE0 gauche,
-        de gauche \xE0 droite ou d'avant en arri\xE8re) ou avez-vous des troubles
-        de l'\xE9quilibre comme \xEAtre attir\xE9 d'un c\xF4t\xE9 quand vous vous
-        d\xE9placez ou que vous changez de position comme si vous \xE9tiez ivre ?"
+      value: "Avez-vous des vertiges, c\u2019est-\xE0-dire \xAB\_la t\xEAte qui tourne\_\xBB
+        (l'impression que tout tourne autour de vous de droite \xE0 gauche, de gauche
+        \xE0 droite ou d'avant en arri\xE8re) ou avez-vous des troubles de l'\xE9quilibre
+        comme \xEAtre attir\xE9 d'un c\xF4t\xE9 quand vous vous d\xE9placez ou que
+        vous changez de position comme si vous \xE9tiez ivre\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
@@ -544,7 +544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -580,7 +580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -600,11 +600,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_text
-      value: "Avez-vous des acouph\xE8nes (les \xAB oreilles qui sifflent \xBB ou
-        qui \xAB bourdonnent \xBB ou entendez-vous des grincements\u2026) d\u2019un
-        seul c\xF4t\xE9\u202F? Avez-vous l\u2019impression que les sons que vous
-        entendez suivent le rythme de votre coeur (acouph\xE8nes pulsatiles) ou sont
-        \xE9volutifs\u202F?"
+      value: "Avez-vous des acouph\xE8nes (les \xAB\_oreilles qui sifflent\_\xBB
+        ou qui \xAB\_bourdonnent\_\xBB ou entendez-vous des grincements\u2026) d\u2019un
+        seul c\xF4t\xE9\_? Avez-vous l\u2019impression que les sons que vous entendez
+        suivent le rythme de votre coeur (acouph\xE8nes pulsatiles) ou sont \xE9volutifs\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
@@ -658,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -694,7 +693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -716,9 +715,8 @@ PrefabInstance:
       propertyPath: m_text
       value: "Souffrez-vous d'une hypersensibilit\xE9 ou d'une intol\xE9rance aux
         bruits (hyperacousie) par exemple aux bruits de la vie quotidienne (foule,
-        circulation ...) ou dans certains environnements bruyants (concerts, cin\xE9ma...)
-        ou quand vous \xEAtes expos\xE9s \xE0 certains sons (klaxons, sonneries...)
-        ?"
+        circulation\u2026) ou dans certains environnements bruyants (concerts, cin\xE9ma\u2026)
+        ou quand vous \xEAtes expos\xE9s \xE0 certains sons (klaxons, sonneries\u2026)\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
@@ -1511,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5772670401946772843, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5772670401946772843, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1519,7 +1517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5772670401946772843, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5772670401946772843, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1728,7 +1726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1764,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1785,7 +1783,7 @@ PrefabInstance:
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_text
       value: "Avez-vous une perte d'audition (g\xE8ne auditive) qui touche une seule
-        oreille ou une perte d'audition qui pr\xE9domine d'un c\xF4t\xE9\u202F?"
+        oreille ou une perte d'audition qui pr\xE9domine d'un c\xF4t\xE9\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
@@ -2682,7 +2680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1074
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2718,7 +2716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 537
       objectReference: {fileID: 0}
     - target: {fileID: 5929623920645758370, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2739,9 +2737,9 @@ PrefabInstance:
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_text
       value: "Avez-vous eu mal aux oreilles, un \xE9coulement ou un saignement au
-        niveau des oreilles ? Avez-vous \xE9t\xE9 suivi ou \xEAtes-vous suivi pour
+        niveau des oreilles\_? Avez-vous \xE9t\xE9 suivi ou \xEAtes-vous suivi pour
         une maladie des oreilles par exemple une maladie de Meni\xE8re, un chol\xE9
-        st\xE9atome, un neurinome ?"
+        st\xE9atome, un neurinome\_?"
       objectReference: {fileID: 0}
     - target: {fileID: 6550842350839063587, guid: 28915facd36ec884f9754cc3dded1a40, type: 3}
       propertyPath: m_VerticalAlignment
