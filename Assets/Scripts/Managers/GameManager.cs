@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
 
     internal void LoadMainMenu()
     {
-        AudioManager.PlayBGM("skyline");
         AudioManager.StopCurrentSfx();
         ClearScreen();
         _mainMenu.SetActive(true);
@@ -84,7 +83,6 @@ public class GameManager : MonoBehaviour
         ClearScreen();
         _gameMenu.SetActive(true);
         _tipsPanel.Display();
-        AudioManager.PlayBGM("skyline");
         if (StatesManager.paused) TogglePause();
     }
 
@@ -156,13 +154,13 @@ public class GameManager : MonoBehaviour
         LoadListItems();
 
         _money = PlayerPrefs.GetInt("money", 20);
+        AudioManager.PlayBGM("skyline");
     }
 
     private void LoadListItems()
     {
         Transform items = _gameMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
         string[] savedItems = PlayerPrefs.GetString("items", "").Split(";");
-        Debug.Log(PlayerPrefs.GetString("items", ""));
         for (int i = 0; i < items.childCount; i++)
         {
             foreach (string item in savedItems)
@@ -187,6 +185,5 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
         PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetString("items", ""));
     }
 }

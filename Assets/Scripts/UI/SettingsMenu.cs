@@ -23,9 +23,16 @@ public class SettingsMenu : MonoBehaviour
         bool isFullScreen = PlayerPrefs.GetInt("fullScreen", 0) == 1;
         toggleFullScreen.isOn = isFullScreen;
         Screen.fullScreen = isFullScreen;
-        MasterSlider.value = PlayerPrefs.GetFloat("mastervolume", 0.5f);
-        MusicSlider.value = PlayerPrefs.GetFloat("musicvolume", 0.5f);
-        SFXSlider.value = PlayerPrefs.GetFloat("SFXvolume", 0.5f);
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        float volume = PlayerPrefs.GetFloat("mastervolume", 0.5f);
+        MasterSlider.value = volume;
+        mixer.SetFloat("mastervolume", Mathf.Log10(volume) * 20);
+        volume = PlayerPrefs.GetFloat("musicvolume", 0.5f);
+        MusicSlider.value = volume;
+        mixer.SetFloat("musicvolume", Mathf.Log10(volume) * 20);
+        volume = PlayerPrefs.GetFloat("SFXvolume", 0.5f);
+        SFXSlider.value = volume;
+        mixer.SetFloat("SFXvolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetMaster()
@@ -53,6 +60,7 @@ public class SettingsMenu : MonoBehaviour
     {
         bool isFullScreen = toggleFullScreen.isOn;
         Screen.fullScreen = isFullScreen;
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         PlayerPrefs.SetInt("fullScreen", isFullScreen ? 1 : 0);
     }
 }

@@ -48,6 +48,7 @@ public class StatesManager : MonoBehaviour
             case States.GAME_MENU:
                 if (isOk)
                 {
+                    if (State != States.MAIN_MENU) GameManager.Instance.AudioManager.PlayBGM("skyline");
                     State++;
                     DoActionOnChangeState();
                 }
@@ -63,6 +64,7 @@ public class StatesManager : MonoBehaviour
                         GameManager.Instance.AudioManager.PlaySFX("money_up");
                         GameManager.Instance.TelemetryManager.IncrWins();
                         State = States.GAME_MENU;
+                        GameManager.Instance.AudioManager.PlayBGM("skyline");
                     }
                     else State++;
                     DoActionOnChangeState();
@@ -74,6 +76,7 @@ public class StatesManager : MonoBehaviour
                     GameManager.Instance.AudioManager.PlaySFX("money_up");
                     GameManager.Instance.TelemetryManager.IncrWins();
                     State = States.GAME_MENU;
+                    GameManager.Instance.AudioManager.PlayBGM("skyline");
                     DoActionOnChangeState();
                 }
                 break;

@@ -21,8 +21,6 @@ public class MoneyGUI : MonoBehaviour
     {
         _moneyText.text = money.ToString();
         string displayText = amountChange > 0 ? "+ " : "- ";
-        Debug.Log(amountChange);
-        Debug.Log(Mathf.Abs(amountChange));
         displayText += Mathf.Abs(amountChange).ToString();
         _amountChangeText.text = displayText;
         _amountChangeText.color = amountChange > 0 ? _positiveColor : _negativeColor;
