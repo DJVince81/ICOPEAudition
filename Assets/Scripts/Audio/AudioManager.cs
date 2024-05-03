@@ -5,30 +5,33 @@ public class AudioManager : MonoBehaviour
 {
 
     [Header("Audio Source")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioSource _ambianceSource;
+    [SerializeField] private AudioSource _sfxSource;
 
     [Header("Audio Clip")]
-    public AudioClip backgroundMusic;
-    public AudioClip buttonSound;
+    [SerializeField] private AudioClip _backgroundMusic;
+    [SerializeField] private AudioClip _ambiantSound;
 
     private void Start()
     {
-        musicSource.clip = backgroundMusic;
-        musicSource.Play();
+        _musicSource.clip = _backgroundMusic;
+        _musicSource.Play();
+        _ambianceSource.clip = _ambiantSound;
+        _ambianceSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        SFXSource.PlayOneShot(clip);
+        _sfxSource.PlayOneShot(clip);
     }
 
     public IEnumerator FadeOut()
     {
         float speed = 0.005f;
-        while (musicSource.volume < 1)
+        while (_musicSource.volume < 1)
         {
-            musicSource.volume -= speed;
+            _musicSource.volume -= speed;
             yield return new WaitForSeconds(0.1f);
         }
     }
