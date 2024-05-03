@@ -144,11 +144,26 @@ public class StepManager : MonoBehaviour
             WasCorrectlyAnswered = true;
             _confirmButton.interactable = false;
             _nextButton.interactable = true;
+
+            float rand = Random.value;
+            if (rand > 0.66f)
+            {
+                GameManager.Instance.AudioManager.PlaySFX("answer_correct1");
+            }
+            else if (rand > 0.33f)
+            {
+                GameManager.Instance.AudioManager.PlaySFX("answer_correct2");
+            }
+            else
+            {
+                GameManager.Instance.AudioManager.PlaySFX("answer_correct3");
+            }
         }
         else
         {
             if (!isDiagValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsDiag(_currentStepIndex);
             if (!isActionValid) GameManager.Instance.TelemetryManager.IncrNbLosesStepsAction(_currentStepIndex);
+            GameManager.Instance.AudioManager.PlaySFX("answer_wrong");
         }
     }
 

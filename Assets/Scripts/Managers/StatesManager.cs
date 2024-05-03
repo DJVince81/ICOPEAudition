@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StatesManager : MonoBehaviour
 {
-    private enum States
+    internal enum States
     {
         MAIN_MENU,
         GAME_MENU,
@@ -13,7 +13,7 @@ public class StatesManager : MonoBehaviour
         GAME_E4
     }
 
-    private States State;
+    internal States State;
 
     internal bool paused;
     private bool isOk = false;
@@ -58,7 +58,12 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E3:
                 if (isOk)
                 {
-                    if (GameManager.Instance.StepManager.IsLastStep()) State = States.GAME_MENU;
+                    if (GameManager.Instance.StepManager.IsLastStep())
+                    {
+                        GameManager.Instance.AudioManager.PlaySFX("money_up");
+                        GameManager.Instance.TelemetryManager.IncrWins();
+                        State = States.GAME_MENU;
+                    }
                     else State++;
                     DoActionOnChangeState();
                 }
@@ -66,6 +71,7 @@ public class StatesManager : MonoBehaviour
             case States.GAME_E4:
                 if (isOk)
                 {
+                    GameManager.Instance.AudioManager.PlaySFX("money_up");
                     GameManager.Instance.TelemetryManager.IncrWins();
                     State = States.GAME_MENU;
                     DoActionOnChangeState();

@@ -12,6 +12,17 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider SFXSlider;
 
     [SerializeField] private Toggle toggleFullScreen;
+
+    public void Init()
+    {
+        bool isFullScreen = PlayerPrefs.GetInt("fullScreen", 0) == 1;
+        toggleFullScreen.isOn = isFullScreen;
+        Screen.fullScreen = isFullScreen;
+        MasterSlider.value = PlayerPrefs.GetFloat("mastervolume", 0.5f);
+        MusicSlider.value = PlayerPrefs.GetFloat("musicvolume", 0.5f);
+        SFXSlider.value = PlayerPrefs.GetFloat("SFXvolume", 0.5f);
+    }
+
     public void SetMaster()
     {
         float volume = MasterSlider.value;
@@ -33,10 +44,19 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("SFXvolume", volume);
     }
 
+    private void Start()
+    {
+        mixer.SetFloat("mastervolume", Mathf.Log10(PlayerPrefs.GetFloat("mastervolume", 0.5f)) * 20);
+        mixer.SetFloat("musicvolume", Mathf.Log10(PlayerPrefs.GetFloat("musicvolume", 0.5f)) * 20);
+        mixer.SetFloat("SFXvolume", Mathf.Log10(PlayerPrefs.GetFloat("SFXvolume", 0.5f)) * 20);
+        gameObject.SetActive(false);
+    }
+
 
     public void SetFullscreen()
     {
         bool isFullScreen = toggleFullScreen.isOn;
         Screen.fullScreen = isFullScreen;
+        PlayerPrefs.SetInt("fullScreen", isFullScreen ? 1 : 0);
     }
 }
