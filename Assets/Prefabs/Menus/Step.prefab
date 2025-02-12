@@ -120,8 +120,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2755428132356520519}
   m_HandleRect: {fileID: 8757753561044314528}
   m_Direction: 2
-  m_Value: 1.0001014
-  m_Size: 0.35458222
+  m_Value: 1.0026374
+  m_Size: 0.3545822
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2039,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2559375826512045385, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: -183.13
       objectReference: {fileID: 0}
     - target: {fileID: 2759574177469772475, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2063,7 +2063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2759574177469772475, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: -346.15002
       objectReference: {fileID: 0}
     - target: {fileID: 2858692707896567818, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2155,7 +2155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5772670401946772843, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0
+      value: -40.81
       objectReference: {fileID: 0}
     - target: {fileID: 7303481649615919125, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -2231,7 +2231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203892976798755276, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120
+      value: -488.47
       objectReference: {fileID: 0}
     - target: {fileID: 8499051350875513999, guid: 4d6596965d7b7624bbe15c1c765bb8d9, type: 3}
       propertyPath: m_AnchorMax.y

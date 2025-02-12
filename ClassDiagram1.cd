@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AudioManager" Collapsed="true">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAJiAaADAAAgBQgCGAAgDAUAAwwAAACMAQDAAAAFI=</HashCode>
+      <FileName>Assets\Scripts\Audio\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlClics" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\ControlClics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="20.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAACAAAAQAAAAAAAAAAIACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIJQCAAAECAABIAQAQlAgAAAAABKAABQQAAAAAKAIGE=</HashCode>
+      <FileName>Assets\Scripts\Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatesManager" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAgAABAAAAAgAAAAAAAEAAAAAQAAABAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\StatesManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StepManager" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACKBQABCgAAQQAAAACSAAgEAEEAAAAAAACFAAgIIA=</HashCode>
+      <FileName>Assets\Scripts\Managers\StepManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TelemetryManager" Collapsed="true">
+    <Position X="26.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oEAAEIABQDBBICgAIAgCAAAQAABACAAAEgEQACAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\Managers\TelemetryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonHelper" Collapsed="true">
+    <Position X="26.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\TelemetryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameData" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAgAAAAAAAAQCAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PatientData" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAABEAAAAAAACAAAAAgAAEAAAgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\PatientData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StepData" Collapsed="true">
+    <Position X="12.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAICAAAAAAAAAAAAgAQIACAAAAAAAAAAACAAAkA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step0Data" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAICIAAAAAQAAAAAgAQAACAAAAAAAAAEACAAAgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step0Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step1Data" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAICIAAAAAAAAAAAgAQAACAAAAAEAAAEACAAAgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step1Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step2Data" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAICAAAAAAAAAAAIgAQAACAAAAAAAAAEACAAQgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step2Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step3Data" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAYAICKAAAAAAAAAAAgAQACCAAAAAAAAAEACAAAgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step3Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step4Data" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAICAAAAQAAAAAAAgAQAACAAAAAAAAAEACAAQgA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step4Data.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnswerButton" Collapsed="true">
+    <Position X="20.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQABAAAAIAAAIAAAYAAQAQIAAAgACAAAEg=</HashCode>
+      <FileName>Assets\Scripts\UI\Buttons\AnswerButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonGroup" Collapsed="true">
+    <Position X="20.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQABgCAABACAAAAAAAAAAgAEAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Buttons\ButtonGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyGUI" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAgCAIAACAAAAAAAAAgAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Elements\MoneyGUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ticks" Collapsed="true">
+    <Position X="22.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAACAAAAAIAAEAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Elements\Ticks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TipsPanel" Collapsed="true">
+    <Position X="22.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAQAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Elements\TipsPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingsMenu" Collapsed="true">
+    <Position X="22.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAgAACAAAAAAgAAAAAEACAAAAAgACAACAAiAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\SettingsMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step0Content" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\StepContents\Step0Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step1Content" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\StepContents\Step1Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step2Content" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAIAAIAAAAAAAAABBAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\StepContents\Step2Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step3Content" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAABAAAkAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\StepContents\Step3Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Step4Content" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAEAAAIAAAAAAAAgAABAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\UI\StepContents\Step4Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="VideoOtoscopyResult" Collapsed="true">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAABAAAAAAAAIAQAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step2Data.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="HHIESAnswer" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAACAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step3Data.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WeberTestResult" Collapsed="true">
+    <Position X="15.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step3Data.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ear" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step3Data.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AudiometryResult" Collapsed="true">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAABAAAAAEAAAAAAAAAAAAAAAgCA=</HashCode>
+      <FileName>Assets\Scripts\PatientData\StepsData\Step4Data.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
