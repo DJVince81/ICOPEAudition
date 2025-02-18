@@ -15,6 +15,10 @@ Ce serious game est réalisé dans le cadre d'un projet tutoré par des étudiants e
 - Vincent RODRIGUEZ
 - Colin VAUFREY
 
+# Reprise du projet
+Le projet ICOPE Audition a était repris pour un stage M2 AMINJ de durée de 20 semaines avec le CHU de Toulouse. Ce stage est réaliser par Sylvain LACROIX
+
+
 # Code
 ## Version d'Unity
 2022.3.18f1
@@ -25,7 +29,5 @@ Problème connus du projet :
 - Problème de gamification
 - Problème UI/UX
 
-# Reprise du projet
-Le projet ICOPE Audition a était repris pour un stage M2 AMINJ de durée de 20 semaines. 
-
-Stagaire : Sylvain LACROIX
+## Version 1.0.
+- Fix UI/UX
