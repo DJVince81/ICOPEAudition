@@ -24,3 +24,8 @@ Ce serious game est réalisé dans le cadre d'un projet tutoré par des étudiants e
 Problème connus du projet :
 - Problème de gamification
 - Problème UI/UX
+
+# Reprise du projet
+Le projet ICOPE Audition a était repris pour un stage M2 AMINJ de durée de 20 semaines. 
+
+Stagaire : Sylvain LACROIX
