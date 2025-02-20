@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioManager))]
 public class GameManager : MonoBehaviour
 {
+    #region Event System
     public event System.Action<int, int> OnMoneyChanged;
+    public event System.Action<bool, bool> OnAssistantDisabled;
+    #endregion
 
     public static GameManager Instance;
 
@@ -18,8 +22,9 @@ public class GameManager : MonoBehaviour
     public TelemetryManager TelemetryManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
 
-    public List<Item> items;
+    //public List<Item> items;
 
+    #region Structures
     public int Money
     {
         get
@@ -35,6 +40,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool EnableAssistant
+    {
+        get { return _enableAssistant; }
+        set 
+        { 
+            bool _isEnable = _enableAssistant;
+            _enableAssistant = value; 
+            PlayerPrefs.SetInt("enableAssistant", _enableAssistant ? 1 : 0);
+            OnAssistantDisabled?.Invoke(_enableAssistant, _isEnable); 
+        }
+    }
+    #endregion
+
+    #region Configurable Attributes
+    [Header("Tutoriel")]
+    [SerializeField] private bool _enableAssistant = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
     [Header("Money")]
     [SerializeField] private int _money = 20;
 
@@ -43,12 +64,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private TipsPanel _tipsPanel;
     [SerializeField] private GameObject _stepMenu;
+    [SerializeField] private GameObject _activeAssistant;
 
     [Header("Panels")]
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _mainPanel;
     [SerializeField] private GameObject _shopPanel;
+    #endregion
 
+    #region Internal methods
     internal void LoadStep(int stepIndex)
     {
         if (stepIndex == 0)
@@ -68,6 +92,7 @@ public class GameManager : MonoBehaviour
         _mainMenu.SetActive(false);
         _gameMenu.SetActive(false);
         _stepMenu.SetActive(false);
+        _activeAssistant.SetActive(false);
     }
 
     internal void LoadMainMenu()
@@ -85,7 +110,9 @@ public class GameManager : MonoBehaviour
         _tipsPanel.Display();
         if (StatesManager.paused) TogglePause();
     }
+    #endregion
 
+    #region Main methods
     public void LaunchGame()
     {
         StartCoroutine(LaunchGameAfterTime());
@@ -112,6 +139,15 @@ public class GameManager : MonoBehaviour
         AudioManager.PlaySFX(Random.value > 0.5 ? "ui_click2" : "ui_click2");
     }
 
+    public void EnableTutorial()
+    {
+        if (GameManager.Instance.EnableAssistant)
+        {
+            //setActive tutorial
+            _activeAssistant.SetActive(true);
+        }
+    } 
+
     public void CloseSettings()
     {
         if (StatesManager.State == StatesManager.States.MAIN_MENU)
@@ -129,7 +165,9 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.PlaySFX("bonjour");
     }
+    #endregion
 
+    #region Initializing varialbles
     void Awake()
     {
         if (Instance != null)
@@ -148,14 +186,23 @@ public class GameManager : MonoBehaviour
         AudioManager.LoopSfx(true, "AMBIANT");
     }
 
+    // Résumé :
+    //      Load Main Menus
+    //      Load items
+    //      Load Player money (default : 20)
+    //      Play sound
+    //
+    //      
     void Start()
     {
         StatesManager.ReturnMainMenu();
         LoadListItems();
 
         _money = PlayerPrefs.GetInt("money", 20);
+        _enableAssistant = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
         AudioManager.PlayBGM("skyline");
     }
+    #endregion
 
     private void LoadListItems()
     {
