@@ -102,12 +102,15 @@ public class GameManager : MonoBehaviour
         _mainMenu.SetActive(true);
     }
 
+    // Change tipsPanel is disable -> tips will be a glossaire
+    // Now ask player for they fisrt time if they want activate the assistant.
     internal void LoadGameMenu()
     {
         AudioManager.PlaySFX("ambiant", "AMBIANT");
         ClearScreen();
         _gameMenu.SetActive(true);
-        _tipsPanel.Display();
+        //_tipsPanel.Display();
+        if (TelemetryManager.GetNbGames() == 0) _activeAssistant.SetActive(true);
         if (StatesManager.paused) TogglePause();
     }
     #endregion
@@ -139,15 +142,6 @@ public class GameManager : MonoBehaviour
         AudioManager.PlaySFX(Random.value > 0.5 ? "ui_click2" : "ui_click2");
     }
 
-    public void EnableTutorial()
-    {
-        if (GameManager.Instance.EnableAssistant)
-        {
-            //setActive tutorial
-            _activeAssistant.SetActive(true);
-        }
-    } 
-
     public void CloseSettings()
     {
         if (StatesManager.State == StatesManager.States.MAIN_MENU)
@@ -165,6 +159,11 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.PlaySFX("bonjour");
     }
+    /*
+    public void enableAssitant(bool isEnable)
+    {
+        _enableAssistant = isEnable;
+    }*/
     #endregion
 
     #region Initializing varialbles

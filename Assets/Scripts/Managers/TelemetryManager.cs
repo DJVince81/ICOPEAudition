@@ -28,6 +28,7 @@ public class TelemetryManager : MonoBehaviour
     internal void IncrNbShowSteps(int i) => nbShowSteps[i % nbShowSteps.Count]++;
     internal void IncrNbLosesStepsDiag(int i) => nbLosesStepsDiag[i % nbLosesStepsDiag.Count]++;
     internal void IncrNbLosesStepsAction(int i) => nbLosesStepsAction[i % nbLosesStepsAction.Count]++;
+    internal int GetNbGames() => nbGames;
 
     IEnumerator Start()
     {
