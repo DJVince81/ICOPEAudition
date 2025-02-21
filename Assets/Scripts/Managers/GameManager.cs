@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         set 
         { 
             bool _isEnable = _enableAssistant;
-            _enableAssistant = value; 
+            _enableAssistant = value;
             PlayerPrefs.SetInt("enableAssistant", _enableAssistant ? 1 : 0);
             OnAssistantDisabled?.Invoke(_enableAssistant, _isEnable); 
         }
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _mainPanel;
     [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private GameObject _settingsPanelCheckbox;
     #endregion
 
     #region Internal methods
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Change tipsPanel is disable -> tips will be a glossaire
-    // Now ask player for they fisrt time if they want activate the assistant.
+    // Now ask player for they fisrt time (in the current session, todo) if they want activate the assistant.
     internal void LoadGameMenu()
     {
         AudioManager.PlaySFX("ambiant", "AMBIANT");
@@ -159,11 +160,11 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.PlaySFX("bonjour");
     }
-    /*
-    public void enableAssitant(bool isEnable)
+
+    public void setCheckBoxSettings()
     {
-        _enableAssistant = isEnable;
-    }*/
+        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = EnableAssistant;
+    }
     #endregion
 
     #region Initializing varialbles
