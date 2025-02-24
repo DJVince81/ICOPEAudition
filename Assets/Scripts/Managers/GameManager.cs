@@ -70,6 +70,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainPanel;
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _settingsPanelCheckbox;
+
+    [Header("Character blinking")]
+    [SerializeField] private float speedColorChange = 1.0f;
+    [SerializeField] private GameObject _elderPerson; // maybe change to list
+    private Component _outlineCharacter;
     #endregion
 
     #region Internal methods
@@ -169,9 +174,26 @@ public class GameManager : MonoBehaviour
     {
         _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsAssistantEnable;
     }
+
+    /// <summary>
+    /// Resume
+    /// Function that allows making a blinking outline on image.
+    /// </summary>
+    public void characterOutlineBliking()
+    {
+        if (_gameMenu.activeInHierarchy)
+        {
+            // Ping Pong oscillation between 0 and 1
+            float pingPong = Mathf.PingPong(Time.time * speedColorChange, 1.0f);
+            // Ping Pon between white and black
+            Color newColor = Color.Lerp(Color.black, Color.white, pingPong);
+            // Feed to outline character component
+            _elderPerson.GetComponent<Outline>().effectColor = newColor;
+        }
+    }
     #endregion
 
-    #region Initializing varialbles
+    #region Initializing methods
     void Awake()
     {
         if (Instance != null)
@@ -195,9 +217,7 @@ public class GameManager : MonoBehaviour
     //      Load Main Menus
     //      Load items
     //      Load Player money (default : 20)
-    //      Play sound
-    //
-    //      
+    //      Play sound  
     void Start()
     {
         StatesManager.ReturnMainMenu();
@@ -206,6 +226,14 @@ public class GameManager : MonoBehaviour
         _money = PlayerPrefs.GetInt("money", 20);
         _isAssistantEnable = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
         AudioManager.PlayBGM("skyline");
+
+        // Get component
+        if (_elderPerson.GetComponent<Outline>() != null) _outlineCharacter = _elderPerson.GetComponent<Outline>();
+    }
+
+    private void FixedUpdate()
+    {
+        characterOutlineBliking();
     }
     #endregion
 
