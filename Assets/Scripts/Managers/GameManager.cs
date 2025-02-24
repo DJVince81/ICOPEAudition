@@ -40,22 +40,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool EnableAssistant
+    public bool IsAssistantEnable
     {
-        get { return _enableAssistant; }
+        get { return _isAssistantEnable; }
         set 
         { 
-            bool _isEnable = _enableAssistant;
-            _enableAssistant = value;
-            PlayerPrefs.SetInt("enableAssistant", _enableAssistant ? 1 : 0);
-            OnAssistantDisabled?.Invoke(_enableAssistant, _isEnable); 
+            bool _isEnable = _isAssistantEnable;
+            _isAssistantEnable = value;
+            PlayerPrefs.SetInt("enableAssistant", _isAssistantEnable ? 1 : 0);
+            OnAssistantDisabled?.Invoke(_isAssistantEnable, _isEnable); 
         }
     }
     #endregion
 
     #region Configurable Attributes
     [Header("Tutoriel")]
-    [SerializeField] private bool _enableAssistant = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
+    [SerializeField] private bool _isAssistantEnable = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
     [Header("Money")]
     [SerializeField] private int _money = 20;
 
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
 
     public void setCheckBoxSettings()
     {
-        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = EnableAssistant;
+        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsAssistantEnable;
     }
     #endregion
 
