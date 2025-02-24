@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public static GameManager Instance;
-
     public StatesManager StatesManager { get; private set; }
     public StepManager StepManager { get; private set; }
     public TelemetryManager TelemetryManager { get; private set; }
@@ -114,6 +113,11 @@ public class GameManager : MonoBehaviour
         if (TelemetryManager.GetNbGames() == 0) _activeAssistant.SetActive(true);
         if (StatesManager.paused) TogglePause();
     }
+    internal void AddBoughtItem(string name)
+    {
+        PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
+        PlayerPrefs.Save();
+    }
     #endregion
 
     #region Main methods
@@ -173,6 +177,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
         {
             Destroy(Instance);
+            return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -199,7 +204,7 @@ public class GameManager : MonoBehaviour
         LoadListItems();
 
         _money = PlayerPrefs.GetInt("money", 20);
-        _enableAssistant = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
+        _isAssistantEnable = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
         AudioManager.PlayBGM("skyline");
     }
     #endregion
@@ -228,9 +233,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal void AddBoughtItem(string name)
-    {
-        PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
-        PlayerPrefs.Save();
-    }
 }
