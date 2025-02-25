@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tutorial xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Title>Waiting room</Title>
+  <Step>
+    <ID>0</ID>
+    <Intitule>Bonjour, et bienvenue !</Intitule>
+    <Text>Vous allez apprendre à utiliser les fonctionnalités essentielles du jeu.</Text>
+  </Step>
+  <Step>
+    <ID>1</ID>
+    <Intitule>Accéder à la boutique :</Intitule>
+    <Text>Cliquez sur le bouton &lt;b&gt;boutique&lt;/b&gt; en haut à droite de l’écran pour acheter des décorations et ainsi décorer votre salle d’attente.</Text>
+  </Step>
+  <Step>
+    <ID>2</ID>
+    <Intitule>Mettre le jeu en pause :</Intitule>
+    <Text>Le bouton &lt;b&gt;Pause&lt;/b&gt; en haut à gauche vous perme de mettre en pause le jeu. Vous pourrez retourner au menu ou d’accéder aux &lt;b&gt;paramètre&lt;/b&gt;.</Text>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Intitule>Démarrer une consultation :</Intitule>
+    <Text>Pour commencer une consultation, cliquez sur le &lt;b&gt;personnage en surbrillance&lt;/b&gt;. Ce patient a besoin de votre expertise pour évaluer son audition.
+Votre premier client vous attend !</Text>
+  </Step>
+</Tutorial>
