@@ -2,23 +2,31 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <!-- definition of elements -->
-  <xs:element name="Title" type="xs:string"/>
   <xs:element name="ID" type="xs:int"/>
   <xs:element name="Intitule" type="xs:string"/>
   <xs:element name="Text" type ="xs:string"/>
 
+  <!-- definition of attribute -->
+  <xs:attribute name="Name" type="xs:string"/>
+  
   <!-- schema -->
   <xs:element name="Tutorial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref ="Title"/>
         <xs:element name="Step" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="ID"/>
-              <xs:element ref="Intitule"/>
-              <xs:element ref="Text"/>
+              <xs:element name="Entry" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="ID"/>
+                    <xs:element ref="Intitule"/>
+                    <xs:element ref="Text"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
             </xs:sequence>
+            <xs:attribute ref="Name" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

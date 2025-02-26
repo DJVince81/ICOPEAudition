@@ -376,7 +376,8 @@ GameObject:
   - component: {fileID: 3208204954268965056}
   - component: {fileID: 7007368565639089017}
   - component: {fileID: 535602648478809593}
-  - component: {fileID: 9186597238759186572}
+  - component: {fileID: 2027688727791861795}
+  - component: {fileID: 2090166340749628429}
   m_Layer: 5
   m_Name: TutorielUI
   m_TagString: Untagged
@@ -442,7 +443,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9186597238759186572
+--- !u!114 &2027688727791861795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7372910169106179588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874c81c74c48caf40a13f4b78d253687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _intituleText: {fileID: 1205949041544102112}
+  _Text: {fileID: 6058932145592435078}
+--- !u!114 &2090166340749628429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -454,6 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31bae7c6d0cb3d4fb1448e99230c596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _xmlFilePath: Assets/Resources/XML_Text/Tutorial.xml
+  _xsdFilePath: Assets/Resources/XML_Text/TutorialSchema.xsd
 --- !u!1 &7395144944151194072
 GameObject:
   m_ObjectHideFlags: 0

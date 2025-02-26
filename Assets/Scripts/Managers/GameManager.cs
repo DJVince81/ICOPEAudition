@@ -39,22 +39,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool IsAssistantEnable
+    public bool isTutorialEnable
     {
-        get { return _isAssistantEnable; }
+        get { return _isTutorialEnable; }
         set 
         { 
-            bool _isEnable = _isAssistantEnable;
-            _isAssistantEnable = value;
-            PlayerPrefs.SetInt("enableAssistant", _isAssistantEnable ? 1 : 0);
-            OnAssistantDisabled?.Invoke(_isAssistantEnable, _isEnable); 
+            bool _isEnable = _isTutorialEnable;
+            _isTutorialEnable = value;
+            PlayerPrefs.SetInt("enableAssistant", _isTutorialEnable ? 1 : 0);
+            OnAssistantDisabled?.Invoke(_isTutorialEnable, _isEnable); 
         }
     }
     #endregion
 
     #region Configurable Attributes
     [Header("Tutoriel")]
-    [SerializeField] private bool _isAssistantEnable = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
+    [SerializeField] private bool _isTutorialEnable = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
     [Header("Money")]
     [SerializeField] private int _money = 20;
 
@@ -70,11 +70,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainPanel;
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _settingsPanelCheckbox;
+    [SerializeField] public GameObject _tutorialPanel;
 
     [Header("Character blinking")]
     [SerializeField] private float speedColorChange = 1.0f;
     [SerializeField] private GameObject _elderPerson; // maybe change to list
     private Component _outlineCharacter;
+    #endregion
+
+    #region Private variables
+    private bool isTutorialUIEnable = false;
     #endregion
 
     #region Internal methods
@@ -154,7 +159,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseSettings()
     {
-        if (StatesManager.State == StatesManager.States.MAIN_MENU)
+        if (StatesManager.currentState == StatesManager.States.MAIN_MENU)
         {
             _mainPanel.SetActive(true);
         }
@@ -172,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     public void setCheckBoxSettings()
     {
-        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsAssistantEnable;
+        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = isTutorialEnable;
     }
 
     /// <summary>
@@ -191,6 +196,19 @@ public class GameManager : MonoBehaviour
             _elderPerson.GetComponent<Outline>().effectColor = newColor;
         }
     }
+
+    public void setTutorialUI()
+    {
+            Debug.Log("Here");
+
+        isTutorialUIEnable = !isTutorialUIEnable;
+        if (isTutorialEnable)
+        {
+            _tutorialPanel.SetActive(isTutorialUIEnable);
+        }
+    }
+
+
     #endregion
 
     #region Initializing methods
@@ -224,7 +242,7 @@ public class GameManager : MonoBehaviour
         LoadListItems();
 
         _money = PlayerPrefs.GetInt("money", 20);
-        _isAssistantEnable = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
+        _isTutorialEnable = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
         AudioManager.PlayBGM("skyline");
 
         // Get component

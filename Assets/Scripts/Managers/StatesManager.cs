@@ -13,19 +13,19 @@ public class StatesManager : MonoBehaviour
         GAME_E4
     }
 
-    internal States State;
+    internal States currentState;
 
     internal bool paused;
     private bool isOk = false;
-
+   
     public void ChangeState()
     {
-        if (State == States.MAIN_MENU)
+        if (currentState == States.MAIN_MENU)
         {
             isOk = true;
             return;
         }
-        if (State == States.GAME_MENU)
+        if (currentState == States.GAME_MENU)
         {
             isOk = true;
             return;
@@ -36,20 +36,20 @@ public class StatesManager : MonoBehaviour
     public void ReturnMainMenu()
     {
         paused = true;
-        State = States.MAIN_MENU;
+        currentState = States.MAIN_MENU;
         DoActionOnChangeState();
     }
 
     private void UpdateStates()
     {
-        switch (State)
+        switch (currentState)
         {
             case States.MAIN_MENU:
             case States.GAME_MENU:
                 if (isOk)
                 {
-                    if (State != States.MAIN_MENU) GameManager.Instance.AudioManager.PlayBGM("skyline");
-                    State++;
+                    if (currentState != States.MAIN_MENU) GameManager.Instance.AudioManager.PlayBGM("skyline");
+                    currentState++;
                     DoActionOnChangeState();
                 }
                 break;
@@ -63,10 +63,10 @@ public class StatesManager : MonoBehaviour
                     {
                         GameManager.Instance.AudioManager.PlaySFX("money_up");
                         GameManager.Instance.TelemetryManager.IncrWins();
-                        State = States.GAME_MENU;
+                        currentState = States.GAME_MENU;
                         GameManager.Instance.AudioManager.PlayBGM("skyline");
                     }
-                    else State++;
+                    else currentState++;
                     DoActionOnChangeState();
                 }
                 break;
@@ -75,20 +75,20 @@ public class StatesManager : MonoBehaviour
                 {
                     GameManager.Instance.AudioManager.PlaySFX("money_up");
                     GameManager.Instance.TelemetryManager.IncrWins();
-                    State = States.GAME_MENU;
+                    currentState = States.GAME_MENU;
                     GameManager.Instance.AudioManager.PlayBGM("skyline");
                     DoActionOnChangeState();
                 }
                 break;
                 //(States.GAME_MENU -> States.MAIN_MENU) see ReturnMainMenu method
         }
-        if (State == States.MAIN_MENU) paused = true;
+        if (currentState == States.MAIN_MENU) paused = true;
     }
 
     private void DoActionOnChangeState()
     {
         isOk = false;
-        switch (State)
+        switch (currentState)
         {
             case States.MAIN_MENU:
                 GameManager.Instance.LoadMainMenu();
@@ -117,7 +117,7 @@ public class StatesManager : MonoBehaviour
     private void DoActionOnState()
     {
         isOk = false;
-        switch (State)
+        switch (currentState)
         {
             case States.MAIN_MENU:
                 break;
@@ -138,7 +138,7 @@ public class StatesManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!paused || (State == States.MAIN_MENU))
+        if (!paused || (currentState == States.MAIN_MENU))
         {
             UpdateStates();
             DoActionOnState();
