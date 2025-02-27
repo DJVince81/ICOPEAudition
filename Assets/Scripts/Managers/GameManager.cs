@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool isTutorialEnable
+    public bool IsTutorialEnable
     {
         get { return _isTutorialEnable; }
         set 
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     public void setCheckBoxSettings()
     {
-        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = isTutorialEnable;
+        _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsTutorialEnable;
     }
 
     /// <summary>
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
     public void setTutorialUI()
     {
         isTutorialUIEnable = !isTutorialUIEnable;
-        if (isTutorialEnable)
+        if (IsTutorialEnable)
         {
             _tutorialPanel.SetActive(isTutorialUIEnable);
         }

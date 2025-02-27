@@ -109,7 +109,6 @@ public class XMLReader : MonoBehaviour
     #region Public methods
     public Entry readXmlStream(string stepName, int id)
     {
-        Debug.Log(_xmlFilePath);
         if (!File.Exists(_xmlFilePath))
         { 
             Debug.LogError("XML file not found");

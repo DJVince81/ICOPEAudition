@@ -39,6 +39,7 @@ public class UITutorialControler : MonoBehaviour
         else
         {
             GameManager.Instance.setTutorialUI();
+            indexText = 0;
         }
     }
 
