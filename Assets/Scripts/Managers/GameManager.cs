@@ -138,8 +138,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LaunchGameAfterTime()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         StatesManager.ChangeState();
+        //SetTutorialUI();
     }
 
     public void TogglePause()
@@ -175,7 +176,7 @@ public class GameManager : MonoBehaviour
         AudioManager.PlaySFX("bonjour");
     }
 
-    public void setCheckBoxSettings()
+    public void SetCheckBoxSettings()
     {
         _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsTutorialEnable;
     }
@@ -184,7 +185,7 @@ public class GameManager : MonoBehaviour
     /// Resume
     /// Function that allows making a blinking outline on image.
     /// </summary>
-    public void characterOutlineBliking()
+    public void CharacterOutlineBliking()
     {
         if (_gameMenu.activeInHierarchy)
         {
@@ -197,7 +198,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void setTutorialUI()
+    public void SetTutorialUI()
     {
         isTutorialUIEnable = !isTutorialUIEnable;
         if (IsTutorialEnable)
@@ -229,11 +230,7 @@ public class GameManager : MonoBehaviour
         AudioManager.LoopSfx(true, "AMBIANT");
     }
 
-    // Résumé :
-    //      Load Main Menus
-    //      Load items
-    //      Load Player money (default : 20)
-    //      Play sound  
+ 
     void Start()
     {
         StatesManager.ReturnMainMenu();
@@ -249,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        characterOutlineBliking();
+        CharacterOutlineBliking();
     }
     #endregion
 

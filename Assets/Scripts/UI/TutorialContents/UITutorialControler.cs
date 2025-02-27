@@ -16,6 +16,7 @@ public class UITutorialControler : MonoBehaviour
     private XMLReader xmlReader;
     private int indexText = 0;
     private string nameStep;
+    private bool[] isStepDoneTab = { false, false, false, false, false }; //To set in the gameManager maybe
     #endregion
 
     #region Public methods
@@ -25,19 +26,61 @@ public class UITutorialControler : MonoBehaviour
     /// <remarks>
     /// Here a list of actual gameState and it's links name for seaching the text attach.
     /// GAME_MENU -> Waiting_room,
-    /// GAME_E0 -> Step_0,
-    /// GAME_E1 -> Step_1,
-    /// GAME_E2 -> Step_2,
-    /// GAME_E3 -> Step_3,
-    /// GAME_E4 -> Step_4
+    /// GAME_E0 -> Test_chuchotement,
+    /// GAME_E1 -> Questionnaire_go,
+    /// GAME_E2 -> Video_ostocopie,
+    /// GAME_E3 -> Test_Weber,
+    /// GAME_E4 -> Test_Audiometrie
     /// </remarks>
     public void CheckStateTutorial()
     {
+        //Debug.Log(GameManager.Instance.StatesManager.currentState);
         switch (GameManager.Instance.StatesManager.currentState)
         {
             case StatesManager.States.GAME_MENU:
                 nameStep = "Waiting_room";
                 SetTexts(nameStep, indexText);
+                break;
+            case StatesManager.States.GAME_E0:
+                nameStep = "Test_chuchotement";
+                Debug.Log("Here");
+                if (!isStepDoneTab[0])
+                {
+                    SetTexts(nameStep, indexText);
+                    isStepDoneTab[0] = true;
+                }
+                break;
+            case StatesManager.States.GAME_E1:
+                nameStep = "Questionnaire_go";
+                if (!isStepDoneTab[1])
+                {
+                    SetTexts(nameStep, indexText);
+                    isStepDoneTab[1] = true;
+                }
+                break;
+            case StatesManager.States.GAME_E2:
+                nameStep = "Video_ostocopie";
+                if (!isStepDoneTab[2])
+                {
+                    SetTexts(nameStep, indexText);
+                    isStepDoneTab[2] = true;
+                }
+                break;
+            case StatesManager.States.GAME_E3:
+                nameStep = "Test_Weber";
+                if (!isStepDoneTab[3])
+                {
+                    SetTexts(nameStep, indexText);
+                    isStepDoneTab[3] = true;
+                }
+                break;
+            case StatesManager.States.GAME_E4:
+                nameStep = "Test_Audiometrie";
+                if (!isStepDoneTab[4])
+                {
+                    SetTexts(nameStep, indexText);
+                    isStepDoneTab[4] = true;
+                }
                 break;
         }
     }
@@ -71,7 +114,7 @@ public class UITutorialControler : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.setTutorialUI();
+            GameManager.Instance.SetTutorialUI();
             indexText = 0;
         }
     }

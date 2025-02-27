@@ -4770,7 +4770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927297465054453752, guid: 553245774f069a644ad7d9a1aba9a1ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_isTutorialEnable
+      value: set_IsTutorialEnable
       objectReference: {fileID: 0}
     - target: {fileID: 927297465054453752, guid: 553245774f069a644ad7d9a1aba9a1ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4806,11 +4806,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3396498444152290705, guid: 553245774f069a644ad7d9a1aba9a1ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_isTutorialEnable
+      value: set_IsTutorialEnable
       objectReference: {fileID: 0}
     - target: {fileID: 3396498444152290705, guid: 553245774f069a644ad7d9a1aba9a1ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: setTutorialUI
+      value: SetTutorialUI
       objectReference: {fileID: 0}
     - target: {fileID: 3396498444152290705, guid: 553245774f069a644ad7d9a1aba9a1ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
