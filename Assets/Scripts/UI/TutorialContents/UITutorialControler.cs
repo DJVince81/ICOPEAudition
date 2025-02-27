@@ -63,5 +63,5 @@ public class UITutorialControler : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance._tutorialPanel.activeSelf) getInputs();
-    }
+    }  
 }

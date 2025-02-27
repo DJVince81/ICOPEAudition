@@ -199,8 +199,6 @@ public class GameManager : MonoBehaviour
 
     public void setTutorialUI()
     {
-            Debug.Log("Here");
-
         isTutorialUIEnable = !isTutorialUIEnable;
         if (isTutorialEnable)
         {

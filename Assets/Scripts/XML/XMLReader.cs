@@ -109,15 +109,15 @@ public class XMLReader : MonoBehaviour
     #region Public methods
     public Entry readXmlStream(string stepName, int id)
     {
+        Debug.Log(_xmlFilePath);
         if (!File.Exists(_xmlFilePath))
-        {
-            
-            Debug.LogError("XML file not found for validation");
+        { 
+            Debug.LogError("XML file not found");
             return null;
         }
         if (!File.Exists(_xsdFilePath))
         {
-            Debug.LogError("XSD file not found for validation");
+            Debug.LogError("XSD file not found");
             return null;
         }
 
@@ -150,8 +150,6 @@ public class XMLReader : MonoBehaviour
     #region Unity Initialization
     void Start()
     {
-        _xmlFilePath = Path.Combine(Application.persistentDataPath, "Resources/XML Text/Tutorial.xml");
-        _xsdFilePath = Path.Combine(Application.streamingAssetsPath, "Resources/XML Text/");
         ValidateXML();
     }
     #endregion
