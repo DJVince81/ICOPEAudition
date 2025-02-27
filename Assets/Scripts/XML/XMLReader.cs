@@ -6,6 +6,9 @@ using TMPro;
 using UnityEngine;
 
 #region Entry class def
+/// <summary>
+/// Class that define the content of XML we read
+/// </summary>
 public class Entry
 {
     public int ID;
@@ -23,6 +26,10 @@ public class XMLReader : MonoBehaviour
     #endregion
 
     #region Private methods
+    /// <summary>
+    /// Valid if the xml we have is comfort to the xsd schema.
+    /// </summary>
+    /// <returns>Boolean that validate the XML file</returns>
     private bool ValidateXML()
     {
         if (!File.Exists(_xmlFilePath))
@@ -75,7 +82,14 @@ public class XMLReader : MonoBehaviour
             Debug.LogError("XML file not found :" + _xmlFilePath);
         }
     }
-
+    /// <summary>
+    /// Read XML entry that contais text and return it
+    /// </summary>
+    /// <remarks>
+    /// In this case we read node ID, Intitule and text. Return Entry.ID (int), Entry.Intiutle (string) and Entry.Text (string)
+    /// </remarks>
+    /// <param name="reader"></param>
+    /// <returns></returns>
     private Entry ReadEntryDetails(XmlReader reader)
     {
         Entry entry = new Entry();

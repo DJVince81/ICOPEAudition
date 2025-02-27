@@ -31,13 +31,13 @@ public class UITutorialControler : MonoBehaviour
     /// GAME_E3 -> Step_3,
     /// GAME_E4 -> Step_4
     /// </remarks>
-    public void checkStateTutorial()
+    public void CheckStateTutorial()
     {
         switch (GameManager.Instance.StatesManager.currentState)
         {
             case StatesManager.States.GAME_MENU:
                 nameStep = "Waiting_room";
-                setTexts(nameStep, indexText);
+                SetTexts(nameStep, indexText);
                 break;
         }
     }
@@ -45,10 +45,10 @@ public class UITutorialControler : MonoBehaviour
     /// <summary>
     /// Change indexText value for loading next text.
     /// </summary>
-    public void nextTextButton()
+    public void NextTextButton()
     {
         indexText++;
-        setTexts(nameStep, indexText);
+        SetTexts(nameStep, indexText);
     }
     #endregion
 
@@ -61,7 +61,7 @@ public class UITutorialControler : MonoBehaviour
     /// </remarks>
     /// <param name="nameStep">The name of the current state for the XML file.</param>
     /// <param name="idSteps">The ids of the current text to load.</param>
-    private void setTexts(string nameStep, int idSteps)
+    private void SetTexts(string nameStep, int idSteps)
     {
         Entry entry = xmlReader.readXmlStream(nameStep, idSteps);
         if (entry != null)
@@ -79,11 +79,11 @@ public class UITutorialControler : MonoBehaviour
     /// <summary>
     /// Check if input button like mouse click (Fire1) and keyboard (enter) is hit and call fuction "nextTextButton".
     /// </summary>
-    private void getInputs()
+    private void GetInputs()
     {
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Return))
         {
-            nextTextButton();
+            NextTextButton();
         }
     }
     #endregion
@@ -96,12 +96,12 @@ public class UITutorialControler : MonoBehaviour
 
     private void OnEnable()
     {
-        checkStateTutorial();
+        CheckStateTutorial();
     }
 
     private void Update()
     {
-        if (GameManager.Instance._tutorialPanel.activeSelf) getInputs();
+        if (GameManager.Instance._tutorialPanel.activeSelf) GetInputs();
     }
     #endregion
 }
