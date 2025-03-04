@@ -1,3 +1,4 @@
+using Assets.Scripts.Managers;
 using UnityEngine;
 
 public class MoneyGUI : MonoBehaviour
