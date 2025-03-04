@@ -18,21 +18,21 @@ namespace Assets.Scripts.Managers
         internal States currentState;
 
         internal bool paused;
-        private bool isOk = false;
+        private bool canChangeState = false;
 
         public void ChangeState()
         {
             if (currentState == States.MAIN_MENU)
             {
-                isOk = true;
+                canChangeState = true;
                 return;
             }
             if (currentState == States.GAME_MENU)
             {
-                isOk = true;
+                canChangeState = true;
                 return;
             }
-            isOk = GameManager.Instance.StepManager.WasCorrectlyAnswered;
+            canChangeState = GameManager.Instance.StepManager.WasCorrectlyAnswered;
         }
 
         public void ReturnMainMenu()
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Managers
             {
                 case States.MAIN_MENU:
                 case States.GAME_MENU:
-                    if (isOk)
+                    if (canChangeState)
                     {
                         if (currentState != States.MAIN_MENU) GameManager.Instance.AudioManager.PlayBGM("skyline");
                         currentState++;
@@ -59,7 +59,7 @@ namespace Assets.Scripts.Managers
                 case States.GAME_E1:
                 case States.GAME_E2:
                 case States.GAME_E3:
-                    if (isOk)
+                    if (canChangeState)
                     {
                         if (GameManager.Instance.StepManager.IsLastStep())
                         {
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Managers
                     }
                     break;
                 case States.GAME_E4:
-                    if (isOk)
+                    if (canChangeState)
                     {
                         GameManager.Instance.AudioManager.PlaySFX("money_up");
                         GameManager.Instance.TelemetryManager.IncrWins();
@@ -89,7 +89,7 @@ namespace Assets.Scripts.Managers
 
         private void DoActionOnChangeState()
         {
-            isOk = false;
+            canChangeState = false;
             switch (currentState)
             {
                 case States.MAIN_MENU:
@@ -118,7 +118,7 @@ namespace Assets.Scripts.Managers
 
         private void DoActionOnState()
         {
-            isOk = false;
+            canChangeState = false;
             switch (currentState)
             {
                 case States.MAIN_MENU:
