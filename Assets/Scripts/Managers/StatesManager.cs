@@ -1,3 +1,9 @@
+using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
@@ -17,7 +23,7 @@ namespace Assets.Scripts.Managers
 
         internal States currentState;
 
-        internal bool paused;
+        internal bool isPaused;
         private bool canChangeState = false;
 
         public void ChangeState()
@@ -37,7 +43,7 @@ namespace Assets.Scripts.Managers
 
         public void ReturnMainMenu()
         {
-            paused = true;
+            isPaused = true;
             currentState = States.MAIN_MENU;
             DoActionOnChangeState();
         }
@@ -84,7 +90,7 @@ namespace Assets.Scripts.Managers
                     break;
                     //(States.GAME_MENU -> States.MAIN_MENU) see ReturnMainMenu method
             }
-            if (currentState == States.MAIN_MENU) paused = true;
+            if (currentState == States.MAIN_MENU) isPaused = true;
         }
 
         private void DoActionOnChangeState()
@@ -140,7 +146,7 @@ namespace Assets.Scripts.Managers
 
         void FixedUpdate()
         {
-            if (!paused || currentState == States.MAIN_MENU)
+            if (!isPaused || currentState == States.MAIN_MENU)
             {
                 UpdateStates();
                 DoActionOnState();

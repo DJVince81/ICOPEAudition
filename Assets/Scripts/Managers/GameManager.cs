@@ -119,7 +119,7 @@ namespace Assets.Scripts.Managers
             _gameMenu.SetActive(true);
             //_tipsPanel.Display();
             if (TelemetryManager.GetNbGames() == 0) _activeAssistant.SetActive(true);
-            if (StatesManager.paused) TogglePause();
+            if (StatesManager.isPaused) TogglePause();
         }
         
         public static void AddBoughtItem(string name)
@@ -143,12 +143,12 @@ namespace Assets.Scripts.Managers
 
         public void TogglePause()
         {
-            StatesManager.paused ^= true;
+            StatesManager.isPaused ^= true;
         }
 
         public void ChangeState()
         {
-            if (!StatesManager.paused) StatesManager.ChangeState();
+            if (!StatesManager.isPaused) StatesManager.ChangeState();
         }
 
         public void ClickButton()
