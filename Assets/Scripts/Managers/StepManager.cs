@@ -35,7 +35,7 @@ public class StepManager : MonoBehaviour
         _actionButtonGroup.OnButtonSelected += UpdateConfirmButton;
 
         _confirmButton.onClick.AddListener(CheckAnswersValidity);
-        _nextButton.onClick.AddListener(GameManager.Instance.ChangeState);
+        //_nextButton.onClick.AddListener(GameManager.Instance.ChangeState);
     }
 
     internal void Initialize()

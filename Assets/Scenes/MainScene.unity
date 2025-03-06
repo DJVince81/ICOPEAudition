@@ -1709,6 +1709,7 @@ GameObject:
   - component: {fileID: 730478444}
   - component: {fileID: 730478446}
   - component: {fileID: 730478447}
+  - component: {fileID: 730478448}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1890,6 +1891,18 @@ MonoBehaviour:
   MusicSlider: {fileID: 2003846844}
   SFXSlider: {fileID: 1321095142}
   toggleFullScreen: {fileID: 758974042}
+--- !u!114 &730478448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730478439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694ebd77f389da641a1fa14f39828272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &758974040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6641,7 +6654,7 @@ PrefabInstance:
     - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 730478441}
+      objectReference: {fileID: 730478448}
     - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -6659,8 +6672,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeMainState
+      objectReference: {fileID: 0}
+    - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
       value: EnableTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Managers.GameStateManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 758345816432596746, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
@@ -7092,7 +7113,15 @@ PrefabInstance:
     - target: {fileID: 2102229277137121738, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 730478441}
+      objectReference: {fileID: 730478448}
+    - target: {fileID: 2102229277137121738, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: ChangeMainState
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102229277137121738, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Managers.GameStateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2103673019435462745, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

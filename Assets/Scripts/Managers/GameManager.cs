@@ -16,7 +16,10 @@ namespace Assets.Scripts.Managers
         #endregion
 
         public static GameManager Instance;
-        public StatesManager StatesManager { get; private set; }
+        //public StatesManager StatesManager { get; private set; }
+
+        public GameStateManager GameStateManager { get; private set; }
+
         public StepManager StepManager { get; private set; }
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
@@ -119,7 +122,7 @@ namespace Assets.Scripts.Managers
             _gameMenu.SetActive(true);
             //_tipsPanel.Display();
             if (TelemetryManager.GetNbGames() == 0) _activeAssistant.SetActive(true);
-            if (StatesManager.isPaused) TogglePause();
+            //if (StatesManager.isPaused) TogglePause();
         }
         
         public static void AddBoughtItem(string name)
@@ -130,32 +133,40 @@ namespace Assets.Scripts.Managers
         #endregion
 
         #region Main methods
+
+        //LOAD GAME ON GRANDMA CLICK -> CALL LaunchGameAfterTime()
         public void LaunchGame()
         {
             StartCoroutine(LaunchGameAfterTime());
         }
 
+        //LOAD GAME ON GRANDMA CLICK -> CHANGE STATE.MANAGER -> LOAD LEVEL 1    
         private IEnumerator LaunchGameAfterTime()
         {
             yield return new WaitForSeconds(0.5f);
-            StatesManager.ChangeState();
+            //StatesManager.ChangeState();
         }
 
+        // TOGGLE PAUSE
         public void TogglePause()
         {
-            StatesManager.isPaused ^= true;
+            //StatesManager.isPaused ^= true;
         }
 
-        public void ChangeState()
+        // CHANGE MAIN STATE & LOAD SCENE ON CLICK (MAIN_MENU & GAME_MENU)
+        public void ChangeMainState()
         {
-            if (!StatesManager.isPaused) StatesManager.ChangeState();
+            //if (!StatesManager.isPaused) StatesManager.ChangeState();
+            GameStateManager.ChangeMainState();
         }
 
+        // PLAY AUDIO
         public void ClickButton()
         {
             AudioManager.PlaySFX("ui_click2");
         }
 
+        /*
         public void CloseSettings()
         {
             if (StatesManager.currentState == StatesManager.States.MAIN_MENU)
@@ -167,7 +178,7 @@ namespace Assets.Scripts.Managers
                 _pausePanel.SetActive(true);
             }
             PlayerPrefs.Save();
-        }
+        }*/
 
         public void PlayBonjour()
         {
@@ -219,7 +230,8 @@ namespace Assets.Scripts.Managers
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            StatesManager = GetComponent<StatesManager>();
+            //StatesManager = GetComponent<StatesManager>();
+            GameStateManager = GetComponent<GameStateManager>();
             StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();
@@ -231,7 +243,7 @@ namespace Assets.Scripts.Managers
 
         void Start()
         {
-            StatesManager.ReturnMainMenu();
+            //StatesManager.ReturnMainMenu();
             LoadListItems();
 
             _money = PlayerPrefs.GetInt("money", 20);

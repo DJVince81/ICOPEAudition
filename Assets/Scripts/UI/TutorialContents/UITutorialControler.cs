@@ -33,6 +33,7 @@ public class UITutorialControler : MonoBehaviour
     /// GAME_E3 -> Test_Weber,
     /// GAME_E4 -> Test_Audiometrie
     /// </remarks>
+    /*
     public void CheckStateTutorial()
     {
         //Debug.Log(GameManager.Instance.StatesManager.currentState);
@@ -84,7 +85,7 @@ public class UITutorialControler : MonoBehaviour
                 }
                 break;
         }
-    }
+    }*/
 
     /// <summary>
     /// Change indexText value for loading next text.
@@ -140,7 +141,7 @@ public class UITutorialControler : MonoBehaviour
 
     private void OnEnable()
     {
-        CheckStateTutorial();
+        //CheckStateTutorial();
     }
 
     private void Update()

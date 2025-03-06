@@ -6,8 +6,6 @@ namespace Assets.Scripts.Managers
 {
     public class GameStateManager : MonoBehaviour
     {
-        //OLD UPHEAD
-
         //MAIN_MENU -> PLAY -> CHANGE MAIN STATE -> GAME_MENU
         //GAME_MENU -> ESC -> CHANGE MAIN STATE -> MAIN_MENU
 
@@ -39,8 +37,8 @@ namespace Assets.Scripts.Managers
         private AlgoState currentAlgoState;
 
         // Variables
-        private Dictionary<LevelState, bool> levelCompletion = new Dictionary<LevelState, bool>();
-        private Dictionary<AlgoState, AlgoStateData> algoStats = new Dictionary<AlgoState, AlgoStateData>();
+        private readonly Dictionary<LevelState, bool> levelCompletion = new Dictionary<LevelState, bool>();
+        private readonly Dictionary<AlgoState, AlgoStateData> algoStats = new Dictionary<AlgoState, AlgoStateData>();
         private List<AlgoState> testsToDo;
         private int testIndex = 0;
         private bool canGetNextStep = false;
@@ -56,8 +54,14 @@ namespace Assets.Scripts.Managers
             currentMainState = newState;
             Debug.Log($"Main State: {currentMainState}");
             // LOAD SCENE
-            if (currentMainState == MainState.GAME_MENU) GameManager.Instance.LoadGameMenu();
-            if (currentMainState == MainState.MAIN_MENU) GameManager.Instance.LoadMainMenu();
+            if (currentMainState == MainState.GAME_MENU)
+            {
+                GameManager.Instance.LoadGameMenu();
+            }
+            else
+            {
+                //GameManager.Instance.LoadMainMenu();
+            }
         }
 
         // LEVEL SELECTION 
@@ -207,9 +211,21 @@ namespace Assets.Scripts.Managers
         }
 
 
+        public void ChangeMainState()
+        {
+            if (currentMainState == MainState.MAIN_MENU)
+            {
+                SetMainState(MainState.GAME_MENU);
+            }
+            else
+            {
+                SetMainState(MainState.MAIN_MENU);
+            }
+        }
+
         private void Start()
         {
-            LoadGame();
+            //LoadGame();
         }
     }
 }
