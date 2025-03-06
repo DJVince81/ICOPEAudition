@@ -66,9 +66,9 @@ public class Step4Data : StepData
 	{
 		return chosenIndex switch
 		{
-			0 => audiometryResult == AudiometryResult.NormalAudiogram,
+			0 => audiometryResult == AudiometryResult.NormalAudiogram, 
 			1 => audiometryResult == AudiometryResult.PerceptionSymmetry,
-			2 => audiometryResult != AudiometryResult.NormalAudiogram && audiometryResult != AudiometryResult.PerceptionSymmetry,
+			2 => audiometryResult != AudiometryResult.Asymmetry || audiometryResult != AudiometryResult.Transmission || audiometryResult != AudiometryResult.InvertedSymmetry,
 			_ => false
 		};
 	}

@@ -231,7 +231,7 @@ namespace Assets.Scripts.Managers
         /// </summary>
         public void LoadLevelState()
         {
-            if (currentMainState == MainState.GAME_MENU) SetLevelState(LevelState.RANDOMGAME);
+            if (currentMainState == MainState.GAME_MENU) SetLevelState(currentLevelState);
         }
 
         public void GetNextStep()
