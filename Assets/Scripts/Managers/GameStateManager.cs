@@ -28,7 +28,7 @@ namespace Assets.Scripts.Managers
 
         //Enums for states
         private enum MainState { MAIN_MENU, GAME_MENU } // Enums for Main_menu and waiting_room
-        private enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, RANDOGAME } // Enums levels of the game and random game is load when player finish all the levels 
+        private enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, RANDOMGAME } // Enums levels of the game and random game is load when player finish all the levels 
         private enum AlgoState { NONE, WISPER_TEST, QUESTIONARY, VIDEO_OTOSCOPIE, WEBER_TEST, AUDIOMETRI } // Enums algorithm steps
 
         //Current states
@@ -60,7 +60,7 @@ namespace Assets.Scripts.Managers
             }
             else
             {
-                //GameManager.Instance.LoadMainMenu();
+                GameManager.Instance.LoadMainMenu();
             }
         }
 
@@ -84,9 +84,9 @@ namespace Assets.Scripts.Managers
                 case LevelState.LEVEL_3:
                     testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI };
                     break;
-                case LevelState.RANDOGAME:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST };
-                    testsToDo.Add(GetRandomAlgoState());
+                case LevelState.RANDOMGAME:
+                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI };
+                    GetRandomAlgoStateList();
                     break;
             }
 
@@ -95,10 +95,11 @@ namespace Assets.Scripts.Managers
         }
 
         // RANDOM GAME MODE
-        private static AlgoState GetRandomAlgoState()
+        private void GetRandomAlgoStateList()
         {
-            List<AlgoState> possibleEndStates = new List<AlgoState> { AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI };
-            return possibleEndStates[Random.Range(0, possibleEndStates.Count)];
+            int removeCount = Random.Range(0, testsToDo.Count);
+            testsToDo.RemoveRange(testsToDo.Count - removeCount, removeCount);
+            Debug.Log(string.Join(", ", testsToDo));
         }
 
         // LOAD CURRENT ALGO STEP
@@ -110,10 +111,10 @@ namespace Assets.Scripts.Managers
             currentAlgoState = newState;
             if (currentAlgoState != AlgoState.NONE) GameManager.Instance.LoadStep((int)currentAlgoState - 1);
             Debug.Log($"Algo Test: {currentAlgoState}");
-            SaveGame();
+            //SaveGame();
         }
 
-        //RECORD ATTEMPT OF ALGO STEP - CALL WHEN PLAYER VALIDATE ITS CHOICES
+        // RECORD ATTEMPT OF ALGO STEP - CALL WHEN PLAYER VALIDATE ITS CHOICES
         private void RecordAttempt(bool actionsSucces, bool diagnoticsSucces)
         {
             if (!algoStats.ContainsKey(currentAlgoState)) return;
@@ -124,14 +125,17 @@ namespace Assets.Scripts.Managers
             if (!actionsSucces) data.actionsErrors++;
             if (!diagnoticsSucces) data.diagnoticsErrors++;
             algoStats[currentAlgoState] = data;
+            Debug.Log("Record : "+ currentAlgoState);
+
+            CheckLevelCompletion();
         }
 
+        // CHECK IF LEVEL IS COMPLETE
         private void CheckLevelCompletion()
         {
-            if (testsToDo.All(test => algoStats[test].attempts > 0))
+            if (testsToDo.All(test => algoStats.ContainsKey(test) && algoStats[test].attempts > 0))
             {
-                //levelCompletion[currentLevelState] = true;
-                levelCompletion.Add(currentLevelState, true);
+                levelCompletion[currentLevelState] = true;
             }
         }
 
@@ -142,11 +146,6 @@ namespace Assets.Scripts.Managers
         private void ProgressToNextState()
         {
             canGetNextStep = GameManager.Instance.StepManager.WasCorrectlyAnswered;
-            if (currentMainState == MainState.MAIN_MENU)
-            {
-                SetMainState(MainState.GAME_MENU);
-                return;
-            }
 
             if (testIndex < testsToDo.Count - 1 && canGetNextStep)
             {
@@ -156,29 +155,30 @@ namespace Assets.Scripts.Managers
             else if (levelCompletion[currentLevelState])
             {
                 //return GAME_MENU
-
                 Debug.Log("Level Completed!");
-                //GoToNextLevel();
+                GameManager.Instance.LoadGameMenu();
+                SetNextLevel();
             }
         }
 
-        private void GoToNextLevel()
+        private void SetNextLevel()
         {
             if (currentLevelState == LevelState.LEVEL_0)
             {
-                SetLevelState(LevelState.LEVEL_1);
+                currentLevelState = LevelState.LEVEL_1;
             }
             else if (currentLevelState == LevelState.LEVEL_1)
             {
-                SetLevelState(LevelState.LEVEL_2);
+                currentLevelState = LevelState.LEVEL_2;
             }
             else if (currentLevelState == LevelState.LEVEL_2)
             {
-                SetLevelState(LevelState.LEVEL_3);
+                currentLevelState = LevelState.LEVEL_3;
             }
             else
             {
                 Debug.Log("All levels completed");
+                currentLevelState = LevelState.RANDOMGAME;
             }
         }
 
@@ -210,7 +210,10 @@ namespace Assets.Scripts.Managers
             }
         }
 
-
+        /// <summary>
+        /// Public function change the main state between MAIN_MENU & GAME_MENU.
+        /// Its call by buttons "Play" & "return menu"
+        /// </summary>
         public void ChangeMainState()
         {
             if (currentMainState == MainState.MAIN_MENU)
@@ -222,6 +225,31 @@ namespace Assets.Scripts.Managers
                 SetMainState(MainState.MAIN_MENU);
             }
         }
+
+        /// <summary>
+        /// Public function that load the current level when GrandMa or GrandPa Click
+        /// </summary>
+        public void LoadLevelState()
+        {
+            if (currentMainState == MainState.GAME_MENU) SetLevelState(LevelState.RANDOMGAME);
+        }
+
+        public void GetNextStep()
+        {
+            ProgressToNextState();
+        }
+
+        public void RegiterError(bool actionError, bool diagnoticsError)
+        {
+            RecordAttempt(actionError, diagnoticsError);
+        }
+
+        public int GetNumberSteps()
+        {
+            return this.testsToDo.Count - 1;
+        }
+
+        //public void ChangeLevelState
 
         private void Start()
         {

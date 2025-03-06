@@ -36,13 +36,14 @@ public class StepManager : MonoBehaviour
 
         _confirmButton.onClick.AddListener(CheckAnswersValidity);
         //_nextButton.onClick.AddListener(GameManager.Instance.ChangeState);
+        _nextButton.onClick.AddListener(GameManager.Instance.GameStateManager.GetNextStep);
     }
 
     internal void Initialize()
     {
         _patientData = ScriptableObject.CreateInstance<PatientData>();
-        int stepToReach = Random.Range(0, 5);
-        _patientData.RandomizeData(stepToReach);
+        //int stepToReach = Random.Range(0, 5);
+        _patientData.RandomizeData(GameManager.Instance.GameStateManager.GetNumberSteps());
         _steps = _patientData.GetStepDatas();
 
         _isInit = true;
@@ -155,6 +156,7 @@ public class StepManager : MonoBehaviour
         _diagButtonGroup.SetAnswerValidity(selectedDiagIndex, isDiagValid);
         _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
         UpdateConfirmButton();
+        GameManager.Instance.GameStateManager.RegiterError(isActionValid, isDiagValid);
 
         if (isDiagValid && isActionValid)
         {

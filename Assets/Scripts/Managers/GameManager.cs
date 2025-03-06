@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,6 +72,7 @@ namespace Assets.Scripts.Managers
         [SerializeField] private GameObject _mainPanel;
         [SerializeField] private GameObject _shopPanel;
         [SerializeField] private GameObject _settingsPanelCheckbox;
+        [SerializeField] private GameObject _settingsPanel;
         [SerializeField] public GameObject _tutorialPanel;
 
         [Header("Character blinking")]
@@ -145,6 +147,7 @@ namespace Assets.Scripts.Managers
         {
             yield return new WaitForSeconds(0.5f);
             //StatesManager.ChangeState();
+            GameStateManager.LoadLevelState();
         }
 
         // TOGGLE PAUSE
@@ -153,33 +156,20 @@ namespace Assets.Scripts.Managers
             //StatesManager.isPaused ^= true;
         }
 
-        // CHANGE MAIN STATE & LOAD SCENE ON CLICK (MAIN_MENU & GAME_MENU)
-        public void ChangeMainState()
-        {
-            //if (!StatesManager.isPaused) StatesManager.ChangeState();
-            GameStateManager.ChangeMainState();
-        }
-
         // PLAY AUDIO
         public void ClickButton()
         {
             AudioManager.PlaySFX("ui_click2");
         }
 
-        /*
-        public void CloseSettings()
+       
+        public static void SaveSettings()
         {
-            if (StatesManager.currentState == StatesManager.States.MAIN_MENU)
-            {
-                _mainPanel.SetActive(true);
-            }
-            else
-            {
-                _pausePanel.SetActive(true);
-            }
-            PlayerPrefs.Save();
-        }*/
+            // TO DO
+            // SAVE DATA IN FILE LIKE SKYRIM
+        }
 
+        // PLAY AUDIO ON GRANDPA CLICK
         public void PlayBonjour()
         {
             AudioManager.PlaySFX("bonjour");
