@@ -64,7 +64,11 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        // LEVEL SELECTION 
+        // LEVEL SELECTION
+        /// <summary>
+        /// Select a scenario (AlgoState) linked to the currentLevelState.
+        /// </summary>
+        /// <param name="newState">currentLevelState</param>
         private void SetLevelState(LevelState newState)
         {
             currentLevelState = newState;
@@ -95,6 +99,11 @@ namespace Assets.Scripts.Managers
         }
 
         // RANDOM GAME MODE
+        /// <summary>
+        /// Create a senario based on list of AlgoState which conatins the full algorithm Audiocop (Wisper_test, questionary go /no-go, video otoscopie, weber_test and audiometri) to parcour.
+        /// Its remove AlgoState from the right to the left.
+        /// </summary>
+        /// <remarks>Its change private variable testsToDo which contains the AlgoStates that player have to do.</remarks>
         private void GetRandomAlgoStateList()
         {
             int removeCount = Random.Range(0, testsToDo.Count);
@@ -103,6 +112,13 @@ namespace Assets.Scripts.Managers
         }
 
         // LOAD CURRENT ALGO STEP
+        /// <summary>
+        /// Load the current algo state (currentAlgoState) scene.
+        /// </summary>
+        /// <remarks>
+        /// For each steps of Audicop algorithm, its attach AlgoStateData strucuture with contain attempts, actionError and diagnoticsErrors.
+        /// </remarks>
+        /// <param name="newState">AlgoSate</param>
         private void SetAlgoState(AlgoState newState)
         {
 
@@ -115,6 +131,14 @@ namespace Assets.Scripts.Managers
         }
 
         // RECORD ATTEMPT OF ALGO STEP - CALL WHEN PLAYER VALIDATE ITS CHOICES
+        /// <summary>
+        /// Record attemps player during his parcours of Audicop algorithm.
+        /// </summary>
+        /// <remarks>
+        /// Take in enter if the player have succed his choice about its actions and diagnotics choice.
+        /// </remarks>
+        /// <param name="actionsSucces">Boolean</param>
+        /// <param name="diagnoticsSucces">Boolean</param>
         private void RecordAttempt(bool actionsSucces, bool diagnoticsSucces)
         {
             if (!algoStats.ContainsKey(currentAlgoState)) return;
@@ -131,6 +155,9 @@ namespace Assets.Scripts.Managers
         }
 
         // CHECK IF LEVEL IS COMPLETE
+        /// <summary>
+        /// Chech if player have complete all the steps of AlgoState for each levels.
+        /// </summary>
         private void CheckLevelCompletion()
         {
             if (testsToDo.All(test => algoStats.ContainsKey(test) && algoStats[test].attempts > 0))
@@ -141,7 +168,7 @@ namespace Assets.Scripts.Managers
 
 
         /// <summary>
-        /// Call by FixedUpdate check if player has correctly answered the question
+        /// Call by when player press "Next" button. Load next steps of AlgoState or if the level is ended return (load) to waiting_room.
         /// </summary>
         private void ProgressToNextState()
         {
@@ -161,6 +188,9 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        /// <summary>
+        /// Call when player have ended the current level and feed next level. When the player ended all the level we load randomgame level.
+        /// </summary>
         private void SetNextLevel()
         {
             if (currentLevelState == LevelState.LEVEL_0)
@@ -182,7 +212,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        // SAVE PROGRESS - TO CHANGE
+        // SAVE PROGRESS - TO CHANGE (SAVE IN FILE)
         private void SaveGame()
         {
             PlayerPrefs.SetInt("MainSate", (int)currentMainState);
@@ -192,7 +222,7 @@ namespace Assets.Scripts.Managers
             Debug.Log("Game saved");
         }
 
-        // LOAD PROGRESS -TO CHANGE
+        // LOAD PROGRESS - TO CHANGE (LOAD FROM FILE)
         private void LoadGame()
         {
             if (PlayerPrefs.HasKey("MainState"))
@@ -234,16 +264,28 @@ namespace Assets.Scripts.Managers
             if (currentMainState == MainState.GAME_MENU) SetLevelState(currentLevelState);
         }
 
+        /// <summary>
+        /// Public fonction call when player hit "next" button. Goes the next steps of AlgoState.
+        /// </summary>
         public void GetNextStep()
         {
             ProgressToNextState();
         }
 
+        /// <summary>
+        /// Public fonction call when player hit "validate" button. Record attempt's player.
+        /// </summary>
+        /// <param name="actionError"></param>
+        /// <param name="diagnoticsError"></param>
         public void RegiterError(bool actionError, bool diagnoticsError)
         {
             RecordAttempt(actionError, diagnoticsError);
         }
 
+        /// <summary>
+        /// Public fonction call when the game intialize the patient in the StepsManager.cs
+        /// </summary>
+        /// <returns>int: Number of steps</returns>
         public int GetNumberSteps()
         {
             return this.testsToDo.Count - 1;
