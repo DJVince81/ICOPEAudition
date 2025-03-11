@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Managers
 
         //Enums for states
         private enum MainState { MAIN_MENU, GAME_MENU } // Enums for Main_menu and waiting_room
-        private enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, RANDOMGAME } // Enums levels of the game and random game is load when player finish all the levels 
+        private enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, RANDOMGAME } // Enums levels of the game and random game is load when player finish all the levels 
         private enum AlgoState { NONE, WISPER_TEST, QUESTIONARY, VIDEO_OTOSCOPIE, WEBER_TEST, AUDIOMETRI } // Enums algorithm steps
 
         //Current states
@@ -39,6 +40,7 @@ namespace Assets.Scripts.Managers
         // Variables
         private readonly Dictionary<LevelState, bool> levelCompletion = new Dictionary<LevelState, bool>();
         private readonly Dictionary<AlgoState, AlgoStateData> algoStats = new Dictionary<AlgoState, AlgoStateData>();
+        private Dictionary<LevelState, List<AlgoState>> dataLevels;
         private List<AlgoState> testsToDo;
         private int testIndex = 0;
         private bool canGetNextStep = false;
@@ -74,25 +76,18 @@ namespace Assets.Scripts.Managers
             currentLevelState = newState;
             Debug.Log($"Level State: {currentLevelState}");
 
-            switch (currentLevelState)
+            dataLevels = new Dictionary<LevelState, List<AlgoState>>() 
             {
-                case LevelState.LEVEL_0:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY };
-                    break;
-                case LevelState.LEVEL_1:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE };
-                    break;
-                case LevelState.LEVEL_2:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST };
-                    break;
-                case LevelState.LEVEL_3:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI };
-                    break;
-                case LevelState.RANDOMGAME:
-                    testsToDo = new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI };
-                    GetRandomAlgoStateList();
-                    break;
-            }
+                { LevelState.LEVEL_0, new List<AlgoState> { AlgoState.WISPER_TEST } },
+                { LevelState.LEVEL_1, new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY } },
+                { LevelState.LEVEL_2, new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE } },
+                { LevelState.LEVEL_3, new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST } },
+                { LevelState.LEVEL_4, new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI } },
+                { LevelState.RANDOMGAME, new List<AlgoState> { AlgoState.WISPER_TEST, AlgoState.QUESTIONARY, AlgoState.VIDEO_OTOSCOPIE, AlgoState.WEBER_TEST, AlgoState.AUDIOMETRI } }
+            };
+
+            testsToDo = dataLevels[newState];
+            if (newState == LevelState.RANDOMGAME) GetRandomAlgoStateList();
 
             testIndex = 0;
             SetAlgoState(testsToDo[testIndex]);
@@ -106,7 +101,7 @@ namespace Assets.Scripts.Managers
         /// <remarks>Its change private variable testsToDo which contains the AlgoStates that player have to do.</remarks>
         private void GetRandomAlgoStateList()
         {
-            int removeCount = Random.Range(0, testsToDo.Count);
+            int removeCount = UnityEngine.Random.Range(0, testsToDo.Count);
             testsToDo.RemoveRange(testsToDo.Count - removeCount, removeCount);
             Debug.Log(string.Join(", ", testsToDo));
         }
@@ -262,6 +257,20 @@ namespace Assets.Scripts.Managers
         public void LoadLevelState()
         {
             if (currentMainState == MainState.GAME_MENU) SetLevelState(currentLevelState);
+        }
+
+        /// <summary>
+        /// Public function that load the level when player click on the level button.
+        /// </summary>
+        /// <param name="level"></param>
+        public void LoadLevel(int level)
+        {
+            if (level > Enum.GetValues(typeof(LevelState)).Length)
+            {
+                Debug.LogError("Level not found. Add new level to levels state.");
+                return;
+            }
+            SetLevelState((LevelState)level);
         }
 
         /// <summary>
