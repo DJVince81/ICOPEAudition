@@ -1,3 +1,5 @@
+using Assets.Scripts.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,6 +8,10 @@ namespace Assets.Scripts.UI.LevelContents
 {
     public class LevelButtonsManagers : MonoBehaviour
     {
+        // LAUNCH GAME BUTTON   
+        [Header("Launch game button")]
+        public Button launchGameButton; // The launch game button
+
         // BUTTONS NAVIGATION
         [Header("Navigation button")]
         public Button defaultSelectedButton; // The default selected button
@@ -86,12 +92,48 @@ namespace Assets.Scripts.UI.LevelContents
             if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
         }
 
+        // START GAME
+        /// <summary>
+        /// Start the game with the current level selected.
+        /// </summary>
+        private void StartGame()
+        {
+            GameManager.Instance.GameStateManager.LoadLevelFromPanel(currentButtonIndex);
+        }
+
+        // ON BUTTON CLICKED
+        /// <summary>
+        /// When a button is clicked.
+        /// </summary>
+        /// <param name="index"></param>
+        private void OnButtonClicked(int index)
+        {
+            currentButtonIndex = index;
+            EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+        }
+
+        // SET LISTENERS ON BUTTONS (ON START)
+        /// <summary>
+        /// Set listeners on the buttons when the game start.
+        /// </summary>
+        private void SetListenersOnButtons()
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                int index = i;
+                buttons[i].onClick.AddListener(() => OnButtonClicked(index));
+            }
+        }
+
         /// <summary>
         /// Start the script.
         /// </summary>
         void Start()
         {
             EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
+            // Set the listeners (launchGameButton and LevelsButtons)
+            launchGameButton.onClick.AddListener(StartGame);
+            SetListenersOnButtons();
         }
 
         /// <summary>

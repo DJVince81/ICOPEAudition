@@ -260,10 +260,10 @@ namespace Assets.Scripts.Managers
         }
 
         /// <summary>
-        /// Public function that load the level when player click on the level button.
+        /// Public function that load the level when player click on the button form level selection panel.
         /// </summary>
         /// <param name="level"></param>
-        public void LoadLevel(int level)
+        public void LoadLevelFromPanel(int level)
         {
             if (level > Enum.GetValues(typeof(LevelState)).Length)
             {
@@ -299,8 +299,6 @@ namespace Assets.Scripts.Managers
         {
             return this.testsToDo.Count - 1;
         }
-
-        //public void ChangeLevelState
 
         private void Start()
         {
