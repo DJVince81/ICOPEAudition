@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Managers
 {
-    [RequireComponent(typeof(StatesManager))]
+    [RequireComponent(typeof(GameStateManager))]
     [RequireComponent(typeof(StepManager))]
     [RequireComponent(typeof(TelemetryManager))]
     [RequireComponent(typeof(AudioManager))]

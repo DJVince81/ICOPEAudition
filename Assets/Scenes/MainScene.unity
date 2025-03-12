@@ -7343,30 +7343,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 730478448}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Assets.Scripts.Managers.GameStateManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564683072841441758, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4797983075436149913, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
       propertyPath: m_Name
       value: WaitingRoom
