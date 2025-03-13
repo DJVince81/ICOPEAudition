@@ -29,8 +29,8 @@ namespace Assets.Scripts.Managers
 
         //Enums for states
         private enum MainState { MAIN_MENU, GAME_MENU } // Enums for Main_menu and waiting_room
-        private enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, RANDOMGAME } // Enums levels of the game and random game is load when player finish all the levels 
-        private enum AlgoState { NONE, WISPER_TEST, QUESTIONARY, VIDEO_OTOSCOPIE, WEBER_TEST, AUDIOMETRI } // Enums algorithm steps
+        public enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, RANDOMGAME } // Enums levels of the game and random game is load when player finish all the levels 
+        public enum AlgoState { NONE, WISPER_TEST, QUESTIONARY, VIDEO_OTOSCOPIE, WEBER_TEST, AUDIOMETRI } // Enums algorithm steps
 
         //Current states
         private MainState currentMainState;
@@ -206,6 +206,11 @@ namespace Assets.Scripts.Managers
                 currentLevelState = LevelState.RANDOMGAME;
             }
         }
+
+        // GET STATE PROGRESS
+        public LevelState GetCurrentLevelState() => this.currentLevelState;
+        public AlgoState GetCurrentAlgoState() => this.currentAlgoState;    
+
 
         // SAVE PROGRESS - TO CHANGE (SAVE IN FILE)
         private void SaveGame()
