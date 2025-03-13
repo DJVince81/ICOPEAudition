@@ -9,7 +9,7 @@ public enum VideoOtoscopyResult
 }
 
 [CreateAssetMenu(fileName = "Step2Data", menuName = "StepsData/Step2Data", order = 2)]
-public class Step2Data : StepData
+public class Step2Data : StepDataController
 {
 	private static readonly string[] _possibleDiagnostics = {
 		"Tympans normaux",

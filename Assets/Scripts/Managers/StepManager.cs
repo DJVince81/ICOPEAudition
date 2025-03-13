@@ -21,7 +21,7 @@ public class StepManager : MonoBehaviour
 
 
     private PatientData _patientData;
-    private StepData[] _steps;
+    private StepDataController[] _steps;
     private int _currentStepIndex = -1;
 
     private int _currentMoneyBonus = 0;
@@ -49,7 +49,7 @@ public class StepManager : MonoBehaviour
         _isInit = true;
     }
 
-    private StepData GetCurrentStep()
+    private StepDataController GetCurrentStep()
     {
         if (_currentStepIndex < 0 || _currentStepIndex >= _steps.Length)
         {
@@ -70,7 +70,7 @@ public class StepManager : MonoBehaviour
     {
         GameManager.Instance.TelemetryManager.IncrNbShowSteps(_currentStepIndex);
 
-        StepData currentStep = GetCurrentStep();
+        StepDataController currentStep = GetCurrentStep();
 
         // Remove all children of the parent in reverse order
         for (int i = _documentContentParent.childCount - 1; i >= 0; i--)
@@ -121,14 +121,14 @@ public class StepManager : MonoBehaviour
 
     private bool IsDiagnosticValid(int selectedDiagIndex)
     {
-        StepData currentStep = GetCurrentStep();
+        StepDataController currentStep = GetCurrentStep();
         bool isCorrect = currentStep.IsDiagnosticCorrect(selectedDiagIndex);
         return isCorrect;
     }
 
     private bool IsActionValid(int selectedButtonIndex)
     {
-        StepData currentStep = GetCurrentStep();
+        StepDataController currentStep = GetCurrentStep();
         bool isCorrect = currentStep.IsActionCorrect(selectedButtonIndex);
         return isCorrect;
     }

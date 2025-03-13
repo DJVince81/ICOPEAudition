@@ -32,9 +32,9 @@ public class PatientData : ScriptableObject
 	/// Gets all different StepDatas as the abstract type StepData.
 	/// </summary>
 	/// <returns></returns>
-	public StepData[] GetStepDatas()
+	public StepDataController[] GetStepDatas()
 	{
-		return new StepData[] {
+		return new StepDataController[] {
 			step0Data,
 			step1Data,
 			step2Data,

@@ -10,7 +10,7 @@ public enum AudiometryResult
 }
 
 [CreateAssetMenu(fileName = "Step4Data", menuName = "StepsData/Step4Data", order = 4)]
-public class Step4Data : StepData
+public class Step4Data : StepDataController
 {
 	private static readonly string[] _possibleDiagnostics = {
 		"Rien à signaler",

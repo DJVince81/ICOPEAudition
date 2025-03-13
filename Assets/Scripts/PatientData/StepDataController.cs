@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class StepData : ScriptableObject
+public abstract class StepDataController : ScriptableObject
 {
 	protected GameData _gameData;
 

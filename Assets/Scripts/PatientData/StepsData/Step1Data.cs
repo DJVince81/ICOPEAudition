@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Step1Data", menuName = "StepsData/Step1Data", order = 1)]
-public class Step1Data : StepData
+public class Step1Data : StepDataController
 {
 	private static readonly string[] _possibleDiagnostic = new string[]
 	{

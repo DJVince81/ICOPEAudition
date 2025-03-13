@@ -1,10 +1,9 @@
 
-using Assets.Scripts.Managers;
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
-using static Assets.Scripts.PlayerData;
 
 namespace Assets.Scripts 
 {  
@@ -14,7 +13,9 @@ namespace Assets.Scripts
         public struct StepRecords
         {
             public int attempt;
+            [XmlArray("actionError"), XmlArrayItem("Error")]
             public List<string> actionError; // None, Error description
+            [XmlArray("diagnosticError"), XmlArrayItem("Error")]
             public List<string> diagnosticError; // None, Error description
             public bool succeeded => actionError == null && diagnosticError == null;
 
@@ -27,7 +28,7 @@ namespace Assets.Scripts
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        public  struct LevelRecord
+        public  struct LevelRecords
         {
             public int levelAttempt; // Number of attempts for the level
             public int totActionError; // length of actionError
@@ -38,7 +39,7 @@ namespace Assets.Scripts
             public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
 
-            public LevelRecord(int levelAttempt, int totActionError, int totDiagnosticError, int nbSucced, int nbFailed, TimerData time)
+            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbSucced, int nbFailed, TimerData time)
             {
                 this.levelAttempt = levelAttempt;
                 this.totActionError = totActionError;
@@ -87,19 +88,19 @@ namespace Assets.Scripts
 
         // PRIVATE VARIABLES
         private Dictionary<AlgoState, StepRecords> _stepRecords { get; set; }
-        private Dictionary<LevelState, LevelRecord> _levelRecords { get; set; }
+        private Dictionary<LevelState, LevelRecords> _levelRecords { get; set; }
         private GlobalData _globalData;
-
         private TimerData _levelTimer;
         private TimerData _globalTimer;
 
+        private SaveData _saveData;
 
         /// <summary>
         /// Initialize the record when a game start.
         /// </summary>
         public void InitializeRecords()
         {
-            _levelRecords = new Dictionary<LevelState, LevelRecord>();
+            _levelRecords = new Dictionary<LevelState, LevelRecords>();
             _stepRecords = new Dictionary<AlgoState, StepRecords>();
         }
 
@@ -122,14 +123,14 @@ namespace Assets.Scripts
         public void StetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
-            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecord(0, 0, 0, 0, 0, _levelTimer);
+            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer);
         }
 
         public void RecordsLevels(LevelState levelState)
         {
             if (!_levelRecords.ContainsKey(levelState)) return;
 
-            LevelRecord levelData = _levelRecords[levelState];
+            LevelRecords levelData = _levelRecords[levelState];
             levelData.levelAttempt++;
             
             foreach(var step in _stepRecords)
@@ -156,7 +157,7 @@ namespace Assets.Scripts
 
             foreach(var level in _levelRecords)
             {
-                LevelRecord levelData = level.Value;
+                LevelRecords levelData = level.Value;
                 _globalData.nbStepsCompleted += levelData.nbStepSucced;            
                 _globalData.nbActionErrors += levelData.totActionError;
                 _globalData.nbDiagnosticErrors += levelData.totDiagnosticError;
@@ -197,9 +198,14 @@ namespace Assets.Scripts
              |   |    - diagnosticError
          */
 
-        public void SaveData()
+        public void OnStepCompleted(AlgoState currentAlgoState, StepRecord records)
         {
-
+            StepEntry entry = _saveData.Data.StepEntries.Find(e => e.Step == currentAlgoState);
+            if (entry == null)
+            {
+                entry = new StepEntry { Step = currentAlgoState, Records = records };
+                _saveData.Data.StepEntries.Add(entry);
+            }
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -217,3 +223,46 @@ namespace Assets.Scripts
         }
     }
 }
+
+
+/*
+ XML FORMAT:
+    | UID - string
+    | PlayerData
+    |   | GlobalData - Struct
+    |   |   | nbGames - int
+    |   |   | nbLevelsCompleted - int
+    |   |   | nbStepsCompleted - int
+    |   |   | nbActionErrors - int
+    |   |   | nbDiagnosticErrors - int
+    |   |   | gameTime - TimerData
+    |   |   | currentSessionTime - TimerData 
+    |   | LevelData - Struct
+    |   |   | Level : Level 0 - enum
+    |   |   |   | levelAttempt - int
+    |   |   |   | totActionError - int
+    |   |   |   | totDiagnosticError - int
+    |   |   |   | nbStepSucced - int
+    |   |   |   | nbStepFailed - int
+    |   |   |   | levelTime - TimerData
+    |   |   | Level : Level 1 - enum
+    |   |   |   | levelAttempt - int
+    |   |   |   | totActionError - int
+    |   |   |   | totDiagnosticError - int
+    |   |   |   | nbStepSucced - int
+    |   |   |   | nbStepFailed - int
+    |   |   |   | levelTime - TimerData
+    |   | StepData - Struct
+    |   |   | Step : Questionary - enum
+    |   |   |   | attempt - int
+    |   |   |   | actionError - List<string>
+    |   |   |   | diagnosticError - List<string>
+    |   |   | Step : Diagnostic - enum
+    |   |   |   | attempt - int
+    |   |   |   | actionError - List>string>
+    |   |   |   | diagnosticError - List<string>
+ 
+LevelData : Dictonary<LevelState, LevelRecord>
+StepData : Dictonary<AlgoState, StepRecords>
+
+ */

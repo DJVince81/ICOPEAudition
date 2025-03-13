@@ -21,7 +21,7 @@ public enum Ear : int
 }
 
 [CreateAssetMenu(fileName = "Step3Data", menuName = "StepsData/Step3Data", order = 3)]
-public class Step3Data : StepData
+public class Step3Data : StepDataController
 {
 	private static readonly string[] _possibleDiagnostic = new string[]
 	{
