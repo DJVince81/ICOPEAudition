@@ -12,14 +12,14 @@ namespace Assets.Scripts
         private struct StepRecords
         {
             public int attempt;
-            public string[] actionError; // None, Error description
-            public string[] diagnosticError; // None, Error description
+            public List<string> actionError; // None, Error description
+            public List<string> diagnosticError; // None, Error description
             public bool succeeded => actionError == null && diagnosticError == null;
 
-            public StepRecords(int attempt, string[] actionError = null, string[] diagnosticError = null)
+            public StepRecords(int attempt, List<string> actionError, List<string> diagnosticError)
             {
                 this.attempt = attempt;
-                this.actionError = actionError;
+                this.actionError = actionError ;
                 this.diagnosticError = diagnosticError;
             }
         }
@@ -56,9 +56,9 @@ namespace Assets.Scripts
             public int nbActionErrors; // Number of action errors
             public int nbDiagnosticErrors; // Number of diagnostic errors
             public TimerData gameTime;
-            public TimerData lastSessionTime;
+            public TimerData currentSessionTime;
             
-            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, TimerData gameTime, TimerData lastSessionTime)
+            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, TimerData gameTime, TimerData currentSessionTime)
             {
                 this.nbGames = nbGames;
                 this.nbLevelsCompleted = nbLevelsCompleted;
@@ -66,7 +66,7 @@ namespace Assets.Scripts
                 this.nbActionErrors = nbActionErrors;
                 this.nbDiagnosticErrors = nbDiagnosticErrors;
                 this.gameTime = gameTime;
-                this.lastSessionTime = lastSessionTime;
+                this.currentSessionTime = currentSessionTime;
             }
         }
 
@@ -93,21 +93,87 @@ namespace Assets.Scripts
 
 
         /// <summary>
-        /// Initialize the record when a game start
+        /// Initialize the record when a game start.
         /// </summary>
-        public void InitializeRecord()
+        public void InitializeRecords()
         {
             _levelRecords = new Dictionary<int, LevelRecord>();
-            _levelTimer = new TimerData(Time.time);
-            //_stepRecords = new Dictionary<int, StepRecords>();
+            _stepRecords = new Dictionary<int, StepRecords>();
         }
+
+        public void SetStepRecords(int stepIndex)
+        {
+            if (!_stepRecords.ContainsKey(stepIndex)) _stepRecords[stepIndex] = new StepRecords(0, new List<string>(), new List<string>());
+        }
+
+        public void RecordsSteps(int stepIndex, string actionError, string diagError)
+        {
+            if (!_stepRecords.ContainsKey(stepIndex)) return;
+
+            StepRecords stepData = _stepRecords[stepIndex];
+            stepData.attempt++;
+            if (!string.IsNullOrEmpty(actionError)) stepData.actionError.Add(actionError);
+            if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticError.Add(diagError);
+            _stepRecords[stepIndex] = stepData;
+        }
+
+        public void StetLevelRecords(int levelIndex)
+        {
+            _levelTimer = new TimerData(Time.time);
+            if (!_levelRecords.ContainsKey(levelIndex)) _levelRecords[levelIndex] = new LevelRecord(0, 0, 0, 0, 0, _levelTimer);
+        }
+
+        public void RecordsLevels(int levelIndex)
+        {
+            if (!_levelRecords.ContainsKey(levelIndex)) return;
+
+            LevelRecord levelData = _levelRecords[levelIndex];
+            levelData.levelAttempt++;
+            
+            for (int i = 0; i < _stepRecords.Count; i++)
+            {
+                StepRecords stepData = _stepRecords[i];
+                if (stepData.succeeded) levelData.nbStepSucced++;
+                else levelData.nbStepFailed++;
+                levelData.totActionError += stepData.actionError.Count;
+                levelData.totDiagnosticError += stepData.diagnosticError.Count;
+            }
+
+
+            levelData.levelTime.elapsedTime = Time.time - _levelTimer.startTime;
+            _levelRecords[levelIndex] = levelData;
+        }
+
+        public void GlobalRecordsOnLevelStart()
+        {
+            _globalData.nbGames++;
+        } 
+
+        public void GlobalRecordsOnLevelEnd()
+        {
+            _globalData.nbLevelsCompleted++;
+
+            for (int i = 0; i < _stepRecords.Count; i++)
+            {
+                StepRecords stepData = _stepRecords[i];
+                if (stepData.succeeded) _globalData.nbStepsCompleted++;
+                else
+                {
+                    _globalData.nbActionErrors += stepData.actionError.Count;
+                    _globalData.nbDiagnosticErrors += stepData.diagnosticError.Count;
+                }
+            }
+
+            _globalData.gameTime.elapsedTime = Time.time - _globalTimer.startTime + _globalData.gameTime.elapsedTime; // Add the time spend on the game (the global time)
+            _globalData.currentSessionTime.elapsedTime = Time.time - _globalTimer.startTime; // Add the time spend on the session
+        } 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _globalTimer = new TimerData(Time.time); // Start the global timer
             // try to get last session time on web request
-            _globalData = new GlobalData(0, 0, 0, 0, 0, new TimerData(0), new TimerData(0));
+            _globalData = new GlobalData(0, 0, 0, 0, 0, _globalTimer, _globalTimer);
         }
 
         // Update is called once per frame
