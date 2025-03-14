@@ -1820,6 +1820,7 @@ MonoBehaviour:
   scrollRect: {fileID: 1658125437914261815}
   contentPanel: {fileID: 4955024966656160898}
   scrollSpeed: 2
+  content: {fileID: 0}
 --- !u!1 &2553065619552659145
 GameObject:
   m_ObjectHideFlags: 0

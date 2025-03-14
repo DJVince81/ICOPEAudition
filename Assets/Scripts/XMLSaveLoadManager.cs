@@ -9,7 +9,7 @@ using static Assets.Scripts.Managers.GameStateManager;
 
 namespace Assets.Scripts
 {
-
+    
     [XmlRoot("IUD")]
     public class SaveData
     {
@@ -21,8 +21,8 @@ namespace Assets.Scripts
 
     public class Data
     {
-        [XmlElement("GlobalData")]
-        public GlobalData globalData { get; set; }
+        //[XmlElement("GlobalData")]
+        //public GlobalData globalData { get; set; }
 
         [XmlElement("LevelData"), XmlArrayItem("Level")]
         public List<LevelEntry> LevelEntries { get; set; } = new List<LevelEntry>();
@@ -43,8 +43,8 @@ namespace Assets.Scripts
     {
         [XmlAttribute("id")]
         public int Level { get; set; }
-        [XmlAttribute("Records")]
-        public LevelRecords Records { get; set; }
+        //[XmlAttribute("Records")]
+        //public LevelRecords Records { get; set; }
     }
 
     public class StepRecord

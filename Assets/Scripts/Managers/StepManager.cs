@@ -156,7 +156,8 @@ public class StepManager : MonoBehaviour
         _diagButtonGroup.SetAnswerValidity(selectedDiagIndex, isDiagValid);
         _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
         UpdateConfirmButton();
-        GameManager.Instance.GameStateManager.RegiterError(isActionValid, isDiagValid);
+
+        RegisterPlayerAnswer(selectedActionIndex, selectedDiagIndex);
 
         if (isDiagValid && isActionValid)
         {
@@ -198,5 +199,15 @@ public class StepManager : MonoBehaviour
     public bool IsLastStep()
     {
         return !GetCurrentStep().LeadsToNextStep();
+    }
+
+    public void RegisterPlayerAnswer(int actionSelected, int diagnoticsSelected)
+    {
+        StepDataController currentStep = GetCurrentStep();
+        string[] actionT = currentStep.GetPossibleActions();
+        string[] diagsT = currentStep.GetPossibleActions();
+
+        // WARNIG : OutOfBound -> Step : Video otoscopie
+        GameManager.Instance.GameStateManager.RegiterError(actionT[actionSelected], diagsT[diagnoticsSelected]);
     }
 }

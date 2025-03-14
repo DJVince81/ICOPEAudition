@@ -89,6 +89,8 @@ namespace Assets.Scripts.Managers
             testsToDo = dataLevels[newState];
             if (newState == LevelState.RANDOMGAME) GetRandomAlgoStateList();
 
+            GameManager.Instance.PlayerData.SetLevelRecords(currentLevelState);
+
             testIndex = 0;
             SetAlgoState(testsToDo[testIndex]);
         }
@@ -117,9 +119,11 @@ namespace Assets.Scripts.Managers
         private void SetAlgoState(AlgoState newState)
         {
 
-            if (!algoStats.ContainsKey(newState)) algoStats[newState] = new AlgoStateData(0, 0, 0);
-
+            //if (!algoStats.ContainsKey(newState)) algoStats[newState] = new AlgoStateData(0, 0, 0);
             currentAlgoState = newState;
+
+            GameManager.Instance.PlayerData.SetStepRecords(currentAlgoState);
+
             if (currentAlgoState != AlgoState.NONE) GameManager.Instance.LoadStep((int)currentAlgoState - 1);
             Debug.Log($"Algo Test: {currentAlgoState}");
             //SaveGame();
@@ -155,7 +159,7 @@ namespace Assets.Scripts.Managers
         /// </summary>
         private void CheckLevelCompletion()
         {
-            if (testsToDo.All(test => algoStats.ContainsKey(test) && algoStats[test].attempts > 0))
+            if (testsToDo.All(test => GameManager.Instance.PlayerData.PlayerHasAttemptStep(test)))
             {
                 levelCompletion[currentLevelState] = true;
             }
@@ -176,8 +180,12 @@ namespace Assets.Scripts.Managers
             }
             else if (levelCompletion[currentLevelState])
             {
-                //return GAME_MENU
+                
                 Debug.Log("Level Completed!");
+                // Save data
+                GameManager.Instance.PlayerData.RecordsLevels(currentLevelState);
+                GameManager.Instance.PlayerData.GlobalRecordsOnLevelEnd();
+                // return WAITING_ROOM
                 GameManager.Instance.LoadGameMenu();
                 SetNextLevel();
             }
@@ -210,35 +218,6 @@ namespace Assets.Scripts.Managers
         // GET STATE PROGRESS
         public LevelState GetCurrentLevelState() => this.currentLevelState;
         public AlgoState GetCurrentAlgoState() => this.currentAlgoState;    
-
-
-        // SAVE PROGRESS - TO CHANGE (SAVE IN FILE)
-        private void SaveGame()
-        {
-            PlayerPrefs.SetInt("MainSate", (int)currentMainState);
-            PlayerPrefs.SetInt("LevelState", (int)currentLevelState);
-            PlayerPrefs.SetInt("AlgoState", (int)currentAlgoState);
-            PlayerPrefs.Save();
-            Debug.Log("Game saved");
-        }
-
-        // LOAD PROGRESS - TO CHANGE (LOAD FROM FILE)
-        private void LoadGame()
-        {
-            if (PlayerPrefs.HasKey("MainState"))
-            {
-                currentMainState = (MainState)PlayerPrefs.GetInt("MainState");
-                currentLevelState = (LevelState)PlayerPrefs.GetInt("LevelState");
-                currentAlgoState = (AlgoState)PlayerPrefs.GetInt("AlgoState");
-
-                Debug.Log("Game Loaded");
-            }
-            else
-            {
-                Debug.Log("No save found");
-                SetMainState(MainState.MAIN_MENU);
-            }
-        }
 
         /// <summary>
         /// Public function change the main state between MAIN_MENU & GAME_MENU.
@@ -291,9 +270,11 @@ namespace Assets.Scripts.Managers
         /// </summary>
         /// <param name="actionError"></param>
         /// <param name="diagnoticsError"></param>
-        public void RegiterError(bool actionError, bool diagnoticsError)
+        public void RegiterError(String actionError, String diagnoticsError)
         {
-            RecordAttempt(actionError, diagnoticsError);
+            //RecordAttempt(actionError, diagnoticsError);
+            GameManager.Instance.PlayerData.RecordsSteps(currentAlgoState, actionError, diagnoticsError);
+            CheckLevelCompletion();
         }
 
         /// <summary>

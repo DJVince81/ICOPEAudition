@@ -1,4 +1,5 @@
 using Assets.Scripts.Managers;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,6 +24,9 @@ namespace Assets.Scripts.UI.LevelContents
         public ScrollRect scrollRect; // The scroll rect to navigate
         public RectTransform contentPanel; // The content panel of the scroll rect
         public float scrollSpeed = 10f; // The scroll speed
+
+        [Header("Score panel")]
+        public TMP_Text content;
 
         // PRIVATE VARIABLES
         private float targetScrollPosition = 1f; // The target scroll position

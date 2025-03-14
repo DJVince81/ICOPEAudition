@@ -10,7 +10,7 @@ namespace Assets.Scripts
     public class PlayerData : MonoBehaviour
     {
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
-        public struct StepRecords
+        private struct StepRecords
         {
             public int attempt;
             [XmlArray("actionError"), XmlArrayItem("Error")]
@@ -28,7 +28,7 @@ namespace Assets.Scripts
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        public  struct LevelRecords
+        private  struct LevelRecords
         {
             public int levelAttempt; // Number of attempts for the level
             public int totActionError; // length of actionError
@@ -51,7 +51,7 @@ namespace Assets.Scripts
         }
 
         // GLOBAL RECORDS
-        public struct GlobalData
+        private struct GlobalData
         {
             public int nbGames; // Number of games played
             public int nbLevelsCompleted; // Number of levels completed
@@ -74,7 +74,7 @@ namespace Assets.Scripts
         }
 
         // TIMER DATA
-        public  struct TimerData
+        private  struct TimerData
         {
             public float startTime;
             public float elapsedTime;
@@ -120,7 +120,18 @@ namespace Assets.Scripts
             _stepRecords[algoStep] = stepData;
         }
 
-        public void StetLevelRecords(LevelState levelState)
+        public bool PlayerHasAttemptStep(AlgoState algoState)
+        {
+            return _stepRecords.ContainsKey(algoState) && _stepRecords[algoState].attempt > 0;
+        }
+
+        public string StepRecodsToString(int algoState)
+        {
+           // Ajouter la suite
+            return "Attemps: " + _stepRecords[(AlgoState)algoState].attempt + "\nChoix action: ajouter la suite";
+        }
+
+        public void SetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
             if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer);

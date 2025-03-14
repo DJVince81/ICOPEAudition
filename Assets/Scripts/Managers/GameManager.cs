@@ -20,7 +20,7 @@ namespace Assets.Scripts.Managers
         //public StatesManager StatesManager { get; private set; }
 
         public GameStateManager GameStateManager { get; private set; }
-
+        public PlayerData PlayerData { get; set; }
         public StepManager StepManager { get; private set; }
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
@@ -147,6 +147,8 @@ namespace Assets.Scripts.Managers
         {
             yield return new WaitForSeconds(0.5f);
             //StatesManager.ChangeState();
+            PlayerData.InitializeRecords();
+            PlayerData.GlobalRecordsOnLevelStart();
             GameStateManager.LoadLevelState();
         }
 
@@ -222,6 +224,7 @@ namespace Assets.Scripts.Managers
 
             //StatesManager = GetComponent<StatesManager>();
             GameStateManager = GetComponent<GameStateManager>();
+            PlayerData = GetComponent<PlayerData>();
             StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();
