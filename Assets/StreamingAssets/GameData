@@ -2,26 +2,53 @@
   <nbGames>2</nbGames>
   <nbLevelsCompleted>2</nbLevelsCompleted>
   <nbStepsCompleted>0</nbStepsCompleted>
-  <nbActionErrors>4</nbActionErrors>
-  <nbDiagnosticErrors>4</nbDiagnosticErrors>
+  <nbActionErrors>7</nbActionErrors>
+  <nbDiagnosticErrors>7</nbDiagnosticErrors>
   <gameTime>
     <startTime>0</startTime>
-    <elapsedTime>45,5432</elapsedTime>
+    <elapsedTime>44,4315</elapsedTime>
   </gameTime>
   <currentSessionTime>
     <startTime>0</startTime>
-    <elapsedTime>29,22275</elapsedTime>
+    <elapsedTime>28,8168</elapsedTime>
   </currentSessionTime>
   <levelRecords>
-    <LEVEL_1>
+    <LEVEL_0>
       <levelAttempt>1</levelAttempt>
       <totActionError>2</totActionError>
       <totDiagnosticError>2</totDiagnosticError>
       <nbStepSucced>0</nbStepSucced>
+      <nbStepFailed>1</nbStepFailed>
+      <levelTime>
+        <startTime>3,249425</startTime>
+        <elapsedTime>12,36528</elapsedTime>
+      </levelTime>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>2</attempt>
+          <actionError>
+            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
+            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </WISPER_TEST>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>4</totError>
+    </LEVEL_0>
+    <LEVEL_1>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>3</totActionError>
+      <totDiagnosticError>3</totDiagnosticError>
+      <nbStepSucced>0</nbStepSucced>
       <nbStepFailed>2</nbStepFailed>
       <levelTime>
-        <startTime>18,69257</startTime>
-        <elapsedTime>10,53018</elapsedTime>
+        <startTime>18,84239</startTime>
+        <elapsedTime>9,974409</elapsedTime>
       </levelTime>
       <stepRecords>
         <WISPER_TEST>
@@ -35,18 +62,20 @@
           <succeeded>False</succeeded>
         </WISPER_TEST>
         <QUESTIONARY>
-          <attempt>1</attempt>
+          <attempt>2</attempt>
           <actionError>
+            <Item>Renvoyer le patient vers un ORL</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionError>
           <diagnosticError>
+            <Item>Faire passer une vidéo-otoscopie</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </diagnosticError>
           <succeeded>False</succeeded>
         </QUESTIONARY>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>4</totError>
+      <totError>6</totError>
     </LEVEL_1>
   </levelRecords>
 </GameData>

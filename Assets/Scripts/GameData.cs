@@ -103,7 +103,10 @@ namespace Assets.Scripts
         /// </summary>
         public void InitializeRecords()
         {
-            _levelRecords = new Dictionary<LevelState, LevelRecords>();
+            if (_levelRecords == null)
+            {
+                _levelRecords = new Dictionary<LevelState, LevelRecords>();
+            }
             _stepRecords = new Dictionary<AlgoState, StepRecords>();
         }
 
