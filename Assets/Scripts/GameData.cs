@@ -1,34 +1,33 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
 
 namespace Assets.Scripts 
 {  
-    public class PlayerData : MonoBehaviour
+    public class GameData : MonoBehaviour
     {
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
         private struct StepRecords
         {
             public int attempt;
-            [XmlArray("actionError"), XmlArrayItem("Error")]
             public List<string> actionError; // None, Error description
-            [XmlArray("diagnosticError"), XmlArrayItem("Error")]
             public List<string> diagnosticError; // None, Error description
             public bool succeeded => actionError == null && diagnosticError == null;
 
             public StepRecords(int attempt, List<string> actionError, List<string> diagnosticError)
             {
                 this.attempt = attempt;
-                this.actionError = actionError ;
+                this.actionError = actionError;
                 this.diagnosticError = diagnosticError;
             }
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        private  struct LevelRecords
+        private struct LevelRecords
         {
             public int levelAttempt; // Number of attempts for the level
             public int totActionError; // length of actionError
@@ -38,15 +37,17 @@ namespace Assets.Scripts
             public TimerData levelTime; // Time spent on the level
             public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
+            public Dictionary<AlgoState, StepRecords> stepRecords; // StepRecords of the level
 
-            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbSucced, int nbFailed, TimerData time)
+            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, TimerData levelTime, Dictionary<AlgoState, StepRecords> stepRecords)
             {
                 this.levelAttempt = levelAttempt;
                 this.totActionError = totActionError;
                 this.totDiagnosticError = totDiagnosticError;
-                this.nbStepSucced = nbSucced;
-                this.nbStepFailed = nbFailed;
-                this.levelTime = time;
+                this.nbStepSucced = nbStepSucced;
+                this.nbStepFailed = nbStepFailed;
+                this.levelTime = levelTime;
+                this.stepRecords = stepRecords;
             }
         }
 
@@ -60,8 +61,9 @@ namespace Assets.Scripts
             public int nbDiagnosticErrors; // Number of diagnostic errors
             public TimerData gameTime;
             public TimerData currentSessionTime;
+            public Dictionary<LevelState, LevelRecords> levelRecords;
             
-            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, TimerData gameTime, TimerData currentSessionTime)
+            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, TimerData gameTime, TimerData currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
             {
                 this.nbGames = nbGames;
                 this.nbLevelsCompleted = nbLevelsCompleted;
@@ -70,11 +72,12 @@ namespace Assets.Scripts
                 this.nbDiagnosticErrors = nbDiagnosticErrors;
                 this.gameTime = gameTime;
                 this.currentSessionTime = currentSessionTime;
+                this.levelRecords = levelRecords;
             }
         }
 
         // TIMER DATA
-        private  struct TimerData
+        private struct TimerData
         {
             public float startTime;
             public float elapsedTime;
@@ -93,7 +96,7 @@ namespace Assets.Scripts
         private TimerData _levelTimer;
         private TimerData _globalTimer;
 
-        private SaveData _saveData;
+        private readonly string path = "GameData";
 
         /// <summary>
         /// Initialize the record when a game start.
@@ -134,7 +137,7 @@ namespace Assets.Scripts
         public void SetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
-            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer);
+            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer, _stepRecords);
         }
 
         public void RecordsLevels(LevelState levelState)
@@ -154,6 +157,7 @@ namespace Assets.Scripts
             }
             
             levelData.levelTime.elapsedTime = Time.time - _levelTimer.startTime;
+            levelData.stepRecords = _stepRecords;
             _levelRecords[levelState] = levelData;
         }
 
@@ -176,47 +180,9 @@ namespace Assets.Scripts
 
             _globalData.gameTime.elapsedTime = Time.time - _globalTimer.startTime + _globalData.gameTime.elapsedTime; // Add the time spend on the game (the global time)
             _globalData.currentSessionTime.elapsedTime = Time.time - _globalTimer.startTime; // Add the time spend on the session
-        }
+            _globalData.levelRecords = _levelRecords;
 
-        /*
-        Format that player data will be saved in the database:
-            - UID
-            - PlayerData
-                |  GlobalData
-                |  LevelData
-                |  StepData    
-        
-        Save data form:
-            UID : UID_Player
-            Section : GlobalData
-             | Body : - nbGames, 
-             |   |    - nbLevelsCompleted, 
-             |   |    - nbStepsCompleted, 
-             |   |    - nbActionErrors, 
-             |   |    - nbDiagnosticErrors, 
-             |   |    - gameTime, 
-             |   |    - currentSessionTime,
-            Section : LevelData
-             | Body : - levelAttempt,
-             |   |    - totActionError, 
-             |   |    - totDiagnosticError, 
-             |   |    - nbStepSucced, 
-             |   |    - nbStepFailed, 
-             |   |    - levelTime,
-            Section : StepData
-             | Body : - attempt, 
-             |   |    - actionError, 
-             |   |    - diagnosticError
-         */
-
-        public void OnStepCompleted(AlgoState currentAlgoState, StepRecord records)
-        {
-            StepEntry entry = _saveData.Data.StepEntries.Find(e => e.Step == currentAlgoState);
-            if (entry == null)
-            {
-                entry = new StepEntry { Step = currentAlgoState, Records = records };
-                _saveData.Data.StepEntries.Add(entry);
-            }
+            XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -224,19 +190,21 @@ namespace Assets.Scripts
         {
             _globalTimer = new TimerData(Time.time); // Start the global timer
             // try to get last session time on web request
-            _globalData = new GlobalData(0, 0, 0, 0, 0, _globalTimer, _globalTimer);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            _globalData = new GlobalData(0, 0, 0, 0, 0, _globalTimer, _globalTimer, _levelRecords);
         }
     }
 }
 
 
 /*
+ * 
+ * Format that player data will be saved in the database:
+    - UID
+    - PlayerData
+        |  GlobalData
+        |  LevelData
+        |  StepData   
+
  XML FORMAT:
     | UID - string
     | PlayerData

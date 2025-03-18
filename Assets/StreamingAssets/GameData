@@ -1,0 +1,52 @@
+<GameData>
+  <nbGames>2</nbGames>
+  <nbLevelsCompleted>2</nbLevelsCompleted>
+  <nbStepsCompleted>0</nbStepsCompleted>
+  <nbActionErrors>4</nbActionErrors>
+  <nbDiagnosticErrors>4</nbDiagnosticErrors>
+  <gameTime>
+    <startTime>0</startTime>
+    <elapsedTime>45,5432</elapsedTime>
+  </gameTime>
+  <currentSessionTime>
+    <startTime>0</startTime>
+    <elapsedTime>29,22275</elapsedTime>
+  </currentSessionTime>
+  <levelRecords>
+    <LEVEL_1>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>2</totActionError>
+      <totDiagnosticError>2</totDiagnosticError>
+      <nbStepSucced>0</nbStepSucced>
+      <nbStepFailed>2</nbStepFailed>
+      <levelTime>
+        <startTime>18,69257</startTime>
+        <elapsedTime>10,53018</elapsedTime>
+      </levelTime>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>1</attempt>
+          <actionError>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>1</attempt>
+          <actionError>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </QUESTIONARY>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>4</totError>
+    </LEVEL_1>
+  </levelRecords>
+</GameData>

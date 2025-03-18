@@ -89,7 +89,7 @@ namespace Assets.Scripts.Managers
             testsToDo = dataLevels[newState];
             if (newState == LevelState.RANDOMGAME) GetRandomAlgoStateList();
 
-            GameManager.Instance.PlayerData.SetLevelRecords(currentLevelState);
+            GameManager.Instance.GameData.SetLevelRecords(currentLevelState);
 
             testIndex = 0;
             SetAlgoState(testsToDo[testIndex]);
@@ -122,7 +122,7 @@ namespace Assets.Scripts.Managers
             //if (!algoStats.ContainsKey(newState)) algoStats[newState] = new AlgoStateData(0, 0, 0);
             currentAlgoState = newState;
 
-            GameManager.Instance.PlayerData.SetStepRecords(currentAlgoState);
+            GameManager.Instance.GameData.SetStepRecords(currentAlgoState);
 
             if (currentAlgoState != AlgoState.NONE) GameManager.Instance.LoadStep((int)currentAlgoState - 1);
             Debug.Log($"Algo Test: {currentAlgoState}");
@@ -159,7 +159,7 @@ namespace Assets.Scripts.Managers
         /// </summary>
         private void CheckLevelCompletion()
         {
-            if (testsToDo.All(test => GameManager.Instance.PlayerData.PlayerHasAttemptStep(test)))
+            if (testsToDo.All(test => GameManager.Instance.GameData.PlayerHasAttemptStep(test)))
             {
                 levelCompletion[currentLevelState] = true;
             }
@@ -183,8 +183,8 @@ namespace Assets.Scripts.Managers
                 
                 Debug.Log("Level Completed!");
                 // Save data
-                GameManager.Instance.PlayerData.RecordsLevels(currentLevelState);
-                GameManager.Instance.PlayerData.GlobalRecordsOnLevelEnd();
+                GameManager.Instance.GameData.RecordsLevels(currentLevelState);
+                GameManager.Instance.GameData.GlobalRecordsOnLevelEnd();
                 // return WAITING_ROOM
                 GameManager.Instance.LoadGameMenu();
                 SetNextLevel();
@@ -273,7 +273,7 @@ namespace Assets.Scripts.Managers
         public void RegiterError(String actionError, String diagnoticsError)
         {
             //RecordAttempt(actionError, diagnoticsError);
-            GameManager.Instance.PlayerData.RecordsSteps(currentAlgoState, actionError, diagnoticsError);
+            GameManager.Instance.GameData.RecordsSteps(currentAlgoState, actionError, diagnoticsError);
             CheckLevelCompletion();
         }
 
