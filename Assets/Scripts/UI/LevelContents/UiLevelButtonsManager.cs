@@ -80,11 +80,13 @@ namespace Assets.Scripts.UI.LevelContents
             {            
                 currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
                 EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+                OnButtonClicked(currentButtonIndex);
             }
             else if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") > 0)
             {
                 currentButtonIndex = (currentButtonIndex - 1 + buttons.Length) % buttons.Length;
                 EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+                OnButtonClicked(currentButtonIndex);
             }
         }
         // BUTTONS NAVIGATION DEFAULT
@@ -93,7 +95,11 @@ namespace Assets.Scripts.UI.LevelContents
         /// </summary>
         private void ForceDefaultOnNull()
         {
-            if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
+            if (EventSystem.current.currentSelectedGameObject == null)
+            {
+                EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
+                Debug.Log("Plop");
+            }
         }
 
         // START GAME
@@ -114,6 +120,7 @@ namespace Assets.Scripts.UI.LevelContents
         {
             currentButtonIndex = index;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
+            content.text = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
         }
 
         // SET LISTENERS ON BUTTONS (ON START)
@@ -135,6 +142,7 @@ namespace Assets.Scripts.UI.LevelContents
         void Start()
         {
             EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
+            content.text = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
             // Set the listeners (launchGameButton and LevelsButtons)
             launchGameButton.onClick.AddListener(StartGame);
             SetListenersOnButtons();
@@ -145,7 +153,7 @@ namespace Assets.Scripts.UI.LevelContents
         /// </summary>
         void Update()
         {
-            ForceDefaultOnNull();
+            //ForceDefaultOnNull();
             ButtonNavigator();
             ScrollNavigation();
         }

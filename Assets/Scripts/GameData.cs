@@ -140,12 +140,6 @@ namespace Assets.Scripts
             return _stepRecords.ContainsKey(algoState) && _stepRecords[algoState].attempt > 0;
         }
 
-        public string StepRecodsToString(int algoState)
-        {
-            // Ajouter la suite
-            return "Attemps: " + _stepRecords[(AlgoState)algoState].attempt + "\nChoix action: ajouter la suite";
-        }
-
         /// <summary>
         /// Set the dictionary<LevelState, LevelRecords> _levelRecords as a key a LevelState (input parameter: currentLevelState) and value a new LevelRecords.
         /// </summary>
@@ -179,6 +173,22 @@ namespace Assets.Scripts
             levelData.timeSpentInLevel = Time.time - _levelTimer.startTime;
             levelData.stepRecords = _stepRecords;
             _levelRecords[levelState] = levelData;
+        }
+
+        public string LevelRecordsToString(int indexLevel)
+        {
+            LevelState levelState = (LevelState)indexLevel;
+            string text = string.Empty;
+            // get data from levelRecords
+            if (_levelRecords.ContainsKey(levelState))
+            {
+                text = "Level: " + indexLevel + ", Attempt: " + _levelRecords[levelState].levelAttempt.ToString();
+            }
+            else
+            {
+                text = "No data found for level " + ((int)levelState + 1);
+            }
+            return text;
         }
 
         /// <summary>
