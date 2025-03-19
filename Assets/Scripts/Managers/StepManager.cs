@@ -157,7 +157,7 @@ public class StepManager : MonoBehaviour
         _actionButtonGroup.SetAnswerValidity(selectedActionIndex, isActionValid);
         UpdateConfirmButton();
 
-        RegisterPlayerAnswer(selectedActionIndex, isActionValid, selectedDiagIndex, isDiagValid);
+        RegisterPlayerAnswer(selectedActionIndex, selectedDiagIndex);
 
         if (isDiagValid && isActionValid)
         {
@@ -201,7 +201,7 @@ public class StepManager : MonoBehaviour
         return !GetCurrentStep().LeadsToNextStep();
     }
 
-    public void RegisterPlayerAnswer(int actionSelected, bool isActionValid,int diagnoticsSelected, bool isDiagValid)
+    public void RegisterPlayerAnswer(int actionSelected,int diagnoticsSelected)
     {
         StepDataController currentStep = GetCurrentStep();
 

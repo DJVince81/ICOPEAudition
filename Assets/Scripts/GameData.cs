@@ -1,27 +1,25 @@
-
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
 
-namespace Assets.Scripts 
-{  
+namespace Assets.Scripts
+{
     public class GameData : MonoBehaviour
     {
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
         public struct StepRecords
         {
             public int attempt;
-            public List<string> actionError; // None, Error description
-            public List<string> diagnosticError; // None, Error description
-            public bool succeeded => actionError == null && diagnosticError == null;
+            public List<string> actionAnswer; // None, Error description
+            public List<string> diagnosticAnswer; // None, Error description
+            public bool succeeded => actionAnswer.Count == 1 && diagnosticAnswer.Count == 1;
 
             public StepRecords(int attempt, List<string> actionError, List<string> diagnosticError)
             {
                 this.attempt = attempt;
-                this.actionError = actionError;
-                this.diagnosticError = diagnosticError;
+                this.actionAnswer = actionError;
+                this.diagnosticAnswer = diagnosticError;
             }
         }
 
@@ -33,12 +31,12 @@ namespace Assets.Scripts
             public int totDiagnosticError; // length of diagnosticError
             public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
             public int nbStepFailed; // Number of failed (count number of failed in StepRecord)
-            public TimerData timeSpentInLevel; // Time spent on the level
+            public float timeSpentInLevel; // Time spent on the level
             public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
             public Dictionary<AlgoState, StepRecords> stepRecords; // StepRecords of the level
 
-            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, TimerData levelTime, Dictionary<AlgoState, StepRecords> stepRecords)
+            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float levelTime, Dictionary<AlgoState, StepRecords> stepRecords)
             {
                 this.levelAttempt = levelAttempt;
                 this.totActionError = totActionError;
@@ -58,11 +56,11 @@ namespace Assets.Scripts
             public int nbStepsCompleted; // Number of steps completed
             public int globalActionErrors; // Number of action errors
             public int globalDiagnosticErrors; // Number of diagnostic errors
-            public TimerData gameTime;
-            public TimerData currentSessionTime;
+            public float gameTime;
+            public float currentSessionTime;
             public Dictionary<LevelState, LevelRecords> levelRecords;
-            
-            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, TimerData gameTime, TimerData currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
+
+            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, float gameTime, float currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
             {
                 this.nbGames = nbGames;
                 this.nbLevelsCompleted = nbLevelsCompleted;
@@ -131,11 +129,11 @@ namespace Assets.Scripts
 
             StepRecords stepData = _stepRecords[algoStep];
             stepData.attempt++;
-            if (!string.IsNullOrEmpty(actionError)) stepData.actionError.Add(actionError);
-            if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticError.Add(diagError);
+            if (!string.IsNullOrEmpty(actionError)) stepData.actionAnswer.Add(actionError);
+            if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticAnswer.Add(diagError);
             _stepRecords[algoStep] = stepData;
         }
-        
+
 
         public bool PlayerHasAttemptStep(AlgoState algoState)
         {
@@ -144,7 +142,7 @@ namespace Assets.Scripts
 
         public string StepRecodsToString(int algoState)
         {
-           // Ajouter la suite
+            // Ajouter la suite
             return "Attemps: " + _stepRecords[(AlgoState)algoState].attempt + "\nChoix action: ajouter la suite";
         }
 
@@ -155,7 +153,7 @@ namespace Assets.Scripts
         public void SetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
-            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer, _stepRecords);
+            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, 0, _stepRecords);
         }
 
         /// <summary>
@@ -168,17 +166,17 @@ namespace Assets.Scripts
 
             LevelRecords levelData = _levelRecords[levelState];
             levelData.levelAttempt++;
-            
-            foreach(var step in _stepRecords)
+
+            foreach (var step in _stepRecords)
             {
                 StepRecords stepData = step.Value; // Get the step data
                 if (stepData.succeeded) levelData.nbStepSucced++;
                 else levelData.nbStepFailed++;
-                levelData.totActionError += stepData.actionError.Count;
-                levelData.totDiagnosticError += stepData.diagnosticError.Count;
+                levelData.totActionError += stepData.actionAnswer.Count;
+                levelData.totDiagnosticError += stepData.diagnosticAnswer.Count;
             }
-            
-            levelData.timeSpentInLevel.elapsedTime = Time.time - _levelTimer.startTime;
+
+            levelData.timeSpentInLevel = Time.time - _levelTimer.startTime;
             levelData.stepRecords = _stepRecords;
             _levelRecords[levelState] = levelData;
         }
@@ -199,16 +197,16 @@ namespace Assets.Scripts
         {
             _globalData.nbLevelsCompleted++;
 
-            foreach(var level in _levelRecords)
+            foreach (var level in _levelRecords)
             {
                 LevelRecords levelData = level.Value;
-                _globalData.nbStepsCompleted += levelData.nbStepSucced;            
+                _globalData.nbStepsCompleted += levelData.nbStepSucced;
                 _globalData.globalActionErrors += levelData.totActionError;
                 _globalData.globalDiagnosticErrors += levelData.totDiagnosticError;
             }
 
-            _globalData.gameTime.elapsedTime = Time.time - _globalTimer.startTime + _globalData.gameTime.elapsedTime; // Add the time spend on the game (the global time)
-            _globalData.currentSessionTime.elapsedTime = Time.time - _globalTimer.startTime; // Add the time spend on the session
+            _globalData.gameTime = Time.time - _globalTimer.startTime + _globalData.gameTime; // Add the time spend on the game (the global time)
+            _globalData.currentSessionTime = Time.time - _globalTimer.startTime; // Add the time spend on the session
             _globalData.levelRecords = _levelRecords;
 
             XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");

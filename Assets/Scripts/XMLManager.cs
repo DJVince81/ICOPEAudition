@@ -108,26 +108,12 @@ namespace Assets.Scripts
                 nbStepsCompleted = int.Parse(root["nbStepsCompleted"].InnerText),
                 globalActionErrors = int.Parse(root["globalActionErrors"].InnerText),
                 globalDiagnosticErrors = int.Parse(root["globalDiagnosticErrors"].InnerText),
-                gameTime = LoadTimerData(root.SelectSingleNode("gameTime")),
-                currentSessionTime = LoadTimerData(root.SelectSingleNode("currentSessionTime")),
+                gameTime = float.Parse(root["gameTime"].InnerText),
+                currentSessionTime = float.Parse(root["currentSessionTime"].InnerText),
                 levelRecords = LoadLevelRecords(root.SelectSingleNode("levelRecords"))
             };
 
             return gameData;
-        }
-
-        /// <summary>
-        /// Return timer struct (startTime & elapsedTime). Take xml node as input.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        private static TimerData LoadTimerData(XmlNode node)
-        {
-            return new TimerData
-            {
-                startTime = float.Parse(node["startTime"].InnerText),
-                elapsedTime = float.Parse(node["elapsedTime"].InnerText),
-            };
         }
 
         /// <summary>
@@ -147,11 +133,11 @@ namespace Assets.Scripts
                     totDiagnosticError = int.Parse(levelNode["totDiagnosticError"].InnerText),
                     nbStepSucced = int.Parse(levelNode["nbStepSucced"].InnerText),
                     nbStepFailed = int.Parse(levelNode["nbStepFailed"].InnerText),
-                    timeSpentInLevel = LoadTimerData(levelNode["levelTime"]),
+                    timeSpentInLevel = float.Parse(levelNode["timeSpentInLevel"].InnerText),
                     stepRecords = LoadStepRecords(levelNode.SelectSingleNode("stepRecords"))
                 };
 
-                LevelState name = (LevelState) Enum.Parse(typeof(LevelState), levelNode.Name);
+                LevelState name = (LevelState)Enum.Parse(typeof(LevelState), levelNode.Name);
                 levelRecords[name] = records;
             }
             return levelRecords;
@@ -170,10 +156,10 @@ namespace Assets.Scripts
                 StepRecords step = new StepRecords
                 {
                     attempt = int.Parse(stepNode["attempt"].InnerText),
-                    actionError = LoadStringList(stepNode.SelectSingleNode("actionError")),
-                    diagnosticError = LoadStringList(stepNode.SelectSingleNode("diagnosticError"))
+                    actionAnswer = LoadStringList(stepNode.SelectSingleNode("actionAnswer")),
+                    diagnosticAnswer = LoadStringList(stepNode.SelectSingleNode("diagnosticAnswer"))
                 };
-                AlgoState algoState = (AlgoState)Enum.Parse(typeof(AlgoState), stepNode.Name); 
+                AlgoState algoState = (AlgoState)Enum.Parse(typeof(AlgoState), stepNode.Name);
                 stepRecords[algoState] = step;
             }
             return stepRecords;
