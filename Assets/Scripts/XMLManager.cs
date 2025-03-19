@@ -147,7 +147,7 @@ namespace Assets.Scripts
                     totDiagnosticError = int.Parse(levelNode["totDiagnosticError"].InnerText),
                     nbStepSucced = int.Parse(levelNode["nbStepSucced"].InnerText),
                     nbStepFailed = int.Parse(levelNode["nbStepFailed"].InnerText),
-                    levelTime = LoadTimerData(levelNode["levelTime"]),
+                    timeSpentInLevel = LoadTimerData(levelNode["levelTime"]),
                     stepRecords = LoadStepRecords(levelNode.SelectSingleNode("stepRecords"))
                 };
 

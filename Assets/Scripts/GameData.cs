@@ -33,7 +33,7 @@ namespace Assets.Scripts
             public int totDiagnosticError; // length of diagnosticError
             public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
             public int nbStepFailed; // Number of failed (count number of failed in StepRecord)
-            public TimerData levelTime; // Time spent on the level
+            public TimerData timeSpentInLevel; // Time spent on the level
             public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
             public Dictionary<AlgoState, StepRecords> stepRecords; // StepRecords of the level
@@ -45,7 +45,7 @@ namespace Assets.Scripts
                 this.totDiagnosticError = totDiagnosticError;
                 this.nbStepSucced = nbStepSucced;
                 this.nbStepFailed = nbStepFailed;
-                this.levelTime = levelTime;
+                this.timeSpentInLevel = levelTime;
                 this.stepRecords = stepRecords;
             }
         }
@@ -95,10 +95,10 @@ namespace Assets.Scripts
         private TimerData _levelTimer;
         private TimerData _globalTimer;
 
-        private readonly string path = "GameData";
+        [SerializeField] private string path = "GameData";
 
         /// <summary>
-        /// Initialize the record when a game start.
+        /// Initialize Dictionarys (_levelRecords<LevelState, LevelRecords> & _stepRecords<AlgoState, StepRecords>) when a game start (click on the GrandMa/GrandPa).
         /// </summary>
         public void InitializeRecords()
         {
@@ -109,11 +109,22 @@ namespace Assets.Scripts
             _stepRecords = new Dictionary<AlgoState, StepRecords>();
         }
 
+        /// <summary>
+        /// Set the dictionary<AlgoState, StepRecords> _stepRecords as a key an AlgoState (input parameter: currentAlgoState) and a value a new StepRecords.
+        /// </summary>
+        /// <param name="algoStep"></param>
         public void SetStepRecords(AlgoState algoStep)
         {
             if (!_stepRecords.ContainsKey(algoStep)) _stepRecords[algoStep] = new StepRecords(0, new List<string>(), new List<string>());
         }
 
+        /// <summary>
+        /// Modify/records the data form the player (attempt, actionError, diagnoticError) of the current step (AlgoState).
+        /// Take as inputs AlgoState, string of action error and a string of diagnostic error. 
+        /// </summary>
+        /// <param name="algoStep"></param>
+        /// <param name="actionError"></param>
+        /// <param name="diagError"></param>
         public void RecordsSteps(AlgoState algoStep, string actionError, string diagError)
         {
             if (!_stepRecords.ContainsKey(algoStep)) return;
@@ -124,6 +135,7 @@ namespace Assets.Scripts
             if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticError.Add(diagError);
             _stepRecords[algoStep] = stepData;
         }
+        
 
         public bool PlayerHasAttemptStep(AlgoState algoState)
         {
@@ -136,12 +148,20 @@ namespace Assets.Scripts
             return "Attemps: " + _stepRecords[(AlgoState)algoState].attempt + "\nChoix action: ajouter la suite";
         }
 
+        /// <summary>
+        /// Set the dictionary<LevelState, LevelRecords> _levelRecords as a key a LevelState (input parameter: currentLevelState) and value a new LevelRecords.
+        /// </summary>
+        /// <param name="levelState"></param>
         public void SetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
             if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, _levelTimer, _stepRecords);
         }
 
+        /// <summary>
+        /// Modify/records the data from the player (attempt, nbStepSucced, nbStepFailed, totActionError, totDiagnostics, timeSpentInLevel, stepRecords) of the current level (LevelState).
+        /// </summary>
+        /// <param name="levelState"></param>
         public void RecordsLevels(LevelState levelState)
         {
             if (!_levelRecords.ContainsKey(levelState)) return;
@@ -158,16 +178,23 @@ namespace Assets.Scripts
                 levelData.totDiagnosticError += stepData.diagnosticError.Count;
             }
             
-            levelData.levelTime.elapsedTime = Time.time - _levelTimer.startTime;
+            levelData.timeSpentInLevel.elapsedTime = Time.time - _levelTimer.startTime;
             levelData.stepRecords = _stepRecords;
             _levelRecords[levelState] = levelData;
         }
 
+        /// <summary>
+        /// Change the number of game when the game start.
+        /// </summary>
         public void GlobalRecordsOnLevelStart()
         {
             _globalData.nbGames++;
-        } 
+        }
 
+        /// <summary>
+        /// Modify/records the data form the player (nbLevelsCompleted, nbStepsCompleted, globalActionErrors, globalDiagnosticErrors, gameTime, currentSessionTime and levelRecords).
+        /// Save-it in xml file "GameData".
+        /// </summary>
         public void GlobalRecordsOnLevelEnd()
         {
             _globalData.nbLevelsCompleted++;
@@ -187,12 +214,15 @@ namespace Assets.Scripts
             XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
         }
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        /// <summary>
+        /// Unity fuction. On start set _globalTimer and try to get Data form xml file "GameData" and set _globalData, _levelRecords and _stepRecords with the loaded data.
+        /// </summary>
         void Start()
         {
             _globalTimer = new TimerData(Time.time); // Start the global timer            
             // try to get last session time on web request
-            try
+            path = Path.Combine(Application.streamingAssetsPath, path);
+            if (File.Exists(path))
             {
                 _globalData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
                 _levelRecords = _globalData.levelRecords;
@@ -200,12 +230,11 @@ namespace Assets.Scripts
                 {
                     _stepRecords = level.Value.stepRecords;
                 }
-            } 
-            catch(Exception ex)
-            {
-                Debug.LogError("Failed to load GameData:" + ex.Message);
             }
-
+            else
+            {
+                _globalData = new GlobalData();
+            }
         }
     }
 }
