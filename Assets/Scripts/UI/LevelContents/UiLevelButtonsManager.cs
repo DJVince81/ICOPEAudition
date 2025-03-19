@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.LevelContents
 {
-    public class LevelButtonsManagers : MonoBehaviour
+    public class UiLevelButtonsManagers : MonoBehaviour
     {
         // LAUNCH GAME BUTTON   
         [Header("Launch game button")]
