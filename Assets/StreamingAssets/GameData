@@ -2,8 +2,8 @@
   <nbGames>2</nbGames>
   <nbLevelsCompleted>2</nbLevelsCompleted>
   <nbStepsCompleted>0</nbStepsCompleted>
-  <nbActionErrors>7</nbActionErrors>
-  <nbDiagnosticErrors>7</nbDiagnosticErrors>
+  <globalActionErrors>7</globalActionErrors>
+  <globalDiagnosticErrors>7</globalDiagnosticErrors>
   <gameTime>
     <startTime>0</startTime>
     <elapsedTime>44,4315</elapsedTime>

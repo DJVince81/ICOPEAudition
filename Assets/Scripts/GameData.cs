@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -11,7 +12,7 @@ namespace Assets.Scripts
     public class GameData : MonoBehaviour
     {
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
-        private struct StepRecords
+        public struct StepRecords
         {
             public int attempt;
             public List<string> actionError; // None, Error description
@@ -27,7 +28,7 @@ namespace Assets.Scripts
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        private struct LevelRecords
+        public struct LevelRecords
         {
             public int levelAttempt; // Number of attempts for the level
             public int totActionError; // length of actionError
@@ -52,13 +53,13 @@ namespace Assets.Scripts
         }
 
         // GLOBAL RECORDS
-        private struct GlobalData
+        public struct GlobalData
         {
             public int nbGames; // Number of games played
             public int nbLevelsCompleted; // Number of levels completed
             public int nbStepsCompleted; // Number of steps completed
-            public int nbActionErrors; // Number of action errors
-            public int nbDiagnosticErrors; // Number of diagnostic errors
+            public int globalActionErrors; // Number of action errors
+            public int globalDiagnosticErrors; // Number of diagnostic errors
             public TimerData gameTime;
             public TimerData currentSessionTime;
             public Dictionary<LevelState, LevelRecords> levelRecords;
@@ -68,8 +69,8 @@ namespace Assets.Scripts
                 this.nbGames = nbGames;
                 this.nbLevelsCompleted = nbLevelsCompleted;
                 this.nbStepsCompleted = nbStepsCompleted;
-                this.nbActionErrors = nbActionErrors;
-                this.nbDiagnosticErrors = nbDiagnosticErrors;
+                this.globalActionErrors = nbActionErrors;
+                this.globalDiagnosticErrors = nbDiagnosticErrors;
                 this.gameTime = gameTime;
                 this.currentSessionTime = currentSessionTime;
                 this.levelRecords = levelRecords;
@@ -77,7 +78,7 @@ namespace Assets.Scripts
         }
 
         // TIMER DATA
-        private struct TimerData
+        public struct TimerData
         {
             public float startTime;
             public float elapsedTime;
@@ -177,8 +178,8 @@ namespace Assets.Scripts
             {
                 LevelRecords levelData = level.Value;
                 _globalData.nbStepsCompleted += levelData.nbStepSucced;            
-                _globalData.nbActionErrors += levelData.totActionError;
-                _globalData.nbDiagnosticErrors += levelData.totDiagnosticError;
+                _globalData.globalActionErrors += levelData.totActionError;
+                _globalData.globalDiagnosticErrors += levelData.totDiagnosticError;
             }
 
             _globalData.gameTime.elapsedTime = Time.time - _globalTimer.startTime + _globalData.gameTime.elapsedTime; // Add the time spend on the game (the global time)
@@ -191,9 +192,23 @@ namespace Assets.Scripts
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            _globalTimer = new TimerData(Time.time); // Start the global timer
+            _globalTimer = new TimerData(Time.time); // Start the global timer            
             // try to get last session time on web request
-            _globalData = new GlobalData(0, 0, 0, 0, 0, _globalTimer, _globalTimer, _levelRecords);
+            try
+            {
+                
+                _globalData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
+                _levelRecords = _globalData.levelRecords;
+                foreach (var level in _levelRecords)
+                {
+                    _stepRecords = level.Value.stepRecords;
+                }
+            } 
+            catch(Exception ex)
+            {
+                Debug.LogError("Failed to load GameData:" + ex.Message);
+            }
+
         }
     }
 }
