@@ -1,9 +1,7 @@
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
 
@@ -196,7 +194,6 @@ namespace Assets.Scripts
             // try to get last session time on web request
             try
             {
-                
                 _globalData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
                 _levelRecords = _globalData.levelRecords;
                 foreach (var level in _levelRecords)

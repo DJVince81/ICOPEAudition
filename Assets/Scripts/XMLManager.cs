@@ -1,19 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using System.Xml;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Assets.Scripts.GameData;
 using static Assets.Scripts.Managers.GameStateManager;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// XML Manager allow to save the data form the game and load-it.
+    /// </summary>
     public static class XmlManager
     {
+        /// <summary>
+        /// Allow to save the data from the game. Take as input a object 'data' witch is globalData form GameData class, 
+        /// a string path (where we want to save le file) and a string rootName (xml root).
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="path"></param>
+        /// <param name="rootName"></param>
         public static void SaveToXml(object data, string path, string rootName = "Root")
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -26,6 +33,12 @@ namespace Assets.Scripts
             Debug.Log("File saved");
         }
 
+        /// <summary>
+        /// Serialized and object to xml recursively.
+        /// </summary>
+        /// <param name="xmlDocument"></param>
+        /// <param name="parentNode"></param>
+        /// <param name="data"></param>
         private static void SerializedObject(XmlDocument xmlDocument, XmlElement parentNode, object data)
         {
             if (data == null) return;
@@ -74,7 +87,12 @@ namespace Assets.Scripts
             }
         }
 
-
+        /// <summary>
+        /// Deserialize a xml file. Return GlobalData struct. Take as input a path location of the file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>struct GlobalData</returns>
+        /// <exception cref="Exception"></exception>
         public static GlobalData LoadGameData(string filePath)
         {
             XmlDocument doc = new XmlDocument();
@@ -98,6 +116,11 @@ namespace Assets.Scripts
             return gameData;
         }
 
+        /// <summary>
+        /// Return timer struct (startTime & elapsedTime). Take xml node as input.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private static TimerData LoadTimerData(XmlNode node)
         {
             return new TimerData
@@ -106,7 +129,12 @@ namespace Assets.Scripts
                 elapsedTime = float.Parse(node["elapsedTime"].InnerText),
             };
         }
-       
+
+        /// <summary>
+        /// Return a dictionary<LevelState, LevelRecords> (enum: LevelState, struct:LevelRecords) store in xml document recursively. Take xml node as input.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private static Dictionary<LevelState, LevelRecords> LoadLevelRecords(XmlNode node)
         {
             Dictionary<LevelState, LevelRecords> levelRecords = new Dictionary<LevelState, LevelRecords>();
@@ -129,6 +157,11 @@ namespace Assets.Scripts
             return levelRecords;
         }
 
+        /// <summary>
+        /// Return a dictionary<AlgoState, StepRecords> (enum: AlgoState, struct: StepRecords) store in xml document recursively. Take xml node as input.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private static Dictionary<AlgoState, StepRecords> LoadStepRecords(XmlNode node)
         {
             Dictionary<AlgoState, StepRecords> stepRecords = new Dictionary<AlgoState, StepRecords>();
@@ -146,6 +179,11 @@ namespace Assets.Scripts
             return stepRecords;
         }
 
+        /// <summary>
+        /// Return List<string> store in xml document in the "item" section. Take xml node as input.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private static List<String> LoadStringList(XmlNode node)
         {
             List<String> list = new List<String>();

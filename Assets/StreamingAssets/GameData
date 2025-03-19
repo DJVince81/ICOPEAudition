@@ -1,33 +1,33 @@
 <GameData>
-  <nbGames>2</nbGames>
-  <nbLevelsCompleted>2</nbLevelsCompleted>
+  <nbGames>5</nbGames>
+  <nbLevelsCompleted>5</nbLevelsCompleted>
   <nbStepsCompleted>0</nbStepsCompleted>
-  <globalActionErrors>7</globalActionErrors>
-  <globalDiagnosticErrors>7</globalDiagnosticErrors>
+  <globalActionErrors>35</globalActionErrors>
+  <globalDiagnosticErrors>35</globalDiagnosticErrors>
   <gameTime>
     <startTime>0</startTime>
-    <elapsedTime>44,4315</elapsedTime>
+    <elapsedTime>102,8843</elapsedTime>
   </gameTime>
   <currentSessionTime>
     <startTime>0</startTime>
-    <elapsedTime>28,8168</elapsedTime>
+    <elapsedTime>31,17051</elapsedTime>
   </currentSessionTime>
   <levelRecords>
     <LEVEL_0>
-      <levelAttempt>1</levelAttempt>
-      <totActionError>2</totActionError>
-      <totDiagnosticError>2</totDiagnosticError>
+      <levelAttempt>2</levelAttempt>
+      <totActionError>4</totActionError>
+      <totDiagnosticError>4</totDiagnosticError>
       <nbStepSucced>0</nbStepSucced>
-      <nbStepFailed>1</nbStepFailed>
+      <nbStepFailed>2</nbStepFailed>
       <levelTime>
         <startTime>3,249425</startTime>
-        <elapsedTime>12,36528</elapsedTime>
+        <elapsedTime>6,221482</elapsedTime>
       </levelTime>
       <stepRecords>
         <WISPER_TEST>
           <attempt>2</attempt>
           <actionError>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
+            <Item>Faire passer un questionnaire go / no-go</Item>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
           </actionError>
           <diagnosticError>
@@ -38,17 +38,17 @@
         </WISPER_TEST>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>4</totError>
+      <totError>8</totError>
     </LEVEL_0>
     <LEVEL_1>
-      <levelAttempt>1</levelAttempt>
-      <totActionError>3</totActionError>
-      <totDiagnosticError>3</totDiagnosticError>
+      <levelAttempt>2</levelAttempt>
+      <totActionError>5</totActionError>
+      <totDiagnosticError>5</totDiagnosticError>
       <nbStepSucced>0</nbStepSucced>
-      <nbStepFailed>2</nbStepFailed>
+      <nbStepFailed>4</nbStepFailed>
       <levelTime>
         <startTime>18,84239</startTime>
-        <elapsedTime>9,974409</elapsedTime>
+        <elapsedTime>6,686857</elapsedTime>
       </levelTime>
       <stepRecords>
         <WISPER_TEST>
@@ -62,20 +62,63 @@
           <succeeded>False</succeeded>
         </WISPER_TEST>
         <QUESTIONARY>
-          <attempt>2</attempt>
+          <attempt>1</attempt>
           <actionError>
-            <Item>Renvoyer le patient vers un ORL</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionError>
           <diagnosticError>
-            <Item>Faire passer une vidéo-otoscopie</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </diagnosticError>
           <succeeded>False</succeeded>
         </QUESTIONARY>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>6</totError>
+      <totError>10</totError>
     </LEVEL_1>
+    <LEVEL_2>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>3</totActionError>
+      <totDiagnosticError>3</totDiagnosticError>
+      <nbStepSucced>0</nbStepSucced>
+      <nbStepFailed>3</nbStepFailed>
+      <levelTime>
+        <startTime>18,92739</startTime>
+        <elapsedTime>12,24311</elapsedTime>
+      </levelTime>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>1</attempt>
+          <actionError>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>1</attempt>
+          <actionError>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </QUESTIONARY>
+        <VIDEO_OTOSCOPIE>
+          <attempt>1</attempt>
+          <actionError>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </actionError>
+          <diagnosticError>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </diagnosticError>
+          <succeeded>False</succeeded>
+        </VIDEO_OTOSCOPIE>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>6</totError>
+    </LEVEL_2>
   </levelRecords>
 </GameData>
