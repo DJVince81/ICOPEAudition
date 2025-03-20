@@ -25,8 +25,11 @@ namespace Assets.Scripts.UI.LevelContents
         public RectTransform contentPanel; // The content panel of the scroll rect
         public float scrollSpeed = 10f; // The scroll speed
 
-        [Header("Score panel")]
-        public TMP_Text content;
+        [Header("Level Display")]
+        [SerializeField] private TMP_Text attemptText;
+        [SerializeField] private TMP_Text totalActionErrText;
+        [SerializeField] private TMP_Text totalDiagErrText;
+        [SerializeField] private TMP_Text timeText;
 
         // PRIVATE VARIABLES
         private float targetScrollPosition = 1f; // The target scroll position
@@ -120,7 +123,27 @@ namespace Assets.Scripts.UI.LevelContents
         {
             currentButtonIndex = index;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
-            content.text = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
+            SetTextsDisplay(currentButtonIndex);
+        }
+
+        private void SetTextsDisplay(int index)
+        {
+            // TODO : change display format to |attempt: | attempt.text|
+            string[] strings = GameManager.Instance.GameData.LevelRecordsToString(index);
+            if (strings == null)
+            {
+                attemptText.text += " N/A";
+                totalActionErrText.text += " N/A";
+                totalDiagErrText.text += " N/A";
+                timeText.text += " N/A";
+            }
+            else
+            {
+                attemptText.text += " "+strings[0];
+                totalActionErrText.text += " "+strings[1];
+                totalDiagErrText.text += " " + strings[2];
+                timeText.text += " " + strings[3];
+            }
         }
 
         // SET LISTENERS ON BUTTONS (ON START)
@@ -142,7 +165,7 @@ namespace Assets.Scripts.UI.LevelContents
         void Start()
         {
             EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
-            content.text = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
+            SetTextsDisplay(currentButtonIndex);
             // Set the listeners (launchGameButton and LevelsButtons)
             launchGameButton.onClick.AddListener(StartGame);
             SetListenersOnButtons();

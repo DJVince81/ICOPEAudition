@@ -1,19 +1,19 @@
 <GameData>
-  <nbGames>2</nbGames>
-  <nbLevelsCompleted>2</nbLevelsCompleted>
-  <nbStepsCompleted>3</nbStepsCompleted>
-  <globalActionErrors>5</globalActionErrors>
-  <globalDiagnosticErrors>5</globalDiagnosticErrors>
-  <gameTime>19,80939</gameTime>
-  <currentSessionTime>13,75169</currentSessionTime>
+  <nbGames>6</nbGames>
+  <nbLevelsCompleted>6</nbLevelsCompleted>
+  <nbStepsCompleted>26</nbStepsCompleted>
+  <globalActionErrors>46</globalActionErrors>
+  <globalDiagnosticErrors>46</globalDiagnosticErrors>
+  <gameTime>101,0512</gameTime>
+  <currentSessionTime>43,98153</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
-      <levelAttempt>1</levelAttempt>
-      <totActionError>1</totActionError>
-      <totDiagnosticError>1</totDiagnosticError>
-      <nbStepSucced>1</nbStepSucced>
+      <levelAttempt>2</levelAttempt>
+      <totActionError>2</totActionError>
+      <totDiagnosticError>2</totDiagnosticError>
+      <nbStepSucced>2</nbStepSucced>
       <nbStepFailed>0</nbStepFailed>
-      <timeSpentInLevel>2,492147</timeSpentInLevel>
+      <timeSpentInLevel>2,108973</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
           <attempt>1</attempt>
@@ -27,15 +27,47 @@
         </WISPER_TEST>
       </stepRecords>
       <successRate>1</successRate>
-      <totError>2</totError>
+      <totError>4</totError>
     </LEVEL_0>
     <LEVEL_1>
-      <levelAttempt>1</levelAttempt>
-      <totActionError>3</totActionError>
-      <totDiagnosticError>3</totDiagnosticError>
-      <nbStepSucced>1</nbStepSucced>
+      <levelAttempt>2</levelAttempt>
+      <totActionError>5</totActionError>
+      <totDiagnosticError>5</totDiagnosticError>
+      <nbStepSucced>3</nbStepSucced>
       <nbStepFailed>1</nbStepFailed>
-      <timeSpentInLevel>6,569909</timeSpentInLevel>
+      <timeSpentInLevel>3,930907</timeSpentInLevel>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </QUESTIONARY>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>10</totError>
+    </LEVEL_1>
+    <LEVEL_2>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>5</totActionError>
+      <totDiagnosticError>5</totDiagnosticError>
+      <nbStepSucced>1</nbStepSucced>
+      <nbStepFailed>2</nbStepFailed>
+      <timeSpentInLevel>10,98572</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
           <attempt>2</attempt>
@@ -52,16 +84,82 @@
         <QUESTIONARY>
           <attempt>1</attempt>
           <actionAnswer>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </QUESTIONARY>
+        <VIDEO_OTOSCOPIE>
+          <attempt>2</attempt>
+          <actionAnswer>
+            <Item>Effectuer une ablation du bouchon de cérumen, par soi-même si qualifié ou par un professionnel de santé</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionAnswer>
           <diagnosticAnswer>
             <Item>Renvoyer le patient vers un ORL</Item>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </diagnosticAnswer>
+          <succeeded>False</succeeded>
+        </VIDEO_OTOSCOPIE>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>10</totError>
+    </LEVEL_2>
+    <LEVEL_3>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>5</totActionError>
+      <totDiagnosticError>5</totDiagnosticError>
+      <nbStepSucced>3</nbStepSucced>
+      <nbStepFailed>1</nbStepFailed>
+      <timeSpentInLevel>20,14577</timeSpentInLevel>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Faire passer une vidéo-otoscopie</Item>
           </diagnosticAnswer>
           <succeeded>True</succeeded>
         </QUESTIONARY>
+        <VIDEO_OTOSCOPIE>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Faire passer un questionnaire HHIE-S et un test de Weber</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Faire passer un questionnaire HHIE-S et un test de Weber</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </VIDEO_OTOSCOPIE>
+        <WEBER_TEST>
+          <attempt>2</attempt>
+          <actionAnswer>
+            <Item>Prescrire une prothèse</Item>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Prescrire une prothèse</Item>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </diagnosticAnswer>
+          <succeeded>False</succeeded>
+        </WEBER_TEST>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>6</totError>
-    </LEVEL_1>
+      <totError>10</totError>
+    </LEVEL_3>
   </levelRecords>
 </GameData>

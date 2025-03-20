@@ -175,20 +175,24 @@ namespace Assets.Scripts
             _levelRecords[levelState] = levelData;
         }
 
-        public string LevelRecordsToString(int indexLevel)
+        public string[] LevelRecordsToString(int indexLevel)
         {
             LevelState levelState = (LevelState)indexLevel;
-            string text = string.Empty;
+            string[] texts = new string[4];
+            
             // get data from levelRecords
             if (_levelRecords.ContainsKey(levelState))
             {
-                text = "Level: " + indexLevel + ", Attempt: " + _levelRecords[levelState].levelAttempt.ToString();
+                texts[0] = _levelRecords[levelState].levelAttempt.ToString();
+                texts[1] = _levelRecords[levelState].totActionError.ToString();
+                texts[2] = _levelRecords[levelState].totDiagnosticError.ToString();
+                texts[3] = FloatToHMS(_levelRecords[levelState].timeSpentInLevel);
             }
             else
             {
-                text = "No data found for level " + ((int)levelState + 1);
+                texts = null;
             }
-            return text;
+            return texts;
         }
 
         /// <summary>
@@ -221,6 +225,16 @@ namespace Assets.Scripts
 
             XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
         }
+
+        private static string FloatToHMS(float time)
+        {
+            int totalSeconds = Mathf.RoundToInt(time);
+            int hours = totalSeconds / 3600;
+            int minutes = (totalSeconds / 60) / 60;
+            int seconds = totalSeconds % 60;
+            return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        }
+
 
         /// <summary>
         /// Unity fuction. On start set _globalTimer and try to get Data form xml file "GameData" and set _globalData, _levelRecords and _stepRecords with the loaded data.
