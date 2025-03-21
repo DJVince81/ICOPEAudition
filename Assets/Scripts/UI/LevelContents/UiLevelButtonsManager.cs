@@ -1,6 +1,6 @@
 using Assets.Scripts.Managers;
+using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,6 +30,10 @@ namespace Assets.Scripts.UI.LevelContents
         [SerializeField] private TMP_Text totalActionErrText;
         [SerializeField] private TMP_Text totalDiagErrText;
         [SerializeField] private TMP_Text timeText;
+        [Header("Step Display")]
+        [SerializeField] private GameObject stepPrefab;
+        [SerializeField] private Transform contentLevelPanel;
+
 
         // PRIVATE VARIABLES
         private float targetScrollPosition = 1f; // The target scroll position
@@ -80,7 +84,7 @@ namespace Assets.Scripts.UI.LevelContents
         private void ButtonNavigator()
         {
             if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") < 0)
-            {            
+            {
                 currentButtonIndex = (currentButtonIndex + 1) % buttons.Length;
                 EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
                 OnButtonClicked(currentButtonIndex);
@@ -123,26 +127,55 @@ namespace Assets.Scripts.UI.LevelContents
         {
             currentButtonIndex = index;
             EventSystem.current.SetSelectedGameObject(buttons[currentButtonIndex].gameObject);
-            SetTextsDisplay(currentButtonIndex);
+            SetTextsDisplay();
         }
 
-        private void SetTextsDisplay(int index)
+        private void SetTextsDisplay()
         {
-            // TODO : change display format to |attempt: | attempt.text|
-            string[] strings = GameManager.Instance.GameData.LevelRecordsToString(index);
+            string[] strings = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
+            DestroyUiItemClone();
+
             if (strings == null)
             {
-                attemptText.text += " N/A";
-                totalActionErrText.text += " N/A";
-                totalDiagErrText.text += " N/A";
-                timeText.text += " N/A";
+                attemptText.text = "Nombre d'essais: N/A";
+                totalActionErrText.text = "Total d'errreur d'action: N/A";
+                totalDiagErrText.text = "Total d'erreurs de diagnostiques: N/A";
+                timeText.text = "Temps: N/A";
             }
             else
             {
-                attemptText.text += " "+strings[0];
-                totalActionErrText.text += " "+strings[1];
-                totalDiagErrText.text += " " + strings[2];
-                timeText.text += " " + strings[3];
+                attemptText.text = $"Nombre d'essais: {strings[0]}";
+                totalActionErrText.text = $"Total d'errreur d'action: {strings[1]}";
+                totalDiagErrText.text = $"Total d'erreurs de diagnostiques: {strings[2]}";
+                timeText.text = $"Temps: {strings[3]}";
+                CreateUiItem();
+            }
+        }
+
+        private void CreateUiItem()
+        {
+            Dictionary<string, string[]> data = GameManager.Instance.GameData.GetStepRecordsInfo(currentButtonIndex);
+
+            
+
+            foreach (var var in data)
+            {
+                GameObject newUiItem = Instantiate(stepPrefab, contentLevelPanel);
+                TMP_Text[] itemTexts = newUiItem.GetComponentsInChildren<TMP_Text>();
+                itemTexts[0].text =$"Etape: {var.Key}";
+
+                for (int i = 1; i < itemTexts.Length; i++)
+                {
+                    itemTexts[i].text = itemTexts[i].text.Substring(0, itemTexts[i].text.IndexOf(":")+1) +" "+ var.Value[i - 1];
+                }
+            }
+        }
+
+        private void DestroyUiItemClone()
+        {
+            foreach (Transform child in contentLevelPanel)
+            {
+                if (child.gameObject.name.EndsWith("(Clone)")) Destroy(child.gameObject);
             }
         }
 
@@ -165,7 +198,7 @@ namespace Assets.Scripts.UI.LevelContents
         void Start()
         {
             EventSystem.current.SetSelectedGameObject(defaultSelectedButton.gameObject);
-            SetTextsDisplay(currentButtonIndex);
+            SetTextsDisplay();
             // Set the listeners (launchGameButton and LevelsButtons)
             launchGameButton.onClick.AddListener(StartGame);
             SetListenersOnButtons();

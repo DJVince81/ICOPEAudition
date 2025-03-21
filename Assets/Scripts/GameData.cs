@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
 
@@ -179,7 +180,7 @@ namespace Assets.Scripts
         {
             LevelState levelState = (LevelState)indexLevel;
             string[] texts = new string[4];
-            
+
             // get data from levelRecords
             if (_levelRecords.ContainsKey(levelState))
             {
@@ -193,6 +194,23 @@ namespace Assets.Scripts
                 texts = null;
             }
             return texts;
+        }
+
+        public Dictionary<string, string[]> GetStepRecordsInfo(int indexLevel)
+        {
+            LevelState levelState = (LevelState)indexLevel;
+            Dictionary<string, string[]> stringRecords = new Dictionary<string, string[]>();
+            Dictionary<AlgoState, StepRecords> records = _levelRecords[levelState].stepRecords;
+            foreach (var step in records)
+            {
+                string[] dataStep = new string[4];
+                dataStep[0] = step.Value.attempt.ToString();
+                dataStep[1] = step.Value.actionAnswer.AsEnumerable<string>().Last();
+                dataStep[2] = step.Value.diagnosticAnswer.AsEnumerable<string>().Last();
+                dataStep[3] = step.Value.succeeded ? "No error" : "Error";
+                stringRecords.Add(step.Key.ToString(), dataStep);
+            }
+            return stringRecords;
         }
 
         /// <summary>

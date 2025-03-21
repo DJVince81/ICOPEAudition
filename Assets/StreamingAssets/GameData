@@ -1,19 +1,19 @@
 <GameData>
-  <nbGames>6</nbGames>
-  <nbLevelsCompleted>6</nbLevelsCompleted>
-  <nbStepsCompleted>26</nbStepsCompleted>
-  <globalActionErrors>46</globalActionErrors>
-  <globalDiagnosticErrors>46</globalDiagnosticErrors>
-  <gameTime>101,0512</gameTime>
-  <currentSessionTime>43,98153</currentSessionTime>
+  <nbGames>7</nbGames>
+  <nbLevelsCompleted>7</nbLevelsCompleted>
+  <nbStepsCompleted>36</nbStepsCompleted>
+  <globalActionErrors>64</globalActionErrors>
+  <globalDiagnosticErrors>64</globalDiagnosticErrors>
+  <gameTime>111,1785</gameTime>
+  <currentSessionTime>10,12731</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
-      <levelAttempt>2</levelAttempt>
-      <totActionError>2</totActionError>
-      <totDiagnosticError>2</totDiagnosticError>
-      <nbStepSucced>2</nbStepSucced>
+      <levelAttempt>3</levelAttempt>
+      <totActionError>3</totActionError>
+      <totDiagnosticError>3</totDiagnosticError>
+      <nbStepSucced>3</nbStepSucced>
       <nbStepFailed>0</nbStepFailed>
-      <timeSpentInLevel>2,108973</timeSpentInLevel>
+      <timeSpentInLevel>6,255323</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
           <attempt>1</attempt>
@@ -21,13 +21,13 @@
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
           </actionAnswer>
           <diagnosticAnswer>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
+            <Item>Rien à signaler</Item>
           </diagnosticAnswer>
           <succeeded>True</succeeded>
         </WISPER_TEST>
       </stepRecords>
       <successRate>1</successRate>
-      <totError>4</totError>
+      <totError>6</totError>
     </LEVEL_0>
     <LEVEL_1>
       <levelAttempt>2</levelAttempt>

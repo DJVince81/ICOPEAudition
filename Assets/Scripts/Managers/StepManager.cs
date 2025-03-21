@@ -205,9 +205,8 @@ public class StepManager : MonoBehaviour
     {
         StepDataController currentStep = GetCurrentStep();
 
-        //TODO
         string[] actionT = currentStep.GetPossibleActions();
-        string[] diagsT = currentStep.GetPossibleActions();
+        string[] diagsT = currentStep.GetPossibleDiagnostics();
 
         // WARNIG : OutOfBound -> Step : Video otoscopie
         GameManager.Instance.GameStateManager.RegiterError(actionT[actionSelected], diagsT[diagnoticsSelected]);
