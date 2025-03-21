@@ -183,10 +183,12 @@ namespace Assets.Scripts.Managers
                 
                 Debug.Log("Level Completed!");
                 // Save data
+                GameManager.Instance.AudioManager.PlaySFX("money_up");
                 GameManager.Instance.GameData.RecordsLevels(currentLevelState);
                 GameManager.Instance.GameData.GlobalRecordsOnLevelEnd();
                 // return WAITING_ROOM
                 GameManager.Instance.LoadGameMenu();
+                GameManager.Instance.AudioManager.PlayBGM("skyline");
                 SetNextLevel();
             }
         }

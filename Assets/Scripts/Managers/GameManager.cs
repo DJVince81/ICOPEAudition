@@ -57,6 +57,8 @@ namespace Assets.Scripts.Managers
         #region Configurable Attributes
         [Header("Tutoriel")]
         [SerializeField] private bool _isTutorialEnable = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
+        public readonly string _pathXmlFile = "Assets/Resources/XML_Text/Tutorial.xml";
+        private readonly string _pathXsdFile = "Assets/Resources/XML_Text/TutorialSchema.xsd";
         [Header("Money")]
         [SerializeField] private int _money = 20;
 
@@ -78,7 +80,7 @@ namespace Assets.Scripts.Managers
         [Header("Character blinking")]
         [SerializeField] private float speedColorChange = 1.0f;
         [SerializeField] private GameObject _elderPerson; // maybe change to list
-        private Component _outlineCharacter;
+        [SerializeField] private Component _outlineCharacter;
         #endregion
 
         #region Private variables
@@ -236,6 +238,9 @@ namespace Assets.Scripts.Managers
 
         void Start()
         {
+            // Check validity of tutorial XML
+            XmlManager.ValidateXML(_pathXmlFile, _pathXsdFile);
+            
             //StatesManager.ReturnMainMenu();
             LoadListItems();
 

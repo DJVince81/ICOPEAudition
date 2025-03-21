@@ -1,8 +1,11 @@
+using Assets.Scripts.UI.TutorialContents;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Xml;
+using System.Xml.Schema;
 using UnityEngine;
 using static Assets.Scripts.GameData;
 using static Assets.Scripts.Managers.GameStateManager;
@@ -99,7 +102,7 @@ namespace Assets.Scripts
             doc.Load(filePath);
 
             XmlNode root = doc.DocumentElement;
-            if (root == null || root.Name != "GameData") throw new Exception("Invalid XML format");
+            if (root == null || root.Name != "GameData") throw new Exception("Invalid XML format.");
 
             GlobalData gameData = new GlobalData
             {
@@ -114,6 +117,71 @@ namespace Assets.Scripts
             };
 
             return gameData;
+        }
+
+        public static TutorialEntry LoadTutoriaDataByID(string path, string stepName, int id)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+
+            XmlNode node = doc.DocumentElement;
+            if (node == null || node.Name != "Tutorial") throw new Exception("Invalid XML format.");
+
+            node = doc.SelectSingleNode($"//Step[@Name='{stepName}']");
+            if (node == null)
+            {
+                Debug.LogError($"Step '{stepName}' not found");
+                return null;
+            }
+
+            TutorialEntry entry = new TutorialEntry();
+            node = doc.SelectSingleNode($"//Entry[ID='{id}']");
+            if (node != null)
+            {
+                entry.ID = int.Parse(node["ID"]?.InnerText);
+                entry.Intitule = node["Intitule"]?.InnerText;
+                entry.Text = node["Text"]?.InnerText;   
+                return entry;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Valid if the xml document is comfort to xsd schema.
+        /// To call on start of the game.
+        /// </summary>
+        /// <param name="pathXmlFile">Path to XML file</param>
+        /// <param name="pathXsdFile">Path to XSD file</param>
+        /// <returns>Boolean</returns>
+        public static bool ValidateXML(string pathXmlFile, string pathXsdFile)
+        {
+            if (!File.Exists(pathXsdFile))
+            {
+                Debug.LogError("XSD file not found for validation");
+                return false;
+            }
+            if (!File.Exists(pathXmlFile))
+            {
+                Debug.LogError("XML file not found for validation");
+                return false;
+            }
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(pathXmlFile);
+            XmlSchemaSet schemaSet = new XmlSchemaSet();
+            schemaSet.Add("", pathXsdFile);
+
+            bool isValid = true;
+            xmlDoc.Schemas = schemaSet;
+            xmlDoc.Validate((sender, args) =>
+            {
+                if (args.Severity == XmlSeverityType.Error)
+                {
+                    Debug.LogError("XML validation error: " + args.Message);
+                    isValid = false;
+                }
+            });
+            return isValid;
         }
 
         /// <summary>

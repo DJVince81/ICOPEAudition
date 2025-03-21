@@ -19,7 +19,9 @@
     <Entry>
       <ID>3</ID>
       <Intitule>Démarrer une consultation :</Intitule>
-      <Text>Pour commencer une consultation, cliquez sur le personnage en &lt;b&gt;surbrillance&lt;/b&gt;. Ce patient a besoin de votre expertise pour évaluer son audition.
+      <Text>Pour commencer une consultation, cliquez sur le personnage en &lt;b&gt;surbrillance&lt;/b&gt; ou sur l'icone de choix de niveau à côté du bouton "Pause".
+	  
+Ce patient a besoin de votre expertise pour évaluer son audition.
 Votre premier client vous attend !
 </Text>
     </Entry>
