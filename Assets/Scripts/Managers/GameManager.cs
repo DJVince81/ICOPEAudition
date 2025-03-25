@@ -48,7 +48,7 @@ namespace Assets.Scripts.Managers
             {
                 bool _isEnable = _isTutorialEnable;
                 _isTutorialEnable = value;
-                PlayerPrefs.SetInt("enableAssistant", _isTutorialEnable ? 1 : 0);
+                PlayerPrefs.SetInt("enableTutorial", _isTutorialEnable ? 1 : 0);
                 OnAssistantDisabled?.Invoke(_isTutorialEnable, _isEnable);
             }
         }
@@ -67,20 +67,17 @@ namespace Assets.Scripts.Managers
         [SerializeField] private GameObject _gameMenu;
         [SerializeField] private TipsPanel _tipsPanel;
         [SerializeField] private GameObject _stepMenu;
-        [SerializeField] private GameObject _activeAssistant;
+        [SerializeField] private GameObject _isTutoriaActive;
 
         [Header("Panels")]
         [SerializeField] private GameObject _pausePanel;
         [SerializeField] private GameObject _mainPanel;
         [SerializeField] private GameObject _shopPanel;
         [SerializeField] private GameObject _settingsPanelCheckbox;
-        [SerializeField] private GameObject _settingsPanel;
         [SerializeField] public GameObject _tutorialPanel;
 
-        [Header("Character blinking")]
-        [SerializeField] private float speedColorChange = 1.0f;
+        [Header("Character pluse")]
         [SerializeField] private GameObject _elderPerson; // maybe change to list
-        [SerializeField] private Component _outlineCharacter;
         #endregion
 
         #region Private variables
@@ -107,7 +104,7 @@ namespace Assets.Scripts.Managers
             _mainMenu.SetActive(false);
             _gameMenu.SetActive(false);
             _stepMenu.SetActive(false);
-            _activeAssistant.SetActive(false);
+            _isTutoriaActive.SetActive(false);
         }
 
         internal void LoadMainMenu()
@@ -124,8 +121,10 @@ namespace Assets.Scripts.Managers
             AudioManager.PlaySFX("ambiant", "AMBIANT");
             ClearScreen();
             _gameMenu.SetActive(true);
+            _isTutoriaActive.SetActive(true);
+            // Play pulse animation
+            _elderPerson.GetComponent<Animation>().Play();
             //_tipsPanel.Display();
-            if (TelemetryManager.GetNbGames() == 0) _activeAssistant.SetActive(true);
             //if (StatesManager.isPaused) TogglePause();
         }
         
@@ -166,12 +165,6 @@ namespace Assets.Scripts.Managers
             AudioManager.PlaySFX("ui_click2");
         }
 
-       
-        public static void SaveSettings()
-        {
-            // TO DO
-            // SAVE DATA IN FILE LIKE SKYRIM
-        }
 
         // PLAY AUDIO ON GRANDPA CLICK
         public void PlayBonjour()
@@ -182,23 +175,6 @@ namespace Assets.Scripts.Managers
         public void SetCheckBoxSettings()
         {
             _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsTutorialEnable;
-        }
-
-        /// <summary>
-        /// Resume
-        /// Function that allows making a blinking outline on image.
-        /// </summary>
-        public void CharacterOutlineBliking()
-        {
-            if (_gameMenu.activeInHierarchy)
-            {
-                // Ping Pong oscillation between 0 and 1
-                float pingPong = Mathf.PingPong(Time.time * speedColorChange, 1.0f);
-                // Ping Pon between white and black
-                Color newColor = Color.Lerp(Color.black, Color.white, pingPong);
-                // Feed to outline character component
-                _elderPerson.GetComponent<Outline>().effectColor = newColor;
-            }
         }
 
         public void SetTutorialUI()
@@ -245,16 +221,9 @@ namespace Assets.Scripts.Managers
             LoadListItems();
 
             _money = PlayerPrefs.GetInt("money", 20);
-            _isTutorialEnable = PlayerPrefs.GetInt("", 1) == 1 ? true : false; // Can be problem
+            _isTutorialEnable = PlayerPrefs.GetInt("enableTutorial") == 1;
             AudioManager.PlayBGM("skyline");
-
-            // Get component
-            if (_elderPerson.GetComponent<Outline>() != null) _outlineCharacter = _elderPerson.GetComponent<Outline>();
-        }
-
-        private void FixedUpdate()
-        {
-            CharacterOutlineBliking();
+           
         }
         #endregion
 
