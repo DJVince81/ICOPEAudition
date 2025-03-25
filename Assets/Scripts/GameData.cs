@@ -1,3 +1,4 @@
+using Assets.Scripts.Managers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -270,6 +271,8 @@ namespace Assets.Scripts
                 {
                     _stepRecords = level.Value.stepRecords;
                 }
+
+                GameManager.Instance.GameStateManager.LoadSavedLevel(_globalData.levelRecords.Keys.Last());
             }
             else
             {

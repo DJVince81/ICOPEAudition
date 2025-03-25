@@ -288,6 +288,18 @@ namespace Assets.Scripts.Managers
             return this.testsToDo.Count - 1;
         }
 
+        public void LoadSavedLevel(LevelState levelState)
+        {
+            if (levelState < LevelState.RANDOMGAME)
+            {
+                currentLevelState = levelState + 1;
+            }
+            else
+            {
+                currentLevelState = LevelState.RANDOMGAME;
+            }
+        }
+
         private void Start()
         {
             //LoadGame();
