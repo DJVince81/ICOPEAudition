@@ -288,6 +288,10 @@ namespace Assets.Scripts.Managers
             return this.testsToDo.Count - 1;
         }
 
+        /// <summary>
+        /// Set the currentLevelState on loading game with a saved LevelState from GameData.
+        /// </summary>
+        /// <param name="levelState"></param>
         public void LoadSavedLevel(LevelState levelState)
         {
             if (levelState < LevelState.RANDOMGAME)
