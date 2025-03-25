@@ -1,11 +1,12 @@
 <GameData>
-  <nbGames>1</nbGames>
-  <nbLevelsCompleted>1</nbLevelsCompleted>
-  <nbStepsCompleted>1</nbStepsCompleted>
-  <globalActionErrors>1</globalActionErrors>
-  <globalDiagnosticErrors>1</globalDiagnosticErrors>
-  <gameTime>7,071772</gameTime>
-  <currentSessionTime>7,071772</currentSessionTime>
+  <nbGames>2</nbGames>
+  <nbGameSession>1</nbGameSession>
+  <nbLevelsCompleted>2</nbLevelsCompleted>
+  <nbStepsCompleted>4</nbStepsCompleted>
+  <globalActionErrors>4</globalActionErrors>
+  <globalDiagnosticErrors>4</globalDiagnosticErrors>
+  <gameTime>24,66238</gameTime>
+  <currentSessionTime>17,5906</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
       <levelAttempt>1</levelAttempt>
@@ -29,5 +30,37 @@
       <successRate>1</successRate>
       <totError>2</totError>
     </LEVEL_0>
+    <LEVEL_1>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>2</totActionError>
+      <totDiagnosticError>2</totDiagnosticError>
+      <nbStepSucced>2</nbStepSucced>
+      <nbStepFailed>0</nbStepFailed>
+      <timeSpentInLevel>8,942278</timeSpentInLevel>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Il y a un problème</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Renvoyer le patient vers un ORL</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Pathologie complexe</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </QUESTIONARY>
+      </stepRecords>
+      <successRate>1</successRate>
+      <totError>4</totError>
+    </LEVEL_1>
   </levelRecords>
 </GameData>

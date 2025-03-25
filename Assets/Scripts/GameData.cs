@@ -53,7 +53,8 @@ namespace Assets.Scripts
         // GLOBAL RECORDS
         public struct GlobalData
         {
-            public int nbGames; // Number of games played
+            public int totGames; // Number of games played
+            public int nbGameSession;
             public int nbLevelsCompleted; // Number of levels completed
             public int nbStepsCompleted; // Number of steps completed
             public int globalActionErrors; // Number of action errors
@@ -62,9 +63,10 @@ namespace Assets.Scripts
             public float currentSessionTime;
             public Dictionary<LevelState, LevelRecords> levelRecords;
 
-            public GlobalData(int nbGames, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, float gameTime, float currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
+            public GlobalData(int nbGames, int nbGameSession, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, float gameTime, float currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
             {
-                this.nbGames = nbGames;
+                this.totGames = nbGames;
+                this.nbGameSession = nbGameSession;
                 this.nbLevelsCompleted = nbLevelsCompleted;
                 this.nbStepsCompleted = nbStepsCompleted;
                 this.globalActionErrors = nbActionErrors;
@@ -219,7 +221,8 @@ namespace Assets.Scripts
         /// </summary>
         public void GlobalRecordsOnLevelStart()
         {
-            _globalData.nbGames++;
+            _globalData.nbGameSession++;
+            _globalData.totGames = _globalData.totGames + _globalData.nbGameSession;
         }
 
         /// <summary>
@@ -245,6 +248,11 @@ namespace Assets.Scripts
             XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
         }
 
+        public bool FisrtGameSession()
+        {
+            return _globalData.nbGameSession == 0;
+        }
+
         private static string FloatToHMS(float time)
         {
             int totalSeconds = Mathf.RoundToInt(time);
@@ -266,6 +274,7 @@ namespace Assets.Scripts
             if (File.Exists(path))
             {
                 _globalData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
+                _globalData.nbGameSession = 0; // Set the number of session game to 0
                 _levelRecords = _globalData.levelRecords;
                 foreach (var level in _levelRecords)
                 {

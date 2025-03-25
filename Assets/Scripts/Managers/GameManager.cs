@@ -121,9 +121,11 @@ namespace Assets.Scripts.Managers
             AudioManager.PlaySFX("ambiant", "AMBIANT");
             ClearScreen();
             _gameMenu.SetActive(true);
-            _isTutoriaActive.SetActive(true);
+
+            if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true);
             // Play pulse animation
             _elderPerson.GetComponent<Animation>().Play();
+            
             //_tipsPanel.Display();
             //if (StatesManager.isPaused) TogglePause();
         }
