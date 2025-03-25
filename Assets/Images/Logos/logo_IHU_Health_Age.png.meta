@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 82ea4098baa5c5c49bd7bf477241d8c9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6253900583471565275
+    second: logo_IHU_Health_Age_0
+  - first:
+      213: -6138468726534842011
+    second: logo_IHU_Health_Age_1
+  - first:
+      213: -6878718391793281634
+    second: logo_IHU_Health_Age_2
+  - first:
+      213: 6443174766952614049
+    second: logo_IHU_Health_Age_3
+  - first:
+      213: -7448714683751554467
+    second: logo_IHU_Health_Age_4
+  - first:
+      213: -7499885415816396611
+    second: logo_IHU_Health_Age_5
+  - first:
+      213: -4738212435385680643
+    second: logo_IHU_Health_Age_6
+  - first:
+      213: 3441014847385350521
+    second: logo_IHU_Health_Age_7
+  - first:
+      213: 5417176154703171486
+    second: logo_IHU_Health_Age_8
+  - first:
+      213: 2644701781667469703
+    second: logo_IHU_Health_Age_9
+  - first:
+      213: -8196135797585841357
+    second: logo_IHU_Health_Age_10
+  - first:
+      213: 3483860097017321351
+    second: logo_IHU_Health_Age_11
+  - first:
+      213: -8189540905179611245
+    second: logo_IHU_Health_Age_12
+  - first:
+      213: -9041795719009716126
+    second: logo_IHU_Health_Age_13
+  - first:
+      213: 662990260655150037
+    second: logo_IHU_Health_Age_14
+  - first:
+      213: 8693231351903566290
+    second: logo_IHU_Health_Age_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 57
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 526b19dcd8ea539a0800000000000000
+      internalID: -6253900583471565275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 27
+        width: 59
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569db0a5737cfcaa0800000000000000
+      internalID: -6138468726534842011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 36
+        width: 81
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9517335112e980a0800000000000000
+      internalID: -6878718391793281634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 67
+        width: 8
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a888f92051ca6950800000000000000
+      internalID: 6443174766952614049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_4
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 67
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52a0c9c579d0a890800000000000000
+      internalID: -7448714683751554467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_5
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 66
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0812e43fd0be790800000000000000
+      internalID: -7499885415816396611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_6
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 37
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc7f76e4ec7e3eb0800000000000000
+      internalID: -4738212435385680643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_7
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 31
+        width: 31
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971bf3db5c0f0cf20800000000000000
+      internalID: 3441014847385350521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_8
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 37
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f8cc2e20dad2b40800000000000000
+      internalID: 5417176154703171486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_9
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 30
+        width: 72
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789d129124ed3b420800000000000000
+      internalID: 2644701781667469703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_10
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 15
+        width: 53
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3337806cae9714e80800000000000000
+      internalID: -8196135797585841357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_11
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 15
+        width: 38
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78710e9cc48295030800000000000000
+      internalID: 3483860097017321351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_12
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 15
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39ffc31dfe7e85e80800000000000000
+      internalID: -8189540905179611245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_13
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 17
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26837c4f2b6158280800000000000000
+      internalID: -9041795719009716126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_14
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 16
+        width: 51
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3d4ef112a633900800000000000000
+      internalID: 662990260655150037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_IHU_Health_Age_15
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 15
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d930881bdf84a870800000000000000
+      internalID: 8693231351903566290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logo_IHU_Health_Age_0: -6253900583471565275
+      logo_IHU_Health_Age_1: -6138468726534842011
+      logo_IHU_Health_Age_10: -8196135797585841357
+      logo_IHU_Health_Age_11: 3483860097017321351
+      logo_IHU_Health_Age_12: -8189540905179611245
+      logo_IHU_Health_Age_13: -9041795719009716126
+      logo_IHU_Health_Age_14: 662990260655150037
+      logo_IHU_Health_Age_15: 8693231351903566290
+      logo_IHU_Health_Age_2: -6878718391793281634
+      logo_IHU_Health_Age_3: 6443174766952614049
+      logo_IHU_Health_Age_4: -7448714683751554467
+      logo_IHU_Health_Age_5: -7499885415816396611
+      logo_IHU_Health_Age_6: -4738212435385680643
+      logo_IHU_Health_Age_7: 3441014847385350521
+      logo_IHU_Health_Age_8: 5417176154703171486
+      logo_IHU_Health_Age_9: 2644701781667469703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
