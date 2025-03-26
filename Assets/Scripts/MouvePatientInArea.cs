@@ -32,8 +32,8 @@ namespace Assets.Scripts
             float imageWidth = imageCharacter.GetComponent<RectTransform>().rect.width;
             float imageHeight = imageCharacter.GetComponent<RectTransform>().rect.height;
 
-            float randomX = Random.Range(-panelWidth / 2 + imageWidth / 2, panelWidth / 2 + imageWidth / 2);
-            float randomY = Random.Range(-panelHeight / 12 + imageHeight / 12, panelHeight / 12 + imageHeight / 12);
+            float randomX = Random.Range(-panelWidth / 2 + imageWidth / 2, panelWidth / 2 - imageWidth / 2);
+            float randomY = Random.Range(-panelHeight / 2 + imageHeight / 2, panelHeight / 2 - imageHeight / 2);
 
             targetPosition = new Vector2(randomX, randomY);
 
@@ -54,6 +54,8 @@ namespace Assets.Scripts
             int randIndex = Random.Range(0, sprites.Length - 1);
             Sprite newSprite = sprites[randIndex];
             imageCharacter.GetComponent<Image>().sprite = newSprite;
+            // Set the gameObject rectTransfor with the new sprite size
+            imageCharacter.GetComponent<RectTransform>().sizeDelta = new Vector2(newSprite.rect.width, newSprite.rect.height);
         }
 
         /// <summary>
