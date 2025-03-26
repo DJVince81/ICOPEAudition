@@ -85,6 +85,7 @@ namespace Assets.Scripts.Managers
         #endregion
 
         #region Internal methods
+        // LOAD STEP
         internal void LoadStep(int stepIndex)
         {
             if (stepIndex == 0)
@@ -99,6 +100,7 @@ namespace Assets.Scripts.Managers
             StepManager.LoadStep(stepIndex);
         }
 
+        // CLEAR SCREEN
         internal void ClearScreen()
         {
             _mainMenu.SetActive(false);
@@ -107,6 +109,7 @@ namespace Assets.Scripts.Managers
             _isTutoriaActive.SetActive(false);
         }
 
+        // LOAD MAIN MENU
         internal void LoadMainMenu()
         {
             AudioManager.StopCurrentSfx();
@@ -130,6 +133,7 @@ namespace Assets.Scripts.Managers
             //if (StatesManager.isPaused) TogglePause();
         }
         
+        // SAVE BOUGHT ITEM IN PLAYERPREFS
         public static void AddBoughtItem(string name)
         {
             PlayerPrefs.SetString("items", $"{name};{PlayerPrefs.GetString("items", "")}");
@@ -179,6 +183,7 @@ namespace Assets.Scripts.Managers
             _settingsPanelCheckbox.GetComponent<Toggle>().isOn = IsTutorialEnable;
         }
 
+        // ACTIVATE UI TUTORIAL 
         public void SetTutorialUI()
         {
             isTutorialUIEnable = !isTutorialUIEnable;
@@ -229,6 +234,7 @@ namespace Assets.Scripts.Managers
         }
         #endregion
 
+        // ON START LOAD ITEM BOUGHT DURING THE LAST SESSION
         private void LoadListItems()
         {
             Transform items = _gameMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
