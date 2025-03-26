@@ -1,12 +1,12 @@
 <GameData>
-  <nbGames>2</nbGames>
+  <totGames>3</totGames>
   <nbGameSession>1</nbGameSession>
-  <nbLevelsCompleted>2</nbLevelsCompleted>
-  <nbStepsCompleted>4</nbStepsCompleted>
-  <globalActionErrors>4</globalActionErrors>
-  <globalDiagnosticErrors>4</globalDiagnosticErrors>
-  <gameTime>24,66238</gameTime>
-  <currentSessionTime>17,5906</currentSessionTime>
+  <nbLevelsCompleted>3</nbLevelsCompleted>
+  <nbStepsCompleted>8</nbStepsCompleted>
+  <globalActionErrors>12</globalActionErrors>
+  <globalDiagnosticErrors>12</globalDiagnosticErrors>
+  <gameTime>43,51842</gameTime>
+  <currentSessionTime>18,85605</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
       <levelAttempt>1</levelAttempt>
@@ -62,5 +62,51 @@
       <successRate>1</successRate>
       <totError>4</totError>
     </LEVEL_1>
+    <LEVEL_2>
+      <levelAttempt>1</levelAttempt>
+      <totActionError>5</totActionError>
+      <totDiagnosticError>5</totDiagnosticError>
+      <nbStepSucced>1</nbStepSucced>
+      <nbStepFailed>2</nbStepFailed>
+      <timeSpentInLevel>15,69777</timeSpentInLevel>
+      <stepRecords>
+        <WISPER_TEST>
+          <attempt>2</attempt>
+          <actionAnswer>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+            <Item>Faire passer un questionnaire go / no-go</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Rien à signaler</Item>
+            <Item>Il y a un problème</Item>
+          </diagnosticAnswer>
+          <succeeded>False</succeeded>
+        </WISPER_TEST>
+        <QUESTIONARY>
+          <attempt>2</attempt>
+          <actionAnswer>
+            <Item>Renvoyer le patient vers un ORL</Item>
+            <Item>Faire passer une vidéo-otoscopie</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Pathologie complexe</Item>
+            <Item>Pathologie simple</Item>
+          </diagnosticAnswer>
+          <succeeded>False</succeeded>
+        </QUESTIONARY>
+        <VIDEO_OTOSCOPIE>
+          <attempt>1</attempt>
+          <actionAnswer>
+            <Item>Effectuer une ablation du bouchon de cérumen, par soi-même si qualifié ou par un professionnel de santé</Item>
+          </actionAnswer>
+          <diagnosticAnswer>
+            <Item>Bouchon de cérumen</Item>
+          </diagnosticAnswer>
+          <succeeded>True</succeeded>
+        </VIDEO_OTOSCOPIE>
+      </stepRecords>
+      <successRate>0</successRate>
+      <totError>10</totError>
+    </LEVEL_2>
   </levelRecords>
 </GameData>

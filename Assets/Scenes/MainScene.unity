@@ -1711,6 +1711,7 @@ GameObject:
   - component: {fileID: 730478447}
   - component: {fileID: 730478448}
   - component: {fileID: 730478449}
+  - component: {fileID: 730478450}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1916,6 +1917,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: GameData
+--- !u!114 &730478450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730478439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79275e2296a2c754eadbba62d1b68cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionArea: {fileID: 737265746}
+  imageCharacter: {fileID: 1276246248}
+  sprites:
+  - {fileID: 1183530047, guid: 11dae32e070dad449a7cbf6410e61230, type: 3}
+  - {fileID: 21300000, guid: c6d1e8d7f7ba5664cb5a4d91a6a7128a, type: 3}
+  - {fileID: 803572100, guid: 11dae32e070dad449a7cbf6410e61230, type: 3}
+  - {fileID: -463965721, guid: 43e0127be3a9ace45877d227d03ee22b, type: 3}
+  scaleFactor: 1.05
+  animationDuration: 2
+--- !u!224 &737265746 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7519373992667295897, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
+  m_PrefabInstance: {fileID: 8963968612687407438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &758974040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,6 +6822,10 @@ PrefabInstance:
     - target: {fileID: 2737249629306434889, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971104480201881394, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
+      propertyPath: m_text
+      value: "Prise en charge de la surdit\xE9 li\xE9e \xE0 l'\xE2ge"
       objectReference: {fileID: 0}
     - target: {fileID: 4007431397268721475, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_Name

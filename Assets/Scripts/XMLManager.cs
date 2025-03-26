@@ -106,7 +106,8 @@ namespace Assets.Scripts
 
             GlobalData gameData = new GlobalData
             {
-                totGames = int.Parse(root["nbGames"].InnerText),
+                totGames = int.Parse(root["totGames"].InnerText),
+                nbGameSession = int.Parse(root["nbGameSession"].InnerText),
                 nbLevelsCompleted = int.Parse(root["nbLevelsCompleted"].InnerText),
                 nbStepsCompleted = int.Parse(root["nbStepsCompleted"].InnerText),
                 globalActionErrors = int.Parse(root["globalActionErrors"].InnerText),

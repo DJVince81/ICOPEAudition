@@ -9,6 +9,7 @@ namespace Assets.Scripts.Managers
     [RequireComponent(typeof(StepManager))]
     [RequireComponent(typeof(TelemetryManager))]
     [RequireComponent(typeof(AudioManager))]
+    [RequireComponent(typeof(MouvePatientInArea))]
     public class GameManager : MonoBehaviour
     {
         #region Event System
@@ -24,6 +25,8 @@ namespace Assets.Scripts.Managers
         public StepManager StepManager { get; private set; }
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
+
+        public MouvePatientInArea MouvePatientInArea { get; private set; }
 
         #region Structures
         public int Money
@@ -126,9 +129,7 @@ namespace Assets.Scripts.Managers
             _gameMenu.SetActive(true);
 
             if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true);
-            // Play pulse animation
-            _elderPerson.GetComponent<Animation>().Play();
-            
+            MouvePatientInArea.SetNewCharacterInArea();
             //_tipsPanel.Display();
             //if (StatesManager.isPaused) TogglePause();
         }
@@ -213,6 +214,7 @@ namespace Assets.Scripts.Managers
             StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();
+            MouvePatientInArea = GetComponent<MouvePatientInArea>();
 
             AudioManager.LoopBgm(true);
             AudioManager.LoopSfx(true, "AMBIANT");
