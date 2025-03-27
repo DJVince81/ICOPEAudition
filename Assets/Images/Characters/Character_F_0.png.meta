@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c6d1e8d7f7ba5664cb5a4d91a6a7128a
+guid: 8fb823efab3b7964090a3d3e8eec2777
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6039631632328022495
-    second: ElderCharaterBrownTShirtBlueJean_0
+      213: -3075995167143171955
+    second: Character_F_0_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 419.04
+  spritePixelsToUnits: 81.4
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ElderCharaterBrownTShirtBlueJean_0
+      name: Character_F_0_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 205
-        height: 700
+        width: 189
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd9df1368f411d350800000000000000
-      internalID: 6039631632328022495
+      spriteID: d88ec9b51bedf45d0800000000000000
+      internalID: -3075995167143171955
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ElderCharaterBrownTShirtBlueJean_0: 6039631632328022495
+      Character_F_0_0: -3075995167143171955
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

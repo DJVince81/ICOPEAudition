@@ -1932,10 +1932,10 @@ MonoBehaviour:
   interactionArea: {fileID: 737265746}
   imageCharacter: {fileID: 1276246248}
   sprites:
-  - {fileID: 1183530047, guid: 11dae32e070dad449a7cbf6410e61230, type: 3}
-  - {fileID: 21300000, guid: c6d1e8d7f7ba5664cb5a4d91a6a7128a, type: 3}
-  - {fileID: 803572100, guid: 11dae32e070dad449a7cbf6410e61230, type: 3}
-  - {fileID: -463965721, guid: 43e0127be3a9ace45877d227d03ee22b, type: 3}
+  - {fileID: 21300000, guid: 8fb823efab3b7964090a3d3e8eec2777, type: 3}
+  - {fileID: 8865871069334193953, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
+  - {fileID: 21300000, guid: 4b222472f508bad4595803c62b4bb82c, type: 3}
+  - {fileID: -5748631628606466991, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
   scaleFactor: 1.05
   animationDuration: 2
 --- !u!224 &737265746 stripped
