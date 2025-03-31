@@ -6783,10 +6783,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3971104480201881394, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
-      propertyPath: m_text
-      value: "Prise en charge de la surdit\xE9 li\xE9e \xE0 l'\xE2ge"
-      objectReference: {fileID: 0}
     - target: {fileID: 4007431397268721475, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: m_Name
       value: Main Menu
