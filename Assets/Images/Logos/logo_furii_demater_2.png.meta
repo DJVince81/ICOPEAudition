@@ -1,0 +1,1027 @@
+fileFormatVersion: 2
+guid: 4c230147874fc6f4f9882ed6d43c37da
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5248698171365118668
+    second: logo_furii_demater_2_0
+  - first:
+      213: 6007862065495671152
+    second: logo_furii_demater_2_1
+  - first:
+      213: -527443871936304837
+    second: logo_furii_demater_2_2
+  - first:
+      213: 8214249140457403685
+    second: logo_furii_demater_2_3
+  - first:
+      213: 8787503902079834911
+    second: logo_furii_demater_2_4
+  - first:
+      213: -8603472063102914330
+    second: logo_furii_demater_2_5
+  - first:
+      213: 9053694142035973032
+    second: logo_furii_demater_2_6
+  - first:
+      213: -5329575655349171665
+    second: logo_furii_demater_2_7
+  - first:
+      213: 8597464209534517724
+    second: logo_furii_demater_2_8
+  - first:
+      213: 1705175530278747068
+    second: logo_furii_demater_2_9
+  - first:
+      213: -496602780029432507
+    second: logo_furii_demater_2_10
+  - first:
+      213: 8002229526933403798
+    second: logo_furii_demater_2_11
+  - first:
+      213: 7614537669332372590
+    second: logo_furii_demater_2_12
+  - first:
+      213: 8885577149077152325
+    second: logo_furii_demater_2_13
+  - first:
+      213: 2878513550653171138
+    second: logo_furii_demater_2_14
+  - first:
+      213: -3645910218176194671
+    second: logo_furii_demater_2_15
+  - first:
+      213: -2679514447744970186
+    second: logo_furii_demater_2_16
+  - first:
+      213: 4307043781289556354
+    second: logo_furii_demater_2_17
+  - first:
+      213: 4276394350358614901
+    second: logo_furii_demater_2_18
+  - first:
+      213: -8782219558078410606
+    second: logo_furii_demater_2_19
+  - first:
+      213: 6843723575133337169
+    second: logo_furii_demater_2_20
+  - first:
+      213: 6763262206140320722
+    second: logo_furii_demater_2_21
+  - first:
+      213: 4517654827292270014
+    second: logo_furii_demater_2_22
+  - first:
+      213: -2790112417177328891
+    second: logo_furii_demater_2_23
+  - first:
+      213: 8099680013490111266
+    second: logo_furii_demater_2_24
+  - first:
+      213: 8319949384581969584
+    second: logo_furii_demater_2_25
+  - first:
+      213: -6862681791456282998
+    second: logo_furii_demater_2_26
+  - first:
+      213: 7862368974325297230
+    second: logo_furii_demater_2_27
+  - first:
+      213: 233943494034358464
+    second: logo_furii_demater_2_28
+  - first:
+      213: -1685876945853662377
+    second: logo_furii_demater_2_29
+  - first:
+      213: 6782883209392612428
+    second: logo_furii_demater_2_30
+  - first:
+      213: -2681655966107736406
+    second: logo_furii_demater_2_31
+  - first:
+      213: 285069598802521926
+    second: logo_furii_demater_2_32
+  - first:
+      213: -6462985959668765131
+    second: logo_furii_demater_2_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logo_furii_demater_2_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 65
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d2a8a62d0e827b0800000000000000
+      internalID: -5248698171365118668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 65
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0710a61b7b6306350800000000000000
+      internalID: 6007862065495671152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 33
+        width: 34
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b39a74ec7942ea8f0800000000000000
+      internalID: -527443871936304837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 74
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52575818210eef170800000000000000
+      internalID: 8214249140457403685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 74
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1bd3d1ad3c73f970800000000000000
+      internalID: 8787503902079834911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_5
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 74
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0f0c3edb35a9880800000000000000
+      internalID: -8603472063102914330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 74
+        width: 6
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3d6198ade25ad70800000000000000
+      internalID: 9053694142035973032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_7
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 74
+        width: 6
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2ac753cd2b8906b0800000000000000
+      internalID: -5329575655349171665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_8
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 33
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd18072b524505770800000000000000
+      internalID: 8597464209534517724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 50
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbbf3f14c100aa710800000000000000
+      internalID: 1705175530278747068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_10
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 16
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54dcfd51766bb19f0800000000000000
+      internalID: -496602780029432507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_11
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 50
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698f10c6b51ad0f60800000000000000
+      internalID: 8002229526933403798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_12
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 50
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c036daaa54ca960800000000000000
+      internalID: 7614537669332372590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_13
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 50
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 542621bd659ef4b70800000000000000
+      internalID: 8885577149077152325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_14
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 50
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5a4d3c2d882f720800000000000000
+      internalID: 2878513550653171138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_15
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 50
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19714a239ff176dc0800000000000000
+      internalID: -3645910218176194671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_16
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 50
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63252a37ec370dad0800000000000000
+      internalID: -2679514447744970186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_17
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 50
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289b1d7df71b5cb30800000000000000
+      internalID: 4307043781289556354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_18
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 35
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573dc9c110ec85b30800000000000000
+      internalID: 4276394350358614901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_19
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 35
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2909f3597d94f1680800000000000000
+      internalID: -8782219558078410606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_20
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 34
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156f9ccf45ac9fe50800000000000000
+      internalID: 6843723575133337169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_21
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 35
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db81d7a42febdd50800000000000000
+      internalID: 6763262206140320722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_22
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 35
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebd959e312fe1be30800000000000000
+      internalID: 4517654827292270014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_23
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 35
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5032dba0a878749d0800000000000000
+      internalID: -2790112417177328891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_24
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 34
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 223c86eee08d76070800000000000000
+      internalID: 8099680013490111266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_25
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 33
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b6fc3162e5667370800000000000000
+      internalID: 8319949384581969584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_26
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 23
+        width: 26
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86f4bd454bd2c0a0800000000000000
+      internalID: -6862681791456282998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_27
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 23
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4036bfeceebc1d60800000000000000
+      internalID: 7862368974325297230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_28
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 23
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c08e6b4e522f3300800000000000000
+      internalID: 233943494034358464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_29
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 23
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b3f5399df8a98e0800000000000000
+      internalID: -1685876945853662377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_30
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 23
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44eec87754a12e50800000000000000
+      internalID: 6782883209392612428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_31
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 23
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6675a5b18d8cad0800000000000000
+      internalID: -2681655966107736406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_32
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 23
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f23ec2a45c4f300800000000000000
+      internalID: 285069598802521926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo_furii_demater_2_33
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 23
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e2b95138cde46a0800000000000000
+      internalID: -6462985959668765131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logo_furii_demater_2_0: -5248698171365118668
+      logo_furii_demater_2_1: 6007862065495671152
+      logo_furii_demater_2_10: -496602780029432507
+      logo_furii_demater_2_11: 8002229526933403798
+      logo_furii_demater_2_12: 7614537669332372590
+      logo_furii_demater_2_13: 8885577149077152325
+      logo_furii_demater_2_14: 2878513550653171138
+      logo_furii_demater_2_15: -3645910218176194671
+      logo_furii_demater_2_16: -2679514447744970186
+      logo_furii_demater_2_17: 4307043781289556354
+      logo_furii_demater_2_18: 4276394350358614901
+      logo_furii_demater_2_19: -8782219558078410606
+      logo_furii_demater_2_2: -527443871936304837
+      logo_furii_demater_2_20: 6843723575133337169
+      logo_furii_demater_2_21: 6763262206140320722
+      logo_furii_demater_2_22: 4517654827292270014
+      logo_furii_demater_2_23: -2790112417177328891
+      logo_furii_demater_2_24: 8099680013490111266
+      logo_furii_demater_2_25: 8319949384581969584
+      logo_furii_demater_2_26: -6862681791456282998
+      logo_furii_demater_2_27: 7862368974325297230
+      logo_furii_demater_2_28: 233943494034358464
+      logo_furii_demater_2_29: -1685876945853662377
+      logo_furii_demater_2_3: 8214249140457403685
+      logo_furii_demater_2_30: 6782883209392612428
+      logo_furii_demater_2_31: -2681655966107736406
+      logo_furii_demater_2_32: 285069598802521926
+      logo_furii_demater_2_33: -6462985959668765131
+      logo_furii_demater_2_4: 8787503902079834911
+      logo_furii_demater_2_5: -8603472063102914330
+      logo_furii_demater_2_6: 9053694142035973032
+      logo_furii_demater_2_7: -5329575655349171665
+      logo_furii_demater_2_8: 8597464209534517724
+      logo_furii_demater_2_9: 1705175530278747068
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
