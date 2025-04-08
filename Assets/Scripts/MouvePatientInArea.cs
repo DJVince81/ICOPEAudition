@@ -17,7 +17,7 @@ namespace Assets.Scripts
         [SerializeField] private Sprite[] sprites;
 
         // Animation size variable
-        [SerializeField] private float scaleFactor = 1.25f;
+        [SerializeField] private float scaleFactor = 1.15f;
         [SerializeField] private float animationDuration = 2f;
 
 
@@ -64,7 +64,12 @@ namespace Assets.Scripts
         private void AnimationSizeImage()
         {
             RectTransform rectTransform = imageCharacter.GetComponent<RectTransform>();
-            rectTransform.DOSizeDelta(rectTransform.sizeDelta * scaleFactor, animationDuration / 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+            rectTransform.DOSizeDelta(rectTransform.sizeDelta * scaleFactor, animationDuration / 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetId("sizeAnim");
+        }
+
+        public static void StopAnimation()
+        {
+            DOTween.Kill("sizeAnim");
         }
 
         /// <summary>

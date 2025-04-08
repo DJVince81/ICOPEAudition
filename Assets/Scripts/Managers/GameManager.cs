@@ -110,6 +110,13 @@ namespace Assets.Scripts.Managers
             _gameMenu.SetActive(false);
             _stepMenu.SetActive(false);
             _isTutoriaActive.SetActive(false);
+
+        }
+
+        // CLEAR ANIMATION
+        internal static void ClearAnimation()
+        {
+            MouvePatientInArea.StopAnimation();
         }
 
         // LOAD MAIN MENU
@@ -126,6 +133,7 @@ namespace Assets.Scripts.Managers
         {
             AudioManager.PlaySFX("ambiant", "AMBIANT");
             ClearScreen();
+            ClearAnimation();
             _gameMenu.SetActive(true);
 
             if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true);
@@ -147,6 +155,7 @@ namespace Assets.Scripts.Managers
         //LOAD GAME ON GRANDMA CLICK -> CALL LaunchGameAfterTime()
         public void LaunchGame()
         {
+            ClearAnimation();
             StartCoroutine(LaunchGameAfterTime());
         }
 
