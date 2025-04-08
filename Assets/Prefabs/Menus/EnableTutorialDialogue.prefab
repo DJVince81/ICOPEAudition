@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6776040862909077648}
   - component: {fileID: 208176719579767865}
   m_Layer: 5
-  m_Name: AssitantDialogue
+  m_Name: EnableTutorialDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
