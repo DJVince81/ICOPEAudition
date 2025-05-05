@@ -9,7 +9,7 @@ namespace Assets.Scripts.Managers
     [RequireComponent(typeof(StepManager))]
     [RequireComponent(typeof(TelemetryManager))]
     [RequireComponent(typeof(AudioManager))]
-    [RequireComponent(typeof(MouvePatientInArea))]
+    [RequireComponent(typeof(PatientAnimation))]
     public class GameManager : MonoBehaviour
     {
         #region Event System
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Managers
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
 
-        public MouvePatientInArea MouvePatientInArea { get; private set; }
+        public PatientAnimation PatientAnimation { get; private set; }
 
         #region Structures
         public int Money
@@ -116,7 +116,7 @@ namespace Assets.Scripts.Managers
         // CLEAR ANIMATION
         internal static void ClearAnimation()
         {
-            MouvePatientInArea.StopAnimation();
+            PatientAnimation.StopAnimation();
         }
 
         // LOAD MAIN MENU
@@ -137,7 +137,8 @@ namespace Assets.Scripts.Managers
             _gameMenu.SetActive(true);
 
             if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true);
-            MouvePatientInArea.SetNewCharacterInArea();
+            PatientAnimation.ToggleDoor();
+            PatientAnimation.SetNewCharacterInArea();
             //_tipsPanel.Display();
             //if (StatesManager.isPaused) TogglePause();
         }
@@ -223,7 +224,7 @@ namespace Assets.Scripts.Managers
             StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();
-            MouvePatientInArea = GetComponent<MouvePatientInArea>();
+            PatientAnimation = GetComponent<PatientAnimation>();
 
             AudioManager.LoopBgm(true);
             AudioManager.LoopSfx(true, "AMBIANT");
@@ -248,7 +249,9 @@ namespace Assets.Scripts.Managers
         // ON START LOAD ITEM BOUGHT DURING THE LAST SESSION
         private void LoadListItems()
         {
-            Transform items = _gameMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+            // TOO CHANGE - LATER
+            Transform items = _gameMenu.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(1);
+
             string[] savedItems = PlayerPrefs.GetString("items", "").Split(";");
             for (int i = 0; i < items.childCount; i++)
             {
