@@ -1,51 +1,31 @@
 <GameData>
-  <totGames>6</totGames>
+  <totGames>8</totGames>
   <nbGameSession>0</nbGameSession>
-  <nbLevelsCompleted>17</nbLevelsCompleted>
-  <nbStepsCompleted>287</nbStepsCompleted>
-  <globalActionErrors>1066</globalActionErrors>
-  <globalDiagnosticErrors>1066</globalDiagnosticErrors>
-  <gameTime>354,4496</gameTime>
-  <currentSessionTime>20,38373</currentSessionTime>
+  <nbLevelsCompleted>26</nbLevelsCompleted>
+  <nbStepsCompleted>664</nbStepsCompleted>
+  <globalActionErrors>3219</globalActionErrors>
+  <globalDiagnosticErrors>3219</globalDiagnosticErrors>
+  <gameTime>471,0919</gameTime>
+  <currentSessionTime>12,11194</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
-      <levelAttempt>12</levelAttempt>
-      <totActionError>133</totActionError>
-      <totDiagnosticError>133</totDiagnosticError>
-      <nbStepSucced>23</nbStepSucced>
-      <nbStepFailed>22</nbStepFailed>
-      <timeSpentInLevel>2,791912</timeSpentInLevel>
+      <levelAttempt>19</levelAttempt>
+      <totActionError>240</totActionError>
+      <totDiagnosticError>240</totDiagnosticError>
+      <nbStepSucced>35</nbStepSucced>
+      <nbStepFailed>34</nbStepFailed>
+      <timeSpentInLevel>1,718989</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
-          <attempt>13</attempt>
+          <attempt>3</attempt>
           <actionAnswer>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
             <Item>Faire passer un questionnaire go / no-go</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
           </actionAnswer>
           <diagnosticAnswer>
             <Item>Rien à signaler</Item>
             <Item>Il y a un problème</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
             <Item>Rien à signaler</Item>
           </diagnosticAnswer>
           <succeeded>False</succeeded>
@@ -63,28 +43,16 @@
         <VIDEO_OTOSCOPIE>
           <attempt>1</attempt>
           <actionAnswer>
-            <Item>Faire passer un questionnaire HHIE-S et un test de Weber</Item>
-          </actionAnswer>
-          <diagnosticAnswer>
-            <Item>Tympans normaux</Item>
-          </diagnosticAnswer>
-          <succeeded>True</succeeded>
-        </VIDEO_OTOSCOPIE>
-        <WEBER_TEST>
-          <attempt>2</attempt>
-          <actionAnswer>
-            <Item>Faire passer une audiométrie</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionAnswer>
           <diagnosticAnswer>
-            <Item>Oreilles saines</Item>
-            <Item>Surdité de transmission</Item>
+            <Item>Pathologie du tympan</Item>
           </diagnosticAnswer>
-          <succeeded>False</succeeded>
-        </WEBER_TEST>
+          <succeeded>True</succeeded>
+        </VIDEO_OTOSCOPIE>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>266</totError>
+      <totError>480</totError>
     </LEVEL_0>
     <LEVEL_1>
       <levelAttempt>1</levelAttempt>
@@ -289,43 +257,23 @@
       <totError>16</totError>
     </LEVEL_4>
     <RANDOMGAME>
-      <levelAttempt>1</levelAttempt>
-      <totActionError>6</totActionError>
-      <totDiagnosticError>6</totDiagnosticError>
-      <nbStepSucced>2</nbStepSucced>
-      <nbStepFailed>2</nbStepFailed>
-      <timeSpentInLevel>11,10813</timeSpentInLevel>
+      <levelAttempt>3</levelAttempt>
+      <totActionError>11</totActionError>
+      <totDiagnosticError>11</totDiagnosticError>
+      <nbStepSucced>5</nbStepSucced>
+      <nbStepFailed>3</nbStepFailed>
+      <timeSpentInLevel>11,47155</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
-          <attempt>13</attempt>
+          <attempt>3</attempt>
           <actionAnswer>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
             <Item>Faire passer un questionnaire go / no-go</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
           </actionAnswer>
           <diagnosticAnswer>
             <Item>Rien à signaler</Item>
             <Item>Il y a un problème</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
-            <Item>Rien à signaler</Item>
             <Item>Rien à signaler</Item>
           </diagnosticAnswer>
           <succeeded>False</succeeded>
@@ -343,28 +291,16 @@
         <VIDEO_OTOSCOPIE>
           <attempt>1</attempt>
           <actionAnswer>
-            <Item>Faire passer un questionnaire HHIE-S et un test de Weber</Item>
-          </actionAnswer>
-          <diagnosticAnswer>
-            <Item>Tympans normaux</Item>
-          </diagnosticAnswer>
-          <succeeded>True</succeeded>
-        </VIDEO_OTOSCOPIE>
-        <WEBER_TEST>
-          <attempt>2</attempt>
-          <actionAnswer>
-            <Item>Faire passer une audiométrie</Item>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionAnswer>
           <diagnosticAnswer>
-            <Item>Oreilles saines</Item>
-            <Item>Surdité de transmission</Item>
+            <Item>Pathologie du tympan</Item>
           </diagnosticAnswer>
-          <succeeded>False</succeeded>
-        </WEBER_TEST>
+          <succeeded>True</succeeded>
+        </VIDEO_OTOSCOPIE>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>12</totError>
+      <totError>22</totError>
     </RANDOMGAME>
   </levelRecords>
 </GameData>

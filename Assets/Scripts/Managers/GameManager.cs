@@ -136,13 +136,19 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true);
-            PatientAnimation.ToggleDoor();
+            
             PatientAnimation.SetNewCharacterInArea();
+            Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
+
             //_tipsPanel.Display();
             //if (StatesManager.isPaused) TogglePause();
         }
         
+        private void EnableTutorial()
+        {
+            if (Instance.GameData.FisrtGameSession()) _isTutoriaActive.SetActive(true); 
+        }
+
         // SAVE BOUGHT ITEM IN PLAYERPREFS
         public static void AddBoughtItem(string name)
         {

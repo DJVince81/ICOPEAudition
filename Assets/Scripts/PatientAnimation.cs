@@ -1,5 +1,6 @@
 using Assets.Scripts.Managers;
 using DG.Tweening;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,13 +12,24 @@ namespace Assets.Scripts
         // Sprite List
         [Header("Sprite characters list")]
         [SerializeField] private Sprite[] characterSprites;
+        // Animation size variable
+        [SerializeField] private float scaleFactor = 1.15f;
+        [SerializeField] private float animationDuration = 2f;
+       
+        private Vector2 defaultImageSize; 
         
         // Interaction Area Variable
         [Header("Patient selection area")]
         [SerializeField] private RectTransform interactionArea;
-        [SerializeField] private GameObject imageCharacter;
+        [SerializeField] private RectTransform imageCharacter;
+       
         private Vector2 targetPosition;
 
+        [Header("Animation patient area")]
+        [SerializeField] public RectTransform spawnPatientArea;
+        
+        private readonly float imageRatio = 1.25f;
+        
         [Header("Doors")]
         [SerializeField] private RectTransform leftDoor;
         [SerializeField] private RectTransform rightDoor;
@@ -27,31 +39,45 @@ namespace Assets.Scripts
         public float duration = 0.5f;
         private bool isOpen = false;
 
+        [Header("FadeAnimation")]
+        [SerializeField] public CanvasGroup fadePanel;
 
-        // Animation size variable
-        [SerializeField] private float scaleFactor = 1.15f;
-        [SerializeField] private float animationDuration = 2f;
-
-        [Header("Animation patient area")]
-        [SerializeField] public RectTransform spawnPatientArea;
 
         /// <summary>
         /// Set a new target position to the sprite to stimule life in the UI.
         /// </summary>
-        private void SetNewTargetPosition(RectTransform area)
+        private void SetNewTargetPosition(RectTransform targetArea)
         {
-            float panelWidth = area.GetComponent<RectTransform>().rect.width;
-            float panelHeight = area.GetComponent<RectTransform>().rect.height;
+            // Set the sprite to new target (spawnArea & interactionArea)
+            if (imageCharacter.transform.parent != targetArea)
+            {
+                imageCharacter.SetParent(targetArea);
+            }
 
-            float imageWidth = imageCharacter.GetComponent<RectTransform>().rect.width;
-            float imageHeight = imageCharacter.GetComponent<RectTransform>().rect.height;
+            // Reduce the width and height of the image in the spawnArea else we keep the default size of the image.
+            if (targetArea.name == "SpawnArea")
+            {
+                defaultImageSize = imageCharacter.sizeDelta;
+                imageCharacter.sizeDelta = defaultImageSize / imageRatio;
+            }
+            else
+            {
+                imageCharacter.sizeDelta = defaultImageSize;
+            }
+
+            // Move the sprite around the area
+            float panelWidth = targetArea.GetComponent<RectTransform>().rect.width;
+            float panelHeight = targetArea.GetComponent<RectTransform>().rect.height;
+
+            float imageWidth = imageCharacter.rect.width;
+            float imageHeight = imageCharacter.rect.height;
 
             float randomX = Random.Range(-panelWidth / 2 + imageWidth / 2, panelWidth / 2 - imageWidth / 2);
             float randomY = Random.Range(-panelHeight / 2 + imageHeight / 2, panelHeight / 2 - imageHeight / 2);
 
             targetPosition = new Vector2(randomX, randomY);
 
-            imageCharacter.GetComponent<RectTransform>().anchoredPosition = targetPosition;
+            imageCharacter.anchoredPosition = targetPosition;
         }
 
         /// <summary>
@@ -69,7 +95,7 @@ namespace Assets.Scripts
             Sprite newSprite = characterSprites[randIndex];
             imageCharacter.GetComponent<Image>().sprite = newSprite;
             // Set the gameObject rectTransfor with the new sprite size
-            imageCharacter.GetComponent<RectTransform>().sizeDelta = new Vector2(newSprite.rect.width, newSprite.rect.height);
+            imageCharacter.sizeDelta = new Vector2(newSprite.rect.width, newSprite.rect.height);
         }
 
         /// <summary>
@@ -77,39 +103,72 @@ namespace Assets.Scripts
         /// </summary>
         private void AnimationSizeImage()
         {
-            RectTransform rectTransform = imageCharacter.GetComponent<RectTransform>();
+            RectTransform rectTransform = imageCharacter;
             rectTransform.DOSizeDelta(rectTransform.sizeDelta * scaleFactor, animationDuration / 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetId("sizeAnim");
         }
 
+        /// <summary>
+        /// Stop the Dotween Yo-yo animation on the character sprite.
+        /// </summary>
         public static void StopAnimation()
         {
             DOTween.Kill("sizeAnim");
         }
 
         /// <summary>
-        /// Call when loading the waiting_room, call private function :
-        /// SetNewTargetPosition,AttachFunction, SetNewSprite.
+        /// Open/Close doors between 0 and a targetAngle (openAngle)
         /// </summary>
-        public void SetNewCharacterInArea()
-        {
-            SetNewSprite();
-            SetNewTargetPosition(spawnPatientArea);
-            
-            //AnimationSizeImage();
-        }
-
-        // Load -> sprite -> SetPositionPersoDoor -> OpenDoor -> blackTransition -> SetPositionOnArea -> CloseDoor
-        
-        // OPEN CLOSE DOOR
         public void ToggleDoor()
         {
             // move door postion and mor angle (-145/145 degree)
             float targetAngle = isOpen ? 0f : openAngle;
-            rightDoor.DOLocalRotate(new Vector3(0, targetAngle, 0), duration).SetEase(Ease.InOutCubic);
-            leftDoor.DOLocalRotate(new Vector3(0, -targetAngle, 0), duration).SetEase (Ease.InOutCubic);
+            rightDoor.rotation = Quaternion.Euler(0, targetAngle, 0);
+            leftDoor.rotation = Quaternion.Euler(0, -targetAngle, 0);
             isOpen = !isOpen;
         }
+        
+    
+        /// <summary>
+        /// Play a sort of animations like open the doors and spawn the 'patient' in the doors area then fade out the screen by invoking 'FadeOut' function after a delai.
+        /// </summary>
+        public void SetNewCharacterInArea()
+        {
+            imageCharacter.GetComponent<Button>().enabled = false;
+            ToggleDoor();
+            SetNewSprite();
+            SetNewTargetPosition(spawnPatientArea);
+            Invoke(nameof(FadeOut), 1.5f);
+        }
 
-        //public void PlayAnimation()
+        /// <summary>
+        /// Fade out animation with DOTWeen and invoking 'ContinueSetNewCharacter' function after a short delai 1 sec.
+        /// Black to transparency
+        /// </summary>
+        private void FadeOut()
+        {
+            fadePanel.DOFade(0f, 1f).SetEase(Ease.Linear);
+            Invoke(nameof(ContinueSetNewCharacter), 1f);
+        }
+
+
+        /// <summary>
+        /// Play the last animations like close door and set new patient in the interaction area then invoking 'FadeIn' function after a delai.
+        /// </summary>
+        private void ContinueSetNewCharacter()
+        {
+            ToggleDoor();
+            SetNewTargetPosition(interactionArea);
+            AnimationSizeImage();
+            Invoke(nameof(FadeIn), 1f);
+        }
+        /// <summary>
+        /// Fade in animation.
+        /// Transparency to black.
+        /// </summary>
+        private void FadeIn()
+        {
+            fadePanel.DOFade(1f, 1f).SetEase(Ease.Linear);
+            imageCharacter.GetComponent<Button>().enabled = true;
+        }
     }
 }
