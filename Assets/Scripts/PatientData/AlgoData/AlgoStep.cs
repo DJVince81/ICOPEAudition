@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PatientData.AlgoData
 {
+    [System.Serializable]
     public class AlgoStep
     {
         public AlgoType type;

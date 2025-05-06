@@ -1,5 +1,4 @@
-using Assets.Scripts.Managers;
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.PatientData.AlgoData
