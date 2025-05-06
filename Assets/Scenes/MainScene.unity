@@ -1939,15 +1939,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4b222472f508bad4595803c62b4bb82c, type: 3}
   - {fileID: -5748631628606466991, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
   - {fileID: 8865871069334193953, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
+  scaleFactor: 1.05
+  animationDuration: 2
   interactionArea: {fileID: 737265746}
   imageCharacter: {fileID: 1276246252}
+  spawnPatientArea: {fileID: 684249836}
   leftDoor: {fileID: 1706204876}
   rightDoor: {fileID: 1005348901}
   openAngle: 90
   duration: 0.5
-  scaleFactor: 1.05
-  animationDuration: 2
-  spawnPatientArea: {fileID: 684249836}
+  fadePanel: {fileID: 1142254255}
 --- !u!224 &737265746 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7519373992667295897, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
@@ -3453,6 +3454,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137494519}
   m_CullTransparentMesh: 1
+--- !u!225 &1142254255 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6053691750688294733, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}
+  m_PrefabInstance: {fileID: 8963968612687407438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159711439
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,12 @@
 <GameData>
-  <totGames>8</totGames>
-  <nbGameSession>0</nbGameSession>
-  <nbLevelsCompleted>26</nbLevelsCompleted>
-  <nbStepsCompleted>664</nbStepsCompleted>
-  <globalActionErrors>3219</globalActionErrors>
-  <globalDiagnosticErrors>3219</globalDiagnosticErrors>
-  <gameTime>471,0919</gameTime>
-  <currentSessionTime>12,11194</currentSessionTime>
+  <totGames>9</totGames>
+  <nbGameSession>1</nbGameSession>
+  <nbLevelsCompleted>27</nbLevelsCompleted>
+  <nbStepsCompleted>713</nbStepsCompleted>
+  <globalActionErrors>3494</globalActionErrors>
+  <globalDiagnosticErrors>3494</globalDiagnosticErrors>
+  <gameTime>491,0005</gameTime>
+  <currentSessionTime>19,9086</currentSessionTime>
   <levelRecords>
     <LEVEL_0>
       <levelAttempt>19</levelAttempt>
@@ -257,50 +257,38 @@
       <totError>16</totError>
     </LEVEL_4>
     <RANDOMGAME>
-      <levelAttempt>3</levelAttempt>
-      <totActionError>11</totActionError>
-      <totDiagnosticError>11</totDiagnosticError>
-      <nbStepSucced>5</nbStepSucced>
-      <nbStepFailed>3</nbStepFailed>
-      <timeSpentInLevel>11,47155</timeSpentInLevel>
+      <levelAttempt>4</levelAttempt>
+      <totActionError>14</totActionError>
+      <totDiagnosticError>14</totDiagnosticError>
+      <nbStepSucced>6</nbStepSucced>
+      <nbStepFailed>4</nbStepFailed>
+      <timeSpentInLevel>4,393137</timeSpentInLevel>
       <stepRecords>
         <WISPER_TEST>
-          <attempt>3</attempt>
+          <attempt>2</attempt>
           <actionAnswer>
             <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
             <Item>Faire passer un questionnaire go / no-go</Item>
-            <Item>Poursuivre le suivi habituel (prochain rendez-vous dans 6 mois)</Item>
           </actionAnswer>
           <diagnosticAnswer>
             <Item>Rien à signaler</Item>
             <Item>Il y a un problème</Item>
-            <Item>Rien à signaler</Item>
           </diagnosticAnswer>
           <succeeded>False</succeeded>
         </WISPER_TEST>
         <QUESTIONARY>
           <attempt>1</attempt>
           <actionAnswer>
-            <Item>Faire passer une vidéo-otoscopie</Item>
-          </actionAnswer>
-          <diagnosticAnswer>
-            <Item>Pathologie simple</Item>
-          </diagnosticAnswer>
-          <succeeded>True</succeeded>
-        </QUESTIONARY>
-        <VIDEO_OTOSCOPIE>
-          <attempt>1</attempt>
-          <actionAnswer>
             <Item>Renvoyer le patient vers un ORL</Item>
           </actionAnswer>
           <diagnosticAnswer>
-            <Item>Pathologie du tympan</Item>
+            <Item>Pathologie complexe</Item>
           </diagnosticAnswer>
           <succeeded>True</succeeded>
-        </VIDEO_OTOSCOPIE>
+        </QUESTIONARY>
       </stepRecords>
       <successRate>0</successRate>
-      <totError>22</totError>
+      <totError>28</totError>
     </RANDOMGAME>
   </levelRecords>
 </GameData>
