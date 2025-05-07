@@ -1,31 +1,65 @@
-using System.Globalization;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.PatientData.AlgoData
 {
+    public enum AlgoType
+    {
+        Case_presentation,
+        Wisper_test,
+        Questionnary,
+        Additional_questionnaire,
+        Otoscopy,
+        Weber_test,
+        HHIES_test,
+        Audiometry,
+    }
+
+    [System.Serializable]
+    public class AnswerData
+    {
+        public string answeText;
+        public bool isCorrect;
+        [TextArea]
+        public string correctionText;
+    }
+
+    [System.Serializable]
+    public class PhaseData
+    {
+        [TextArea]
+        public string questionText;
+        public List<AnswerData> answerData;
+
+        public bool InAnswerCorrect(int index)
+        {
+            if (index < 0 || index >= answerData.Count) return false;
+            return answerData[index].isCorrect;
+        }
+
+        public string GetCorrection(int index)
+        {
+            if (index < 0 || index >= answerData.Count) return "";
+            return answerData[index].correctionText;
+        }
+    }
+
     [System.Serializable]
     public class AlgoStep
     {
         public AlgoType type;
-        public string stepDescription;
 
-        //To continue
+        [Header("Contexte medicale")]
+        [TextArea]
+        public string contextDescription;
 
-        //Condition de validation
-        public bool correctDiagnoticAnswer;
-        public bool correctActionAnswer;
+        [Header("Phase 1: Diagnotic")]
+        public PhaseData diagnosticPhase;
 
+        [Header("Phase 2: Action")]
+        public PhaseData actionPhase;
+
+        public bool IsOptional;
         public bool isTerminatingStep;
-    }
-
-    public enum AlgoType
-    {
-        StartTest,
-        WisperTest,
-        Questionnary,
-        Additional_questionnaire,
-        Otoscopy,
-        Audiometry,
-        WeberTest,
     }
 }
