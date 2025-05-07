@@ -19,6 +19,12 @@ namespace Assets.Scripts.PatientData
 
         public void OnDiagnoticAnswer(int index)
         {
+            if (!step.hasDiagnosticPhase)
+            {
+                Debug.LogWarning("Pas de phase de diagnotics sur cette étape");
+                return;
+            }
+            
             if (step.diagnosticPhase.InAnswerCorrect(index))
                 Debug.Log("Bon diagnotic");
             else
@@ -32,6 +38,12 @@ namespace Assets.Scripts.PatientData
 
         public void OnActionAnwer(int index)
         {
+            if (!step.hasActionPhase)
+            {
+                Debug.LogWarning("Pas de phase de choix d'action sur cette étape");
+                return;
+            }
+            
             if (step.actionPhase.InAnswerCorrect(index))
                 Debug.Log("Bonne reponse");
             else

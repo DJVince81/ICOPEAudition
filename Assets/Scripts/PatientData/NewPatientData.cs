@@ -1,3 +1,5 @@
+using Assets.Scripts.PatientData.AlgoData;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.PatientData
@@ -17,14 +19,34 @@ namespace Assets.Scripts.PatientData
         public string occupationalActivities;
 
         [Header("Context")]
+        [TextArea]
         public string context;
 
         [Header("Autonomies")]
-        public string[] autonomies;
+        public List<NamedValue> autonomies;
 
         [Header("Medical History")]
+        [TextArea]
         public string medicalHistory;
 
-        // each steps of algorithm
+        [Header("Algoritm steps")]
+        public List<AlgoStep> steps;
+
+        [Header("Questionaire Go-No-Go")]
+        public List<PatientQuestionnaireSession> questionnaireSessions;
+    }
+
+    [System.Serializable]
+    public class NamedValue
+    {
+        public string name;
+        public string value;
+    }
+
+    [System.Serializable]
+    public class PatientQuestionnaireSession
+    {
+        public QuestionnaireData source;
+        public List<QuestionAnswer> reponses;
     }
 }

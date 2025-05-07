@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0049b67a3b555774f9c393f9988504b7, type: 3}
+  m_Name: Michel
+  m_EditorClassIdentifier: 
+  surname: Dupont
+  fisrtName: Michel
+  age: 68
+  familySituation: "Mari\xE9 avec 3 enfants et retrait\xE9 de la SNCF."
+  occupationalActivities: Il adore jardiner et raconter ses voyages en trains.
+  context: "\xC0 la suite de la lecture d\u2019un article dans le journal, il a r\xE9alis\xE9
+    un auto-d\xE9pistage ICOPE. La synth\xE8se de l\u2019\xE9valuation signale qu\u2019il
+    y a peut-\xEAtre un d\xE9clin de l\u2019audition. Il a constat\xE9 aussi qu\u2019il
+    avait une g\xEAne auditive r\xE9cente dans le bruit. L\u2019interpr\xE9tation
+    de l\u2019alerte r\xE9alis\xE9e par un professionnel de sant\xE9 ICOPE, confirme
+    cette suspicion de d\xE9clin et vous l\u2019adresse pour une \xE9valuation auditive.
+    Vous le rencontrez pour la premi\xE8re fois.\r\n"
+  autonomies:
+  - name: ADL
+    value: 6/6
+  - name: IALD
+    value: 8/8
+  medicalHistory: "Dans ses ant\xE9c\xE9dents on retrouve une Hypertension art\xE9rielle
+    trait\xE9e par Ramipril 5mg.\r"
+  steps:
+  - type: 0
+    contextDescription: "\xC0 la suite de la lecture d\u2019un article dans le journal,
+      il a r\xE9alis\xE9 un auto-d\xE9pistage ICOPE. La synth\xE8se de l\u2019\xE9valuation
+      signale qu\u2019il y a peut-\xEAtre un d\xE9clin de l\u2019audition. Il a constat\xE9
+      aussi qu\u2019il avait une g\xEAne auditive r\xE9cente dans le bruit. L\u2019interpr\xE9tation
+      de l\u2019alerte r\xE9alis\xE9e par un professionnel de sant\xE9 ICOPE, confirme
+      cette suspicion de d\xE9clin et vous l\u2019adresse pour une \xE9valuation
+      auditive. Vous le rencontrez pour la premi\xE8re fois.\r"
+    questionnaireData: {fileID: 0}
+    hasDiagnosticPhase: 0
+    diagnosticPhase:
+      questionText: 
+      answerData: []
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answeText: "Je r\xE9alise une vid\xE9o-otoscopie"
+        isCorrect: 0
+        correctionText: "Il est important de bien respecter l\u2019algorithme d\xE9cisionnel.
+          \r\nLe rep\xE9rage a \xE9t\xE9 fait en autod\xE9pistage. La premi\xE8re
+          \xE9tape du Step 2 vise donc \xE0 confirmer la suspicion de surdit\xE9
+          d\xE9tect\xE9e lors du rep\xE9rage. Pour cela, je peux utiliser :\r\n-
+          Le test de chuchotement\r\n- Le test H\xF6ra\r\n- Le questionnaire HHIE-S\r\nSi
+          la suspicion n\u2019est pas confirm\xE9e, il n\u2019est pas n\xE9cessaire
+          de poursuivre l\u2019\xE9valuation.\r\n"
+      - answeText: "Je v\xE9rifie ses oreilles"
+        isCorrect: 0
+        correctionText: "Il est important de bien respecter l\u2019algorithme d\xE9cisionnel.
+          \r\nLe rep\xE9rage a \xE9t\xE9 fait en autod\xE9pistage. La premi\xE8re
+          \xE9tape du Step 2 vise donc \xE0 confirmer la suspicion de surdit\xE9
+          d\xE9tect\xE9e lors du rep\xE9rage. Pour cela, je peux utiliser :\r\n-
+          Le test de chuchotement\r\n- Le test H\xF6ra\r\n- Le questionnaire HHIE-S\r\nSi
+          la suspicion n\u2019est pas confirm\xE9e, il n\u2019est pas n\xE9cessaire
+          de poursuivre l\u2019\xE9valuation.\r\n"
+      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL
+        isCorrect: 0
+        correctionText: "Le patient est un bon candidat pour l\u2019\xE9valuation
+          ICOPE : il a plus de 60 ans, son autonomie est pr\xE9serv\xE9e, le d\xE9pistage
+          semble \xEAtre anormal.\r\nA ce stade, aucun drapeau rouge* identifi\xE9,
+          je poursuis son \xE9valuation.\r\n\r\nSi la suspicion n\u2019est pas confirm\xE9e,
+          il n\u2019est pas n\xE9cessaire de poursuivre l\u2019\xE9valuation.\r"
+      - answeText: "Je r\xE9alise le test de chuchotement"
+        isCorrect: 1
+        correctionText: "le patient ayant proc\xE9d\xE9 \xE0 un auto-d\xE9pistage
+          ICOPE, le test de chuchotement n\u2019a pas \xE9t\xE9 r\xE9alis\xE9. Vous
+          commencez par cette \xE9tape pour vous assurer qu\u2019il y a bien eu une
+          anomalie \xE0 l\u2019\xE9tape 1. \r\r\nA ce stade, aucun drapeau rouge*
+          identifi\xE9, je poursuis son \xE9valuation.\r\n\r\nSi la suspicion n\u2019est
+          pas confirm\xE9e, il n\u2019est pas n\xE9cessaire de poursuivre l\u2019\xE9valuation.\r"
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 1
+    contextDescription: "Je n'ai entendu aucun mot \xE0 droite. J'ai entendu 2 mots
+      \xE0 gauche.\r"
+    questionnaireData: {fileID: 0}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 2 mots
+          du c\xF4t\xE9 droit."
+        isCorrect: 0
+        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
+          : anormal."
+      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 3/4
+          mots des 2 c\xF4t\xE9s."
+        isCorrect: 1
+        correctionText: "Le patient n\u2019a pas r\xE9p\xE9t\xE9 les 3/4 mots sur
+          les 2 oreilles\_ce qui signifie que le test de chuchotement est anormal.\r"
+      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL.
+        isCorrect: 0
+        correctionText: "Ici on confirme que le d\xE9pistage est pathologique, et
+          qu\u2019il ne s\u2019agissait pas d\u2019un faux positif (mauvaises conditions
+          de r\xE9alisation, mauvaise compr\xE9hension des consignes, etc)\r\n\r\nOn
+          peut donc poursuivre avec le questionnaire Go-No-Go\r\n\r"
+      - answeText: Le test est normal
+        isCorrect: 0
+        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
+          : anormal.\n\nLe test aurait \xE9t\xE9 normal si le patient avait r\xE9p\xE9t\xE9
+          les 3 mots de chaque c\xF4t\xE9."
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answeText: Je le laisse repartir chez lui.
+        isCorrect: 0
+        correctionText: "Le test de chuchotement est anormal, on peut donc commencer
+          le questionnaire Go-No-Go afin de rep\xE9rer des signaux alertant sur une
+          probable surdit\xE9 complexe, diff\xE9rente d'une simple prebyacousie dans
+          sa pr\xE9sentation."
+      - answeText: "Je r\xE9alise le test de Weber."
+        isCorrect: 0
+        correctionText: "Avant de d\xE9marer l'\xE9valuation audition, on doit interroger
+          le participant afin de rep\xE9rer les signaux alertant sur des \xE9ventuels
+          dignostics diff\xE9rentiels (questionnaire Go-No-Go).\r\n"
+      - answeText: Je fais passer le questionnaire Go-No-Go.
+        isCorrect: 1
+        correctionText: "Le test de chuchotement \xE9tait anormal, nous poursuivons
+          le d\xE9roul\xE9 de l\u2019\xE9tape 2 d\u2019ICOPE Audition, avec le questionnaire
+          Go-No-Go.\r\r"
+      - answeText: "Je lui propose l\u2019application H\xD6RA pour se retester dans
+          6 mois."
+        isCorrect: 1
+        correctionText: "Si le test de chuchotement avait \xE9t\xE9 normal, on aurait
+          pu conclure a un faux positif du d\xE9pistage. On aurait alors rassur\xE9
+          le participant, en lui rappelant les consignes de pr\xE9vention et de bonne
+          hygi\xE8ne auriculaire. Un nouveau d\xE9pistage aurait alors \xE9t\xE9
+          propos\xE9, par exemple avec H\xF6ra.\r\n\r\nIci : le test est anormal,
+          il faut donc poursuivre l\u2019\xE9valuation auditive en commen\xE7ant
+          par l\u2019interrogatoire (\xE0 l\u2019aide du questionnaire Go-No Go).\n"
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 2
+    contextDescription: 
+    questionnaireData: {fileID: 0}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 2 mots
+          du c\xF4t\xE9 droit."
+        isCorrect: 0
+        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
+          : anormal."
+      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 3/4
+          mots des 2 c\xF4t\xE9s."
+        isCorrect: 1
+        correctionText: "Le patient n\u2019a pas r\xE9p\xE9t\xE9 les 3/4 mots sur
+          les 2 oreilles\_ce qui signifie que le test de chuchotement est anormal.\r"
+      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL.
+        isCorrect: 0
+        correctionText: "Ici on confirme que le d\xE9pistage est pathologique, et
+          qu\u2019il ne s\u2019agissait pas d\u2019un faux positif (mauvaises conditions
+          de r\xE9alisation, mauvaise compr\xE9hension des consignes, etc)\r\n\r\nOn
+          peut donc poursuivre avec le questionnaire Go-No-Go\r\n\r"
+      - answeText: Le test est normal
+        isCorrect: 0
+        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
+          : anormal.\n\nLe test aurait \xE9t\xE9 normal si le patient avait r\xE9p\xE9t\xE9
+          les 3 mots de chaque c\xF4t\xE9."
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answeText: Je le laisse repartir chez lui.
+        isCorrect: 0
+        correctionText: "Le test de chuchotement est anormal, on peut donc commencer
+          le questionnaire Go-No-Go afin de rep\xE9rer des signaux alertant sur une
+          probable surdit\xE9 complexe, diff\xE9rente d'une simple prebyacousie dans
+          sa pr\xE9sentation."
+      - answeText: "Je r\xE9alise le test de Weber."
+        isCorrect: 0
+        correctionText: "Avant de d\xE9marer l'\xE9valuation audition, on doit interroger
+          le participant afin de rep\xE9rer les signaux alertant sur des \xE9ventuels
+          dignostics diff\xE9rentiels (questionnaire Go-No-Go).\r\n"
+      - answeText: Je fais passer le questionnaire Go-No-Go.
+        isCorrect: 1
+        correctionText: "Le test de chuchotement \xE9tait anormal, nous poursuivons
+          le d\xE9roul\xE9 de l\u2019\xE9tape 2 d\u2019ICOPE Audition, avec le questionnaire
+          Go-No-Go.\r\r"
+      - answeText: "Je lui propose l\u2019application H\xD6RA pour se retester dans
+          6 mois."
+        isCorrect: 1
+        correctionText: "Si le test de chuchotement avait \xE9t\xE9 normal, on aurait
+          pu conclure a un faux positif du d\xE9pistage. On aurait alors rassur\xE9
+          le participant, en lui rappelant les consignes de pr\xE9vention et de bonne
+          hygi\xE8ne auriculaire. Un nouveau d\xE9pistage aurait alors \xE9t\xE9
+          propos\xE9, par exemple avec H\xF6ra.\r\n\r\nIci : le test est anormal,
+          il faut donc poursuivre l\u2019\xE9valuation auditive en commen\xE7ant
+          par l\u2019interrogatoire (\xE0 l\u2019aide du questionnaire Go-No Go).\n"
+    IsOptional: 0
+    isTerminatingStep: 0

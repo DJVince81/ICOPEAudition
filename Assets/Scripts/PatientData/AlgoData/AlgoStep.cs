@@ -27,7 +27,6 @@ namespace Assets.Scripts.PatientData.AlgoData
     [System.Serializable]
     public class PhaseData
     {
-        [TextArea]
         public string questionText;
         public List<AnswerData> answerData;
 
@@ -52,11 +51,16 @@ namespace Assets.Scripts.PatientData.AlgoData
         [Header("Contexte medicale")]
         [TextArea]
         public string contextDescription;
+        
+        [Header("Si type == Questionnary")]
+        public QuestionnaireData questionnaireData;
 
         [Header("Phase 1: Diagnotic")]
+        public bool hasDiagnosticPhase;
         public PhaseData diagnosticPhase;
 
         [Header("Phase 2: Action")]
+        public bool hasActionPhase;
         public PhaseData actionPhase;
 
         public bool IsOptional;
