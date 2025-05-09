@@ -18,10 +18,24 @@ namespace Assets.Scripts.PatientData.AlgoData
     [System.Serializable]
     public class AnswerData
     {
-        public string answeText;
+        public string answerText;
         public bool isCorrect;
         [TextArea]
         public string correctionText;
+        public List<Sprite> sprites;
+    }
+
+    [System.Serializable]
+    public class PatientQuestionAnswer
+    {
+        public QuestionData question;
+        public YesNo patientAnswer;
+    }
+
+    [System.Serializable]
+    public class PatientVideoOtoscopie
+    {
+        public Sprite videoOstoscopie;
     }
 
     [System.Serializable]
@@ -29,6 +43,7 @@ namespace Assets.Scripts.PatientData.AlgoData
     {
         public string questionText;
         public List<AnswerData> answerData;
+        
 
         public bool InAnswerCorrect(int index)
         {
@@ -52,8 +67,12 @@ namespace Assets.Scripts.PatientData.AlgoData
         [TextArea]
         public string contextDescription;
         
-        [Header("Si type == Questionnary")]
+        [Header("Si type: Questionnary")]
         public QuestionnaireData questionnaireData;
+        public List<PatientQuestionAnswer> predefinedAnwser;
+
+        [Header("Si type: Video Otoscopie ou test HHIES")]
+        public PatientVideoOtoscopie videoOstoscopie;
 
         [Header("Phase 1: Diagnotic")]
         public bool hasDiagnosticPhase;

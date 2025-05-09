@@ -41,6 +41,9 @@ MonoBehaviour:
       cette suspicion de d\xE9clin et vous l\u2019adresse pour une \xE9valuation
       auditive. Vous le rencontrez pour la premi\xE8re fois.\r"
     questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 0}
     hasDiagnosticPhase: 0
     diagnosticPhase:
       questionText: 
@@ -49,7 +52,7 @@ MonoBehaviour:
     actionPhase:
       questionText: Ques faites-vous ?
       answerData:
-      - answeText: "Je r\xE9alise une vid\xE9o-otoscopie"
+      - answerText: 
         isCorrect: 0
         correctionText: "Il est important de bien respecter l\u2019algorithme d\xE9cisionnel.
           \r\nLe rep\xE9rage a \xE9t\xE9 fait en autod\xE9pistage. La premi\xE8re
@@ -58,7 +61,8 @@ MonoBehaviour:
           Le test de chuchotement\r\n- Le test H\xF6ra\r\n- Le questionnaire HHIE-S\r\nSi
           la suspicion n\u2019est pas confirm\xE9e, il n\u2019est pas n\xE9cessaire
           de poursuivre l\u2019\xE9valuation.\r\n"
-      - answeText: "Je v\xE9rifie ses oreilles"
+        sprites: []
+      - answerText: 
         isCorrect: 0
         correctionText: "Il est important de bien respecter l\u2019algorithme d\xE9cisionnel.
           \r\nLe rep\xE9rage a \xE9t\xE9 fait en autod\xE9pistage. La premi\xE8re
@@ -67,14 +71,16 @@ MonoBehaviour:
           Le test de chuchotement\r\n- Le test H\xF6ra\r\n- Le questionnaire HHIE-S\r\nSi
           la suspicion n\u2019est pas confirm\xE9e, il n\u2019est pas n\xE9cessaire
           de poursuivre l\u2019\xE9valuation.\r\n"
-      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL
+        sprites: []
+      - answerText: 
         isCorrect: 0
         correctionText: "Le patient est un bon candidat pour l\u2019\xE9valuation
           ICOPE : il a plus de 60 ans, son autonomie est pr\xE9serv\xE9e, le d\xE9pistage
           semble \xEAtre anormal.\r\nA ce stade, aucun drapeau rouge* identifi\xE9,
           je poursuis son \xE9valuation.\r\n\r\nSi la suspicion n\u2019est pas confirm\xE9e,
           il n\u2019est pas n\xE9cessaire de poursuivre l\u2019\xE9valuation.\r"
-      - answeText: "Je r\xE9alise le test de chuchotement"
+        sprites: []
+      - answerText: 
         isCorrect: 1
         correctionText: "le patient ayant proc\xE9d\xE9 \xE0 un auto-d\xE9pistage
           ICOPE, le test de chuchotement n\u2019a pas \xE9t\xE9 r\xE9alis\xE9. Vous
@@ -82,59 +88,67 @@ MonoBehaviour:
           anomalie \xE0 l\u2019\xE9tape 1. \r\r\nA ce stade, aucun drapeau rouge*
           identifi\xE9, je poursuis son \xE9valuation.\r\n\r\nSi la suspicion n\u2019est
           pas confirm\xE9e, il n\u2019est pas n\xE9cessaire de poursuivre l\u2019\xE9valuation.\r"
+        sprites: []
     IsOptional: 0
     isTerminatingStep: 0
   - type: 1
     contextDescription: "Je n'ai entendu aucun mot \xE0 droite. J'ai entendu 2 mots
       \xE0 gauche.\r"
     questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
       answerData:
-      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 2 mots
-          du c\xF4t\xE9 droit."
+      - answerText: 
         isCorrect: 0
         correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
           : anormal."
-      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 3/4
-          mots des 2 c\xF4t\xE9s."
+        sprites: []
+      - answerText: 
         isCorrect: 1
         correctionText: "Le patient n\u2019a pas r\xE9p\xE9t\xE9 les 3/4 mots sur
           les 2 oreilles\_ce qui signifie que le test de chuchotement est anormal.\r"
-      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL.
+        sprites: []
+      - answerText: 
         isCorrect: 0
         correctionText: "Ici on confirme que le d\xE9pistage est pathologique, et
           qu\u2019il ne s\u2019agissait pas d\u2019un faux positif (mauvaises conditions
           de r\xE9alisation, mauvaise compr\xE9hension des consignes, etc)\r\n\r\nOn
           peut donc poursuivre avec le questionnaire Go-No-Go\r\n\r"
-      - answeText: Le test est normal
+        sprites: []
+      - answerText: 
         isCorrect: 0
         correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
           : anormal.\n\nLe test aurait \xE9t\xE9 normal si le patient avait r\xE9p\xE9t\xE9
           les 3 mots de chaque c\xF4t\xE9."
+        sprites: []
     hasActionPhase: 1
     actionPhase:
       questionText: Ques faites-vous ?
       answerData:
-      - answeText: Je le laisse repartir chez lui.
+      - answerText: 
         isCorrect: 0
         correctionText: "Le test de chuchotement est anormal, on peut donc commencer
           le questionnaire Go-No-Go afin de rep\xE9rer des signaux alertant sur une
           probable surdit\xE9 complexe, diff\xE9rente d'une simple prebyacousie dans
           sa pr\xE9sentation."
-      - answeText: "Je r\xE9alise le test de Weber."
+        sprites: []
+      - answerText: 
         isCorrect: 0
         correctionText: "Avant de d\xE9marer l'\xE9valuation audition, on doit interroger
           le participant afin de rep\xE9rer les signaux alertant sur des \xE9ventuels
           dignostics diff\xE9rentiels (questionnaire Go-No-Go).\r\n"
-      - answeText: Je fais passer le questionnaire Go-No-Go.
+        sprites: []
+      - answerText: 
         isCorrect: 1
         correctionText: "Le test de chuchotement \xE9tait anormal, nous poursuivons
           le d\xE9roul\xE9 de l\u2019\xE9tape 2 d\u2019ICOPE Audition, avec le questionnaire
           Go-No-Go.\r\r"
-      - answeText: "Je lui propose l\u2019application H\xD6RA pour se retester dans
-          6 mois."
+        sprites: []
+      - answerText: 
         isCorrect: 1
         correctionText: "Si le test de chuchotement avait \xE9t\xE9 normal, on aurait
           pu conclure a un faux positif du d\xE9pistage. On aurait alors rassur\xE9
@@ -143,65 +157,409 @@ MonoBehaviour:
           propos\xE9, par exemple avec H\xF6ra.\r\n\r\nIci : le test est anormal,
           il faut donc poursuivre l\u2019\xE9valuation auditive en commen\xE7ant
           par l\u2019interrogatoire (\xE0 l\u2019aide du questionnaire Go-No Go).\n"
+        sprites: []
     IsOptional: 0
     isTerminatingStep: 0
   - type: 2
-    contextDescription: 
-    questionnaireData: {fileID: 0}
-    hasDiagnosticPhase: 1
+    contextDescription: "\r"
+    questionnaireData: {fileID: 11400000, guid: a0759d5e048f0664aa15389120c01ca3, type: 2}
+    predefinedAnwser:
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    - question:
+        questionText: 
+      patientAnswer: 1
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 0}
+    hasDiagnosticPhase: 0
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
       answerData:
-      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 2 mots
-          du c\xF4t\xE9 droit."
+      - answerText: "Ses r\xE9ponses montrent des signes d\u2019un trouble neurologique
+          avanc\xE9. "
         isCorrect: 0
-        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
-          : anormal."
-      - answeText: "Il y a une anomalie car il n\u2019a pas su restituer les 3/4
-          mots des 2 c\xF4t\xE9s."
+        correctionText: "Non, le questionnaire ne r\xE9v\xE8le simplement aucun signal
+          d\u2019alerte quant \xE0 un cas complexe .\r\n\r\nIl ne s\u2019agit pas
+          d\u2019un questionnaire de rep\xE9rage des troubles cognitifs, plut\xF4t
+          d\u2019un outil d\u2019aide \xE0 l\u2019interrogatoire, afin de ne pas
+          oublier les situations fortement \xE9vocatrices d\u2019une surdit\xE9 complexe
+          qui justifieraient alors d\u2019un adressage ORL.\r\n"
+        sprites: []
+      - answerText: "Il n\u2019a r\xE9pondu que des \"non\", ce qui indique une suspicion
+          de cas simple."
         isCorrect: 1
-        correctionText: "Le patient n\u2019a pas r\xE9p\xE9t\xE9 les 3/4 mots sur
-          les 2 oreilles\_ce qui signifie que le test de chuchotement est anormal.\r"
-      - answeText: Je ne peux rien faire, je renvoie le patient vers l'ORL.
+        correctionText: "Si aux r\xE9ponses du questionnaire Go-No-Go, le patient
+          r\xE9ponds \"Non\" \xE0 chaque question, il s\u2019agit bien d\u2019une
+          suspicion de cas simple.\r\n"
+        sprites: []
+      - answerText: "Ses r\xE9ponses ne montrent pas de probl\xE8me significatifs. "
         isCorrect: 0
-        correctionText: "Ici on confirme que le d\xE9pistage est pathologique, et
-          qu\u2019il ne s\u2019agissait pas d\u2019un faux positif (mauvaises conditions
-          de r\xE9alisation, mauvaise compr\xE9hension des consignes, etc)\r\n\r\nOn
-          peut donc poursuivre avec le questionnaire Go-No-Go\r\n\r"
-      - answeText: Le test est normal
+        correctionText: "Non, ici il existe une suspicion de surdit\xE9 suite au
+          test de chuchotement.\r\nCe questionnaire ne permet pas d\u2019\xE9valuer
+          ou d\u2019estimer la fonction auditive du patient. Il s\u2019agit d\u2019un
+          outil d\u2019aide \xE0 l\u2019interrogatoire, afin de ne pas oublier les
+          situations fortement \xE9vocatrices d\u2019une surdit\xE9 complexe qui
+          justifieraient alors d\u2019un adressage ORL.\r"
+        sprites: []
+      - answerText: "Il n\u2019a r\xE9pondu que des \"non\", ce qui indique une urgence
+          ORL. "
         isCorrect: 0
-        correctionText: "0 sur 3 mots \xE0 droite : anormal.\n2 sur 3 mots \xE0 gauche
-          : anormal.\n\nLe test aurait \xE9t\xE9 normal si le patient avait r\xE9p\xE9t\xE9
-          les 3 mots de chaque c\xF4t\xE9."
+        correctionText: "Les urgences ORL et autres situations n\xE9cessitant un
+          avis ORL, sont plut\xF4t \xE9voqu\xE9es lorsque le candidat r\xE9pond \xAB\_OUI\_\xBB
+          \xE0 une ou plusieurs questions.\r\n\r\nLes urgences vraies, justifiant
+          de la mise en place d\u2019un traitement rapide sont :\r\nLes surdit\xE9s
+          brusques r\xE9centes, indiquant une corticoth\xE9rapie\r\nLes otorrh\xE9es
+          avec otalgies, \xE9vocatrices d\u2019une otite externe\r"
+        sprites: []
     hasActionPhase: 1
     actionPhase:
       questionText: Ques faites-vous ?
       answerData:
-      - answeText: Je le laisse repartir chez lui.
+      - answerText: Je le laisse repartir chez lui.
         isCorrect: 0
-        correctionText: "Le test de chuchotement est anormal, on peut donc commencer
-          le questionnaire Go-No-Go afin de rep\xE9rer des signaux alertant sur une
-          probable surdit\xE9 complexe, diff\xE9rente d'une simple prebyacousie dans
-          sa pr\xE9sentation."
-      - answeText: "Je r\xE9alise le test de Weber."
+        correctionText: "Non, son test de chuchotement est pathologique, il faut
+          donc continuer l\u2019exploration. Le questionnaire a permis d\u2019\xE9liminer
+          des signes \xE9vocateurs d\u2019une surdit\xE9 complexe, on continue avec
+          l\u2019examen physique puis l\u2019\xE9valuation auditive.\r"
+        sprites: []
+      - answerText: 
         isCorrect: 0
-        correctionText: "Avant de d\xE9marer l'\xE9valuation audition, on doit interroger
-          le participant afin de rep\xE9rer les signaux alertant sur des \xE9ventuels
-          dignostics diff\xE9rentiels (questionnaire Go-No-Go).\r\n"
-      - answeText: Je fais passer le questionnaire Go-No-Go.
+        correctionText: "Aucune indication !\r\nSuspicion de surdit\xE9 sans signal
+          d\u2019alarme \xE0 l\u2019interrogatoire, je peux donc r\xE9aliser mon
+          examen physique.\n\n* Rappel des drapeaux rouges / questionnaire Go-No-Go.\r\n\r\n"
+        sprites: []
+      - answerText: "Je continue le parcours audition et lui fais passer une vid\xE9o
+          otoscopie."
         isCorrect: 1
-        correctionText: "Le test de chuchotement \xE9tait anormal, nous poursuivons
-          le d\xE9roul\xE9 de l\u2019\xE9tape 2 d\u2019ICOPE Audition, avec le questionnaire
-          Go-No-Go.\r\r"
-      - answeText: "Je lui propose l\u2019application H\xD6RA pour se retester dans
-          6 mois."
+        correctionText: "Les \xE9tapes pr\xE9c\xE9dentes ne permettent pas de confirmer
+          qu\u2019il n\u2019y a pas d\u2019anomalie auditive. La vid\xE9o otoscopie
+          est l\u2019examen \xE0 r\xE9aliser en suivant. \r\n"
+        sprites: []
+      - answerText: "Je l\u2019envoie vers un ORL."
+        isCorrect: 0
+        correctionText: "Ici il n\u2019existe aucun drapeau rouge : il n\u2019y a
+          donc pas d\u2019indication \xE0 un adressage ORL, je peux continuer mon
+          \xE9valuation avec la r\xE9alisation de l\u2019examen physique (examen
+          du pavillon et vid\xE9o-otoscopie).\n\r\n* Rappel des drapeaux rouges /
+          questionnaire Go-No-Go."
+        sprites: []
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 4
+    contextDescription: "\r"
+    questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 21300000, guid: acfb280c7bb94ff4593c50f9c1595306, type: 3}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answerText: "Il s\u2019agit d\u2019une otite moyenne aigu\xEB."
+        isCorrect: 0
+        correctionText: "Une OMA est diagnostiqu\xE9e quand il existe une congestion
+          de la membrane tympanique (phase congestive, photo de gauche), ou une congestion
+          associ\xE9e \xE0 un \xE9panchement purulent r\xE9tro tympanique.\r\nOn
+          constate souvent une disparition des rep\xE8res habituellement retrouv\xE9s
+          \xE0 l\u2019otoscopie. Il existe une douleur associ\xE9e, souvent de la
+          fi\xE8vre.\r\n"
+        sprites:
+        - {fileID: 21300000, guid: 807b0a8b29762cd45976766c67852430, type: 3}
+        - {fileID: 21300000, guid: 3e0583c3c64c5524482e527342721996, type: 3}
+      - answerText: "Il s\u2019agit d\u2019une perforation tympanique."
+        isCorrect: 0
+        correctionText: "On peut suivre l\u2019annulus sur toute sa circonf\xE9rence,
+          il n\u2019existe pas de perforation de la membrane.\r\n\r\n"
+        sprites:
+        - {fileID: 21300000, guid: 55644519953532a4ba6f5578e67fe1c4, type: 3}
+        - {fileID: 21300000, guid: 4278f3a79a7b05e40b3dfa049fe86d95, type: 3}
+      - answerText: "Il s\u2019agit d\u2019un bouchon de c\xE9rumen."
+        isCorrect: 0
+        correctionText: 
+        sprites:
+        - {fileID: 21300000, guid: 5e637654893fb8542a76fc8012435b43, type: 3}
+        - {fileID: 21300000, guid: bce62345d7a49084e85cce8e98152ad8, type: 3}
+      - answerText: "Il s\u2019agit d\u2019un tympan normal."
         isCorrect: 1
-        correctionText: "Si le test de chuchotement avait \xE9t\xE9 normal, on aurait
-          pu conclure a un faux positif du d\xE9pistage. On aurait alors rassur\xE9
-          le participant, en lui rappelant les consignes de pr\xE9vention et de bonne
-          hygi\xE8ne auriculaire. Un nouveau d\xE9pistage aurait alors \xE9t\xE9
-          propos\xE9, par exemple avec H\xF6ra.\r\n\r\nIci : le test est anormal,
-          il faut donc poursuivre l\u2019\xE9valuation auditive en commen\xE7ant
-          par l\u2019interrogatoire (\xE0 l\u2019aide du questionnaire Go-No Go).\n"
+        correctionText: "Un tympan normal est classiquement transparent, de couleur
+          grise, bien tendu autour de la circonf\xE9rence (annulus), que fait le
+          fond du Conduit Auditif Externe.\r"
+        sprites:
+        - {fileID: 21300000, guid: f4e141a2e0556b14c8f81bfe3032f699, type: 3}
+        - {fileID: 21300000, guid: e86947662b5480d48b4a835c7d65cf66, type: 3}
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answerText: Je le laisse repartir chez lui.
+        isCorrect: 0
+        correctionText: "Une OMA est diagnostiqu\xE9e quand il existe une congestion
+          de la membrane tympanique (phase congestive, photo de gauche), ou une congestion
+          associ\xE9e \xE0 un \xE9panchement purulent r\xE9tro tympanique.\r\nOn
+          constate souvent une disparition des rep\xE8res habituellement retrouv\xE9s
+          \xE0 l\u2019otoscopie. Il existe une douleur associ\xE9e, souvent de la
+          fi\xE8vre.\r"
+        sprites:
+        - {fileID: 21300000, guid: 807b0a8b29762cd45976766c67852430, type: 3}
+        - {fileID: 21300000, guid: 3e0583c3c64c5524482e527342721996, type: 3}
+      - answerText: Je continue le parcours audition et lui fait passer le test de
+          Weber.
+        isCorrect: 1
+        correctionText: "Les \xE9tapes pr\xE9c\xE9dentes ne permettent pas de confirmer
+          qu\u2019il n\u2019y a pas d\u2019anomalie auditive. Le test de Weber est
+          l\u2019examen \xE0 r\xE9aliser en suivant. \r\nOn constate souvent une
+          disparition des rep\xE8res habituellement retrouv\xE9s \xE0 l\u2019otoscopie.
+          Il existe une douleur associ\xE9e, souvent de la fi\xE8vre.\r"
+        sprites: []
+      - answerText: "Je l\u2019envoi aux urgences."
+        isCorrect: 0
+        correctionText: "L\u2019examen du tympan est normal, on peut poursuivre l\u2019exploration
+          auditive par un Test acoum\xE9trique de Weber.\r\r"
+        sprites: []
+      - answerText: "Je prescris une proth\xE8se auditive."
+        isCorrect: 0
+        correctionText: "Non, on doit poursuivre l\u2019\xE9valuation auditive, pour
+          confirmer qu\u2019on est bien face \xE0 un tableau de presbyacousie simple,
+          ET avec une surdit\xE9 dans les crit\xE8res d\u2019appareillage audioproth\xE9tique.\r\nOn
+          ne fait JAMAIS de prescription d\u2019appareillage sans avoir au pr\xE9alable
+          r\xE9aliser un examen audiom\xE9trique complet.\r\r\r"
+        sprites: []
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 5
+    contextDescription: "Le patient n'arrive pas \xE0 savoir s'il a entendu la m\xEAme
+      chose des deux c\xF4t\xE9s."
+    questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 0}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answerText: "Ses r\xE9ponses r\xE9v\xE8lent une surdit\xE9 de perception."
+        isCorrect: 0
+        correctionText: "Ici, c\u2019est un test de Weber qui est r\xE9alis\xE9 (pied
+          du diapason au centre) : on recherche une asym\xE9trie de l\u2019audition
+          qui se manifesterait par une lat\xE9ralisation du Weber (\xAB\_j\u2019entends
+          \xE0 droite\_\xBB)\r\n\r\nLe test acoum\xE9trique de Rinne quand \xE0 lui
+          de d\xE9terminer si le syst\xE8me tympano-ossiculaire est fonctionnel (dans
+          ce cas, il est Positif : on \xE9voque une audition normale ou une surdit\xE9
+          neurosensorielle) ou non (dans ce cas, il est n\xE9gatif : on \xE9voque
+          une surdit\xE9 de perception).\r"
+        sprites: []
+      - answerText: "Ses r\xE9ponses ne r\xE9v\xE8lent pas d\u2019anomalie."
+        isCorrect: 1
+        correctionText: "Un son per\xE7u de la m\xEAme fa\xE7on aux 2 oreilles est
+          un bon signe."
+        sprites: []
+      - answerText: "Ses r\xE9ponses r\xE9v\xE8lent une surdit\xE9 de transmission."
+        isCorrect: 0
+        correctionText: "C\u2019est plut\xF4t le test de Rinne qui permet d\u2019\xE9voquer
+          une surdit\xE9 de transmission, quand il est n\xE9gatif.\r\n\r\nAutrement,
+          quand le patient d\xE9crit une asym\xE9trie auditive, on peut \xE9voquer
+          une surdit\xE9 de transmission quand il lat\xE9ralise le Weber du c\xF4t\xE9
+          de l\u2019oreille la plus sourde.\r"
+        sprites: []
+      - answerText: "Ses r\xE9ponses r\xE9v\xE8lent un bouchon de c\xE9rumen."
+        isCorrect: 0
+        correctionText: "C\u2019est un diagnostic otoscopique !\r\n\r\nSi il avait
+          un BDC c\xF4t\xE9 droit, avec une otoscopie normale \xE0 gauche, on pourrait
+          s\u2019attendre \xE0 retrouver un Weber lat\xE9ralis\xE9 \xE0 droite si
+          il est obstructif (et \xE0 condition qu\u2019il n\u2019existe pas d\u2019autre
+          cause sous jacente d\u2019asym\xE9trie auditive). Mais le diagnostic du
+          BDC resterait \u2026 clinique !\r\n\r"
+        sprites:
+        - {fileID: 21300000, guid: 5e637654893fb8542a76fc8012435b43, type: 3}
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answerText: Je le laisse repartir chez lui.
+        isCorrect: 0
+        correctionText: "Non, le test de Weber est utile afin d\u2019orienter son
+          examen audiom\xE9trique. On peut retrouver une surdit\xE9 s\xE9v\xE8re
+          avec un test de Weber centr\xE9, \xE0 condition que l\u2019audition soit
+          sym\xE9trique.\r\n\r\nIl n\u2019a aucun caract\xE8re rassurant concernant
+          la normalit\xE9 de l\u2019audition.\r"
+        sprites: []
+      - answerText: Je continue le parcours audition et lui fait passer le test HHIE-S.
+        isCorrect: 1
+        correctionText: "Les \xE9tapes pr\xE9c\xE9dentes ne permettent pas de confirmer
+          qu\u2019il n\u2019y a pas d\u2019anomalie auditive. Le test HHIE-S est
+          l\u2019examen \xE0 r\xE9aliser en suivant.\r\r"
+        sprites: []
+      - answerText: Je le laisse repartir chez lui.
+        isCorrect: 0
+        correctionText: "Non, le test de Weber est utile afin d\u2019orienter son
+          examen audiom\xE9trique. On peut retrouver une surdit\xE9 s\xE9v\xE8re
+          avec un test de Weber centr\xE9, \xE0 condition que l\u2019audition soit
+          sym\xE9trique.\r\n\r\nIl n\u2019a aucun caract\xE8re rassurant concernant
+          la normalit\xE9 de l\u2019audition.\r\n"
+        sprites: []
+      - answerText: "J\u2019enl\xE8ve le bouchon de c\xE9rumen."
+        isCorrect: 0
+        correctionText: "Ici l\u2019examen otoscopique est normal, le Weber est en
+          plus centr\xE9 : il n\u2019y aucun argument \xE9voquant la pr\xE9sence
+          d\u2019un BDC !\r\n\r\nEn revanche, si \xE0 l\u2019examen on retrouve un
+          BDC, il faut le retirer (si pas de contre indication) AVANT de r\xE9aliser
+          l\u2019acoum\xE9trie au diapason, autrement les r\xE9ponses seront en lien
+          avec la surdit\xE9 occasionn\xE9e par ce BDC\r\n\r\n"
+        sprites:
+        - {fileID: 21300000, guid: 5e637654893fb8542a76fc8012435b43, type: 3}
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 6
+    contextDescription: 
+    questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 21300000, guid: a50fa5d32fa79a642b558b1fdc55654f, type: 3}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answerText: "Le score est en faveur de difficult\xE9s mod\xE9r\xE9es."
+        isCorrect: 1
+        correctionText: "Le score > 8/40 permet de d\xE9pister une d\xE9ficience
+          auditive (probabilit\xE9 11% pour un score entre 0 et 8) et le score >
+          16/40 permettait de d\xE9tecter une surdit\xE9 avec une efficacit\xE9 maximale
+          (88,4\_%) dans le travail de Duchene et al. 2022\r\r"
+        sprites: []
+      - answerText: "Le score indique une absence totale de g\xEAne auditive."
+        isCorrect: 0
+        correctionText: "Non, le score \xE0 8/40 correspond \xE0 une probabilit\xE9
+          de pr\xE9senter une surdit\xE9 de 11%\r\nOn ne peut donc pas conclure \xE0
+          l\u2019absence de g\xE8ne auditive.\r\n\r"
+        sprites: []
+      - answerText: "Le test montre des difficult\xE9s auditives s\xE9v\xE8res."
+        isCorrect: 0
+        correctionText: "Non, en cas de difficult\xE9 auditive s\xE9v\xE8re on peut
+          s\u2019attendre \xE0 retrouver un score > 10 (probabilit\xE9 d\u2019\xEAtre
+          atteint de surdit\xE9 74,5%) voire > 18 (probabilit\xE9 d\u2019\xEAtre
+          atteint de surdit\xE9 94 %) \r\nLa probabilit\xE9 d\u2019\xEAtre porteur
+          d\u2019une d\xE9ficience auditive augmentant avec le score.\r\n\r\n\r"
+        sprites: []
+      - answerText: "Le r\xE9sultat sugg\xE8re que les troubles auditifs sont uniquement
+          li\xE9s \xE0 une fatigue passag\xE8re."
+        isCorrect: 0
+        correctionText: "Non, ce score n\u2019a pas \xE9t\xE9 \xE9tabli pour cela.
+          Le score permet d\u2019obtenir la probabilit\xE9 d\u2019\xEAtre atteint
+          d\u2019une d\xE9ficience auditive, et celle d\u2019\xEAtre atteinte d\u2019une
+          d\xE9ficience auditive r\xE9pondant aux crit\xE8res d\u2019appareillage
+          auditif.\n"
+        sprites: []
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answerText: "Je l\u2019oriente vers un ORL."
+        isCorrect: 0
+        correctionText: "Non, son questionnaire HHIES est alt\xE9r\xE9, ce qui sugg\xE8re
+          la pr\xE9sence d'une surdit\xE9. Pour le confirmer, il faut r\xE9aliser
+          l'examen audiom\xE9trique."
+        sprites: []
+      - answerText: "Je l\u2019Je l'oriente vers son m\xE9decin traitant."
+        isCorrect: 0
+        correctionText: "Non, son questionnaire HHIES est alt\xE9r\xE9, ce qui sugg\xE8re
+          la pr\xE9sence d\u2019une surdit\xE9. Pour le confirmer, il faut r\xE9aliser
+          l\u2019examen audiom\xE9trique.\r\n"
+        sprites: []
+      - answerText: '[Je lui propose un prochain rendez-vous de suivi]'
+        isCorrect: 0
+        correctionText: "[L\xE0 j\u2019ai un soucis, car pour moi on avait retenu
+          : 8 ou moins > surveillance (cf \xAB\_old\_\xBB algorithme ci-dessous)\r\n\r\nDonc
+          si je m\u2019en tiens \xE0 cet algo : conseils et bisou ]\r\n"
+        sprites: []
+      - answerText: "Il est pertinent de r\xE9aliser l\u2019audiom\xE9trie "
+        isCorrect: 1
+        correctionText: "[On arr\xEAte l\u2019\xE9valuation quand le score est <
+          8]\r\n"
+        sprites: []
+    IsOptional: 0
+    isTerminatingStep: 0
+  - type: 7
+    contextDescription: 
+    questionnaireData: {fileID: 0}
+    predefinedAnwser: []
+    videoOstoscopie:
+      videoOstoscopie: {fileID: 21300000, guid: a50fa5d32fa79a642b558b1fdc55654f, type: 3}
+    hasDiagnosticPhase: 1
+    diagnosticPhase:
+      questionText: Quel est votre diagnotic ?
+      answerData:
+      - answerText: "Le score est en faveur de difficult\xE9s mod\xE9r\xE9es."
+        isCorrect: 1
+        correctionText: "Le score > 8/40 permet de d\xE9pister une d\xE9ficience
+          auditive (probabilit\xE9 11% pour un score entre 0 et 8) et le score >
+          16/40 permettait de d\xE9tecter une surdit\xE9 avec une efficacit\xE9 maximale
+          (88,4\_%) dans le travail de Duchene et al. 2022\r\r"
+        sprites: []
+      - answerText: "Le score indique une absence totale de g\xEAne auditive."
+        isCorrect: 0
+        correctionText: "Non, le score \xE0 8/40 correspond \xE0 une probabilit\xE9
+          de pr\xE9senter une surdit\xE9 de 11%\r\nOn ne peut donc pas conclure \xE0
+          l\u2019absence de g\xE8ne auditive.\r\n\r"
+        sprites: []
+      - answerText: "Le test montre des difficult\xE9s auditives s\xE9v\xE8res."
+        isCorrect: 0
+        correctionText: "Non, en cas de difficult\xE9 auditive s\xE9v\xE8re on peut
+          s\u2019attendre \xE0 retrouver un score > 10 (probabilit\xE9 d\u2019\xEAtre
+          atteint de surdit\xE9 74,5%) voire > 18 (probabilit\xE9 d\u2019\xEAtre
+          atteint de surdit\xE9 94 %) \r\nLa probabilit\xE9 d\u2019\xEAtre porteur
+          d\u2019une d\xE9ficience auditive augmentant avec le score.\r\n\r\n\r"
+        sprites: []
+      - answerText: "Le r\xE9sultat sugg\xE8re que les troubles auditifs sont uniquement
+          li\xE9s \xE0 une fatigue passag\xE8re."
+        isCorrect: 0
+        correctionText: "Non, ce score n\u2019a pas \xE9t\xE9 \xE9tabli pour cela.
+          Le score permet d\u2019obtenir la probabilit\xE9 d\u2019\xEAtre atteint
+          d\u2019une d\xE9ficience auditive, et celle d\u2019\xEAtre atteinte d\u2019une
+          d\xE9ficience auditive r\xE9pondant aux crit\xE8res d\u2019appareillage
+          auditif.\n"
+        sprites: []
+    hasActionPhase: 1
+    actionPhase:
+      questionText: Ques faites-vous ?
+      answerData:
+      - answerText: "Je l\u2019oriente vers un ORL."
+        isCorrect: 0
+        correctionText: "Non, son questionnaire HHIES est alt\xE9r\xE9, ce qui sugg\xE8re
+          la pr\xE9sence d'une surdit\xE9. Pour le confirmer, il faut r\xE9aliser
+          l'examen audiom\xE9trique."
+        sprites: []
+      - answerText: "Je l\u2019Je l'oriente vers son m\xE9decin traitant."
+        isCorrect: 0
+        correctionText: "Non, son questionnaire HHIES est alt\xE9r\xE9, ce qui sugg\xE8re
+          la pr\xE9sence d\u2019une surdit\xE9. Pour le confirmer, il faut r\xE9aliser
+          l\u2019examen audiom\xE9trique.\r\n"
+        sprites: []
+      - answerText: '[Je lui propose un prochain rendez-vous de suivi]'
+        isCorrect: 0
+        correctionText: "[L\xE0 j\u2019ai un soucis, car pour moi on avait retenu
+          : 8 ou moins > surveillance (cf \xAB\_old\_\xBB algorithme ci-dessous)\r\n\r\nDonc
+          si je m\u2019en tiens \xE0 cet algo : conseils et bisou ]\r\n"
+        sprites: []
+      - answerText: "Il est pertinent de r\xE9aliser l\u2019audiom\xE9trie "
+        isCorrect: 1
+        correctionText: "[On arr\xEAte l\u2019\xE9valuation quand le score est <
+          8]\r\n"
+        sprites: []
     IsOptional: 0
     isTerminatingStep: 0

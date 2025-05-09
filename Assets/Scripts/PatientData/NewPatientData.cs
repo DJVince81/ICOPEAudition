@@ -31,9 +31,6 @@ namespace Assets.Scripts.PatientData
 
         [Header("Algoritm steps")]
         public List<AlgoStep> steps;
-
-        [Header("Questionaire Go-No-Go")]
-        public List<PatientQuestionnaireSession> questionnaireSessions;
     }
 
     [System.Serializable]
@@ -41,12 +38,5 @@ namespace Assets.Scripts.PatientData
     {
         public string name;
         public string value;
-    }
-
-    [System.Serializable]
-    public class PatientQuestionnaireSession
-    {
-        public QuestionnaireData source;
-        public List<QuestionAnswer> reponses;
     }
 }
