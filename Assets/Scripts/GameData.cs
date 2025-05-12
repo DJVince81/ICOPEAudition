@@ -93,6 +93,7 @@ namespace Assets.Scripts
         // PRIVATE VARIABLES
         private Dictionary<AlgoState, StepRecords> _stepRecords { get; set; }
         private Dictionary<LevelState, LevelRecords> _levelRecords { get; set; }
+        private Dictionary<string , LevelRecords> _levelRecordsG {  get; set; }
         private GlobalData _globalData;
         private TimerData _levelTimer;
         private TimerData _globalTimer;
@@ -107,6 +108,7 @@ namespace Assets.Scripts
             if (_levelRecords == null)
             {
                 _levelRecords = new Dictionary<LevelState, LevelRecords>();
+                _levelRecordsG = new Dictionary<string , LevelRecords>();
             }
             _stepRecords = new Dictionary<AlgoState, StepRecords>();
         }
@@ -152,6 +154,12 @@ namespace Assets.Scripts
         {
             _levelTimer = new TimerData(Time.time);
             if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, 0, _stepRecords);
+        }
+
+        public void SetLevelRecordsG(string levelName)
+        {
+            _levelTimer = new TimerData(Time.time);
+            if (!_levelRecordsG.ContainsKey(levelName)) _levelRecordsG[levelName] = new LevelRecords(0, 0, 0, 0, 0, 0, _stepRecords);
         }
 
         /// <summary>

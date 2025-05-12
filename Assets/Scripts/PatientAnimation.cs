@@ -98,6 +98,18 @@ namespace Assets.Scripts
             imageCharacter.sizeDelta = new Vector2(newSprite.rect.width, newSprite.rect.height);
         }
 
+        private void SetSprite(Sprite characterSprite)
+        {
+            if (characterSprites == null)
+            {
+                Debug.LogError("no sprite set in the sprites library.");
+                return;
+            }
+
+            imageCharacter.GetComponent<Image>().sprite = characterSprite;
+            imageCharacter.sizeDelta = new Vector2(characterSprite.rect.width, characterSprite.rect.height);
+        }
+
         /// <summary>
         /// Make a yo-yo animation on the sprite.
         /// </summary>
@@ -131,11 +143,12 @@ namespace Assets.Scripts
         /// <summary>
         /// Play a sort of animations like open the doors and spawn the 'patient' in the doors area then fade out the screen by invoking 'FadeOut' function after a delai.
         /// </summary>
-        public void SetNewCharacterInArea()
+        public void SetNewCharacterInArea(Sprite sprite)
         {
             imageCharacter.GetComponent<Button>().enabled = false;
             ToggleDoor();
-            SetNewSprite();
+            //SetNewSprite();
+            SetSprite(sprite);
             SetNewTargetPosition(spawnPatientArea);
             Invoke(nameof(FadeOut), 1.5f);
         }

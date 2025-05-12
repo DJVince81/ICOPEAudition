@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PatientData.AlgoData
 {
-    public enum AlgoType
+    public enum Step
     {
         Case_presentation,
         Wisper_test,
@@ -61,7 +61,7 @@ namespace Assets.Scripts.PatientData.AlgoData
     [System.Serializable]
     public class AlgoStep
     {
-        public AlgoType type;
+        public Step type;
 
         [Header("Contexte medicale")]
         [TextArea]

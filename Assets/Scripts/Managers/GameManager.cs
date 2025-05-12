@@ -1,5 +1,6 @@
+using Assets.Scripts.PatientData;
+using System.Collections.Generic;
 using System.Collections;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,11 @@ namespace Assets.Scripts.Managers
         public AudioManager AudioManager { get; private set; }
 
         public PatientAnimation PatientAnimation { get; private set; }
+
+
+        [SerializeField] public List<NewPatientData> PatientDataList;
+        [SerializeField] public string _deflautLoadLevel; // index if 0 load fisrt level else (load progression player todo)
+        private string currentLevel = "";
 
         #region Structures
         public int Money
@@ -129,6 +135,9 @@ namespace Assets.Scripts.Managers
 
         // Change tipsPanel is disable -> tips will be a glossaire
         // Now ask player for they fisrt time (in the current session, todo) if they want activate the assistant.
+
+        // click jouer -> load progression joueur / pas progression "0" -> load la fiche patient
+
         internal void LoadGameMenu()
         {
             AudioManager.PlaySFX("ambiant", "AMBIANT");
@@ -136,8 +145,21 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            
-            PatientAnimation.SetNewCharacterInArea();
+            // Check player progression
+            // Load step, sprite, character scriptable-object
+            int currentPatient = 0;
+            for (int i = 0; i < PatientDataList.Count; i++)
+            {
+                // Load step in GameStateManager
+                GameStateManager.LoadStepsFromScriptableObject(PatientDataList[i]);
+                if (_deflautLoadLevel == PatientDataList[i].name)
+                {
+                    currentPatient = i;
+                    currentLevel = PatientDataList[i].name;
+                }
+            }
+            // load sprite
+            PatientAnimation.SetNewCharacterInArea(PatientDataList[currentPatient].characterSprite);
             Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
 
             //_tipsPanel.Display();
@@ -173,7 +195,8 @@ namespace Assets.Scripts.Managers
             //StatesManager.ChangeState();
             GameData.InitializeRecords();
             GameData.GlobalRecordsOnLevelStart();
-            GameStateManager.LoadLevelState();
+            //GameStateManager.LoadLevelState();
+            GameStateManager.LoadLevelStateG(currentLevel);
         }
 
         // TOGGLE PAUSE
@@ -248,7 +271,8 @@ namespace Assets.Scripts.Managers
             _money = PlayerPrefs.GetInt("money", 20);
             _isTutorialEnable = PlayerPrefs.GetInt("enableTutorial") == 1;
             AudioManager.PlayBGM("skyline");
-           
+            _deflautLoadLevel = "LEVEL_0"; // todo load progression level
+            
         }
         #endregion
 

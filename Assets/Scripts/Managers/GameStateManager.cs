@@ -1,6 +1,9 @@
+using Assets.Scripts.PatientData;
+using Assets.Scripts.PatientData.AlgoData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
@@ -36,6 +39,13 @@ namespace Assets.Scripts.Managers
         private MainState currentMainState;
         private LevelState currentLevelState;
         private AlgoState currentAlgoState;
+
+        // New variables 
+        private Step currentStep;
+        
+        private Dictionary<String, List<AlgoStep>> dataLevels2;
+        private string currentLevelStateG;
+        private List<AlgoStep> stepsToDo;
 
         // Variables
         private readonly Dictionary<LevelState, bool> levelCompletion = new Dictionary<LevelState, bool>();
@@ -95,6 +105,23 @@ namespace Assets.Scripts.Managers
             SetAlgoState(testsToDo[testIndex]);
         }
 
+        private void SetLevelG(string newLevelG)
+        {
+            currentLevelStateG = newLevelG;
+            Debug.Log($"Level State G: {currentLevelStateG}");
+            stepsToDo = dataLevels2[currentLevelStateG];
+            // add random case in the future
+            // GameManager.Instance.GameData.SetLevelRecordsG(currentLevelStateG); // TODO save records
+            testIndex = 0;
+            //Debug.Log(stepsToDo[testIndex].type);
+            SetStepState(stepsToDo[testIndex].type);
+        }
+
+        public void LoadStepsFromScriptableObject(NewPatientData newPatientData)
+        {
+            dataLevels2.Add(newPatientData.name, newPatientData.steps);
+        }
+
         // RANDOM GAME MODE
         /// <summary>
         /// Create a senario based on list of AlgoState which conatins the full algorithm Audiocop (Wisper_test, questionary go /no-go, video otoscopie, weber_test and audiometri) to parcour.
@@ -127,6 +154,16 @@ namespace Assets.Scripts.Managers
             if (currentAlgoState != AlgoState.NONE) GameManager.Instance.LoadStep((int)currentAlgoState - 1);
             Debug.Log($"Algo Test: {currentAlgoState}");
             //SaveGame();
+        }
+
+        private void SetStepState(Step newStep)
+        {
+            currentStep = newStep;
+            //Todo : set records Step
+            if (currentStep != Step.Case_presentation)
+                Debug.LogError("Error : Pas de présentation du patient.");
+            //GameManager.Instance.LoadStep();
+            Debug.Log($"Algo Test G: {currentStep}");
         }
 
         // RECORD ATTEMPT OF ALGO STEP - CALL WHEN PLAYER VALIDATE ITS CHOICES
@@ -245,6 +282,11 @@ namespace Assets.Scripts.Managers
             if (currentMainState == MainState.GAME_MENU) SetLevelState(currentLevelState);
         }
 
+        public void LoadLevelStateG(string nameLevel)
+        {
+            if (currentMainState == MainState.GAME_MENU) SetLevelG(nameLevel);
+        }
+
         /// <summary>
         /// Public function that load the level when player click on the button form level selection panel.
         /// </summary>
@@ -307,6 +349,7 @@ namespace Assets.Scripts.Managers
         private void Start()
         {
             //LoadGame();
+            dataLevels2 = new Dictionary<string, List<AlgoStep>>();
         }
     }
 }
