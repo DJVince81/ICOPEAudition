@@ -23,6 +23,7 @@ namespace Assets.Scripts.Managers
 
         public GameStateManager GameStateManager { get; private set; }
         public GameData GameData { get; set; }
+
         public StepManager StepManager { get; private set; }
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Managers
 
         [SerializeField] public List<NewPatientData> PatientDataList;
         [SerializeField] public string _deflautLoadLevel; // index if 0 load fisrt level else (load progression player todo)
+        public StepManagerN StepManagerN;
         private string currentLevel = "";
 
         #region Structures
@@ -97,6 +99,7 @@ namespace Assets.Scripts.Managers
         // LOAD STEP
         internal void LoadStep(int stepIndex)
         {
+            /*
             if (stepIndex == 0)
             {
                 AudioManager.PlayBGM("tense_dark");
@@ -107,6 +110,17 @@ namespace Assets.Scripts.Managers
                 TelemetryManager.IncrGames();
             }
             StepManager.LoadStep(stepIndex);
+            */
+            if (stepIndex == 0)
+            {
+                AudioManager.PlayBGM("tense_dark");
+                AudioManager.StopCurrentSfx();
+                ClearScreen();
+                _stepMenu.SetActive(true);
+                StepManagerN.Initialize(PatientDataList[0]); // TOO CHANGE
+            }
+            StepManagerN.LoadStep(stepIndex);
+
         }
 
         // CLEAR SCREEN
@@ -250,6 +264,8 @@ namespace Assets.Scripts.Managers
             //StatesManager = GetComponent<StatesManager>();
             GameStateManager = GetComponent<GameStateManager>();
             GameData = GetComponent<GameData>();
+            StepManagerN = GetComponent<StepManagerN>();
+
             StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();

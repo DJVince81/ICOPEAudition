@@ -25,7 +25,7 @@ namespace Assets.Scripts.PatientData
                 return;
             }
             
-            if (step.diagnosticPhase.InAnswerCorrect(index))
+            if (step.diagnosticPhase.IsAnswerCorrect(index))
                 Debug.Log("Bon diagnotic");
             else
                 Debug.Log("Erreur: " + step.diagnosticPhase.GetCorrection(index));
@@ -36,7 +36,7 @@ namespace Assets.Scripts.PatientData
             Debug.Log("Action :" + step.actionPhase.questionText);
         }
 
-        public void OnActionAnwer(int index)
+        public void OnActionAnswer(int index)
         {
             if (!step.hasActionPhase)
             {
@@ -44,7 +44,7 @@ namespace Assets.Scripts.PatientData
                 return;
             }
             
-            if (step.actionPhase.InAnswerCorrect(index))
+            if (step.actionPhase.IsAnswerCorrect(index))
                 Debug.Log("Bonne reponse");
             else
                 Debug.Log("Erreur: " + step.actionPhase.GetCorrection(index));

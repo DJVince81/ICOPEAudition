@@ -162,7 +162,7 @@ namespace Assets.Scripts.Managers
             //Todo : set records Step
             if (currentStep != Step.Case_presentation)
                 Debug.LogError("Error : Pas de présentation du patient.");
-            //GameManager.Instance.LoadStep();
+            GameManager.Instance.LoadStep((int) currentStep);
             Debug.Log($"Algo Test G: {currentStep}");
         }
 

@@ -33,20 +33,16 @@ namespace Assets.Scripts.PatientData.AlgoData
     }
 
     [System.Serializable]
-    public class PatientVideoOtoscopie
-    {
-        public Sprite videoOstoscopie;
-    }
-
-    [System.Serializable]
     public class PhaseData
     {
         public string questionText;
         public List<AnswerData> answerData;
         
 
-        public bool InAnswerCorrect(int index)
+        public bool IsAnswerCorrect(int index)
         {
+            Debug.Log("MEH: "+answerData.Count);
+            Debug.Log("Vche "+ answerData[index].isCorrect);
             if (index < 0 || index >= answerData.Count) return false;
             return answerData[index].isCorrect;
         }
@@ -71,8 +67,8 @@ namespace Assets.Scripts.PatientData.AlgoData
         public QuestionnaireData questionnaireData;
         public List<PatientQuestionAnswer> predefinedAnwser;
 
-        [Header("Si type: Video Otoscopie ou test HHIES")]
-        public PatientVideoOtoscopie videoOstoscopie;
+        [Header("Si type: Video Otoscopie / test HHIES / audiometrie")]
+        public Sprite videoOstoscopie;
 
         [Header("Phase 1: Diagnotic")]
         public bool hasDiagnosticPhase;
