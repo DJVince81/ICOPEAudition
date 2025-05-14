@@ -159,9 +159,7 @@ namespace Assets.Scripts.Managers
         private void SetStepState(Step newStep)
         {
             currentStep = newStep;
-            //Todo : set records Step
-            if (currentStep != Step.Case_presentation)
-                Debug.LogError("Error : Pas de présentation du patient.");
+            //Todo : set records Step            
             GameManager.Instance.LoadStep((int) currentStep);
             Debug.Log($"Algo Test G: {currentStep}");
         }
@@ -227,6 +225,23 @@ namespace Assets.Scripts.Managers
                 GameManager.Instance.LoadGameMenu();
                 GameManager.Instance.AudioManager.PlayBGM("skyline");
                 SetNextLevel();
+            }
+        }
+
+        private void ProgressToNextStateG()
+        {
+            if (testIndex < stepsToDo.Count - 1)
+            {
+                testIndex++;
+                SetStepState(stepsToDo[testIndex].type);
+            }
+            else if (stepsToDo[testIndex].isTerminatingStep)
+            {
+                Debug.Log("Level Completed !");
+                //save data
+                //return selection level
+                GameManager.Instance.LoadGameMenu();
+                GameManager.Instance.AudioManager.PlayBGM("skyline");
             }
         }
 
@@ -306,7 +321,8 @@ namespace Assets.Scripts.Managers
         /// </summary>
         public void GetNextStep()
         {
-            ProgressToNextState();
+            //ProgressToNextState();
+            ProgressToNextStateG();
         }
 
         /// <summary>

@@ -41,8 +41,6 @@ namespace Assets.Scripts.PatientData.AlgoData
 
         public bool IsAnswerCorrect(int index)
         {
-            Debug.Log("MEH: "+answerData.Count);
-            Debug.Log("Vche "+ answerData[index].isCorrect);
             if (index < 0 || index >= answerData.Count) return false;
             return answerData[index].isCorrect;
         }

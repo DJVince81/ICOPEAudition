@@ -1,8 +1,7 @@
 using TMPro;
-using Assets.Scripts.PatientData;
 using UnityEngine;
 
-namespace Assets.Script.PatientData.Steps
+namespace Assets.Scripts.PatientData.Steps
 {
     public class PatientPresentation : MonoBehaviour
     {
@@ -26,8 +25,8 @@ namespace Assets.Script.PatientData.Steps
         public void SetTexts(NewPatientData patientData)
         {
             // Set profil data
-            nameFields.text = patientData.name;
-            surnameFields.text = patientData.surname;
+            nameFields.text = patientData.surname;
+            surnameFields.text = patientData.fisrtName;
             ageFields.text = patientData.age.ToString();
             situationFields.text = patientData.familySituation;
             activitiesFields.text = patientData.occupationalActivities;
@@ -41,12 +40,6 @@ namespace Assets.Script.PatientData.Steps
 
             // Set medical history data
             historyField.text = patientData.medicalHistory;
-        }
-
-
-        public void Test()
-        {
-            Debug.Log("MEH");
         }
     }
 }
