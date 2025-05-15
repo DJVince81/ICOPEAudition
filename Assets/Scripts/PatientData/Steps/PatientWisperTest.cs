@@ -122,7 +122,5 @@ namespace Assets.Scripts.PatientData.Steps
             ClearTexts();
             targetPatientText.text = patientText;
         }
-
     }
-
 }

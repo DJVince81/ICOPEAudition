@@ -3,6 +3,7 @@ using Assets.Scripts.PatientData.AlgoData;
 using Assets.Scripts.PatientData.Steps;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,7 @@ namespace Assets.Scripts.Managers
         // Script
         private PatientPresentation patientPresentation;
         private PatientWisperTest patientWisperTest;
+        private PatientQuestionary patientQuestionary;
 
         private enum InteractionState { ISREADING, ISANSWERING, ISCORRECTION};
         private InteractionState interactionState;
@@ -44,100 +46,158 @@ namespace Assets.Scripts.Managers
         private NewPatientData patientData;
         
         private int _currentStep;
+        private int _currentDisplay;
         private bool _isDiagnosticValid;
         private bool _isActionValid;
+
+        private Dictionary<Step, int> mappingDisplays;
 
         public void Initialize(NewPatientData patient)
         {
             patientData = patient;
+
+            List<Step> lSteps = new List<Step>();
+            foreach (var step in patientData.steps)
+            {
+                lSteps.Add(step.type);
+            }
+
+            mappingDisplays = MappingDisplay(lSteps);
         }
+
+        private static Dictionary<Step, int> MappingDisplay<Step>(List<Step> filteredSteps) where Step : System.Enum
+        {
+            var dict = new Dictionary<Step, int>();
+            for (int i = 0; i < filteredSteps.Count; i++)
+            {
+                dict[filteredSteps[i]] = i;
+            }
+
+
+            Debug.Log(dict);
+            return dict;
+        }
+
+
 
         public void LoadStep(int currentStep)
         {
+
             _currentStep = currentStep;
+            _currentStep = mappingDisplays[(Step) currentStep];
+
+            Debug.Log("Current display: " + _currentStep);
+
             interactionState = InteractionState.ISREADING;
 
             _isDiagnosticValid = false;
             _isActionValid = false;
 
             ClearAllDisplay();
-            ClearAllListerner();
- 
+
+
             switch (patientData.steps[_currentStep].type)
             {
                 case Step.Case_presentation:
                     // WARNING - CRIME DE GUERRE
-                    //patientDisplay.SetActive(true);
-                    displayList[_currentStep].SetActive(true);
-                    patientPresentation.SetTexts(patientData);
+                    patientPresentation.SetPresentationTexts(patientData);
+                    //displayList[0].SetActive(true);
                     break;
                 case Step.Wisper_test:
-                    displayList[_currentStep].SetActive(true);
                     patientWisperTest.PlayFirstText(patientData.steps[_currentStep]);
-                    // call wisper test scritp
+                    //displayList[1].SetActive(true);
                     break;
                 case Step.Questionnary:
-                    // call Questionnary
+                    // Load questionary & answer data
+                    List<QuestionData> questions = patientData.steps[_currentStep].questionnaireData.questions;
+                    List<PatientQuestionAnswer> answers = patientData.steps[_currentStep].predefinedAnwser;
+                    // Set texts
+                    patientQuestionary.SetQuestionayText(questions, answers);
+
                     break;
                 case Step.Additional_questionnaire:
+
                     break;
                 case Step.Otoscopy:
+
+                    //TODO
+
+
                     break;
                 case Step.Weber_test:
+
                     break;
                 case Step.HHIES_test:
+
                     break;
                 case Step.Audiometry:
+
                     break;
             }
+
+            displayList[_currentStep].SetActive(true);
             // set navigation button (Buttons)
-            SetButtonsNavigation();
+            SetTextButtonsNavigation();
         }
 
         // SET TEXT AND INTERACTION 
-        private void SetButtonsNavigation()
+        private void SetTextButtonsNavigation()
         {
-            ClearAllListerner();
+            TextMeshProUGUI confirmeNextText = confirmNextButton.GetComponentInChildren<TextMeshProUGUI>();
+               
             if (interactionState == InteractionState.ISREADING)
             {
                 // update text
-                TextMeshProUGUI confirmeNextText = confirmNextButton.GetComponentInChildren<TextMeshProUGUI>();
+                returnButton.interactable = false;
                 confirmeNextText.text = "Répondre";
-                // Add listerner
-                confirmNextButton.onClick.AddListener(GoToQuestionDisplay);
-                // enabled buttons
-                confirmNextButton.enabled = true;
-                returnButton.enabled = false;
             }
             if (interactionState == InteractionState.ISANSWERING)
             {
                 // Update text
-                TextMeshProUGUI confirmeNextText = confirmNextButton.GetComponentInChildren<TextMeshProUGUI>();
+                returnButton.interactable = true;
+                confirmNextButton.interactable = true;
                 confirmeNextText.text = "Confirmer";
-                // add listerner
-                returnButton.onClick.AddListener(BackToDocument);
-                // enbled buttons
-                returnButton.enabled = true;
-            }
-            if (interactionState == InteractionState.ISCORRECTION)
+            }            
+            if ( interactionState == InteractionState.ISCORRECTION)
             {
-                // returnButton.enabled = false;
-                returnButton.onClick.AddListener(BackToQuestion);
-                confirmNextButton.onClick.AddListener(GoToNextStep);
+                bool isValid = false;
+                switch (answerState)
+                {
+                    case AnswerState.DIAGNOSTIC:
+                        isValid = _isDiagnosticValid;
+                        break;
+                    case AnswerState.ACTION:  
+                        isValid = _isActionValid;
+                        break;
+                }
 
-                TextMeshProUGUI confirmeNextText = confirmNextButton.GetComponentInChildren<TextMeshProUGUI>();
-                confirmeNextText.text = "Suivant";
+                if (isValid)
+                {
+                    confirmeNextText.text = "Suivant";
+                    confirmNextButton.interactable = true;
+                    returnButton.interactable = false;
+                }
+                else
+                {
+                    confirmNextButton.interactable = false;
+                    returnButton.interactable = true;
+                }
             }
         }
 
         private void SetResponses()
         {
-            if (patientData.steps[_currentStep].hasDiagnosticPhase)
+            if (patientData.steps[_currentStep].hasDiagnosticPhase && !_isDiagnosticValid)
             {
                 answerState = AnswerState.DIAGNOSTIC;
                 LoadPossibleResponses(patientData.steps[_currentStep].diagnosticPhase);
+            } 
+            else
+            {
+                _isDiagnosticValid = true;
             }
-            else if (patientData.steps[_currentStep].hasActionPhase)
+
+            if (patientData.steps[_currentStep].hasActionPhase && _isDiagnosticValid)
             {
                 answerState = AnswerState.ACTION;
                 LoadPossibleResponses(patientData.steps[_currentStep].actionPhase);
@@ -162,26 +222,35 @@ namespace Assets.Scripts.Managers
 
         private void GoToQuestionDisplay()
         {
+            interactionState = InteractionState.ISANSWERING;
             ClearAllDisplay();
             questionsDisplay.SetActive(true);
             SetResponses();
-            interactionState = InteractionState.ISANSWERING;
-            SetButtonsNavigation();
+            SetTextButtonsNavigation();
         }
-        
+
         private void BackToQuestion()
         {
-            ClearAllDisplay();
-            interactionState = InteractionState.ISANSWERING;
-            questionsDisplay.SetActive(true);
-            SetButtonsNavigation();
+            if (interactionState == InteractionState.ISCORRECTION)
+            {
+                ClearAllDisplay();
+                
+                interactionState = InteractionState.ISANSWERING;
+                questionsDisplay.SetActive(true);
+                SetTextButtonsNavigation();
+            }
         }
+
         private void BackToDocument()
         {
-            ClearAllDisplay();
-            displayList[_currentStep].SetActive(true);
-            interactionState = InteractionState.ISREADING;
-            SetButtonsNavigation();
+            if (interactionState == InteractionState.ISANSWERING)
+            {
+                ClearAllDisplay();
+
+                interactionState = InteractionState.ISREADING;
+                displayList[_currentStep].SetActive(true);
+                SetTextButtonsNavigation();
+            }
         }
 
         private void ClearAllDisplay()
@@ -261,7 +330,7 @@ namespace Assets.Scripts.Managers
             correctionDisplay.SetActive(true);
 
             // Set bottom buttons
-            SetButtonsNavigation();
+            SetTextButtonsNavigation();
         }
 
         private void ClearAllListerner()
@@ -272,28 +341,41 @@ namespace Assets.Scripts.Managers
 
         private void GoToNextStep()
         {
+           
             // Control if dignostic & action is completed
             if (IsStepCompleted(patientData.steps[_currentStep])) GameManager.Instance.GameStateManager.GetNextStep();
+            if (_isDiagnosticValid && answerState == AnswerState.DIAGNOSTIC)
+            {
+                GoToQuestionDisplay();
+            }
+            
         }
 
         private bool IsStepCompleted(AlgoStep step)
         {
             bool diagnoticOK = !step.hasDiagnosticPhase || _isDiagnosticValid;
-            bool actionOk = !step.hasActionPhase || _isActionValid;
-            
-            return diagnoticOK && actionOk;
-            
+           
+            return diagnoticOK && _isActionValid;
         }
 
         private void Awake()
         {
-     
+
             foreach(GameObject go in displayList)
             {
                 if (go.TryGetComponent<PatientPresentation>(out PatientPresentation component)) patientPresentation = component;
                 if (go.TryGetComponent<PatientWisperTest>(out PatientWisperTest component1)) patientWisperTest = component1;
-                
+                if (go.TryGetComponent<PatientQuestionary>(out PatientQuestionary component2)) patientQuestionary = component2;
+
             }
+
+
+            //SET LISTENER
+            confirmNextButton.onClick.AddListener(GoToQuestionDisplay);
+            confirmNextButton.onClick.AddListener(GoToNextStep);
+            returnButton.onClick.AddListener(BackToDocument);
+            returnButton.onClick.AddListener(BackToQuestion);
+
             //patientPresentation = patientDisplay.GetComponent<PatientPresentation>();
             //patientDisplay.GetComponent<T>();
         }

@@ -161,7 +161,7 @@ namespace Assets.Scripts.Managers
             currentStep = newStep;
             //Todo : set records Step            
             GameManager.Instance.LoadStep((int) currentStep);
-            Debug.Log($"Algo Test G: {currentStep}");
+            Debug.Log($"Algo Test G: {currentStep}, {(int) currentStep}");
         }
 
         // RECORD ATTEMPT OF ALGO STEP - CALL WHEN PLAYER VALIDATE ITS CHOICES

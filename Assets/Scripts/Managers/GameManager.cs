@@ -113,7 +113,7 @@ namespace Assets.Scripts.Managers
             */
 
             // FORCE TO START ON SELECTED STEP -- TOO REMOVE AT THE END
-            //stepIndex = 1;
+            //stepIndex = 2;
             //ClearScreen();
             //StepManagerN.Initialize(PatientDataList[0]); // TOO CHANGE
             //_stepMenu.SetActive(true);

@@ -188,7 +188,7 @@ MonoBehaviour:
         questionText: 
       patientAnswer: 1
     videoOstoscopie: {fileID: 0}
-    hasDiagnosticPhase: 0
+    hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
       answerData:
@@ -228,7 +228,7 @@ MonoBehaviour:
           brusques r\xE9centes, indiquant une corticoth\xE9rapie\r\nLes otorrh\xE9es
           avec otalgies, \xE9vocatrices d\u2019une otite externe\r"
         sprites: []
-    hasActionPhase: 0
+    hasActionPhase: 1
     actionPhase:
       questionText: Ques faites-vous ?
       answerData:
@@ -239,7 +239,7 @@ MonoBehaviour:
           des signes \xE9vocateurs d\u2019une surdit\xE9 complexe, on continue avec
           l\u2019examen physique puis l\u2019\xE9valuation auditive.\r"
         sprites: []
-      - answerText: 
+      - answerText: "Je l\u2019adresse aux urgences."
         isCorrect: 0
         correctionText: "Aucune indication !\r\nSuspicion de surdit\xE9 sans signal
           d\u2019alarme \xE0 l\u2019interrogatoire, je peux donc r\xE9aliser mon
@@ -541,7 +541,7 @@ MonoBehaviour:
           la pr\xE9sence d'une surdit\xE9. Pour le confirmer, il faut r\xE9aliser
           l'examen audiom\xE9trique."
         sprites: []
-      - answerText: "Je l\u2019Je l'oriente vers son m\xE9decin traitant."
+      - answerText: "Je l'oriente vers son m\xE9decin traitant."
         isCorrect: 0
         correctionText: "Non, son questionnaire HHIES est alt\xE9r\xE9, ce qui sugg\xE8re
           la pr\xE9sence d\u2019une surdit\xE9. Pour le confirmer, il faut r\xE9aliser

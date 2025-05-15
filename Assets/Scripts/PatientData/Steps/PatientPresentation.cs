@@ -22,7 +22,7 @@ namespace Assets.Scripts.PatientData.Steps
         // MEDICAL HISTORY DATA
         [SerializeField] public TextMeshProUGUI historyField;
 
-        public void SetTexts(NewPatientData patientData)
+        public void SetPresentationTexts(NewPatientData patientData)
         {
             // Set profil data
             nameFields.text = patientData.surname;
