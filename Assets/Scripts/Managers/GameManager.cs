@@ -111,6 +111,14 @@ namespace Assets.Scripts.Managers
             }
             StepManager.LoadStep(stepIndex);
             */
+
+            // FORCE TO START ON SELECTED STEP -- TOO REMOVE AT THE END
+            //stepIndex = 1;
+            //ClearScreen();
+            //StepManagerN.Initialize(PatientDataList[0]); // TOO CHANGE
+            //_stepMenu.SetActive(true);
+
+
             if (stepIndex == 0)
             {
                 AudioManager.PlayBGM("tense_dark");

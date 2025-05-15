@@ -82,7 +82,7 @@ MonoBehaviour:
         sprites: []
       - answerText: "Je r\xE9alise le test de chuchotement."
         isCorrect: 1
-        correctionText: "le patient ayant proc\xE9d\xE9 \xE0 un auto-d\xE9pistage
+        correctionText: "Le patient ayant proc\xE9d\xE9 \xE0 un auto-d\xE9pistage
           ICOPE, le test de chuchotement n\u2019a pas \xE9t\xE9 r\xE9alis\xE9. Vous
           commencez par cette \xE9tape pour vous assurer qu\u2019il y a bien eu une
           anomalie \xE0 l\u2019\xE9tape 1. \r\r\nA ce stade, aucun drapeau rouge*

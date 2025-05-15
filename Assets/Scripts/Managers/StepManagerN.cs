@@ -38,7 +38,7 @@ namespace Assets.Scripts.Managers
         private enum InteractionState { ISREADING, ISANSWERING, ISCORRECTION};
         private InteractionState interactionState;
 
-        private enum AnswerState { DIAGNOSTIC, ACTION}
+        private enum AnswerState { DIAGNOSTIC, ACTION} // TODO : Change to boolean
         private AnswerState answerState;
 
         private NewPatientData patientData;
@@ -55,16 +55,17 @@ namespace Assets.Scripts.Managers
         public void LoadStep(int currentStep)
         {
             _currentStep = currentStep;
+            interactionState = InteractionState.ISREADING;
 
             _isDiagnosticValid = false;
             _isActionValid = false;
 
             ClearAllDisplay();
+            ClearAllListerner();
  
             switch (patientData.steps[_currentStep].type)
             {
                 case Step.Case_presentation:
-                    interactionState = InteractionState.ISREADING;
                     // WARNING - CRIME DE GUERRE
                     //patientDisplay.SetActive(true);
                     displayList[_currentStep].SetActive(true);
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Managers
                     break;
                 case Step.Wisper_test:
                     displayList[_currentStep].SetActive(true);
-                    patientWisperTest.PlayAnimation();
+                    patientWisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     // call wisper test scritp
                     break;
                 case Step.Questionnary:
@@ -162,28 +163,8 @@ namespace Assets.Scripts.Managers
         private void GoToQuestionDisplay()
         {
             ClearAllDisplay();
-            switch (patientData.steps[_currentStep].type)
-            {
-                case Step.Case_presentation:
-                    questionsDisplay.SetActive(true);
-                    SetResponses();
-                    break;
-                case Step.Wisper_test:
-                    
-                    break;
-                case Step.Questionnary:
-                    break;
-                case Step.Additional_questionnaire:
-                    break;
-                case Step.Otoscopy:
-                    break;
-                case Step.Weber_test:
-                    break;
-                case Step.HHIES_test:
-                    break;
-                case Step.Audiometry:
-                    break;
-            }
+            questionsDisplay.SetActive(true);
+            SetResponses();
             interactionState = InteractionState.ISANSWERING;
             SetButtonsNavigation();
         }
@@ -191,33 +172,14 @@ namespace Assets.Scripts.Managers
         private void BackToQuestion()
         {
             ClearAllDisplay();
+            interactionState = InteractionState.ISANSWERING;
             questionsDisplay.SetActive(true);
+            SetButtonsNavigation();
         }
         private void BackToDocument()
         {
             ClearAllDisplay();
-            switch (patientData.steps[_currentStep].type)
-            {
-                case Step.Case_presentation:
-                    //patientDisplay.SetActive(true);
-                    displayList[_currentStep].SetActive(true);
-                    break;
-                case Step.Wisper_test:
-                    displayList[_currentStep].SetActive(true);
-                    break;
-                case Step.Questionnary:
-                    break;
-                case Step.Additional_questionnaire:
-                    break;
-                case Step.Otoscopy:
-                    break;
-                case Step.Weber_test:
-                    break;
-                case Step.HHIES_test:
-                    break;
-                case Step.Audiometry:
-                    break;
-            }
+            displayList[_currentStep].SetActive(true);
             interactionState = InteractionState.ISREADING;
             SetButtonsNavigation();
         }
@@ -281,7 +243,7 @@ namespace Assets.Scripts.Managers
             // Load correction text if not null
             if (answer.correctionText != "")
             {
-                answerJustification.GetComponent<TextMeshProUGUI>().text = answer.correctionText;
+                answerJustification.GetComponent<TextMeshProUGUI>().text = "<u>Justification :</u> " + answer.correctionText;
             }
             // Load image if not null
             if (answer.sprites.Count > 0)

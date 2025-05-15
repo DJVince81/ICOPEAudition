@@ -1228,12 +1228,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doctorPos1: {fileID: 5919020625541361876}
   doctorPos2: {fileID: 5248165087034756645}
-  doctorTextPos1: {fileID: 1961738123340937295}
-  doctorTextPos2: {fileID: 3230820030662458203}
-  doctorTextPos: []
-  patientText: {fileID: 3659846664363901724}
+  targerDoctorText1: {fileID: 1961738123340937295}
+  targerDoctorText2: {fileID: 3230820030662458203}
+  targetPatientText: {fileID: 3659846664363901724}
   delayBetweenWords: 0.5
-  delayBetweenReplays: 1
+  delayBetweenText: 1
 --- !u!1 &1424639399054409403
 GameObject:
   m_ObjectHideFlags: 0
