@@ -1,9 +1,6 @@
 using Assets.Scripts.PatientData.AlgoData;
 using DG.Tweening;
-using Microsoft.Unity.VisualStudio.Editor;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.PatientData.Steps
@@ -110,7 +107,7 @@ namespace Assets.Scripts.PatientData.Steps
             string[] strings = GetRandomListWord();
             AnimateText(goDoctorText1, targerDoctorText1, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenWords;
+                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
                 DOVirtual.DelayedCall(totalDelay, PlaySecondText);
             });
         }
@@ -126,7 +123,7 @@ namespace Assets.Scripts.PatientData.Steps
             string[] strings = GetRandomListWord();
             AnimateText(goDoctorText2 ,targerDoctorText2, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenWords;
+                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
                 DOVirtual.DelayedCall(totalDelay, ShowPatientText);
             });
         }
