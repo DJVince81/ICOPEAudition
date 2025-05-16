@@ -12,22 +12,25 @@ namespace Assets.Scripts.PatientData.Steps
     {
         // DOCTOR POSITION
         [Header("Doctor position")]
-        [SerializeField] public GameObject doctorPos1;
-        [SerializeField] public GameObject doctorPos2;
+        [SerializeField] private GameObject doctorPos1;
+        [SerializeField] private GameObject doctorPos2;
 
         // DOCTOR TEXT
         [Header("Doctor texts")]
-        [SerializeField] public TextMeshProUGUI targerDoctorText1;
-        [SerializeField] public TextMeshProUGUI targerDoctorText2;
+        [SerializeField] private GameObject goDoctorText1;
+        [SerializeField] private GameObject goDoctorText2;
+        [SerializeField] private TextMeshProUGUI targerDoctorText1;
+        [SerializeField] private TextMeshProUGUI targerDoctorText2;
 
         // PATIENT TEXT
         [Header("Patient text")]
-        [SerializeField] public TextMeshProUGUI targetPatientText;
+        [SerializeField] private GameObject goPatientText;
+        [SerializeField] private TextMeshProUGUI targetPatientText;
 
         // DELAI
         [Header("Delay animation")]
-        [SerializeField] public float delayBetweenWords = 0.3f;
-        [SerializeField] public float delayBetweenText = 1f;
+        [SerializeField] private float delayBetweenWords = 0.5f;
+        [SerializeField] private float delayBetweenText = 0.25f;
 
 
         // TO change in a scriptable object
@@ -39,6 +42,13 @@ namespace Assets.Scripts.PatientData.Steps
             targerDoctorText1.text = "";
             targerDoctorText2.text = "";
             targetPatientText.text = "";
+        }
+
+        private void ClearDialogueBox()
+        {
+            goDoctorText1.SetActive(false);
+            goDoctorText2.SetActive(false);
+            goPatientText.SetActive(false);
         }
 
         private void ClearDoctorSprite()
@@ -60,9 +70,10 @@ namespace Assets.Scripts.PatientData.Steps
             return strings;
         }
         
-        private void AnimateText(TextMeshProUGUI target, string[] words, float startDelay = 0f, TweenCallback onComplete = null)
+        private void AnimateText(GameObject goTargert,TextMeshProUGUI target, string[] words, float startDelay = 0f, TweenCallback onComplete = null)
         {
             target.text = "";
+            goTargert.SetActive(true);
 
             for (int i = 0; i < words.Length; i++)
             {
@@ -90,15 +101,16 @@ namespace Assets.Scripts.PatientData.Steps
 
             // Clear texts & docotor sprite
             ClearTexts();
+            ClearDialogueBox();
             ClearDoctorSprite();
 
             // Activate doctor sprite position 1
             doctorPos1.SetActive(true);
 
             string[] strings = GetRandomListWord();
-            AnimateText(targerDoctorText1, strings, 0f, () =>
+            AnimateText(goDoctorText1, targerDoctorText1, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
+                float totalDelay = strings.Length * delayBetweenWords + delayBetweenWords;
                 DOVirtual.DelayedCall(totalDelay, PlaySecondText);
             });
         }
@@ -106,14 +118,15 @@ namespace Assets.Scripts.PatientData.Steps
         private void PlaySecondText()
         {
             ClearTexts();
+            ClearDialogueBox();
             ClearDoctorSprite();
             
             doctorPos2.SetActive(true);
 
             string[] strings = GetRandomListWord();
-            AnimateText(targerDoctorText2, strings, 0f, () =>
+            AnimateText(goDoctorText2 ,targerDoctorText2, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
+                float totalDelay = strings.Length * delayBetweenWords + delayBetweenWords;
                 DOVirtual.DelayedCall(totalDelay, ShowPatientText);
             });
         }
@@ -121,6 +134,7 @@ namespace Assets.Scripts.PatientData.Steps
         private void ShowPatientText()
         {
             ClearTexts();
+            goPatientText.SetActive(true);
             targetPatientText.text = patientText;
         }
     }
