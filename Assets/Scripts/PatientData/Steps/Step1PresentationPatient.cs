@@ -1,30 +1,34 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.PatientData.Steps
 {
     public class Step1PresentationPatient : MonoBehaviour
     {
+        [Header("Sprites")]
+        [SerializeField] private Image patientSprite;
+        
         // PROFILE DATA
         [Header("Profile fields")]
-        [SerializeField] public TextMeshProUGUI nameFields;
-        [SerializeField] public TextMeshProUGUI surnameFields;
-        [SerializeField] public TextMeshProUGUI ageFields;
-        [SerializeField] public TextMeshProUGUI situationFields;
-        [SerializeField] public TextMeshProUGUI activitiesFields;
+        [SerializeField] private TextMeshProUGUI nameFields;
+        [SerializeField] private TextMeshProUGUI surnameFields;
+        [SerializeField] private TextMeshProUGUI ageFields;
+        [SerializeField] private TextMeshProUGUI situationFields;
+        [SerializeField] private TextMeshProUGUI activitiesFields;
 
         // CONTEXT DATA
         [Header("Context field")]
-        [SerializeField] public TextMeshProUGUI contextField;
+        [SerializeField] private TextMeshProUGUI contextField;
 
         // MEDICAL AUTONOMIE DATA
         [Header("Medical fields")]
-        [SerializeField] public TextMeshProUGUI adlField;
-        [SerializeField] public TextMeshProUGUI iadlField;
+        [SerializeField] private TextMeshProUGUI adlField;
+        [SerializeField] private TextMeshProUGUI iadlField;
 
         // MEDICAL HISTORY DATA
         [Header("Medical history field")]
-        [SerializeField] public TextMeshProUGUI historyField;
+        [SerializeField] private TextMeshProUGUI historyField;
 
         public void SetPresentationTexts(NewPatientData patientData)
         {
@@ -44,6 +48,11 @@ namespace Assets.Scripts.PatientData.Steps
 
             // Set medical history data
             historyField.text = patientData.medicalHistory;
+        }
+
+        public void SetSprites(NewPatientData patientData)
+        {
+            patientSprite.sprite = patientData.characterSprite;
         }
     }
 }

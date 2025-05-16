@@ -33,6 +33,11 @@ namespace Assets.Scripts.Managers
         [SerializeField] public GameObject answerJustification;
         [SerializeField] public List<GameObject> answerGameObjectSprites;
 
+        [Header("Colors answer")]
+        [SerializeField] private Color correctColor;
+        [SerializeField] private Color incorrectColor;
+        [SerializeField] private Image backgroudAnswer;
+        
         // Script
         private Step1PresentationPatient step1PresentationPatient;
         private Step2WisperTest step2WisperTest;
@@ -51,7 +56,6 @@ namespace Assets.Scripts.Managers
         private NewPatientData patientData;
         
         private int _currentStep;
-        private int _currentDisplay;
         private bool _isDiagnosticValid;
         private bool _isActionValid;
 
@@ -88,10 +92,9 @@ namespace Assets.Scripts.Managers
         {
             _currentStep = mappingDisplays[(Step) currentStep];
 
-            Debug.Log("CurrentStep: " + _currentStep);
-
             interactionState = InteractionState.ISREADING;
 
+            // Set bools to fasle each step
             _isDiagnosticValid = false;
             _isActionValid = false;
 
@@ -100,31 +103,41 @@ namespace Assets.Scripts.Managers
             switch (patientData.steps[_currentStep].type)
             {
                 case Step.Case_presentation:
-                    // WARNING - CRIME DE GUERRE
+                    // Load patient sprite & patient text
+                    step1PresentationPatient.SetSprites(patientData);
                     step1PresentationPatient.SetPresentationTexts(patientData);
                     break;
                 case Step.Wisper_test:
+                    // Load wisper text (animation with dotween)
                     step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     break;
                 case Step.Questionnary:
-                    // Load questionary & answer data
+                    // Load questionary & answer
                     List<QuestionData> questions = patientData.steps[_currentStep].questionnaireData.questions;
                     List<PatientQuestionAnswer> answers = patientData.steps[_currentStep].predefinedAnwser;
                     // Set texts
                     step4And5Questionnary.SetQuestionayText(questions, answers);
                     break;
                 case Step.Additional_questionnaire:
+                    // Load questionary & answer
+                    List<QuestionData> questions2 = patientData.steps[_currentStep].questionnaireData.questions;
+                    List<PatientQuestionAnswer> answers2 = patientData.steps[_currentStep].predefinedAnwser;
+                    step4And5Questionnary.SetQuestionayText(questions2, answers2);
                     break;
                 case Step.Otoscopy:
+                    // Load patient ear image
                     Step5Otoscopie.SetImageOtoscopiePatient(patientData.steps[_currentStep].spriteEarExams);
                     break;
                 case Step.Weber_test:
+                    // Load texts dialogue
                     step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription); 
                     break;
                 case Step.HHIES_test:
+                    // Load patient ear image
                     step7HhiesTest.SetImageHHIES(patientData.steps[_currentStep].spriteEarExams);
                     break;
                 case Step.Audiometry:
+                    // Load patient ear image
                     Step8Audiometrie.SetImageAudiometrie(patientData.steps[_currentStep].spriteEarExams);
                     break;
             }
@@ -262,15 +275,21 @@ namespace Assets.Scripts.Managers
         private void OnAnswerCorrect(PhaseData phaseData, int index)
         {
             string feedBackText = "Mauvaise réponse !";
+            bool isCorrect = false;
             // DIAGNOSTIC CHOICE
             if (answerState == AnswerState.DIAGNOSTIC)
             {
                 if (IsAnswerCorrect(phaseData.answerData, index))
                 {
                     _isDiagnosticValid = true;
+                    isCorrect = true;
                     feedBackText = "Bonne réponse";
                 }
-                else _isDiagnosticValid = false;
+                else
+                {
+                    choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
+                    _isDiagnosticValid = false;
+                }
             }
             // ACTION CHOICE
             if (answerState == AnswerState.ACTION)
@@ -278,11 +297,16 @@ namespace Assets.Scripts.Managers
                 if (IsAnswerCorrect(phaseData.answerData, index))
                 {
                     _isActionValid = true;
+                    isCorrect = true;
                     feedBackText = "Bonne réponse";
                 }
-                else _isActionValid = false;
+                else
+                {
+                    _isActionValid = false;
+                    choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
+                }
             }
-            ShowAnswerDetail(phaseData.answerData[index], feedBackText);
+            ShowAnswerDetail(phaseData.answerData[index], feedBackText, isCorrect);
         }
 
         private static bool IsAnswerCorrect(List<AnswerData> answerData, int index)
@@ -296,17 +320,21 @@ namespace Assets.Scripts.Managers
         }
 
 
-        private void ShowAnswerDetail(AnswerData answer, string feedBackText)
+        private void ShowAnswerDetail(AnswerData answer, string feedBackText, bool anwserCorrect)
         {
             interactionState = InteractionState.ISCORRECTION;
-
             // Load texts
             answerText.text = feedBackText;
             answerSelected.text = answer.answerText;
+
+            // Set background color
+            if (anwserCorrect) backgroudAnswer.color = correctColor;
+            else backgroudAnswer.color = correctColor;
+
             // Load correction text if not null
             if (answer.correctionText != "")
             {
-                answerJustification.GetComponent<TextMeshProUGUI>().text = "<u>Justification :</u> " + answer.correctionText;
+                answerJustification.GetComponent<TextMeshProUGUI>().text = "<u><b>Justification :</b></u> " + answer.correctionText;
             }
             // Load image if not null
             if (answer.sprites.Count > 0)
