@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +38,9 @@ namespace Assets.Scripts.Managers
         private Step2WisperTest step2WisperTest;
         private Step3And4Questionnary step4And5Questionnary;
         private Step5Otoscopie Step5Otoscopie;
+        private Step6WeberTest step6HhiesTest;
+        private Step7HhiesTest step7HhiesTest;
+        private Step8Audiometrie Step8Audiometrie;
 
         private enum InteractionState { ISREADING, ISANSWERING, ISCORRECTION};
         private InteractionState interactionState;
@@ -115,13 +119,13 @@ namespace Assets.Scripts.Managers
                     Step5Otoscopie.SetImageOtoscopiePatient(patientData.steps[_currentStep].spriteEarExams);
                     break;
                 case Step.Weber_test:
-
+                    step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription); 
                     break;
                 case Step.HHIES_test:
-
+                    step7HhiesTest.SetImageHHIES(patientData.steps[_currentStep].spriteEarExams);
                     break;
                 case Step.Audiometry:
-
+                    Step8Audiometrie.SetImageAudiometrie(patientData.steps[_currentStep].spriteEarExams);
                     break;
             }
 
@@ -351,12 +355,16 @@ namespace Assets.Scripts.Managers
         private void Awake()
         {
 
+            // WARNING : don't trigger error if component not found. 
             foreach(GameObject go in displayList)
             {
                 if (go.TryGetComponent<Step1PresentationPatient>(out Step1PresentationPatient component)) step1PresentationPatient = component;
                 if (go.TryGetComponent<Step2WisperTest>(out Step2WisperTest component1)) step2WisperTest = component1;
                 if (go.TryGetComponent<Step3And4Questionnary>(out Step3And4Questionnary component2)) step4And5Questionnary = component2;
                 if (go.TryGetComponent<Step5Otoscopie>(out Step5Otoscopie component3)) Step5Otoscopie = component3;
+                if (go.TryGetComponent<Step6WeberTest>(out Step6WeberTest component4)) step6HhiesTest = component4;
+                if (go.TryGetComponent<Step7HhiesTest>(out Step7HhiesTest component5)) step7HhiesTest = component5;
+                if (go.TryGetComponent<Step8Audiometrie>(out Step8Audiometrie component6)) Step8Audiometrie = component6;
             }
 
 
@@ -369,5 +377,15 @@ namespace Assets.Scripts.Managers
             //patientPresentation = patientDisplay.GetComponent<PatientPresentation>();
             //patientDisplay.GetComponent<T>();
         }
+
+        /*
+        private static T FindRequiredComponent<T>(GameObject gameObject) where T : Component
+        {
+            if (gameObject.TryGetComponent<T>(out var component))
+                return component;
+            else
+                Debug.LogError($"Error: Component of type {typeof(T).Name} not found, does component is attach to the GameObject {gameObject}");
+        }
+        */
     }
 }
