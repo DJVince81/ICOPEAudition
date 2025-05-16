@@ -343,7 +343,7 @@ MonoBehaviour:
     IsOptional: 0
     isTerminatingStep: 0
   - type: 5
-    contextDescription: "Je n'arrive pas \xE0 savoir s'il a entendu la m\xEAme chose
+    contextDescription: "Je n'arrive pas \xE0 savoir, j'ai entendu la m\xEAme chose
       des deux c\xF4t\xE9s."
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
@@ -357,11 +357,11 @@ MonoBehaviour:
         correctionText: "Ici, c\u2019est un test de Weber qui est r\xE9alis\xE9 (pied
           du diapason au centre) : on recherche une asym\xE9trie de l\u2019audition
           qui se manifesterait par une lat\xE9ralisation du Weber (\xAB\_j\u2019entends
-          \xE0 droite\_\xBB)\r\n\r\nLe test acoum\xE9trique de Rinne quand \xE0 lui
-          de d\xE9terminer si le syst\xE8me tympano-ossiculaire est fonctionnel (dans
-          ce cas, il est Positif : on \xE9voque une audition normale ou une surdit\xE9
-          neurosensorielle) ou non (dans ce cas, il est n\xE9gatif : on \xE9voque
-          une surdit\xE9 de perception).\r"
+          \xE0 droite\_\xBB).\r\n\r\nLe test acoum\xE9trique de Rinne quant \xE0
+          lui de d\xE9terminer si le syst\xE8me tympano-ossiculaire est fonctionnel
+          (dans ce cas, il est Positif : on \xE9voque une audition normale ou une
+          surdit\xE9 neurosensorielle) ou non (dans ce cas, il est n\xE9gatif : on
+          \xE9voque une surdit\xE9 de perception).\r"
         sprites: []
       - answerText: "Ses r\xE9ponses ne r\xE9v\xE8lent pas d\u2019anomalie."
         isCorrect: 1
@@ -459,9 +459,8 @@ MonoBehaviour:
         isCorrect: 0
         correctionText: "Non, ce score n\u2019a pas \xE9t\xE9 \xE9tabli pour cela.
           Le score permet d\u2019obtenir la probabilit\xE9 d\u2019\xEAtre atteint
-          d\u2019une d\xE9ficience auditive, et celle d\u2019\xEAtre atteinte d\u2019une
-          d\xE9ficience auditive r\xE9pondant aux crit\xE8res d\u2019appareillage
-          auditif.\n"
+          d\u2019une d\xE9ficience auditive, \xE9ligible \xE0 un appareillage selon
+          les crit\xE8res actuellement admis en France."
         sprites: []
     hasActionPhase: 1
     actionPhase:
@@ -487,8 +486,12 @@ MonoBehaviour:
         sprites: []
       - answerText: "Il est pertinent de r\xE9aliser l\u2019audiom\xE9trie "
         isCorrect: 1
-        correctionText: "[On arr\xEAte l\u2019\xE9valuation quand le score est <
-          8]\r\n"
+        correctionText: "L\u2019audiom\xE9trie va permettre de valider le diagnostic
+          de presbyacousie en confirmant qu\u2019il s\u2019agit d\u2019une surdit\xE9
+          neurosensorielle, bilat\xE9rale et sym\xE9trique, pr\xE9dominant souvent
+          sur les fr\xE9quences aigu\xEBs.\r\nIl va \xE9galement renseigner sur la
+          s\xE9v\xE9rit\xE9 de la surdit\xE9, et l\u2019indication ou non d\u2019un
+          appareillage audioproth\xE9tique.\r\n"
         sprites: []
     IsOptional: 0
     isTerminatingStep: 0
