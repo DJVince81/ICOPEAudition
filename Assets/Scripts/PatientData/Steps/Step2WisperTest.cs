@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PatientData.Steps
 {
-    public class PatientWisperTest : MonoBehaviour
+    public class Step2WisperTest : MonoBehaviour
     {
         // DOCTOR POSITION
         [Header("Doctor position")]
@@ -25,6 +25,7 @@ namespace Assets.Scripts.PatientData.Steps
         [SerializeField] public TextMeshProUGUI targetPatientText;
 
         // DELAI
+        [Header("Delay animation")]
         [SerializeField] public float delayBetweenWords = 0.3f;
         [SerializeField] public float delayBetweenText = 1f;
 

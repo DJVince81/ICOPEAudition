@@ -66,7 +66,7 @@ namespace Assets.Scripts.PatientData.AlgoData
         public List<PatientQuestionAnswer> predefinedAnwser;
 
         [Header("Si type: Video Otoscopie / test HHIES / audiometrie")]
-        public Sprite videoOstoscopie;
+        public Sprite spriteEarExams;
 
         [Header("Phase 1: Diagnotic")]
         public bool hasDiagnosticPhase;

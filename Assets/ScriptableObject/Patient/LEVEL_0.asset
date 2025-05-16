@@ -43,7 +43,7 @@ MonoBehaviour:
       auditive. Vous le rencontrez pour la premi\xE8re fois.\r"
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 0}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 0
     diagnosticPhase:
       questionText: 
@@ -96,7 +96,7 @@ MonoBehaviour:
       \xE0 gauche.\r"
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 0}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
@@ -187,7 +187,7 @@ MonoBehaviour:
     - question:
         questionText: 
       patientAnswer: 1
-    videoOstoscopie: {fileID: 0}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
@@ -266,7 +266,7 @@ MonoBehaviour:
     contextDescription: "\r"
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 21300000, guid: f4e141a2e0556b14c8f81bfe3032f699, type: 3}
+    spriteEarExams: {fileID: 21300000, guid: f4e141a2e0556b14c8f81bfe3032f699, type: 3}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
@@ -343,11 +343,11 @@ MonoBehaviour:
     IsOptional: 0
     isTerminatingStep: 0
   - type: 5
-    contextDescription: "Le patient n'arrive pas \xE0 savoir s'il a entendu la m\xEAme
-      chose des deux c\xF4t\xE9s."
+    contextDescription: "Je n'arrive pas \xE0 savoir s'il a entendu la m\xEAme chose
+      des deux c\xF4t\xE9s."
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 0}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
@@ -428,7 +428,7 @@ MonoBehaviour:
     contextDescription: 
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 21300000, guid: a50fa5d32fa79a642b558b1fdc55654f, type: 3}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?
@@ -496,7 +496,7 @@ MonoBehaviour:
     contextDescription: 
     questionnaireData: {fileID: 0}
     predefinedAnwser: []
-    videoOstoscopie: {fileID: 0}
+    spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
       questionText: Quel est votre diagnotic ?

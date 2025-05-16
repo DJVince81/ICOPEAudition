@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.PatientData.Steps
 {
-    public class PatientQuestionary : MonoBehaviour
+    public class Step3And4Questionnary : MonoBehaviour
     {
         // Content GameObject
+        [Header("GameObject content")]
         [SerializeField] private GameObject content;
 
         public void SetQuestionayText(List<QuestionData> questions,List<PatientQuestionAnswer> answers)

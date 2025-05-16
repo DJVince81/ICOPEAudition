@@ -33,9 +33,10 @@ namespace Assets.Scripts.Managers
         [SerializeField] public List<GameObject> answerGameObjectSprites;
 
         // Script
-        private PatientPresentation patientPresentation;
-        private PatientWisperTest patientWisperTest;
-        private PatientQuestionary patientQuestionary;
+        private Step1PresentationPatient step1PresentationPatient;
+        private Step2WisperTest step2WisperTest;
+        private Step3And4Questionnary step4And5Questionnary;
+        private Step5Otoscopie Step5Otoscopie;
 
         private enum InteractionState { ISREADING, ISANSWERING, ISCORRECTION};
         private InteractionState interactionState;
@@ -79,14 +80,11 @@ namespace Assets.Scripts.Managers
         }
 
 
-
         public void LoadStep(int currentStep)
         {
-
-            _currentStep = currentStep;
             _currentStep = mappingDisplays[(Step) currentStep];
 
-            Debug.Log("Current display: " + _currentStep);
+            Debug.Log("CurrentStep: " + _currentStep);
 
             interactionState = InteractionState.ISREADING;
 
@@ -95,34 +93,26 @@ namespace Assets.Scripts.Managers
 
             ClearAllDisplay();
 
-
             switch (patientData.steps[_currentStep].type)
             {
                 case Step.Case_presentation:
                     // WARNING - CRIME DE GUERRE
-                    patientPresentation.SetPresentationTexts(patientData);
-                    //displayList[0].SetActive(true);
+                    step1PresentationPatient.SetPresentationTexts(patientData);
                     break;
                 case Step.Wisper_test:
-                    patientWisperTest.PlayFirstText(patientData.steps[_currentStep]);
-                    //displayList[1].SetActive(true);
+                    step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     break;
                 case Step.Questionnary:
                     // Load questionary & answer data
                     List<QuestionData> questions = patientData.steps[_currentStep].questionnaireData.questions;
                     List<PatientQuestionAnswer> answers = patientData.steps[_currentStep].predefinedAnwser;
                     // Set texts
-                    patientQuestionary.SetQuestionayText(questions, answers);
-
+                    step4And5Questionnary.SetQuestionayText(questions, answers);
                     break;
                 case Step.Additional_questionnaire:
-
                     break;
                 case Step.Otoscopy:
-
-                    //TODO
-
-
+                    Step5Otoscopie.SetImageOtoscopiePatient(patientData.steps[_currentStep].spriteEarExams);
                     break;
                 case Step.Weber_test:
 
@@ -363,10 +353,10 @@ namespace Assets.Scripts.Managers
 
             foreach(GameObject go in displayList)
             {
-                if (go.TryGetComponent<PatientPresentation>(out PatientPresentation component)) patientPresentation = component;
-                if (go.TryGetComponent<PatientWisperTest>(out PatientWisperTest component1)) patientWisperTest = component1;
-                if (go.TryGetComponent<PatientQuestionary>(out PatientQuestionary component2)) patientQuestionary = component2;
-
+                if (go.TryGetComponent<Step1PresentationPatient>(out Step1PresentationPatient component)) step1PresentationPatient = component;
+                if (go.TryGetComponent<Step2WisperTest>(out Step2WisperTest component1)) step2WisperTest = component1;
+                if (go.TryGetComponent<Step3And4Questionnary>(out Step3And4Questionnary component2)) step4And5Questionnary = component2;
+                if (go.TryGetComponent<Step5Otoscopie>(out Step5Otoscopie component3)) Step5Otoscopie = component3;
             }
 
 
