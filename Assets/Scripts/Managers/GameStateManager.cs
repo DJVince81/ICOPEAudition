@@ -119,7 +119,8 @@ namespace Assets.Scripts.Managers
 
         public void LoadStepsFromScriptableObject(NewPatientData newPatientData)
         {
-            dataLevels2.Add(newPatientData.name, newPatientData.steps);
+            if (!dataLevels2.ContainsKey(newPatientData.name))
+                dataLevels2.Add(newPatientData.name, newPatientData.steps);
         }
 
         // RANDOM GAME MODE
