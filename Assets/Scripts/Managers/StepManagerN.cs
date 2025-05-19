@@ -221,6 +221,7 @@ namespace Assets.Scripts.Managers
                 TextMeshProUGUI text = choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>();                
                 text.text = phaseData.answerData[i].answerText;
                 choiceButtons[i].onClick.RemoveAllListeners();
+                choiceButtons[i].GetComponent<AnswerButton>().Reset();
                 choiceButtons[i].onClick.AddListener(() => OnAnswerCorrect(phaseData, index));
                 choiceButtons[i].interactable = true;
                 choiceButtons[i].enabled = true;
@@ -329,7 +330,7 @@ namespace Assets.Scripts.Managers
 
             // Set background color
             if (anwserCorrect) backgroudAnswer.color = correctColor;
-            else backgroudAnswer.color = correctColor;
+            else backgroudAnswer.color = incorrectColor;
 
             // Load correction text if not null
             if (answer.correctionText != "")
