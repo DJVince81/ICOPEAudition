@@ -14,29 +14,37 @@ namespace Assets.Scripts.Managers
 {
     public class StepManagerN : MonoBehaviour
     {
-        [SerializeField] public Button returnButton;
-        [SerializeField] public Button confirmNextButton;
+        [SerializeField] private Button returnButton;
+        [SerializeField] private Button confirmNextButton;
 
         // GameObject
         [Header("Steps gameObject")]
-        [SerializeField] public GameObject patientDisplay;
-        [SerializeField] public List<GameObject> displayList;
+        [SerializeField] private GameObject patientDisplay;
+        [SerializeField] private List<GameObject> displayList;
 
         [Header("Question gameObject")]
-        [SerializeField] public GameObject questionsDisplay;
-        [SerializeField] public Button[] choiceButtons;
+        [SerializeField] private GameObject questionsDisplay;
+        [SerializeField] private Button[] choiceButtons;
 
         [Header("Correction gameObject")]
-        [SerializeField] public GameObject correctionDisplay;
-        [SerializeField] public TextMeshProUGUI answerText;
-        [SerializeField] public TextMeshProUGUI answerSelected;
-        [SerializeField] public GameObject answerJustification;
-        [SerializeField] public List<GameObject> answerGameObjectSprites;
+        [SerializeField] private GameObject correctionDisplay;
+        [SerializeField] private TextMeshProUGUI answerText;
+        [SerializeField] private TextMeshProUGUI answerSelected;
+        [SerializeField] private GameObject answerJustification;
+        [SerializeField] private List<GameObject> answerGameObjectSprites;
 
         [Header("Colors answer")]
         [SerializeField] private Color correctColor;
         [SerializeField] private Color incorrectColor;
         [SerializeField] private Image backgroudAnswer;
+
+        // Sprite Doctor (1st position happy expression, 2nd position sad expression, 3rd position talking)
+        // For the future to change to allow player to choose his character.
+        [Header("Sprite doctor")]
+        [SerializeField] private Sprite[] doctorSprite;
+
+        [Header("GameObject Image correction")]
+        [SerializeField] private Image doctorExpressionsImages;
         
         // Script
         private Step1PresentationPatient step1PresentationPatient;
@@ -117,6 +125,8 @@ namespace Assets.Scripts.Managers
                     List<PatientQuestionAnswer> answers = patientData.steps[_currentStep].predefinedAnwser;
                     // Set texts
                     step4And5Questionnary.SetQuestionayText(questions, answers);
+                    //Set Patient Sprite
+                    step4And5Questionnary.SetPatientSprite(patientData.characterSprite);
                     break;
                 case Step.Additional_questionnaire:
                     // Load questionary & answer
@@ -329,8 +339,16 @@ namespace Assets.Scripts.Managers
             answerSelected.text = answer.answerText;
 
             // Set background color
-            if (anwserCorrect) backgroudAnswer.color = correctColor;
-            else backgroudAnswer.color = incorrectColor;
+            if (anwserCorrect)
+            {
+                backgroudAnswer.color = correctColor;
+                doctorExpressionsImages.sprite = doctorSprite[0]; // Happy expression
+            }
+            else
+            { 
+                backgroudAnswer.color = incorrectColor;
+                doctorExpressionsImages.sprite = doctorSprite[1]; // Sad expression
+            }
 
             // Load correction text if not null
             if (answer.correctionText != "")

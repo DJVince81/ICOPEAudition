@@ -1768,6 +1768,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &694862915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6469086128568774099, guid: e2c341d1748dea041b60eec46655436e, type: 3}
+  m_PrefabInstance: {fileID: 114937783140458269}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &730478439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,6 +2073,10 @@ MonoBehaviour:
   correctColor: {r: 0.61960787, g: 0.80784315, b: 0.38431373, a: 1}
   incorrectColor: {r: 0.9098039, g: 0.19607843, b: 0.13333334, a: 1}
   backgroudAnswer: {fileID: 308269225}
+  doctorSprite:
+  - {fileID: 7980856816745209919, guid: ce2c87ae6ddc42b44ac7a287b8838536, type: 3}
+  - {fileID: -8603473853748788035, guid: ce2c87ae6ddc42b44ac7a287b8838536, type: 3}
+  doctorExpressionsImages: {fileID: 694862915}
 --- !u!224 &737265746 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7519373992667295897, guid: 25ba68ebdcfe11a469eb14b3125dc830, type: 3}

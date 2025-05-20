@@ -2,6 +2,7 @@ using Assets.Scripts.PatientData.AlgoData;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.PatientData.Steps
 {
@@ -10,6 +11,7 @@ namespace Assets.Scripts.PatientData.Steps
         // Content GameObject
         [Header("GameObject content")]
         [SerializeField] private GameObject content;
+        [SerializeField] private Image patientSprite;
 
         public void SetQuestionayText(List<QuestionData> questions,List<PatientQuestionAnswer> answers)
         {
@@ -22,6 +24,12 @@ namespace Assets.Scripts.PatientData.Steps
             {
                 testMeshes[i].text = questions[i].questionText + " " + (answers[i].patientAnswer == 0 ? "Oui" : "Non");
             }
+        }
+
+        public void SetPatientSprite(Sprite sprite)
+        {
+            patientSprite.sprite = sprite;
+            patientSprite.SetNativeSize();
         }
     }
 }
