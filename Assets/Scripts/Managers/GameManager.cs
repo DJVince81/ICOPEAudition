@@ -179,7 +179,7 @@ namespace Assets.Scripts.Managers
                 }
             }
             // load sprite
-            PatientAnimation.SetNewCharacterInArea(PatientDataList[currentPatient].characterSprite);
+            PatientAnimation.SetNewCharacterInArea(PatientDataList[currentPatient].characterSprites[0]);
             Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
 
             //_tipsPanel.Display();
@@ -293,7 +293,7 @@ namespace Assets.Scripts.Managers
             _money = PlayerPrefs.GetInt("money", 20);
             _isTutorialEnable = PlayerPrefs.GetInt("enableTutorial") == 1;
             AudioManager.PlayBGM("skyline");
-            _deflautLoadLevel = "LEVEL_0"; // todo load progression level
+            _deflautLoadLevel = "1_0_Michel"; // todo load progression level
             
         }
         #endregion

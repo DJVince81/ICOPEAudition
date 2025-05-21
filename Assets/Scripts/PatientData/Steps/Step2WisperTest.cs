@@ -2,6 +2,7 @@ using Assets.Scripts.PatientData.AlgoData;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.PatientData.Steps
 {
@@ -18,6 +19,9 @@ namespace Assets.Scripts.PatientData.Steps
         [SerializeField] private GameObject goDoctorText2;
         [SerializeField] private TextMeshProUGUI targerDoctorText1;
         [SerializeField] private TextMeshProUGUI targerDoctorText2;
+
+        // PATIENT SPRITE
+        [SerializeField] private Image patientSprite;
 
         // PATIENT TEXT
         [Header("Patient text")]
@@ -89,6 +93,12 @@ namespace Assets.Scripts.PatientData.Steps
                 float totalTime = startDelay + words.Length * delayBetweenWords;
                 DOVirtual.DelayedCall(totalTime, onComplete);
             }
+        }
+
+        // Patient must be in sitting position on a chair.
+        public void SetPatient(Sprite patient)
+        {
+            if (patient != null) patientSprite.sprite = patient;
         }
 
         public void PlayFirstText(AlgoStep step)

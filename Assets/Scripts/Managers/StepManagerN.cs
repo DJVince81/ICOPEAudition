@@ -112,7 +112,7 @@ namespace Assets.Scripts.Managers
             {
                 case Step.Case_presentation:
                     // Load patient sprite & patient text
-                    step1PresentationPatient.SetSprites(patientData);
+                    step1PresentationPatient.SetSprites(patientData.characterSprites[0]);
                     step1PresentationPatient.SetPresentationTexts(patientData);
                     break;
                 case Step.Wisper_test:
@@ -126,7 +126,7 @@ namespace Assets.Scripts.Managers
                     // Set texts
                     step4And5Questionnary.SetQuestionayText(questions, answers);
                     //Set Patient Sprite
-                    step4And5Questionnary.SetPatientSprite(patientData.characterSprite);
+                    step4And5Questionnary.SetPatientSprite(patientData.characterSprites[0]);
                     break;
                 case Step.Additional_questionnaire:
                     // Load questionary & answer

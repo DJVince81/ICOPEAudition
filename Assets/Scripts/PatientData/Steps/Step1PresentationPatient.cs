@@ -50,9 +50,9 @@ namespace Assets.Scripts.PatientData.Steps
             historyField.text = patientData.medicalHistory;
         }
 
-        public void SetSprites(NewPatientData patientData)
+        public void SetSprites(Sprite patient)
         {
-            patientSprite.sprite = patientData.characterSprite;
+            patientSprite.sprite = patient;
         }
     }
 }

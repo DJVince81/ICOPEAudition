@@ -8,7 +8,7 @@ namespace Assets.Scripts.PatientData
     public class NewPatientData : ScriptableObject
     {
         [Header("Profil")]
-        public Sprite characterSprite;
+        public Sprite[] characterSprites;
         public string surname;
         public string fisrtName;
         public int age;
