@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0049b67a3b555774f9c393f9988504b7, type: 3}
   m_Name: 1_0_Michel
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 3127567346927292012, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
+  characterSprites:
+  - {fileID: -5748631628606466991, guid: 12f84633320e5c84b898d1fe5ebbae21, type: 3}
   surname: Dupont
   fisrtName: Michel
   age: 68
