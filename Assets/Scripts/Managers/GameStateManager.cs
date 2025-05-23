@@ -30,10 +30,6 @@ namespace Assets.Scripts.Managers
         private LevelPatientData levelPatientData;
         private NewPatientData patientData;
 
-        //MAP OF PATIENT STEP CAUSE THE ORDER CAN CHANGE
-        //private Dictionary<Step, int> mappingSteps; 
-        
-
         // MAIN MENU / GAME MENU TRANSITIONS
         /// <summary>
         /// Function call by buttons (play and return Menu)

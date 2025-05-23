@@ -78,6 +78,7 @@ namespace Assets.Scripts.Managers
         }
 
 
+
         public void LoadStep(Step currentStep)
         {
             ClearAllDisplay();
@@ -87,6 +88,7 @@ namespace Assets.Scripts.Managers
             // Set bools to fasle each step
             _isDiagnosticValid = false;
             _isActionValid = false;
+            _currentDisplay = mappingDisplays[currentStep];
 
             Sprite patientSprite = null;
 
@@ -98,7 +100,7 @@ namespace Assets.Scripts.Managers
                     step1PresentationPatient.SetSprites(patientData.characterSprites[0]);
                     step1PresentationPatient.SetPresentationTexts(patientData);
                     // Display current step
-                    _currentDisplay = 0;
+
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Wisper_test:
@@ -110,7 +112,6 @@ namespace Assets.Scripts.Managers
                     step2WisperTest.SetPatient(patientSprite); 
                     step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     // Display current step
-                    _currentDisplay = 1;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Questionnary:
@@ -122,7 +123,6 @@ namespace Assets.Scripts.Managers
                     //Set Patient Sprite
                     step4And5Questionnary.SetPatientSprite(patientData.characterSprites[0]);
                     // Display current step
-                    _currentDisplay = 2;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Additional_questionnaire:
@@ -131,7 +131,6 @@ namespace Assets.Scripts.Managers
                     List<PatientQuestionAnswer> answers2 = patientData.steps[_currentStep].predefinedAnwser;
                     step4And5Questionnary.SetQuestionayText(questions2, answers2);
                     // Display current step
-                    _currentDisplay = 2;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Otoscopy:
@@ -143,7 +142,6 @@ namespace Assets.Scripts.Managers
 
                     Step5Otoscopie.SetImages(patientData.steps[_currentStep].spriteEarExams, patientSprite);
                     // Display current step 
-                    _currentDisplay = 3;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Weber_test:
@@ -151,21 +149,18 @@ namespace Assets.Scripts.Managers
                     step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription);
                     step6HhiesTest.SetImage(patientData.characterSprites[0]);
                     // Display current step
-                    _currentDisplay = 4;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.HHIES_test:
                     // Load patient ear image
                     step7HhiesTest.SetImages(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
-                    _currentDisplay = 5;
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Audiometry:
                     // Load patient audiometrie + patient sprite
                     Step8Audiometrie.SetSprite(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
-                    _currentDisplay = 6;
                     displayList[_currentDisplay].SetActive(true);
                     break;
             }
@@ -224,7 +219,7 @@ namespace Assets.Scripts.Managers
             if (patientData.steps[_currentStep].hasDiagnosticPhase && !_isDiagnosticValid)
             {
                 answerState = AnswerState.DIAGNOSTIC;
-                LoadPossibleResponses(patientData.steps[_currentStep].diagnosticPhase);
+                CreateAnwserButtons(patientData.steps[_currentStep].diagnosticPhase);
             } 
             else
             {
@@ -234,12 +229,14 @@ namespace Assets.Scripts.Managers
             if (patientData.steps[_currentStep].hasActionPhase && _isDiagnosticValid)
             {
                 answerState = AnswerState.ACTION;
-                LoadPossibleResponses(patientData.steps[_currentStep].actionPhase);
+                CreateAnwserButtons(patientData.steps[_currentStep].actionPhase);
             }
         }
 
-        private void LoadPossibleResponses(PhaseData phaseData)
+        private void CreateAnwserButtons(PhaseData phaseData)
         {
+            ClearQuestion();
+            
             int max = Mathf.Min(phaseData.answerData.Count, choiceButtons.Length);
 
             for (int i = 0; i < max; i++)
@@ -252,6 +249,7 @@ namespace Assets.Scripts.Managers
                 choiceButtons[i].onClick.AddListener(() => OnAnswerCorrect(phaseData, index));
                 choiceButtons[i].interactable = true;
                 choiceButtons[i].enabled = true;
+                choiceButtons[i].gameObject.SetActive(true);
             }
         }
 
@@ -300,6 +298,14 @@ namespace Assets.Scripts.Managers
             correctionDisplay.SetActive(false);
         }
 
+        private void ClearQuestion()
+        {
+            for (int i = 0; i < choiceButtons.Length; i++)
+            {
+                choiceButtons[i].gameObject.SetActive(false);
+            }
+        }
+
         private void OnAnswerCorrect(PhaseData phaseData, int index)
         {
             string feedBackText = "Mauvaise réponse !";
@@ -346,7 +352,6 @@ namespace Assets.Scripts.Managers
             }
             return answerData[index].isCorrect;
         }
-
 
         private void ShowAnswerDetail(AnswerData answer, string feedBackText, bool anwserCorrect)
         {
@@ -398,12 +403,6 @@ namespace Assets.Scripts.Managers
             SetTextButtonsNavigation();
         }
 
-        private void ClearAllListerner()
-        {
-            returnButton.onClick.RemoveAllListeners();
-            confirmNextButton.onClick.RemoveAllListeners();
-        }
-
         private void GoToNextStep()
         {
             // Control if dignostic & action is completed
@@ -448,18 +447,18 @@ namespace Assets.Scripts.Managers
             returnButton.onClick.AddListener(BackToDocument);
             returnButton.onClick.AddListener(BackToQuestion);
 
-            //patientPresentation = patientDisplay.GetComponent<PatientPresentation>();
-            //patientDisplay.GetComponent<T>();
+            mappingDisplays = new Dictionary<Step, int>()
+            {
+                { Step.Case_presentation, 0 },
+                { Step.Wisper_test, 1 },
+                { Step.Questionnary, 2 },
+                { Step.Additional_questionnaire, 2 },
+                { Step.Otoscopy, 3 },
+                { Step.Weber_test, 4 },
+                { Step.HHIES_test, 5 },
+                { Step.Audiometry, 6 },
+            };
         }
 
-        /*
-        private static T FindRequiredComponent<T>(GameObject gameObject) where T : Component
-        {
-            if (gameObject.TryGetComponent<T>(out var component))
-                return component;
-            else
-                Debug.LogError($"Error: Component of type {typeof(T).Name} not found, does component is attach to the GameObject {gameObject}");
-        }
-        */
     }
 }
