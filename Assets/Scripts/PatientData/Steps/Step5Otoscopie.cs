@@ -7,10 +7,14 @@ namespace Assets.Scripts.PatientData.Steps
     {
         [Header("Patient video otoscopie field")]
         [SerializeField] private Image videoOtoscopiePatient;
-        
-        public void SetImageOtoscopiePatient(Sprite sprite)
+
+        [Header("Patient sprite")]
+        [SerializeField] private Image patient;
+
+        public void SetImages(Sprite sprite, Sprite spritePatient)
         {
-            videoOtoscopiePatient.sprite = sprite;
+            if (sprite != null) videoOtoscopiePatient.sprite = sprite;
+            if (spritePatient != null) patient.sprite = spritePatient;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Assets.Scripts.PatientData.AlgoData;
 using DG.Tweening;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.PatientData.Steps
         [SerializeField] private TextMeshProUGUI targerDoctorText2;
 
         // PATIENT SPRITE
+        [Header("Patient sprite")]
         [SerializeField] private Image patientSprite;
 
         // PATIENT TEXT

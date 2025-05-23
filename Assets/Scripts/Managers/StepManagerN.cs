@@ -86,6 +86,9 @@ namespace Assets.Scripts.Managers
             _isDiagnosticValid = false;
             _isActionValid = false;
 
+            Sprite patientSprite = null;
+
+
             switch (currentStep)
             {
                 case Step.Case_presentation:
@@ -97,6 +100,11 @@ namespace Assets.Scripts.Managers
                     break;
                 case Step.Wisper_test:
                     // Load wisper text (animation with dotween)
+                    if (patientData.characterSprites.Length > 1)
+                    {
+                        patientSprite = patientData.characterSprites[1];
+                    }
+                    step2WisperTest.SetPatient(patientSprite); 
                     step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     // Display current step
                     displayList[1].SetActive(true);
@@ -122,19 +130,25 @@ namespace Assets.Scripts.Managers
                     break;
                 case Step.Otoscopy:
                     // Load patient ear image
-                    Step5Otoscopie.SetImageOtoscopiePatient(patientData.steps[_currentStep].spriteEarExams);
-                    // Display current step
+                    if (patientData.characterSprites.Length > 1)
+                    {
+                        patientSprite = patientData.characterSprites[1];
+                    }
+
+                    Step5Otoscopie.SetImages(patientData.steps[_currentStep].spriteEarExams, patientSprite);
+                    // Display current step 
                     displayList[3].SetActive(true);
                     break;
                 case Step.Weber_test:
-                    // Load texts dialogue
+                    // Load texts dialogue & sprite
                     step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription);
+                    step6HhiesTest.SetImage(patientData.characterSprites[0]);
                     // Display current step
                     displayList[4].SetActive(true);
                     break;
                 case Step.HHIES_test:
                     // Load patient ear image
-                    step7HhiesTest.SetImageHHIES(patientData.steps[_currentStep].spriteEarExams);
+                    step7HhiesTest.SetImages(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
                     displayList[5].SetActive(true);
                     break;

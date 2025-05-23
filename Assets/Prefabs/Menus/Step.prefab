@@ -2424,6 +2424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patientDialogueField: {fileID: 8771339022419778500}
   doctorDialogueField: {fileID: 3747582609070557775}
+  patient: {fileID: 1559501828058880631}
 --- !u!1 &2094378754553734626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,8 +2534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108, y: -176.06}
-  m_SizeDelta: {x: 485.2448, y: 727.8853}
+  m_AnchoredPosition: {x: -127, y: -198}
+  m_SizeDelta: {x: 345, y: 895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5951391704035360127
 CanvasRenderer:
@@ -2557,14 +2558,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2735849, g: 0.050329305, b: 0.050329305, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 4467637358421277366, guid: ce2c87ae6ddc42b44ac7a287b8838536, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3633,7 +3634,7 @@ GameObject:
   - component: {fileID: 4850392403198158051}
   - component: {fileID: 3525533106955801299}
   m_Layer: 5
-  m_Name: DoctorSprite
+  m_Name: PatientSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4677,7 +4678,7 @@ GameObject:
   - component: {fileID: 2815768952627446910}
   - component: {fileID: 5686608263455906901}
   m_Layer: 5
-  m_Name: PatientSprite
+  m_Name: DoctorSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4699,8 +4700,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 250, y: 425}
-  m_SizeDelta: {x: 500, y: 850}
+  m_AnchoredPosition: {x: 254, y: 340}
+  m_SizeDelta: {x: 345, y: 1050}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2815768952627446910
 CanvasRenderer:
@@ -4730,7 +4731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8603473853748788035, guid: ce2c87ae6ddc42b44ac7a287b8838536, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5598,7 +5599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2344842452619939474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9817,7 +9818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2203331680793742865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9860,6 +9861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c94fd8aa9ae319419f10c7638b08824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patient: {fileID: 3525533106955801299}
   imageHHIES: {fileID: 1110923989463011902}
 --- !u!1 &8152318353477131681
 GameObject:
@@ -10876,6 +10878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoOtoscopiePatient: {fileID: 6540175169005007157}
+  patient: {fileID: 5049792869401087317}
 --- !u!1 &9164430883934000966
 GameObject:
   m_ObjectHideFlags: 0
