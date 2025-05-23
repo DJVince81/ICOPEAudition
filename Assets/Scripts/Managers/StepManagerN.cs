@@ -64,6 +64,7 @@ namespace Assets.Scripts.Managers
         private NewPatientData patientData;
         
         private int _currentStep;
+        private int _currentDisplay;
         private bool _isDiagnosticValid;
         private bool _isActionValid;
 
@@ -72,6 +73,7 @@ namespace Assets.Scripts.Managers
         public void Initialize(NewPatientData newPatient)
         {
             _currentStep = 0; // reset current step to 0
+            _currentDisplay = 0;
             patientData = newPatient;
         }
 
@@ -96,7 +98,8 @@ namespace Assets.Scripts.Managers
                     step1PresentationPatient.SetSprites(patientData.characterSprites[0]);
                     step1PresentationPatient.SetPresentationTexts(patientData);
                     // Display current step
-                    displayList[0].SetActive(true);
+                    _currentDisplay = 0;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Wisper_test:
                     // Load wisper text (animation with dotween)
@@ -107,7 +110,8 @@ namespace Assets.Scripts.Managers
                     step2WisperTest.SetPatient(patientSprite); 
                     step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
                     // Display current step
-                    displayList[1].SetActive(true);
+                    _currentDisplay = 1;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Questionnary:
                     // Load questionary & answer
@@ -118,7 +122,8 @@ namespace Assets.Scripts.Managers
                     //Set Patient Sprite
                     step4And5Questionnary.SetPatientSprite(patientData.characterSprites[0]);
                     // Display current step
-                    displayList[2].SetActive(true);
+                    _currentDisplay = 2;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Additional_questionnaire:
                     // Load questionary & answer
@@ -126,7 +131,8 @@ namespace Assets.Scripts.Managers
                     List<PatientQuestionAnswer> answers2 = patientData.steps[_currentStep].predefinedAnwser;
                     step4And5Questionnary.SetQuestionayText(questions2, answers2);
                     // Display current step
-                    displayList[2].SetActive(true);
+                    _currentDisplay = 2;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Otoscopy:
                     // Load patient ear image
@@ -137,26 +143,30 @@ namespace Assets.Scripts.Managers
 
                     Step5Otoscopie.SetImages(patientData.steps[_currentStep].spriteEarExams, patientSprite);
                     // Display current step 
-                    displayList[3].SetActive(true);
+                    _currentDisplay = 3;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Weber_test:
                     // Load texts dialogue & sprite
                     step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription);
                     step6HhiesTest.SetImage(patientData.characterSprites[0]);
                     // Display current step
-                    displayList[4].SetActive(true);
+                    _currentDisplay = 4;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.HHIES_test:
                     // Load patient ear image
                     step7HhiesTest.SetImages(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
-                    displayList[5].SetActive(true);
+                    _currentDisplay = 5;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Audiometry:
                     // Load patient audiometrie + patient sprite
                     Step8Audiometrie.SetSprite(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
-                    displayList[6].SetActive(true);
+                    _currentDisplay = 6;
+                    displayList[_currentDisplay].SetActive(true);
                     break;
             }
 
@@ -273,7 +283,7 @@ namespace Assets.Scripts.Managers
                 ClearAllDisplay();
 
                 interactionState = InteractionState.ISREADING;
-                displayList[_currentStep].SetActive(true);
+                displayList[_currentDisplay].SetActive(true);
                 SetTextButtonsNavigation();
             }
         }
