@@ -163,15 +163,18 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            // SET LEVEL 
-            GameStateManager.SetLevel((LevelState)_defaultLoadLevel, LevelsData.patientByLevel[_defaultLoadLevel]);
-            // SET PATIENT CASE
-            GameStateManager.SetPatientCase((PatientCase)_defaultPatientCase, LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
+            if (_defaultLoadLevel < LevelsData.patientByLevel.Count && _defaultPatientCase < LevelsData.patientByLevel[_defaultLoadLevel].patientsCase.Count)
+            {
+                // SET LEVEL 
+                GameStateManager.SetLevel((LevelState)_defaultLoadLevel, LevelsData.patientByLevel[_defaultLoadLevel]);
+                // SET PATIENT CASE
+                GameStateManager.SetPatientCase((PatientCase)_defaultPatientCase, LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
 
-            // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
-            PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].characterSprites[0]);
-            // SHOW TUTORIAL
-            Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
+                // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
+                PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].characterSprites[0]);
+                // SHOW TUTORIAL
+                Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
+            }
         }
         
         private void EnableTutorial()
@@ -287,7 +290,7 @@ namespace Assets.Scripts.Managers
 
 
             _defaultLoadLevel = 0; // todo load progression level
-            _defaultPatientCase = 0;
+            _defaultPatientCase = 1;
         }
         #endregion
 

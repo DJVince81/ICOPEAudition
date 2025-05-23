@@ -26,6 +26,7 @@ namespace Assets.Scripts.Managers
         private PatientCase currentPatientCase;
         private Step currentStep;
 
+        private LevelsData LevelsData;
         private LevelPatientData levelPatientData;
         private NewPatientData patientData;
 
@@ -81,6 +82,7 @@ namespace Assets.Scripts.Managers
         {
             currentPatientCase = patientCase;
             patientData = newPatient;
+            GameManager.Instance._defaultPatientCase = (int)patientCase;
             Debug.Log($"Current Patient: {currentPatientCase}, {patientData.surname}");
         }
 
@@ -93,18 +95,26 @@ namespace Assets.Scripts.Managers
 
         public void NextLevel()
         {           
-            currentLevel++;
+            if ((int)currentLevel < LevelsData.patientByLevel.Count)
+            {
+                SetLevel(currentLevel, levelPatientData);
+            }
+            else
+            {
+                Debug.Log("Tout les niveau sont terminer !");
+            }
         }
 
         public void NextPatientCase()
         {
             if ((int)currentPatientCase < levelPatientData.patientsCase.Count)
             {
-                currentPatientCase++;
                 SetPatientCase(currentPatientCase, levelPatientData.patientsCase[(int)currentPatientCase]);
             }
             else
             {
+                Debug.Log("Tous les cas patient sont terminer! Next Level !");
+                currentLevel++;
                 NextLevel();
             }
         }
@@ -122,7 +132,8 @@ namespace Assets.Scripts.Managers
             {
                 Debug.Log("Level Completed !");
                 // load next patient
-                GameManager.Instance._defaultPatientCase++;
+                currentPatientCase++;
+                NextPatientCase();
                 //save data
                 //return selection level
                 GameManager.Instance.LoadGameMenu();
@@ -130,6 +141,11 @@ namespace Assets.Scripts.Managers
             }
         }
 
+
+        private void Start()
+        {
+            LevelsData = GameManager.Instance.LevelsData;
+        }
         /*
         //MAIN_MENU -> PLAY -> CHANGE MAIN STATE -> GAME_MENU
         //GAME_MENU -> ESC -> CHANGE MAIN STATE -> MAIN_MENU
