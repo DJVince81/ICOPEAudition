@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static Assets.Scripts.Managers.GameStateManager;
+using Assets.Scripts.PatientData.AlgoData;
 
 namespace Assets.Scripts.Managers
 {
     [RequireComponent(typeof(GameStateManager))]
-    [RequireComponent(typeof(StepManager))]
+    //[RequireComponent(typeof(StepManager))]
     [RequireComponent(typeof(TelemetryManager))]
     [RequireComponent(typeof(AudioManager))]
     [RequireComponent(typeof(PatientAnimation))]
@@ -24,17 +26,19 @@ namespace Assets.Scripts.Managers
         public GameStateManager GameStateManager { get; private set; }
         public GameData GameData { get; set; }
 
-        public StepManager StepManager { get; private set; }
+        //public StepManager StepManager { get; private set; }
         public TelemetryManager TelemetryManager { get; private set; }
         public AudioManager AudioManager { get; private set; }
 
         public PatientAnimation PatientAnimation { get; private set; }
 
+        private StepManagerN StepManagerN;
 
-        [SerializeField] public List<NewPatientData> PatientDataList;
-        [SerializeField] public string _deflautLoadLevel; // index if 0 load fisrt level else (load progression player todo)
-        public StepManagerN StepManagerN;
-        private string currentLevel = "";
+        [SerializeField] public LevelsData LevelsData;
+        private NewPatientData patientCaseData;
+        public int _defaultLoadLevel; // index if 0 load fisrt level else (load progression player todo)
+        public int _defaultPatientCase;
+        private string _nameLevel;
 
         #region Structures
         public int Money
@@ -97,7 +101,7 @@ namespace Assets.Scripts.Managers
 
         #region Internal methods
         // LOAD STEP
-        internal void LoadStep(int stepIndex)
+        internal void LoadStep(Step stepIndex)
         {
             /*
             if (stepIndex == 0)
@@ -112,12 +116,6 @@ namespace Assets.Scripts.Managers
             StepManager.LoadStep(stepIndex);
             */
 
-            // FORCE TO START ON SELECTED STEP -- TOO REMOVE AT THE END
-            //stepIndex = 6;
-            //ClearScreen();
-            //StepManagerN.Initialize(PatientDataList[0]); // TOO CHANGE
-            //_stepMenu.SetActive(true);
-
 
             if (stepIndex == 0)
             {
@@ -125,7 +123,7 @@ namespace Assets.Scripts.Managers
                 AudioManager.StopCurrentSfx();
                 ClearScreen();
                 _stepMenu.SetActive(true);
-                StepManagerN.Initialize(PatientDataList[0]); // TOO CHANGE
+                StepManagerN.Initialize(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
             }
             StepManagerN.LoadStep(stepIndex);
         }
@@ -165,25 +163,15 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            // Check player progression
-            // Load step, sprite, character scriptable-object
-            int currentPatient = 0;
-            for (int i = 0; i < PatientDataList.Count; i++)
-            {
-                // Load step in GameStateManager
-                GameStateManager.LoadStepsFromScriptableObject(PatientDataList[i]);
-                if (_deflautLoadLevel == PatientDataList[i].name)
-                {
-                    currentPatient = i;
-                    currentLevel = PatientDataList[i].name;
-                }
-            }
-            // load sprite
-            PatientAnimation.SetNewCharacterInArea(PatientDataList[currentPatient].characterSprites[0]);
-            Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
+            // SET LEVEL 
+            GameStateManager.SetLevel((LevelState)_defaultLoadLevel, LevelsData.patientByLevel[_defaultLoadLevel]);
+            // SET PATIENT CASE
+            GameStateManager.SetPatientCase((PatientCase)_defaultPatientCase, LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
 
-            //_tipsPanel.Display();
-            //if (StatesManager.isPaused) TogglePause();
+            // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
+            PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].characterSprites[0]);
+            // SHOW TUTORIAL
+            Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
         }
         
         private void EnableTutorial()
@@ -216,7 +204,9 @@ namespace Assets.Scripts.Managers
             GameData.InitializeRecords();
             GameData.GlobalRecordsOnLevelStart();
             //GameStateManager.LoadLevelState();
-            GameStateManager.LoadLevelStateG(currentLevel);
+            
+            // SET ALGO STEP BY DEFAULT LOAD STEP 0 (RESTART THE PARCOURS EVEN IF PLAYER STOP DURING)
+            GameStateManager.SetStep(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].steps[0].type);
         }
 
         // TOGGLE PAUSE
@@ -272,7 +262,7 @@ namespace Assets.Scripts.Managers
             GameData = GetComponent<GameData>();
             StepManagerN = GetComponent<StepManagerN>();
 
-            StepManager = GetComponent<StepManager>();
+            //StepManager = GetComponent<StepManager>();
             TelemetryManager = GetComponent<TelemetryManager>();
             AudioManager = GetComponent<AudioManager>();
             PatientAnimation = GetComponent<PatientAnimation>();
@@ -293,8 +283,11 @@ namespace Assets.Scripts.Managers
             _money = PlayerPrefs.GetInt("money", 20);
             _isTutorialEnable = PlayerPrefs.GetInt("enableTutorial") == 1;
             AudioManager.PlayBGM("skyline");
-            _deflautLoadLevel = "1_0_Michel"; // todo load progression level
-            
+
+
+
+            _defaultLoadLevel = 0; // todo load progression level
+            _defaultPatientCase = 0;
         }
         #endregion
 

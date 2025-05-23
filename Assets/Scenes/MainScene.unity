@@ -1844,10 +1844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49563c7d23b90214195f64ee0793e4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PatientDataList:
-  - {fileID: 11400000, guid: 31aa28cc637b6564b94b63c8d953a166, type: 2}
-  _deflautLoadLevel: 0
-  StepManagerN: {fileID: 0}
+  LevelsData: {fileID: 11400000, guid: 04ecbfde3fc4bce4280ff6e119104014, type: 2}
+  _defaultLoadLevel: 0
+  _defaultPatientCase: 0
   _isTutorialEnable: 0
   _money: 200
   _mainMenu: {fileID: 374897088}
@@ -7171,6 +7170,10 @@ PrefabInstance:
     - target: {fileID: 829767756106792633, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123816608419714725, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2178237187576712393, guid: b51e87c9a5fd22b4fac438fd6f52e57f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'

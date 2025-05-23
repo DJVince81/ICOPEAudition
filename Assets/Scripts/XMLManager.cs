@@ -1,3 +1,4 @@
+using Assets.Scripts.PatientData.AlgoData;
 using Assets.Scripts.UI.TutorialContents;
 using System;
 using System.Collections;
@@ -217,9 +218,9 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private static Dictionary<AlgoState, StepRecords> LoadStepRecords(XmlNode node)
+        private static Dictionary<Step, StepRecords> LoadStepRecords(XmlNode node)
         {
-            Dictionary<AlgoState, StepRecords> stepRecords = new Dictionary<AlgoState, StepRecords>();
+            Dictionary<Step, StepRecords> stepRecords = new Dictionary<Step, StepRecords>();
             foreach (XmlNode stepNode in node.ChildNodes)
             {
                 StepRecords step = new StepRecords
@@ -228,7 +229,7 @@ namespace Assets.Scripts
                     actionAnswer = LoadStringList(stepNode.SelectSingleNode("actionAnswer")),
                     diagnosticAnswer = LoadStringList(stepNode.SelectSingleNode("diagnosticAnswer"))
                 };
-                AlgoState algoState = (AlgoState)Enum.Parse(typeof(AlgoState), stepNode.Name);
+                Step algoState = (Step)Enum.Parse(typeof(Step), stepNode.Name);
                 stepRecords[algoState] = step;
             }
             return stepRecords;

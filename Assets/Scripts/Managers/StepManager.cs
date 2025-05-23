@@ -36,14 +36,14 @@ public class StepManager : MonoBehaviour
 
         _confirmButton.onClick.AddListener(CheckAnswersValidity);
         //_nextButton.onClick.AddListener(GameManager.Instance.ChangeState);
-        _nextButton.onClick.AddListener(GameManager.Instance.GameStateManager.GetNextStep);
+        //_nextButton.onClick.AddListener(GameManager.Instance.GameStateManager.GetNextStep);
     }
 
     internal void Initialize()
     {
         _patientData = ScriptableObject.CreateInstance<PatientData>();
         //int stepToReach = Random.Range(0, 5);
-        _patientData.RandomizeData(GameManager.Instance.GameStateManager.GetNumberSteps());
+        //_patientData.RandomizeData(GameManager.Instance.GameStateManager.GetNumberSteps());
         _steps = _patientData.GetStepDatas();
 
         _isInit = true;
@@ -209,6 +209,6 @@ public class StepManager : MonoBehaviour
         string[] diagsT = currentStep.GetPossibleDiagnostics();
 
         // WARNIG : OutOfBound -> Step : Video otoscopie
-        GameManager.Instance.GameStateManager.RegiterError(actionT[actionSelected], diagsT[diagnoticsSelected]);
+        //GameManager.Instance.GameStateManager.RegiterError(actionT[actionSelected], diagsT[diagnoticsSelected]);
     }
 }

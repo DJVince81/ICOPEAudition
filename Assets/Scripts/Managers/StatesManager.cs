@@ -38,7 +38,7 @@ namespace Assets.Scripts.Managers
                 canChangeState = true;
                 return;
             }
-            canChangeState = GameManager.Instance.StepManager.WasCorrectlyAnswered;
+            //canChangeState = GameManager.Instance.StepManager.WasCorrectlyAnswered;
         }
 
         public void ReturnMainMenu()
@@ -67,6 +67,7 @@ namespace Assets.Scripts.Managers
                 case States.GAME_E3:
                     if (canChangeState)
                     {
+                        /*
                         if (GameManager.Instance.StepManager.IsLastStep())
                         {
                             GameManager.Instance.AudioManager.PlaySFX("money_up");
@@ -76,6 +77,7 @@ namespace Assets.Scripts.Managers
                         }
                         else currentState++;
                         DoActionOnChangeState();
+                        */
                     }
                     break;
                 case States.GAME_E4:
@@ -95,6 +97,7 @@ namespace Assets.Scripts.Managers
 
         private void DoActionOnChangeState()
         {
+            /*
             canChangeState = false;
             switch (currentState)
             {
@@ -120,6 +123,7 @@ namespace Assets.Scripts.Managers
                     GameManager.Instance.LoadStep(4);
                     break;
             }
+            */
         }
 
         private void DoActionOnState()

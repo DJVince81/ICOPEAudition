@@ -1,4 +1,5 @@
 using Assets.Scripts.Managers;
+using Assets.Scripts.PatientData.AlgoData;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,9 +37,9 @@ namespace Assets.Scripts
             public float timeSpentInLevel; // Time spent on the level
             public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
-            public Dictionary<AlgoState, StepRecords> stepRecords; // StepRecords of the level
+            public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level
 
-            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float levelTime, Dictionary<AlgoState, StepRecords> stepRecords)
+            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float levelTime, Dictionary<Step, StepRecords> stepRecords)
             {
                 this.levelAttempt = levelAttempt;
                 this.totActionError = totActionError;
@@ -91,7 +92,7 @@ namespace Assets.Scripts
         }
 
         // PRIVATE VARIABLES
-        private Dictionary<AlgoState, StepRecords> _stepRecords { get; set; }
+        private Dictionary<Step, StepRecords> _stepRecords { get; set; }
         private Dictionary<LevelState, LevelRecords> _levelRecords { get; set; }
         private Dictionary<string , LevelRecords> _levelRecordsG {  get; set; }
         private GlobalData _globalData;
@@ -110,14 +111,14 @@ namespace Assets.Scripts
                 _levelRecords = new Dictionary<LevelState, LevelRecords>();
                 _levelRecordsG = new Dictionary<string , LevelRecords>();
             }
-            _stepRecords = new Dictionary<AlgoState, StepRecords>();
+            _stepRecords = new Dictionary<Step, StepRecords>();
         }
 
         /// <summary>
         /// Set the dictionary<AlgoState, StepRecords> _stepRecords as a key an AlgoState (input parameter: currentAlgoState) and a value a new StepRecords.
         /// </summary>
         /// <param name="algoStep"></param>
-        public void SetStepRecords(AlgoState algoStep)
+        public void SetStepRecords(Step algoStep)
         {
             if (!_stepRecords.ContainsKey(algoStep)) _stepRecords[algoStep] = new StepRecords(0, new List<string>(), new List<string>());
         }
@@ -129,7 +130,7 @@ namespace Assets.Scripts
         /// <param name="algoStep"></param>
         /// <param name="actionError"></param>
         /// <param name="diagError"></param>
-        public void RecordsSteps(AlgoState algoStep, string actionError, string diagError)
+        public void RecordsSteps(Step algoStep, string actionError, string diagError)
         {
             if (!_stepRecords.ContainsKey(algoStep)) return;
 
@@ -141,7 +142,7 @@ namespace Assets.Scripts
         }
 
 
-        public bool PlayerHasAttemptStep(AlgoState algoState)
+        public bool PlayerHasAttemptStep(Step algoState)
         {
             return _stepRecords.ContainsKey(algoState) && _stepRecords[algoState].attempt > 0;
         }
@@ -211,7 +212,7 @@ namespace Assets.Scripts
         {
             LevelState levelState = (LevelState)indexLevel;
             Dictionary<string, string[]> stringRecords = new Dictionary<string, string[]>();
-            Dictionary<AlgoState, StepRecords> records = _levelRecords[levelState].stepRecords;
+            Dictionary<Step, StepRecords> records = _levelRecords[levelState].stepRecords;
             foreach (var step in records)
             {
                 string[] dataStep = new string[4];
@@ -276,6 +277,8 @@ namespace Assets.Scripts
         /// </summary>
         void Start()
         {
+            Debug.Log("A CODER! GAME DATA");
+            /*
             _globalTimer = new TimerData(Time.time); // Start the global timer            
             // try to get last session time on web request
             path = Path.Combine(Application.streamingAssetsPath, path);
@@ -289,12 +292,16 @@ namespace Assets.Scripts
                     _stepRecords = level.Value.stepRecords;
                 }
 
-                GameManager.Instance.GameStateManager.LoadSavedLevel(_globalData.levelRecords.Keys.Last());
+
+                Debug.Log("A CODER !");
+
+                //GameManager.Instance.GameStateManager.LoadSavedLevel(_globalData.levelRecords.Keys.Last());
             }
             else
             {
                 _globalData = new GlobalData();
             }
+            */
         }
     }
 }

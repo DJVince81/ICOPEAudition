@@ -4,12 +4,133 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class GameStateManager : MonoBehaviour
     {
+
+        // ENUM
+        private enum GameState { MAIN_MENU, GAME_MENU } // Enums for Main_menu and waiting_room
+
+        public enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5 }
+        public enum PatientCase { PATIENT_1, PATIENT_2, PATIENT_3 }
+
+
+        // VARIABLES
+        private GameState gameState;
+        private LevelState currentLevel;
+        private PatientCase currentPatientCase;
+        private Step currentStep;
+
+        private LevelPatientData levelPatientData;
+        private NewPatientData patientData;
+
+        //MAP OF PATIENT STEP CAUSE THE ORDER CAN CHANGE
+        //private Dictionary<Step, int> mappingSteps; 
+        
+
+        // MAIN MENU / GAME MENU TRANSITIONS
+        /// <summary>
+        /// Function call by buttons (play and return Menu)
+        /// Basicly switch between MAIN_MENU and GAME_MENU
+        /// </summary>
+        /// <param name="newState">MainState: MAIN_MENU / GAME_MENU</param>
+        private void SetMainState(GameState newState)
+        {
+            gameState = newState;
+            Debug.Log($"Main State: {gameState}");
+            // LOAD SCENE
+            if (gameState == GameState.GAME_MENU)
+            {
+                GameManager.Instance.LoadGameMenu();
+            }
+            else
+            {
+                GameManager.Instance.LoadMainMenu();
+            }
+        }
+
+        /// <summary>
+        /// Public function change the main state between MAIN_MENU & GAME_MENU.
+        /// Its call by buttons "Play" & "return menu"
+        /// </summary>
+        public void ChangeMainState()
+        {
+            if (gameState == GameState.MAIN_MENU)
+            {
+                SetMainState(GameState.GAME_MENU);
+            }
+            else
+            {
+                SetMainState(GameState.MAIN_MENU);
+            }
+        }
+
+        public void SetLevel(LevelState levelState, LevelPatientData patientData)
+        {
+            currentLevel = levelState;
+            levelPatientData = patientData;
+            Debug.Log($"Current Level : {currentLevel}, {levelPatientData.levelName}");
+        }
+
+        public void SetPatientCase(PatientCase patientCase, NewPatientData newPatient)
+        {
+            currentPatientCase = patientCase;
+            patientData = newPatient;
+            Debug.Log($"Current Patient: {currentPatientCase}, {patientData.surname}");
+        }
+
+        public void SetStep(Step step)
+        {
+            currentStep = step;
+            Debug.Log($"Algo Test G: {currentStep}");
+            GameManager.Instance.LoadStep(currentStep);
+        }
+
+        public void NextLevel()
+        {           
+            currentLevel++;
+        }
+
+        public void NextPatientCase()
+        {
+            if ((int)currentPatientCase < levelPatientData.patientsCase.Count)
+            {
+                currentPatientCase++;
+                SetPatientCase(currentPatientCase, levelPatientData.patientsCase[(int)currentPatientCase]);
+            }
+            else
+            {
+                NextLevel();
+            }
+        }
+
+        public void NextStep(int index)
+        {
+            if ((int)currentStep < patientData.steps.Count)
+            {
+                // LOAD NEXT STEP
+                currentStep = patientData.steps[index].type;
+                Debug.Log("Next Level: " + currentStep);
+                SetStep(currentStep);
+            } 
+            else if (patientData.steps[index-1].isTerminatingStep)
+            {
+                Debug.Log("Level Completed !");
+                // load next patient
+                GameManager.Instance._defaultPatientCase++;
+                //save data
+                //return selection level
+                GameManager.Instance.LoadGameMenu();
+                GameManager.Instance.AudioManager.PlayBGM("skyline");
+            }
+        }
+
+        /*
         //MAIN_MENU -> PLAY -> CHANGE MAIN STATE -> GAME_MENU
         //GAME_MENU -> ESC -> CHANGE MAIN STATE -> MAIN_MENU
 
@@ -54,6 +175,13 @@ namespace Assets.Scripts.Managers
         private List<AlgoState> testsToDo;
         private int testIndex = 0;
         private bool canGetNextStep = false;
+
+
+        // NEW VARIABLES
+        [SerializeField] private List<LevelsData> levelsDatas;
+        private NewPatientData patientCaseData;
+        private int _currentLevel;
+        private int _currentPatientCase;
 
         // MAIN MENU / GAME MENU TRANSITIONS
         /// <summary>
@@ -115,12 +243,6 @@ namespace Assets.Scripts.Managers
             testIndex = 0;
             //Debug.Log(stepsToDo[testIndex].type);
             SetStepState(stepsToDo[testIndex].type);
-        }
-
-        public void LoadStepsFromScriptableObject(NewPatientData newPatientData)
-        {
-            if (!dataLevels2.ContainsKey(newPatientData.name))
-                dataLevels2.Add(newPatientData.name, newPatientData.steps);
         }
 
         // RANDOM GAME MODE
@@ -367,6 +489,9 @@ namespace Assets.Scripts.Managers
         {
             //LoadGame();
             dataLevels2 = new Dictionary<string, List<AlgoStep>>();
-        }
+
+            // Load player progression
+
+        }*/
     }
 }

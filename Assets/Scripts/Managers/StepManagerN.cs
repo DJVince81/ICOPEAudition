@@ -69,55 +69,37 @@ namespace Assets.Scripts.Managers
 
         private Dictionary<Step, int> mappingDisplays;
 
-        public void Initialize(NewPatientData patient)
+        public void Initialize(NewPatientData newPatient)
         {
-            patientData = patient;
-
-            List<Step> lSteps = new List<Step>();
-            foreach (var step in patientData.steps)
-            {
-                lSteps.Add(step.type);
-            }
-
-            mappingDisplays = MappingDisplay(lSteps);
-        }
-
-        private static Dictionary<Step, int> MappingDisplay<Step>(List<Step> filteredSteps) where Step : System.Enum
-        {
-            var dict = new Dictionary<Step, int>();
-            for (int i = 0; i < filteredSteps.Count; i++)
-            {
-                dict[filteredSteps[i]] = i;
-            }
-
-
-            Debug.Log(dict);
-            return dict;
+            _currentStep = 0; // reset current step to 0
+            patientData = newPatient;
         }
 
 
-        public void LoadStep(int currentStep)
+        public void LoadStep(Step currentStep)
         {
-            _currentStep = mappingDisplays[(Step) currentStep];
-
+            ClearAllDisplay();
+            
             interactionState = InteractionState.ISREADING;
 
             // Set bools to fasle each step
             _isDiagnosticValid = false;
             _isActionValid = false;
 
-            ClearAllDisplay();
-
-            switch (patientData.steps[_currentStep].type)
+            switch (currentStep)
             {
                 case Step.Case_presentation:
                     // Load patient sprite & patient text
                     step1PresentationPatient.SetSprites(patientData.characterSprites[0]);
                     step1PresentationPatient.SetPresentationTexts(patientData);
+                    // Display current step
+                    displayList[0].SetActive(true);
                     break;
                 case Step.Wisper_test:
                     // Load wisper text (animation with dotween)
                     step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
+                    // Display current step
+                    displayList[1].SetActive(true);
                     break;
                 case Step.Questionnary:
                     // Load questionary & answer
@@ -127,32 +109,43 @@ namespace Assets.Scripts.Managers
                     step4And5Questionnary.SetQuestionayText(questions, answers);
                     //Set Patient Sprite
                     step4And5Questionnary.SetPatientSprite(patientData.characterSprites[0]);
+                    // Display current step
+                    displayList[2].SetActive(true);
                     break;
                 case Step.Additional_questionnaire:
                     // Load questionary & answer
                     List<QuestionData> questions2 = patientData.steps[_currentStep].questionnaireData.questions;
                     List<PatientQuestionAnswer> answers2 = patientData.steps[_currentStep].predefinedAnwser;
                     step4And5Questionnary.SetQuestionayText(questions2, answers2);
+                    // Display current step
+                    displayList[2].SetActive(true);
                     break;
                 case Step.Otoscopy:
                     // Load patient ear image
                     Step5Otoscopie.SetImageOtoscopiePatient(patientData.steps[_currentStep].spriteEarExams);
+                    // Display current step
+                    displayList[3].SetActive(true);
                     break;
                 case Step.Weber_test:
                     // Load texts dialogue
-                    step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription); 
+                    step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription);
+                    // Display current step
+                    displayList[4].SetActive(true);
                     break;
                 case Step.HHIES_test:
                     // Load patient ear image
                     step7HhiesTest.SetImageHHIES(patientData.steps[_currentStep].spriteEarExams);
+                    // Display current step
+                    displayList[5].SetActive(true);
                     break;
                 case Step.Audiometry:
                     // Load patient ear image
                     Step8Audiometrie.SetImageAudiometrie(patientData.steps[_currentStep].spriteEarExams);
+                    // Display current step
+                    displayList[6].SetActive(true);
                     break;
             }
 
-            displayList[_currentStep].SetActive(true);
             // set navigation button (Buttons)
             SetTextButtonsNavigation();
         }
@@ -382,10 +375,13 @@ namespace Assets.Scripts.Managers
 
         private void GoToNextStep()
         {
-           
             // Control if dignostic & action is completed
-            if (IsStepCompleted(patientData.steps[_currentStep])) GameManager.Instance.GameStateManager.GetNextStep();
-            if (_isDiagnosticValid && answerState == AnswerState.DIAGNOSTIC)
+            if (IsStepCompleted(patientData.steps[_currentStep]))
+            {
+                _currentStep++;
+                GameManager.Instance.GameStateManager.NextStep(_currentStep);
+            }
+            else if (_isDiagnosticValid && answerState == AnswerState.DIAGNOSTIC)
             {
                 GoToQuestionDisplay();
             }

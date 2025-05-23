@@ -115,7 +115,8 @@ namespace Assets.Scripts.UI.LevelContents
         /// </summary>
         private void StartGame()
         {
-            GameManager.Instance.GameStateManager.LoadLevelFromPanel(currentButtonIndex);
+            Debug.Log("A CODER!");
+            //GameManager.Instance.GameStateManager.LoadLevelFromPanel(currentButtonIndex);
         }
 
         // ON BUTTON CLICKED
