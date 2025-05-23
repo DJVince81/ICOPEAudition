@@ -327,6 +327,13 @@ namespace Assets.Scripts.Managers
         private void ShowAnswerDetail(AnswerData answer, string feedBackText, bool anwserCorrect)
         {
             interactionState = InteractionState.ISCORRECTION;
+
+            // Clear images
+            foreach(GameObject go in answerGameObjectSprites)
+            {
+                go.SetActive(false);
+            }
+
             // Load texts
             answerText.text = feedBackText;
             answerSelected.text = answer.answerText;
