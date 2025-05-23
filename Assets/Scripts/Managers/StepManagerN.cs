@@ -139,8 +139,8 @@ namespace Assets.Scripts.Managers
                     displayList[5].SetActive(true);
                     break;
                 case Step.Audiometry:
-                    // Load patient ear image
-                    Step8Audiometrie.SetImageAudiometrie(patientData.steps[_currentStep].spriteEarExams);
+                    // Load patient audiometrie + patient sprite
+                    Step8Audiometrie.SetSprite(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
                     displayList[6].SetActive(true);
                     break;
