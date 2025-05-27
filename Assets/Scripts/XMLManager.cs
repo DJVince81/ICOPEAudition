@@ -5,8 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Schema;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Assets.Scripts.GameData;
 using static Assets.Scripts.Managers.GameStateManager;
@@ -61,9 +64,9 @@ namespace Assets.Scripts
                     parentNode.AppendChild(itemNode);
                 }
             }
-            else if (data is IEnumerable list)
+            else if (data is IEnumerable collection)
             {
-                foreach (var item in list)
+                foreach (var item in collection)
                 {
                     XmlElement itemNode = xmlDocument.CreateElement("Item");
                     SerializedObject(xmlDocument, itemNode, item);
@@ -97,7 +100,7 @@ namespace Assets.Scripts
         /// <param name="filePath"></param>
         /// <returns>struct GlobalData</returns>
         /// <exception cref="Exception"></exception>
-        public static GlobalData LoadGameData(string filePath)
+        public static MainData LoadGameData(string filePath)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -105,16 +108,12 @@ namespace Assets.Scripts
             XmlNode root = doc.DocumentElement;
             if (root == null || root.Name != "GameData") throw new Exception("Invalid XML format.");
 
-            GlobalData gameData = new GlobalData
+            MainData gameData = new MainData
             {
                 totGames = int.Parse(root["totGames"].InnerText),
                 nbGameSession = int.Parse(root["nbGameSession"].InnerText),
-                nbLevelsCompleted = int.Parse(root["nbLevelsCompleted"].InnerText),
-                nbStepsCompleted = int.Parse(root["nbStepsCompleted"].InnerText),
-                globalActionErrors = int.Parse(root["globalActionErrors"].InnerText),
-                globalDiagnosticErrors = int.Parse(root["globalDiagnosticErrors"].InnerText),
                 gameTime = float.Parse(root["gameTime"].InnerText),
-                currentSessionTime = float.Parse(root["currentSessionTime"].InnerText),
+                //sessionTimeQueue = float.Parse(root["sessionTimeQueue"].), TODO
                 levelRecords = LoadLevelRecords(root.SelectSingleNode("levelRecords"))
             };
 
@@ -198,13 +197,10 @@ namespace Assets.Scripts
             {
                 LevelRecords records = new LevelRecords
                 {
-                    levelAttempt = int.Parse(levelNode["levelAttempt"].InnerText),
-                    totActionError = int.Parse(levelNode["totActionError"].InnerText),
-                    totDiagnosticError = int.Parse(levelNode["totDiagnosticError"].InnerText),
-                    nbStepSucced = int.Parse(levelNode["nbStepSucced"].InnerText),
-                    nbStepFailed = int.Parse(levelNode["nbStepFailed"].InnerText),
-                    timeSpentInLevel = float.Parse(levelNode["timeSpentInLevel"].InnerText),
-                    stepRecords = LoadStepRecords(levelNode.SelectSingleNode("stepRecords"))
+                    levelNbAttempt = int.Parse(levelNode["levelNbAttempt"].InnerText),
+                    totPatientCompleted = int.Parse(levelNode["totPatientCompleted"].InnerText),
+                    patientCaseRecords = LoadPatientCaseRecords(levelNode.SelectSingleNode("patientCaseRecords")),
+                    
                 };
 
                 LevelState name = (LevelState)Enum.Parse(typeof(LevelState), levelNode.Name);
@@ -212,6 +208,28 @@ namespace Assets.Scripts
             }
             return levelRecords;
         }
+
+
+        private static Dictionary<string, PatientCaseRecords> LoadPatientCaseRecords(XmlNode node)
+        {
+            Dictionary<string, PatientCaseRecords> patientCaseRecords = new Dictionary<string, PatientCaseRecords>();
+            foreach (XmlNode patientNode in node.ChildNodes)
+            {
+                PatientCaseRecords record = new PatientCaseRecords
+                {
+                    nbAttempt = int.Parse(patientNode["nbAttempt"].InnerText),
+                    totDiagnosticError = int.Parse(patientNode["totDiagnosticError"].InnerText),
+                    totActionError = int.Parse(patientNode["totActionError"].InnerText),
+                    nbStepSucced = int.Parse(patientNode["nbStepSucced"].InnerText),
+                    nbStepFailed = int.Parse(patientNode["nbStepFailed"].InnerText),
+                    timePassed = float.Parse(patientNode["timePassed"].InnerText),
+                    stepRecords = LoadStepRecords(patientNode.SelectSingleNode("stepRecords")),
+                };
+                patientCaseRecords[patientNode.Name] = record;
+            }
+            return patientCaseRecords;
+        }
+
 
         /// <summary>
         /// Return a dictionary<AlgoState, StepRecords> (enum: AlgoState, struct: StepRecords) store in xml document recursively. Take xml node as input.

@@ -7,12 +7,12 @@ namespace Assets.Scripts
     [CreateAssetMenu(fileName = "LevelsData", menuName = "Medical/LevelsData")]
     public class LevelsData : ScriptableObject
     {
-        public List<LevelPatientData> patientByLevel;
+        public List<PatientCaseData> patientByLevel;
     }
 
 
     [System.Serializable]
-    public class LevelPatientData
+    public class PatientCaseData
     {
         public string levelName;
         public List<NewPatientData> patientsCase;

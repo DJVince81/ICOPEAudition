@@ -27,7 +27,7 @@ namespace Assets.Scripts.Managers
         private Step currentStep;
 
         private LevelsData LevelsData;
-        private LevelPatientData levelPatientData;
+        private PatientCaseData patientCaseData;
         private NewPatientData patientData;
 
         // MAIN MENU / GAME MENU TRANSITIONS
@@ -67,11 +67,14 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        public void SetLevel(LevelState levelState, LevelPatientData patientData)
+        public void SetLevel(LevelState levelState, PatientCaseData patientData)
         {
             currentLevel = levelState;
-            levelPatientData = patientData;
-            Debug.Log($"Current Level : {currentLevel}, {levelPatientData.levelName}");
+            patientCaseData = patientData;
+
+            GameManager.Instance.GameData.SetLevelRecords(currentLevel);
+
+            Debug.Log($"Current Level : {currentLevel}, {patientCaseData.levelName}");
         }
 
         public void SetPatientCase(PatientCase patientCase, NewPatientData newPatient)
@@ -79,6 +82,9 @@ namespace Assets.Scripts.Managers
             currentPatientCase = patientCase;
             patientData = newPatient;
             GameManager.Instance._defaultPatientCase = (int)patientCase;
+
+            GameManager.Instance.GameData.SetPatientCaseRecorder(patientData.fisrtName);
+            
             Debug.Log($"Current Patient: {currentPatientCase}, {patientData.surname}");
         }
 
@@ -86,6 +92,9 @@ namespace Assets.Scripts.Managers
         {
             currentStep = step;
             Debug.Log($"Algo Test G: {currentStep}");
+            
+            GameManager.Instance.GameData.SetStepRecords(currentStep);
+
             GameManager.Instance.LoadStep(currentStep);
         }
 
@@ -93,19 +102,20 @@ namespace Assets.Scripts.Managers
         {           
             if ((int)currentLevel < LevelsData.patientByLevel.Count)
             {
-                SetLevel(currentLevel, levelPatientData);
+                SetLevel(currentLevel, patientCaseData);
             }
             else
             {
                 Debug.Log("Tout les niveau sont terminer !");
             }
+            
         }
 
         public void NextPatientCase()
         {
-            if ((int)currentPatientCase < levelPatientData.patientsCase.Count)
+            if ((int)currentPatientCase < patientCaseData.patientsCase.Count)
             {
-                SetPatientCase(currentPatientCase, levelPatientData.patientsCase[(int)currentPatientCase]);
+                SetPatientCase(currentPatientCase, patientCaseData.patientsCase[(int)currentPatientCase]);
             }
             else
             {
@@ -113,6 +123,9 @@ namespace Assets.Scripts.Managers
                 currentLevel++;
                 NextLevel();
             }
+            GameManager.Instance.GameData.RecordsPatientCase(patientData.fisrtName);
+            GameManager.Instance.GameData.RecordsLevel(currentLevel);
+            GameManager.Instance.GameData.UpdateMainRecordsOnLevelEnd();
         }
 
         public void NextStep(int index)
@@ -137,7 +150,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
-
+        
         private void Start()
         {
             LevelsData = GameManager.Instance.LevelsData;

@@ -58,7 +58,7 @@ namespace Assets.Scripts.Managers
         private enum InteractionState { ISREADING, ISANSWERING, ISCORRECTION};
         private InteractionState interactionState;
 
-        private enum AnswerState { DIAGNOSTIC, ACTION} // TODO : Change to boolean
+        private enum AnswerState { DIAGNOSTIC, ACTION }
         private AnswerState answerState;
 
         private NewPatientData patientData;
@@ -67,6 +67,7 @@ namespace Assets.Scripts.Managers
         private int _currentDisplay;
         private bool _isDiagnosticValid;
         private bool _isActionValid;
+        private Step step;
 
         private Dictionary<Step, int> mappingDisplays;
 
@@ -77,12 +78,12 @@ namespace Assets.Scripts.Managers
             patientData = newPatient;
         }
 
-
-
         public void LoadStep(Step currentStep)
         {
             ClearAllDisplay();
             
+            step = currentStep;
+
             interactionState = InteractionState.ISREADING;
 
             // Set bools to fasle each step
@@ -324,6 +325,7 @@ namespace Assets.Scripts.Managers
                     choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
                     _isDiagnosticValid = false;
                 }
+                GameManager.Instance.GameData.RecordsSteps(step, "", choiceButtons[index].GetComponentInChildren<TextMeshProUGUI>().text);
             }
             // ACTION CHOICE
             if (answerState == AnswerState.ACTION)
@@ -339,6 +341,7 @@ namespace Assets.Scripts.Managers
                     _isActionValid = false;
                     choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
                 }
+                GameManager.Instance.GameData.RecordsSteps(step, choiceButtons[index].GetComponentInChildren<TextMeshProUGUI>().text, "");
             }
             ShowAnswerDetail(phaseData.answerData[index], feedBackText, isCorrect);
         }
@@ -410,12 +413,7 @@ namespace Assets.Scripts.Managers
             {
                 _currentStep++;
                 GameManager.Instance.GameStateManager.NextStep(_currentStep);
-            }
-            else if (_isDiagnosticValid && answerState == AnswerState.DIAGNOSTIC)
-            {
-                GoToQuestionDisplay();
-            }
-            
+            }          
         }
 
         private bool IsStepCompleted(AlgoStep step)

@@ -133,7 +133,7 @@ namespace Assets.Scripts.UI.LevelContents
 
         private void SetTextsDisplay()
         {
-            string[] strings = GameManager.Instance.GameData.LevelRecordsToString(currentButtonIndex);
+            string[] strings = GameManager.Instance.GameData.PatientCaseRecordsToString("");
             DestroyUiItemClone();
 
             if (strings == null)
@@ -155,9 +155,7 @@ namespace Assets.Scripts.UI.LevelContents
 
         private void CreateUiItem()
         {
-            Dictionary<string, string[]> data = GameManager.Instance.GameData.GetStepRecordsInfo(currentButtonIndex);
-
-            
+            Dictionary<string, string[]> data = GameManager.Instance.GameData.GetStepRecordsToString(currentButtonIndex);
 
             foreach (var var in data)
             {

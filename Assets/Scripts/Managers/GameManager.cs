@@ -32,10 +32,10 @@ namespace Assets.Scripts.Managers
 
         public PatientAnimation PatientAnimation { get; private set; }
 
-        private StepManagerN StepManagerN;
+        public StepManagerN StepManagerN { get; private set; }
 
         [SerializeField] public LevelsData LevelsData;
-        private NewPatientData patientCaseData;
+        public NewPatientData patientCaseData;
         public int _defaultLoadLevel; // index if 0 load fisrt level else (load progression player todo)
         public int _defaultPatientCase;
         private string _nameLevel;
@@ -163,6 +163,8 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
+            GameData.InitializeRecords();
+
             if (_defaultLoadLevel < LevelsData.patientByLevel.Count && _defaultPatientCase < LevelsData.patientByLevel[_defaultLoadLevel].patientsCase.Count)
             {
                 // SET LEVEL 
@@ -204,8 +206,8 @@ namespace Assets.Scripts.Managers
         {
             yield return new WaitForSeconds(0.5f);
             //StatesManager.ChangeState();
-            GameData.InitializeRecords();
-            GameData.GlobalRecordsOnLevelStart();
+            
+            GameData.UpdateMainRecordsOnLevelStart();
             //GameStateManager.LoadLevelState();
             
             // SET ALGO STEP BY DEFAULT LOAD STEP 0 (RESTART THE PARCOURS EVEN IF PLAYER STOP DURING)
@@ -290,7 +292,7 @@ namespace Assets.Scripts.Managers
 
 
             _defaultLoadLevel = 0; // todo load progression level
-            _defaultPatientCase = 1;
+            _defaultPatientCase = 0;
         }
         #endregion
 

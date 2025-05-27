@@ -3,6 +3,7 @@ using Assets.Scripts.PatientData.AlgoData;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
 
@@ -12,71 +13,83 @@ namespace Assets.Scripts
     {
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
         public struct StepRecords
-        {
+        {           
             public int attempt;
             public List<string> actionAnswer; // None, Error description
             public List<string> diagnosticAnswer; // None, Error description
-            public bool succeeded => actionAnswer.Count == 1 && diagnosticAnswer.Count == 1;
+            public bool succeeded; // No error
 
             public StepRecords(int attempt, List<string> actionError, List<string> diagnosticError)
             {
                 this.attempt = attempt;
                 this.actionAnswer = actionError;
                 this.diagnosticAnswer = diagnosticError;
+                this.succeeded = false;
             }
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        public struct LevelRecords
+        public struct PatientCaseRecords
         {
-            public int levelAttempt; // Number of attempts for the level
-            public int totActionError; // length of actionError
+            public int nbAttempt; // Number of attempts for this patient
             public int totDiagnosticError; // length of diagnosticError
+            public int totActionError; // length of actionError
+            public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
             public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
             public int nbStepFailed; // Number of failed (count number of failed in StepRecord)
-            public float timeSpentInLevel; // Time spent on the level
-            public int successRate => nbStepSucced / (nbStepSucced + nbStepFailed);
-            public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
-            public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level
+            //public int successRate => (nbStepSucced + nbStepFailed) == 0 ? 0 : nbStepSucced * 100 / (nbStepSucced + nbStepFailed);
+            
+            public float timePassed; // Time spent on the level
+            public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level {Step name, Steps}
 
-            public LevelRecords(int levelAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float levelTime, Dictionary<Step, StepRecords> stepRecords)
+            public PatientCaseRecords(int nbAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float timePassed, Dictionary<Step, StepRecords> stepRecords)
             {
-                this.levelAttempt = levelAttempt;
+                this.nbAttempt = nbAttempt;
                 this.totActionError = totActionError;
                 this.totDiagnosticError = totDiagnosticError;
                 this.nbStepSucced = nbStepSucced;
                 this.nbStepFailed = nbStepFailed;
-                this.timeSpentInLevel = levelTime;
+                this.timePassed = timePassed;
                 this.stepRecords = stepRecords;
             }
         }
 
+        public struct LevelRecords
+        {
+            public int levelNbAttempt;
+            public int totPatientCompleted;
+            // ADD OTHER STAT
+            public Dictionary<string, PatientCaseRecords> patientCaseRecords; // {Patient Name,  PatientRecords}
+
+            public LevelRecords(int levelNbAttempt, int PatientCompleted, Dictionary<string, PatientCaseRecords> patientCaseRecords)
+            {
+                this.levelNbAttempt = levelNbAttempt;
+                this.totPatientCompleted = PatientCompleted;
+                this.patientCaseRecords = patientCaseRecords;
+            }
+        }
+
         // GLOBAL RECORDS
-        public struct GlobalData
+        public struct MainData
         {
             public int totGames; // Number of games played
-            public int nbGameSession;
-            public int nbLevelsCompleted; // Number of levels completed
-            public int nbStepsCompleted; // Number of steps completed
-            public int globalActionErrors; // Number of action errors
-            public int globalDiagnosticErrors; // Number of diagnostic errors
             public float gameTime;
-            public float currentSessionTime;
-            public Dictionary<LevelState, LevelRecords> levelRecords;
+            public int nbGameSession;
+            public Queue<float> sessionTimeQueue; 
 
-            public GlobalData(int nbGames, int nbGameSession, int nbLevelsCompleted, int nbStepsCompleted, int nbActionErrors, int nbDiagnosticErrors, float gameTime, float currentSessionTime, Dictionary<LevelState, LevelRecords> levelRecords)
+            public Dictionary<LevelState, LevelRecords> levelRecords; // {levelName, levelRecords}
+
+            public MainData(int nbGames, int nbGameSession, float gameTime, Queue<float> sessionTimeQueue, Dictionary<LevelState, LevelRecords> levelRecords)
             {
                 this.totGames = nbGames;
-                this.nbGameSession = nbGameSession;
-                this.nbLevelsCompleted = nbLevelsCompleted;
-                this.nbStepsCompleted = nbStepsCompleted;
-                this.globalActionErrors = nbActionErrors;
-                this.globalDiagnosticErrors = nbDiagnosticErrors;
                 this.gameTime = gameTime;
-                this.currentSessionTime = currentSessionTime;
+                this.nbGameSession = nbGameSession;
+                this.sessionTimeQueue = sessionTimeQueue;
                 this.levelRecords = levelRecords;
             }
         }
+
+        
 
         // TIMER DATA
         public struct TimerData
@@ -91,11 +104,14 @@ namespace Assets.Scripts
             }
         }
 
-        // PRIVATE VARIABLES
+        // RECORDS VARIABLES
         private Dictionary<Step, StepRecords> _stepRecords { get; set; }
-        private Dictionary<LevelState, LevelRecords> _levelRecords { get; set; }
-        private Dictionary<string , LevelRecords> _levelRecordsG {  get; set; }
-        private GlobalData _globalData;
+        private Dictionary<string, PatientCaseRecords> _patientCaseRecords { get; set; }
+        private Dictionary<LevelState, LevelRecords> _levelRecords {  get; set; }
+
+        private MainData _MainData;
+        
+        // TIMER VARIABLES
         private TimerData _levelTimer;
         private TimerData _globalTimer;
 
@@ -109,8 +125,8 @@ namespace Assets.Scripts
             if (_levelRecords == null)
             {
                 _levelRecords = new Dictionary<LevelState, LevelRecords>();
-                _levelRecordsG = new Dictionary<string , LevelRecords>();
             }
+            _patientCaseRecords = new Dictionary<string, PatientCaseRecords>();
             _stepRecords = new Dictionary<Step, StepRecords>();
         }
 
@@ -120,7 +136,7 @@ namespace Assets.Scripts
         /// <param name="algoStep"></param>
         public void SetStepRecords(Step algoStep)
         {
-            if (!_stepRecords.ContainsKey(algoStep)) _stepRecords[algoStep] = new StepRecords(0, new List<string>(), new List<string>());
+            if(!_stepRecords.ContainsKey(algoStep)) _stepRecords[algoStep] = new StepRecords(0, new List<string>(), new List<string>());
         }
 
         /// <summary>
@@ -138,14 +154,47 @@ namespace Assets.Scripts
             stepData.attempt++;
             if (!string.IsNullOrEmpty(actionError)) stepData.actionAnswer.Add(actionError);
             if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticAnswer.Add(diagError);
-            _stepRecords[algoStep] = stepData;
+            
+            // Check if has diagnotics or action.
+            if (stepData.diagnosticAnswer.Count == 1 && stepData.actionAnswer.Count == 1) stepData.succeeded = true;
+            else if (stepData.actionAnswer.Count == 1) stepData.succeeded = true;
+                _stepRecords[algoStep] = stepData;
         }
-
+        
 
         public bool PlayerHasAttemptStep(Step algoState)
         {
             return _stepRecords.ContainsKey(algoState) && _stepRecords[algoState].attempt > 0;
         }
+
+        public void SetPatientCaseRecorder(string patientName)
+        {
+            if (!_patientCaseRecords.ContainsKey(patientName)) _patientCaseRecords[patientName] = new PatientCaseRecords();
+        }
+
+        public void RecordsPatientCase(string patientName)
+        {
+            if (!_patientCaseRecords.ContainsKey(patientName)) Debug.LogError("Key "+patientName+" not found in patientCaseRecorder.");
+
+            PatientCaseRecords patientCaseRecords = _patientCaseRecords[patientName];
+            patientCaseRecords.nbAttempt++;
+            foreach (var step in _stepRecords)
+            {
+                StepRecords stepData = step.Value;
+                if (stepData.diagnosticAnswer.Count > 1) patientCaseRecords.totDiagnosticError++;
+                if (stepData.actionAnswer.Count > 1) patientCaseRecords.totActionError++;
+                if (stepData.succeeded) { patientCaseRecords.nbStepSucced++; Debug.Log("Step: Succee"); }
+                else { patientCaseRecords.nbStepFailed++; Debug.Log("Step: Failed"); }
+            }
+
+            Debug.Log($"Step succed : {patientCaseRecords.nbStepSucced}, Step failed: {patientCaseRecords.nbStepFailed}");
+            Debug.Log($"Succee rate: {patientCaseRecords.nbStepSucced / (patientCaseRecords.nbStepSucced + patientCaseRecords.nbStepFailed)}");
+            patientCaseRecords.timePassed = Time.time - _levelTimer.startTime;
+            patientCaseRecords.stepRecords = _stepRecords;
+            _patientCaseRecords[patientName] = patientCaseRecords;
+        }
+
+
 
         /// <summary>
         /// Set the dictionary<LevelState, LevelRecords> _levelRecords as a key a LevelState (input parameter: currentLevelState) and value a new LevelRecords.
@@ -154,52 +203,39 @@ namespace Assets.Scripts
         public void SetLevelRecords(LevelState levelState)
         {
             _levelTimer = new TimerData(Time.time);
-            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, 0, 0, 0, 0, _stepRecords);
+            if (!_levelRecords.ContainsKey(levelState)) _levelRecords[levelState] = new LevelRecords(0, 0, _patientCaseRecords);
         }
 
-        public void SetLevelRecordsG(string levelName)
-        {
-            _levelTimer = new TimerData(Time.time);
-            if (!_levelRecordsG.ContainsKey(levelName)) _levelRecordsG[levelName] = new LevelRecords(0, 0, 0, 0, 0, 0, _stepRecords);
-        }
 
         /// <summary>
         /// Modify/records the data from the player (attempt, nbStepSucced, nbStepFailed, totActionError, totDiagnostics, timeSpentInLevel, stepRecords) of the current level (LevelState).
         /// </summary>
         /// <param name="levelState"></param>
-        public void RecordsLevels(LevelState levelState)
+        public void RecordsLevel(LevelState levelState)
         {
             if (!_levelRecords.ContainsKey(levelState)) return;
 
-            LevelRecords levelData = _levelRecords[levelState];
-            levelData.levelAttempt++;
-
-            foreach (var step in _stepRecords)
-            {
-                StepRecords stepData = step.Value; // Get the step data
-                if (stepData.succeeded) levelData.nbStepSucced++;
-                else levelData.nbStepFailed++;
-                levelData.totActionError += stepData.actionAnswer.Count;
-                levelData.totDiagnosticError += stepData.diagnosticAnswer.Count;
-            }
-
-            levelData.timeSpentInLevel = Time.time - _levelTimer.startTime;
-            levelData.stepRecords = _stepRecords;
-            _levelRecords[levelState] = levelData;
+            LevelRecords levelRecords = _levelRecords[levelState];
+            levelRecords.levelNbAttempt++;
+            levelRecords.totPatientCompleted = _patientCaseRecords.Count; // Need to ba change (check if patient is completed)
+            levelRecords.patientCaseRecords = _patientCaseRecords;
+            
+            _levelRecords[levelState] = levelRecords;
         }
 
-        public string[] LevelRecordsToString(int indexLevel)
+
+
+        public string[] PatientCaseRecordsToString(string patientName)
         {
-            LevelState levelState = (LevelState)indexLevel;
             string[] texts = new string[4];
 
             // get data from levelRecords
-            if (_levelRecords.ContainsKey(levelState))
+            if (_patientCaseRecords.ContainsKey(patientName))
             {
-                texts[0] = _levelRecords[levelState].levelAttempt.ToString();
-                texts[1] = _levelRecords[levelState].totActionError.ToString();
-                texts[2] = _levelRecords[levelState].totDiagnosticError.ToString();
-                texts[3] = FloatToHMS(_levelRecords[levelState].timeSpentInLevel);
+                texts[0] = _patientCaseRecords[patientName].nbAttempt.ToString();
+                texts[1] = _patientCaseRecords[patientName].totActionError.ToString();
+                texts[2] = _patientCaseRecords[patientName].totDiagnosticError.ToString();
+                texts[3] = FloatToHMS(_patientCaseRecords[patientName].timePassed);
             }
             else
             {
@@ -208,58 +244,60 @@ namespace Assets.Scripts
             return texts;
         }
 
-        public Dictionary<string, string[]> GetStepRecordsInfo(int indexLevel)
+        public Dictionary<string, string[]> GetStepRecordsToString(int indexStep)
         {
-            LevelState levelState = (LevelState)indexLevel;
+            Step step = (Step)indexStep;
             Dictionary<string, string[]> stringRecords = new Dictionary<string, string[]>();
-            Dictionary<Step, StepRecords> records = _levelRecords[levelState].stepRecords;
-            foreach (var step in records)
-            {
-                string[] dataStep = new string[4];
-                dataStep[0] = step.Value.attempt.ToString();
-                dataStep[1] = step.Value.actionAnswer.AsEnumerable<string>().Last();
-                dataStep[2] = step.Value.diagnosticAnswer.AsEnumerable<string>().Last();
-                dataStep[3] = step.Value.succeeded ? "No error" : "Error";
-                stringRecords.Add(step.Key.ToString(), dataStep);
-            }
+            
+            string[] dataStep = new string[4];
+            dataStep[0] = _stepRecords[step].attempt.ToString();
+            dataStep[1] = _stepRecords[step].actionAnswer.AsEnumerable<string>().Last();
+            dataStep[2] = _stepRecords[step].diagnosticAnswer.AsEnumerable<string>().Last();
+            dataStep[3] = _stepRecords[step].succeeded ? "No error" : "Error";
+            stringRecords.Add(_stepRecords[step].ToString(), dataStep);
+
             return stringRecords;
         }
+
+
+
 
         /// <summary>
         /// Change the number of game when the game start.
         /// </summary>
-        public void GlobalRecordsOnLevelStart()
+        public void UpdateMainRecordsOnLevelStart()
         {
-            _globalData.nbGameSession++;
-            _globalData.totGames = _globalData.totGames + _globalData.nbGameSession;
+            _MainData.nbGameSession++;
+            _MainData.totGames = _MainData.totGames + _MainData.nbGameSession;
+            if (_MainData.sessionTimeQueue == null) _MainData.sessionTimeQueue = new Queue<float>();
         }
 
         /// <summary>
         /// Modify/records the data form the player (nbLevelsCompleted, nbStepsCompleted, globalActionErrors, globalDiagnosticErrors, gameTime, currentSessionTime and levelRecords).
         /// Save-it in xml file "GameData".
         /// </summary>
-        public void GlobalRecordsOnLevelEnd()
+        public void UpdateMainRecordsOnLevelEnd()
         {
-            _globalData.nbLevelsCompleted++;
 
-            foreach (var level in _levelRecords)
+            _MainData.gameTime = Time.time - _globalTimer.startTime + _MainData.gameTime; // Add the time spend on the game (the global time)
+            
+            // Limit number of time save session to 10
+            if (_MainData.sessionTimeQueue.Count < 10)
+                _MainData.sessionTimeQueue.Enqueue(Time.time - _globalTimer.startTime); // Add the time spend on the session
+            else
             {
-                LevelRecords levelData = level.Value;
-                _globalData.nbStepsCompleted += levelData.nbStepSucced;
-                _globalData.globalActionErrors += levelData.totActionError;
-                _globalData.globalDiagnosticErrors += levelData.totDiagnosticError;
+                _MainData.sessionTimeQueue.Dequeue();
+                _MainData.sessionTimeQueue.Enqueue(Time.time - _globalTimer.startTime); // Add the time spend on the session
             }
 
-            _globalData.gameTime = Time.time - _globalTimer.startTime + _globalData.gameTime; // Add the time spend on the game (the global time)
-            _globalData.currentSessionTime = Time.time - _globalTimer.startTime; // Add the time spend on the session
-            _globalData.levelRecords = _levelRecords;
+            _MainData.levelRecords = _levelRecords;
 
-            XmlManager.SaveToXml(_globalData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
+            XmlManager.SaveToXml(_MainData, Path.Combine(Application.streamingAssetsPath, path), "GameData");
         }
 
         public bool FisrtGameSession()
         {
-            return _globalData.nbGameSession == 0;
+            return _MainData.nbGameSession == 0;
         }
 
         private static string FloatToHMS(float time)
@@ -277,32 +315,32 @@ namespace Assets.Scripts
         /// </summary>
         void Start()
         {
-            Debug.Log("A CODER! GAME DATA");
-            /*
+            
             _globalTimer = new TimerData(Time.time); // Start the global timer            
             // try to get last session time on web request
             path = Path.Combine(Application.streamingAssetsPath, path);
             if (File.Exists(path))
             {
-                _globalData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
-                _globalData.nbGameSession = 0; // Set the number of session game to 0
-                _levelRecords = _globalData.levelRecords;
+                _MainData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
+                _MainData.nbGameSession = 0; // Set the number of session game to 0
+                _levelRecords = _MainData.levelRecords;
+
+               
+                /*
                 foreach (var level in _levelRecords)
                 {
-                    _stepRecords = level.Value.stepRecords;
+                    _stepRecords = level.Value.patientCaseRecords;
                 }
-
-
-                Debug.Log("A CODER !");
+                */
 
                 //GameManager.Instance.GameStateManager.LoadSavedLevel(_globalData.levelRecords.Keys.Last());
             }
             else
             {
-                _globalData = new GlobalData();
+                _MainData = new MainData();
             }
-            */
         }
+
     }
 }
 
@@ -354,5 +392,37 @@ namespace Assets.Scripts
  
 LevelData : Dictonary<LevelState, LevelRecord>
 StepData : Dictonary<AlgoState, StepRecords>
+
+
+    [XML/JSON/...]
+      UID - Player ID
+      PlayerData 
+        |
+        | Main Data:
+        |   | nbGames 
+        |   | nbLevelCompleted
+        |   | nbRandomLevelCompleted
+        |   | totalGameTime 
+        |   | currentSessionTime
+        | LevelData
+        |   | Level : Level 0
+        |   |   | totAttempt - int (nbAttemp per patient case )
+        |   |   | totNoErrSucc - int ((totActionErro + totDiagError) per patient = 0 )
+        |   |   Patient Case
+        |   |      | nbAttempt - int
+        |   |      | nbNoErrorSucc - int
+        |   |      | totActionError - int
+        |   |      | totDiagnoticError - int
+        |   |      | timePassed - timer
+        |   |   StepData : 
+        |   |      | Step : Case_presentation
+        |   |      |   | attempt - int
+        |   |      |   | diagnosticError - List<string>
+        |   |      |   | actionError - List<string>
+        |   |      | Step : Wisper_test
+        |   |      |   | attempt - int
+        |   |      |   | diagnosticError - List<string>
+        |   |      |   | actionError - List<string>
+
 
  */
