@@ -40,7 +40,7 @@ namespace Assets.Scripts
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
             public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
             public int nbStepFailed; // Number of failed (count number of failed in StepRecord)
-            //public int successRate => (nbStepSucced + nbStepFailed) == 0 ? 0 : nbStepSucced * 100 / (nbStepSucced + nbStepFailed);
+            public int successRate => nbStepSucced * 100 / (nbStepSucced + nbStepFailed);
             
             public float timePassed; // Time spent on the level
             public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level {Step name, Steps}
@@ -334,6 +334,11 @@ namespace Assets.Scripts
                 _MainData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
                 _MainData.nbGameSession = 0; // Set the number of session game to 0
                 _levelRecords = _MainData.levelRecords;
+
+                foreach (var keyValue in _levelRecords)
+                {
+                    _patientCaseRecords = keyValue.Value.patientCaseRecords;
+                }
 
                 LevelState lastLevelPlayed = _MainData.levelRecords.Keys.Last();
                 var lastPatientPlayed = _MainData.levelRecords[lastLevelPlayed].patientCaseRecords.Count - 1; // WARNING ...
