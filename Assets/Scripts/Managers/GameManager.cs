@@ -292,7 +292,7 @@ namespace Assets.Scripts.Managers
 
 
             _defaultLoadLevel = 0; // todo load progression level
-            _defaultPatientCase = 0;
+            _defaultPatientCase = 1;
         }
         #endregion
 
