@@ -3,6 +3,7 @@ using Assets.Scripts.PatientData.AlgoData;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using UnityEditor;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
@@ -14,16 +15,18 @@ namespace Assets.Scripts
         // RECORDS OF CURRENT STEPS OF ALGO - DATA TO SHOW IN STEP SELECTOR OR STORE
         public struct StepRecords
         {           
-            public int attempt;
-            public List<string> actionAnswer; // None, Error description
+            public int diagnoticsAttempt;
+            public int actionAttempt;
             public List<string> diagnosticAnswer; // None, Error description
+            public List<string> actionAnswer; // None, Error description
             public bool succeeded; // No error
 
-            public StepRecords(int attempt, List<string> actionError, List<string> diagnosticError)
+            public StepRecords(int diagnoticsAttempt, int actionAttempt, List<string> diagnosticError, List<string> actionError)
             {
-                this.attempt = attempt;
-                this.actionAnswer = actionError;
+                this.diagnoticsAttempt = diagnoticsAttempt;
+                this.actionAttempt = actionAttempt;
                 this.diagnosticAnswer = diagnosticError;
+                this.actionAnswer = actionError;
                 this.succeeded = false;
             }
         }
@@ -136,7 +139,7 @@ namespace Assets.Scripts
         /// <param name="algoStep"></param>
         public void SetStepRecords(Step algoStep)
         {
-            if(!_stepRecords.ContainsKey(algoStep)) _stepRecords[algoStep] = new StepRecords(0, new List<string>(), new List<string>());
+            _stepRecords[algoStep] = new StepRecords(0, 0, new List<string>(), new List<string>());
         }
 
         /// <summary>
@@ -144,28 +147,33 @@ namespace Assets.Scripts
         /// Take as inputs AlgoState, string of action error and a string of diagnostic error. 
         /// </summary>
         /// <param name="algoStep"></param>
-        /// <param name="actionError"></param>
-        /// <param name="diagError"></param>
-        public void RecordsSteps(Step algoStep, string actionError, string diagError)
+        /// <param name="action"></param>
+        /// <param name="diagnostic"></param>
+        public void RecordsSteps(Step algoStep, bool isDiagnotics, bool isAction, string answer)
         {
             if (!_stepRecords.ContainsKey(algoStep)) return;
 
             StepRecords stepData = _stepRecords[algoStep];
-            stepData.attempt++;
-            if (!string.IsNullOrEmpty(actionError)) stepData.actionAnswer.Add(actionError);
-            if (!string.IsNullOrEmpty(diagError)) stepData.diagnosticAnswer.Add(diagError);
             
+            if (isDiagnotics)
+            {
+                stepData.diagnoticsAttempt++;
+                if (!string.IsNullOrEmpty(answer)) stepData.diagnosticAnswer.Add(answer);
+            }
+            
+            if (isAction)
+            {
+                stepData.actionAttempt++;
+                if (!string.IsNullOrEmpty(answer)) stepData.actionAnswer.Add(answer);
+            }
+
             // Check if has diagnotics or action.
-            if (stepData.diagnosticAnswer.Count == 1 && stepData.actionAnswer.Count == 1) stepData.succeeded = true;
-            else if (stepData.actionAnswer.Count == 1) stepData.succeeded = true;
-                _stepRecords[algoStep] = stepData;
+            if (stepData.actionAttempt == 1 && stepData.diagnoticsAttempt == 1) stepData.succeeded = true;
+            else if (stepData.actionAttempt == 1 && stepData.diagnoticsAttempt == 0) stepData.succeeded = true;
+            
+            _stepRecords[algoStep] = stepData;
         }
         
-
-        public bool PlayerHasAttemptStep(Step algoState)
-        {
-            return _stepRecords.ContainsKey(algoState) && _stepRecords[algoState].attempt > 0;
-        }
 
         public void SetPatientCaseRecorder(string patientName)
         {
@@ -191,6 +199,7 @@ namespace Assets.Scripts
             Debug.Log($"Succee rate: {patientCaseRecords.nbStepSucced / (patientCaseRecords.nbStepSucced + patientCaseRecords.nbStepFailed)}");
             patientCaseRecords.timePassed = Time.time - _levelTimer.startTime;
             patientCaseRecords.stepRecords = _stepRecords;
+
             _patientCaseRecords[patientName] = patientCaseRecords;
         }
 
@@ -218,6 +227,7 @@ namespace Assets.Scripts
             LevelRecords levelRecords = _levelRecords[levelState];
             levelRecords.levelNbAttempt++;
             levelRecords.totPatientCompleted = _patientCaseRecords.Count; // Need to ba change (check if patient is completed)
+
             levelRecords.patientCaseRecords = _patientCaseRecords;
             
             _levelRecords[levelState] = levelRecords;
@@ -250,16 +260,15 @@ namespace Assets.Scripts
             Dictionary<string, string[]> stringRecords = new Dictionary<string, string[]>();
             
             string[] dataStep = new string[4];
-            dataStep[0] = _stepRecords[step].attempt.ToString();
-            dataStep[1] = _stepRecords[step].actionAnswer.AsEnumerable<string>().Last();
-            dataStep[2] = _stepRecords[step].diagnosticAnswer.AsEnumerable<string>().Last();
-            dataStep[3] = _stepRecords[step].succeeded ? "No error" : "Error";
+            dataStep[0] = _stepRecords[step].diagnoticsAttempt.ToString();
+            dataStep[1] = _stepRecords[step].actionAttempt.ToString();
+            dataStep[2] = _stepRecords[step].actionAnswer.AsEnumerable<string>().Last();
+            dataStep[3] = _stepRecords[step].diagnosticAnswer.AsEnumerable<string>().Last();
+            dataStep[4] = _stepRecords[step].succeeded ? "No error" : "Error";
             stringRecords.Add(_stepRecords[step].ToString(), dataStep);
 
             return stringRecords;
         }
-
-
 
 
         /// <summary>

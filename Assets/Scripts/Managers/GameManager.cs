@@ -163,8 +163,6 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            GameData.InitializeRecords();
-
             if (_defaultLoadLevel < LevelsData.patientByLevel.Count && _defaultPatientCase < LevelsData.patientByLevel[_defaultLoadLevel].patientsCase.Count)
             {
                 // SET LEVEL 
@@ -290,9 +288,11 @@ namespace Assets.Scripts.Managers
             AudioManager.PlayBGM("skyline");
 
 
+            
+            GameData.InitializeRecords();
 
             _defaultLoadLevel = 0; // todo load progression level
-            _defaultPatientCase = 1;
+            _defaultPatientCase = 0;
         }
         #endregion
 

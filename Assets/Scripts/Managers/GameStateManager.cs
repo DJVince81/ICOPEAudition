@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using TMPro;
+using UnityEditor;
+using UnityEditor.Overlays;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -81,6 +83,7 @@ namespace Assets.Scripts.Managers
         {
             currentPatientCase = patientCase;
             patientData = newPatient;
+
             GameManager.Instance._defaultPatientCase = (int)patientCase;
 
             GameManager.Instance.GameData.SetPatientCaseRecorder(patientData.fisrtName);
@@ -123,9 +126,6 @@ namespace Assets.Scripts.Managers
                 currentLevel++;
                 NextLevel();
             }
-            GameManager.Instance.GameData.RecordsPatientCase(patientData.fisrtName);
-            GameManager.Instance.GameData.RecordsLevel(currentLevel);
-            GameManager.Instance.GameData.UpdateMainRecordsOnLevelEnd();
         }
 
         public void NextStep(int index)
@@ -140,21 +140,40 @@ namespace Assets.Scripts.Managers
             else if (patientData.steps[index-1].isTerminatingStep)
             {
                 Debug.Log("Level Completed !");
+                
+                //Save player data
+                SavePlayerData();
+                
                 // load next patient
                 currentPatientCase++;
                 NextPatientCase();
-                //save data
-                //return selection level
-                GameManager.Instance.LoadGameMenu();
-                GameManager.Instance.AudioManager.PlayBGM("skyline");
+
+                // Return to Menu
+                ReturnToGameMenu();
             }
         }
 
-        
+
+        private void SavePlayerData()
+        {
+            GameManager.Instance.GameData.RecordsPatientCase(patientData.fisrtName);
+            GameManager.Instance.GameData.RecordsLevel(currentLevel);
+            GameManager.Instance.GameData.UpdateMainRecordsOnLevelEnd();
+
+        }
+
+        private static void ReturnToGameMenu()
+        {
+            //return Game menu selection patient
+            GameManager.Instance.LoadGameMenu();
+            GameManager.Instance.AudioManager.PlayBGM("skyline");
+        }
+
         private void Start()
         {
             LevelsData = GameManager.Instance.LevelsData;
         }
+
         /*
         //MAIN_MENU -> PLAY -> CHANGE MAIN STATE -> GAME_MENU
         //GAME_MENU -> ESC -> CHANGE MAIN STATE -> MAIN_MENU

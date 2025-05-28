@@ -243,7 +243,8 @@ namespace Assets.Scripts
             {
                 StepRecords step = new StepRecords
                 {
-                    attempt = int.Parse(stepNode["attempt"].InnerText),
+                    diagnoticsAttempt = int.Parse(stepNode["diagnoticsAttempt"].InnerText),
+                    actionAttempt = int.Parse(stepNode["actionAttempt"].InnerText),
                     actionAnswer = LoadStringList(stepNode.SelectSingleNode("actionAnswer")),
                     diagnosticAnswer = LoadStringList(stepNode.SelectSingleNode("diagnosticAnswer"))
                 };

@@ -13,6 +13,7 @@ namespace Assets.Scripts.PatientData.AlgoData
         Weber_test,
         HHIES_test,
         Audiometry,
+        None,
     }
 
     [System.Serializable]
@@ -56,6 +57,7 @@ namespace Assets.Scripts.PatientData.AlgoData
     public class AlgoStep
     {
         public Step type;
+        //public Step nextStep;
 
         [Header("Contexte medicale")]
         [TextArea]

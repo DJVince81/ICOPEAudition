@@ -311,6 +311,8 @@ namespace Assets.Scripts.Managers
         {
             string feedBackText = "Mauvaise réponse !";
             bool isCorrect = false;
+            bool isDiagnosticAnswer = false;
+            bool isActionAnswer = false;
             // DIAGNOSTIC CHOICE
             if (answerState == AnswerState.DIAGNOSTIC)
             {
@@ -325,7 +327,7 @@ namespace Assets.Scripts.Managers
                     choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
                     _isDiagnosticValid = false;
                 }
-                GameManager.Instance.GameData.RecordsSteps(step, "", choiceButtons[index].GetComponentInChildren<TextMeshProUGUI>().text);
+                isDiagnosticAnswer = true;
             }
             // ACTION CHOICE
             if (answerState == AnswerState.ACTION)
@@ -341,8 +343,9 @@ namespace Assets.Scripts.Managers
                     _isActionValid = false;
                     choiceButtons[index].GetComponent<AnswerButton>().SetIncorrect();
                 }
-                GameManager.Instance.GameData.RecordsSteps(step, choiceButtons[index].GetComponentInChildren<TextMeshProUGUI>().text, "");
+                isActionAnswer = true;
             }
+            GameManager.Instance.GameData.RecordsSteps(step, isDiagnosticAnswer, isActionAnswer, choiceButtons[index].GetComponentInChildren<TextMeshProUGUI>().text);
             ShowAnswerDetail(phaseData.answerData[index], feedBackText, isCorrect);
         }
 
