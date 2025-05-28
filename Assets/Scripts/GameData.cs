@@ -326,23 +326,19 @@ namespace Assets.Scripts
         {
             
             _globalTimer = new TimerData(Time.time); // Start the global timer            
-            // try to get last session time on web request
+            InitializeRecords();
             path = Path.Combine(Application.streamingAssetsPath, path);
+            // try to get last session time on web request
             if (File.Exists(path))
             {
                 _MainData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
                 _MainData.nbGameSession = 0; // Set the number of session game to 0
                 _levelRecords = _MainData.levelRecords;
 
-               
-                /*
-                foreach (var level in _levelRecords)
-                {
-                    _stepRecords = level.Value.patientCaseRecords;
-                }
-                */
+                LevelState lastLevelPlayed = _MainData.levelRecords.Keys.Last();
+                var lastPatientPlayed = _MainData.levelRecords[lastLevelPlayed].patientCaseRecords.Count - 1; // WARNING ...
 
-                //GameManager.Instance.GameStateManager.LoadSavedLevel(_globalData.levelRecords.Keys.Last());
+                GameManager.Instance.GameStateManager.LoadPlayerSave(lastLevelPlayed, (PatientCase)lastPatientPlayed); //WARNING TOO
             }
             else
             {

@@ -1,5 +1,6 @@
 using Assets.Scripts.PatientData;
 using Assets.Scripts.PatientData.AlgoData;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -168,6 +169,31 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.LoadGameMenu();
             GameManager.Instance.AudioManager.PlayBGM("skyline");
         }
+
+        public void LoadPlayerSave(LevelState savedLevelState, PatientCase savedPatientCase)
+        {
+            if ((int)savedLevelState <= GameManager.Instance.LevelsData.patientByLevel.Count)
+            {
+                currentLevel = savedLevelState;
+
+                // WARNING : if cond not good
+                if ((int) savedPatientCase < GameManager.Instance.LevelsData.patientByLevel[(int)currentLevel].patientsCase.Count - 1)
+                {
+                    currentPatientCase = savedPatientCase + 1;
+                }
+                else
+                {
+                    // TO CHANGE : Load next level & patientCase = 0
+                    currentPatientCase = savedPatientCase;
+                }
+            }
+
+            // WARNING
+            GameManager.Instance._defaultLoadLevel = (int)currentLevel;
+            GameManager.Instance._defaultPatientCase = (int)currentPatientCase;
+
+            Debug.Log($"Last level played : {currentLevel}, last patient played: {currentPatientCase}");
+        } 
 
         private void Start()
         {

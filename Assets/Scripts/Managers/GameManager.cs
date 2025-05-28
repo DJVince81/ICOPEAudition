@@ -35,7 +35,7 @@ namespace Assets.Scripts.Managers
         public StepManagerN StepManagerN { get; private set; }
 
         [SerializeField] public LevelsData LevelsData;
-        public NewPatientData patientCaseData;
+        private NewPatientData patientCaseData;
         public int _defaultLoadLevel; // index if 0 load fisrt level else (load progression player todo)
         public int _defaultPatientCase;
         private string _nameLevel;
@@ -286,13 +286,6 @@ namespace Assets.Scripts.Managers
             _money = PlayerPrefs.GetInt("money", 20);
             _isTutorialEnable = PlayerPrefs.GetInt("enableTutorial") == 1;
             AudioManager.PlayBGM("skyline");
-
-
-            
-            GameData.InitializeRecords();
-
-            _defaultLoadLevel = 0; // todo load progression level
-            _defaultPatientCase = 0;
         }
         #endregion
 
