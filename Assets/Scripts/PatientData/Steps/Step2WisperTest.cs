@@ -100,7 +100,10 @@ namespace Assets.Scripts.PatientData.Steps
         // Patient must be in sitting position on a chair.
         public void SetPatient(Sprite patient)
         {
-            if (patient != null) patientSprite.sprite = patient;
+            if (patient == null) return;
+                
+            patientSprite.sprite = patient;
+            patientSprite.SetNativeSize();
         }
 
         public void PlayFirstText(AlgoStep step)

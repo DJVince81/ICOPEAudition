@@ -24,6 +24,7 @@ namespace Assets.Scripts.PatientData.Steps
         public void SetImage(Sprite spritePatient)
         {
             patient.sprite = spritePatient;
+            patient.SetNativeSize();
         }
     }
 }

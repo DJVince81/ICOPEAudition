@@ -13,8 +13,12 @@ namespace Assets.Scripts.PatientData.Steps
 
         public void SetImages(Sprite sprite, Sprite spritePatient)
         {
-            if (sprite != null) videoOtoscopiePatient.sprite = sprite;
-            if (spritePatient != null) patient.sprite = spritePatient;
+            if (sprite == null) return; 
+            if (spritePatient == null) return;
+            videoOtoscopiePatient.sprite = sprite;
+
+            patient.sprite = spritePatient;
+            patient.SetNativeSize();
         }
     }
 }

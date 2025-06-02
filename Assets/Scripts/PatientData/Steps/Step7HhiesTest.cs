@@ -14,6 +14,7 @@ namespace Assets.Scripts.PatientData.Steps
         {
             imageHHIES.sprite = sprite;
             patient.sprite = spritePatient;
+            patient.SetNativeSize();
         }
     }
 }

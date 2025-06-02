@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      otomycose_0: -3560021902792600746
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

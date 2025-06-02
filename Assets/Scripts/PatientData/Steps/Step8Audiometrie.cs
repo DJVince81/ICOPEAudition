@@ -15,6 +15,7 @@ namespace Assets.Scripts.PatientData.Steps
         {
             imageAudiometrie.sprite = spriteAudio;
             patientImage.sprite = spritePatient;
+            patientImage.SetNativeSize();
         }
     }
 }

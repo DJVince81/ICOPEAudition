@@ -118,7 +118,7 @@ namespace Assets.Scripts
         private TimerData _levelTimer;
         private TimerData _globalTimer;
 
-        [SerializeField] private string path = "GameData";
+        [SerializeField] private string path = "GameData"; // GameData
 
         /// <summary>
         /// Initialize Dictionarys (_levelRecords<LevelState, LevelRecords> & _stepRecords<AlgoState, StepRecords>) when a game start (click on the GrandMa/GrandPa).
@@ -331,6 +331,7 @@ namespace Assets.Scripts
             // try to get last session time on web request
             if (File.Exists(path))
             {
+                
                 _MainData = XmlManager.LoadGameData(Path.Combine(Application.streamingAssetsPath, path));
                 _MainData.nbGameSession = 0; // Set the number of session game to 0
                 _levelRecords = _MainData.levelRecords;
