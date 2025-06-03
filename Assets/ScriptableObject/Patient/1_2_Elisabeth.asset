@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 1_2_Elisabeth
   m_EditorClassIdentifier: 
   characterSprites:
-  - {fileID: 21300000, guid: 8fb823efab3b7964090a3d3e8eec2777, type: 3}
+  - {fileID: 2388940582529952283, guid: 222169cef653a4741a9a0e05a7267da0, type: 3}
+  - {fileID: -759232035500662259, guid: 222169cef653a4741a9a0e05a7267da0, type: 3}
   surname: Martin
   fisrtName: Elisabeth
   age: 67
