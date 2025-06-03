@@ -111,6 +111,7 @@ namespace Assets.Scripts.Managers
             else
             {
                 Debug.Log("Tout les niveau sont terminer !");
+                // LOAD GAME END SCREEN + SET RANDOM MOD (load patient in random make list of all patient)
             }
             
         }
@@ -129,29 +130,23 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        public void NextStep(int index)
+        public void NextStep(AlgoStep step)
         {
-            if ((int)currentStep < patientData.steps.Count)
-            {
-                // LOAD NEXT STEP
-                currentStep = patientData.steps[index].type;
-                Debug.Log("Next Level: " + currentStep);
-                SetStep(currentStep);
-            } 
-            else if (patientData.steps[index-1].isTerminatingStep)
-            {
-                Debug.Log("Level Completed !");
-                
-                //Save player data
-                SavePlayerData();
-                
-                // load next patient
-                currentPatientCase++;
-                NextPatientCase();
+            currentStep = step.type;
+            Debug.Log("Next Level: " + currentStep);
+            SetStep(currentStep);
+        }
 
-                // Return to Menu
-                ReturnToGameMenu();
-            }
+        public void ShowScores()
+        {
+            Debug.Log("Level completed ! ");
+            // Saving player data
+            SavePlayerData();
+            // Load next patient - to call when player hit next button
+            currentPatientCase++;
+            NextPatientCase();
+            // Load resume screen - Same
+            ReturnToGameMenu();
         }
 
 
@@ -160,7 +155,6 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.GameData.RecordsPatientCase(patientData.fisrtName);
             GameManager.Instance.GameData.RecordsLevel(currentLevel);
             GameManager.Instance.GameData.UpdateMainRecordsOnLevelEnd();
-
         }
 
         private static void ReturnToGameMenu()

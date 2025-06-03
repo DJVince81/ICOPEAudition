@@ -63,7 +63,7 @@ namespace Assets.Scripts.Managers
 
         private NewPatientData patientData;
         
-        private int _currentStep;
+        private int _indexStep;
         private int _currentDisplay;
         private bool _isDiagnosticValid;
         private bool _isActionValid;
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Managers
 
         public void Initialize(NewPatientData newPatient)
         {
-            _currentStep = 0; // reset current step to 0
+            _indexStep = 0; // reset current step to 0
             _currentDisplay = 0;
             patientData = newPatient;
         }
@@ -93,7 +93,6 @@ namespace Assets.Scripts.Managers
 
             Sprite patientSprite = null;
 
-
             switch (currentStep)
             {
                 case Step.Case_presentation:
@@ -111,14 +110,15 @@ namespace Assets.Scripts.Managers
                         patientSprite = patientData.characterSprites[1];
                     }
                     step2WisperTest.SetPatient(patientSprite); 
-                    step2WisperTest.PlayFirstText(patientData.steps[_currentStep]);
+                    step2WisperTest.PlayFirstText(patientData.steps[_indexStep]);
                     // Display current step
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Questionnary:
                     // Load questionary & answer
-                    List<QuestionData> questions = patientData.steps[_currentStep].questionnaireData.questions;
-                    List<PatientQuestionAnswer> answers = patientData.steps[_currentStep].predefinedAnwser;
+                    print("Index step should be 2 but is : "+_indexStep); 
+                    List<QuestionData> questions = patientData.steps[_indexStep].questionnaireData.questions;
+                    List<PatientQuestionAnswer> answers = patientData.steps[_indexStep].predefinedAnwser;
                     // Set texts
                     step4And5Questionnary.SetQuestionayText(questions, answers);
                     //Set Patient Sprite
@@ -128,8 +128,8 @@ namespace Assets.Scripts.Managers
                     break;
                 case Step.Additional_questionnaire:
                     // Load questionary & answer
-                    List<QuestionData> questions2 = patientData.steps[_currentStep].questionnaireData.questions;
-                    List<PatientQuestionAnswer> answers2 = patientData.steps[_currentStep].predefinedAnwser;
+                    List<QuestionData> questions2 = patientData.steps[_indexStep].questionnaireData.questions;
+                    List<PatientQuestionAnswer> answers2 = patientData.steps[_indexStep].predefinedAnwser;
                     step4And5Questionnary.SetQuestionayText(questions2, answers2);
                     // Display current step
                     displayList[_currentDisplay].SetActive(true);
@@ -141,26 +141,26 @@ namespace Assets.Scripts.Managers
                         patientSprite = patientData.characterSprites[1];
                     }
 
-                    Step5Otoscopie.SetImages(patientData.steps[_currentStep].spriteEarExams, patientSprite);
+                    Step5Otoscopie.SetImages(patientData.steps[_indexStep].spriteEarExams, patientSprite);
                     // Display current step 
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Weber_test:
                     // Load texts dialogue & sprite
-                    step6HhiesTest.SetTextDialogue(patientData.steps[_currentStep].contextDescription);
+                    step6HhiesTest.SetTextDialogue(patientData.steps[_indexStep].contextDescription);
                     step6HhiesTest.SetImage(patientData.characterSprites[0]);
                     // Display current step
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.HHIES_test:
                     // Load patient ear image
-                    step7HhiesTest.SetImages(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
+                    step7HhiesTest.SetImages(patientData.steps[_indexStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
                     displayList[_currentDisplay].SetActive(true);
                     break;
                 case Step.Audiometry:
                     // Load patient audiometrie + patient sprite
-                    Step8Audiometrie.SetSprite(patientData.steps[_currentStep].spriteEarExams, patientData.characterSprites[0]);
+                    Step8Audiometrie.SetSprite(patientData.steps[_indexStep].spriteEarExams, patientData.characterSprites[0]);
                     // Display current step
                     displayList[_currentDisplay].SetActive(true);
                     break;
@@ -217,20 +217,20 @@ namespace Assets.Scripts.Managers
 
         private void SetResponses()
         {
-            if (patientData.steps[_currentStep].hasDiagnosticPhase && !_isDiagnosticValid)
+            if (patientData.steps[_indexStep].hasDiagnosticPhase && !_isDiagnosticValid)
             {
                 answerState = AnswerState.DIAGNOSTIC;
-                CreateAnwserButtons(patientData.steps[_currentStep].diagnosticPhase);
+                CreateAnwserButtons(patientData.steps[_indexStep].diagnosticPhase);
             } 
             else
             {
                 _isDiagnosticValid = true;
             }
 
-            if (patientData.steps[_currentStep].hasActionPhase && _isDiagnosticValid)
+            if (patientData.steps[_indexStep].hasActionPhase && _isDiagnosticValid)
             {
                 answerState = AnswerState.ACTION;
-                CreateAnwserButtons(patientData.steps[_currentStep].actionPhase);
+                CreateAnwserButtons(patientData.steps[_indexStep].actionPhase);
             }
         }
 
@@ -412,11 +412,20 @@ namespace Assets.Scripts.Managers
         private void GoToNextStep()
         {
             // Control if dignostic & action is completed
-            if (IsStepCompleted(patientData.steps[_currentStep]))
+            bool isStepCompleted = IsStepCompleted(patientData.steps[_indexStep]);
+
+            if (isStepCompleted && patientData.steps[_indexStep].isTerminatingStep )
             {
-                _currentStep++;
-                GameManager.Instance.GameStateManager.NextStep(_currentStep);
-            }          
+                // Show player scores
+                GameManager.Instance.GameStateManager.ShowScores();
+            } else if (isStepCompleted && _indexStep < patientData.steps.Count)
+            {
+                // LOAD NEXT STEP 
+                _indexStep++;
+                print("Increased indexstep : " + _indexStep);
+                GameManager.Instance.GameStateManager.NextStep(patientData.steps[_indexStep]);
+            }
+             
         }
 
         private bool IsStepCompleted(AlgoStep step)
