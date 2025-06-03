@@ -35,10 +35,6 @@ namespace Assets.Scripts.Managers
         public StepManagerN StepManagerN { get; private set; }
 
         [SerializeField] public LevelsData LevelsData;
-        private NewPatientData patientCaseData;
-        public int _defaultLoadLevel; // index if 0 load fisrt level else (load progression player todo)
-        public int _defaultPatientCase;
-        private string _nameLevel;
 
         #region Structures
         public int Money
@@ -123,7 +119,7 @@ namespace Assets.Scripts.Managers
                 AudioManager.StopCurrentSfx();
                 ClearScreen();
                 _stepMenu.SetActive(true);
-                StepManagerN.Initialize(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
+                StepManagerN.Initialize(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()]);
             }
             StepManagerN.LoadStep(stepIndex);
         }
@@ -163,18 +159,10 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
-            if (_defaultLoadLevel < LevelsData.patientByLevel.Count && _defaultPatientCase < LevelsData.patientByLevel[_defaultLoadLevel].patientsCase.Count)
-            {
-                // SET LEVEL 
-                GameStateManager.SetLevel((LevelState)_defaultLoadLevel, LevelsData.patientByLevel[_defaultLoadLevel]);
-                // SET PATIENT CASE
-                GameStateManager.SetPatientCase((PatientCase)_defaultPatientCase, LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase]);
-
-                // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
-                PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].characterSprites[0]);
-                // SHOW TUTORIAL
-                Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
-            }
+            // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
+            PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()].characterSprites[0]);
+            // SHOW TUTORIAL
+            Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
         }
         
         private void EnableTutorial()
@@ -203,13 +191,11 @@ namespace Assets.Scripts.Managers
         private IEnumerator LaunchGameAfterTime()
         {
             yield return new WaitForSeconds(0.5f);
-            //StatesManager.ChangeState();
             
             GameData.UpdateMainRecordsOnLevelStart();
-            //GameStateManager.LoadLevelState();
             
             // SET ALGO STEP BY DEFAULT LOAD STEP 0 (RESTART THE PARCOURS EVEN IF PLAYER STOP DURING)
-            GameStateManager.SetStep(LevelsData.patientByLevel[_defaultLoadLevel].patientsCase[_defaultPatientCase].steps[0].type);
+            GameStateManager.SetStep(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()].steps[0].type);
         }
 
         // TOGGLE PAUSE

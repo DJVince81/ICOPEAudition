@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Overlays;
 using UnityEditor.SceneManagement;
@@ -20,7 +21,7 @@ namespace Assets.Scripts.Managers
         private enum GameState { MAIN_MENU, GAME_MENU } // Enums for Main_menu and waiting_room
 
         public enum LevelState { LEVEL_0, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5 }
-        public enum PatientCase { PATIENT_1, PATIENT_2, PATIENT_3 }
+        public enum PatientCase { PATIENT_0, PATIENT_1, PATIENT_2 }
 
 
         // VARIABLES
@@ -41,16 +42,21 @@ namespace Assets.Scripts.Managers
         /// <param name="newState">MainState: MAIN_MENU / GAME_MENU</param>
         private void SetMainState(GameState newState)
         {
+            var currInstance = GameManager.Instance;
             gameState = newState;
             Debug.Log($"Main State: {gameState}");
             // LOAD SCENE
             if (gameState == GameState.GAME_MENU)
             {
-                GameManager.Instance.LoadGameMenu();
+                currInstance.LoadGameMenu();
+                // Set level 
+                SetLevel(currentLevel, currInstance.LevelsData.patientByLevel[(int)currentLevel]);
+                // Set Patient case
+                SetPatientCase(currentPatientCase, currInstance.LevelsData.patientByLevel[(int)currentLevel].patientsCase[(int)currentPatientCase]);
             }
             else
             {
-                GameManager.Instance.LoadMainMenu();
+                currInstance.LoadMainMenu();
             }
         }
 
@@ -80,17 +86,19 @@ namespace Assets.Scripts.Managers
             Debug.Log($"Current Level : {currentLevel}, {patientCaseData.levelName}");
         }
 
+        public int GetCurrentLevel() { return (int) currentLevel; }
+
         public void SetPatientCase(PatientCase patientCase, NewPatientData newPatient)
         {
             currentPatientCase = patientCase;
             patientData = newPatient;
 
-            GameManager.Instance._defaultPatientCase = (int)patientCase;
-
             GameManager.Instance.GameData.SetPatientCaseRecorder(patientData.fisrtName);
             
             Debug.Log($"Current Patient: {currentPatientCase}, {patientData.surname}");
         }
+
+        public int GetCurrentPatientCase() { return (int)currentPatientCase; }
 
         public void SetStep(Step step)
         {
@@ -164,7 +172,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.AudioManager.PlayBGM("skyline");
         }
 
-        public void LoadPlayerSave(LevelState savedLevelState, PatientCase savedPatientCase)
+        public void LoadPlayerSaveStates(LevelState savedLevelState, PatientCase savedPatientCase)
         {
             if ((int)savedLevelState <= GameManager.Instance.LevelsData.patientByLevel.Count)
             {
@@ -183,8 +191,8 @@ namespace Assets.Scripts.Managers
             }
 
             // WARNING
-            GameManager.Instance._defaultLoadLevel = (int)currentLevel;
-            GameManager.Instance._defaultPatientCase = (int)currentPatientCase;
+            //GameManager.Instance._defaultLoadLevel = (int)currentLevel;
+            //GameManager.Instance._defaultPatientCase = (int)currentPatientCase;
 
             Debug.Log($"Last level played : {currentLevel}, last patient played: {currentPatientCase}");
         } 
@@ -192,6 +200,10 @@ namespace Assets.Scripts.Managers
         private void Start()
         {
             LevelsData = GameManager.Instance.LevelsData;
+
+            // Set by default current level and current patient case (change later if player has a save)
+            currentLevel = LevelState.LEVEL_0;
+            currentPatientCase = PatientCase.PATIENT_0;
         }
 
         /*

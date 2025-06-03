@@ -95,4 +95,4 @@ MonoBehaviour:
           Tu as d\xE9bloqu\xE9 un nouveau niveau.\r\n"
         sprites: []
     IsOptional: 0
-    isTerminatingStep: 0
+    isTerminatingStep: 1

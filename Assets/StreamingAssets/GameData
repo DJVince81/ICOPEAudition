@@ -1,167 +1,72 @@
 <GameData>
-  <totGames>7</totGames>
-  <gameTime>243,2117</gameTime>
+  <totGames>1</totGames>
+  <gameTime>33,23901</gameTime>
   <nbGameSession>1</nbGameSession>
   <sessionTimeQueue>
-    <Item>11,57152</Item>
+    <Item>33,23901</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>4</levelNbAttempt>
-      <totPatientCompleted>3</totPatientCompleted>
+      <levelNbAttempt>1</levelNbAttempt>
+      <totPatientCompleted>1</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
-          <nbAttempt>1</nbAttempt>
-          <totDiagnosticError>2</totDiagnosticError>
-          <totActionError>1</totActionError>
-          <nbStepSucced>5</nbStepSucced>
-          <nbStepFailed>2</nbStepFailed>
-          <timePassed>27,15585</timePassed>
-          <stepRecords>
-            <Case_presentation>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>2</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
-                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je l’adresse chez l’ORL.</Item>
-                <Item>Je l’adresse chez l’ORL.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Case_presentation>
-            <Wisper_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Il y a une anomalie car elle n’a pas su restituer les 3 mots minimum de chaque  côté.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je réalise le questionnaire HHIE-S.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Wisper_test>
-            <Questionnary>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Elle n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Questionnary>
-            <Otoscopy>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Cette otoscopie peut être considérée comme normale, en tous cas, cet aspect n’est généralement pas associé à une surdité.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je refais le test de chuchotement.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Otoscopy>
-            <Weber_test>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Ses réponses révèlent une surdité de perception.</Item>
-                <Item>Ses réponses ne révèlent pas d’anomalie.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fait passer le test HHIE-S.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Weber_test>
-            <HHIES_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score est en faveur de difficultés modérées.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Il est pertinent de réaliser l'audiométrie.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </HHIES_test>
-            <Audiometry>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score montre une surdité de perception. </Item>
-                <Item>Le score montre une surdité neurosensorielle bilatérale.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je prescris à la patiente une appareillage audioprothétique bilatéral.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Audiometry>
-          </stepRecords>
-          <totError>3</totError>
-          <successRate>71</successRate>
-        </Michel>
-        <Jeanne>
           <nbAttempt>1</nbAttempt>
           <totDiagnosticError>2</totDiagnosticError>
           <totActionError>0</totActionError>
           <nbStepSucced>5</nbStepSucced>
           <nbStepFailed>2</nbStepFailed>
-          <timePassed>32,88168</timePassed>
+          <timePassed>33,036</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>2</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
-                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
-              </diagnosticAnswer>
+              <diagnoticsAttempt>0</diagnoticsAttempt>
+              <actionAttempt>1</actionAttempt>
+              <diagnosticAnswer />
               <actionAnswer>
-                <Item>Je l’adresse chez l’ORL.</Item>
-                <Item>Je l’adresse chez l’ORL.</Item>
+                <Item>Je réalise le test de chuchotement.</Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </Case_presentation>
             <Wisper_test>
               <diagnoticsAttempt>1</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
-                <Item>Il y a une anomalie car elle n’a pas su restituer les 3 mots minimum de chaque  côté.</Item>
+                <Item>Il y a une anomalie car il n’a pas su restituer les 3/4 mots des 2 côtés.</Item>
               </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je réalise le questionnaire HHIE-S.</Item>
+                <Item>Je fais passer le questionnaire Go-No-Go.</Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </Wisper_test>
             <Questionnary>
               <diagnoticsAttempt>1</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
-                <Item>Elle n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
+                <Item>Il n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </Questionnary>
             <Otoscopy>
               <diagnoticsAttempt>1</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
-                <Item>Cette otoscopie peut être considérée comme normale, en tous cas, cet aspect n’est généralement pas associé à une surdité.</Item>
+                <Item>Il s’agit d’un tympan normal.</Item>
               </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je refais le test de chuchotement.</Item>
+                <Item>Je continue le parcours audition et lui fait passer le test de Weber.</Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </Otoscopy>
             <Weber_test>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
+              <diagnoticsAttempt>4</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
                 <Item>Ses réponses révèlent une surdité de perception.</Item>
+                <Item>Ses réponses révèlent un bouchon de cérumen.</Item>
+                <Item>Ses réponses révèlent une surdité de transmission.</Item>
                 <Item>Ses réponses ne révèlent pas d’anomalie.</Item>
               </diagnosticAnswer>
               <actionAnswer>
@@ -176,49 +81,28 @@
                 <Item>Le score est en faveur de difficultés modérées.</Item>
               </diagnosticAnswer>
               <actionAnswer>
-                <Item>Il est pertinent de réaliser l'audiométrie.</Item>
+                <Item>Il est pertinent de réaliser l’audiométrie </Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </HHIES_test>
             <Audiometry>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
+              <diagnoticsAttempt>4</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
-                <Item>Le score montre une surdité de perception. </Item>
-                <Item>Le score montre une surdité neurosensorielle bilatérale.</Item>
+                <Item>Le score montre une surdité de transmission.</Item>
+                <Item>Le score montre une audition normale.</Item>
+                <Item>Le score montre une surdité de persuasion.</Item>
+                <Item>Le score montre une surdité de perception.</Item>
               </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je prescris à la patiente une appareillage audioprothétique bilatéral.</Item>
+                <Item>En accord avec votre médecin référent, une prescription de prothèse auditive est délivrée à Mr Dupont.</Item>
               </actionAnswer>
               <succeeded>False</succeeded>
             </Audiometry>
           </stepRecords>
           <totError>2</totError>
           <successRate>71</successRate>
-        </Jeanne>
-        <Elisabeth>
-          <nbAttempt>3</nbAttempt>
-          <totDiagnosticError>6</totDiagnosticError>
-          <totActionError>1</totActionError>
-          <nbStepSucced>9</nbStepSucced>
-          <nbStepFailed>6</nbStepFailed>
-          <timePassed>11,34416</timePassed>
-          <stepRecords>
-            <Case_presentation>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je l’adresse chez l’ORL.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Case_presentation>
-          </stepRecords>
-          <totError>7</totError>
-          <successRate>60</successRate>
-        </Elisabeth>
+        </Michel>
       </patientCaseRecords>
     </LEVEL_0>
   </levelRecords>

@@ -324,7 +324,6 @@ namespace Assets.Scripts
         /// </summary>
         void Start()
         {
-            
             _globalTimer = new TimerData(Time.time); // Start the global timer            
             InitializeRecords();
             path = Path.Combine(Application.streamingAssetsPath, path);
@@ -344,7 +343,7 @@ namespace Assets.Scripts
                 LevelState lastLevelPlayed = _MainData.levelRecords.Keys.Last();
                 var lastPatientPlayed = _MainData.levelRecords[lastLevelPlayed].patientCaseRecords.Count - 1; // WARNING ...
 
-                GameManager.Instance.GameStateManager.LoadPlayerSave(lastLevelPlayed, (PatientCase)lastPatientPlayed); //WARNING TOO
+                GameManager.Instance.GameStateManager.LoadPlayerSaveStates(lastLevelPlayed, (PatientCase)lastPatientPlayed); //WARNING TOO
             }
             else
             {
