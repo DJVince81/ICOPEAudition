@@ -35,7 +35,9 @@ namespace Assets.Scripts
         public struct PatientCaseRecords
         {
             public int nbAttempt; // Number of attempts for this patient
+            public int totDiagnosticCorrect;
             public int totDiagnosticError; // length of diagnosticError
+            public int totActionCorrect; 
             public int totActionError; // length of actionError
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
             public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
@@ -45,11 +47,13 @@ namespace Assets.Scripts
             public float timePassed; // Time spent on the level
             public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level {Step name, Steps}
 
-            public PatientCaseRecords(int nbAttempt, int totActionError, int totDiagnosticError, int nbStepSucced, int nbStepFailed, float timePassed, Dictionary<Step, StepRecords> stepRecords)
+            public PatientCaseRecords(int nbAttempt, int totDiagnosticCorrect, int totDiagnosticError, int totActionCorrect, int totActionError, int nbStepSucced, int nbStepFailed, float timePassed, Dictionary<Step, StepRecords> stepRecords)
             {
                 this.nbAttempt = nbAttempt;
-                this.totActionError = totActionError;
+                this.totDiagnosticCorrect = totDiagnosticCorrect;
                 this.totDiagnosticError = totDiagnosticError;
+                this.totActionCorrect =
+                this.totActionError = totActionError;
                 this.nbStepSucced = nbStepSucced;
                 this.nbStepFailed = nbStepFailed;
                 this.timePassed = timePassed;
@@ -174,10 +178,15 @@ namespace Assets.Scripts
             _stepRecords[algoStep] = stepData;
         }
         
-
         public void SetPatientCaseRecorder(string patientName)
         {
             if (!_patientCaseRecords.ContainsKey(patientName)) _patientCaseRecords[patientName] = new PatientCaseRecords();
+        }
+
+        public PatientCaseRecords GetPatientCaseRecords(string name)
+        {
+            if (!_patientCaseRecords.ContainsKey(name)) Debug.LogError($"Patient '{name}' not found.");
+            return _patientCaseRecords[name];
         }
 
         public void RecordsPatientCase(string patientName)
@@ -190,13 +199,15 @@ namespace Assets.Scripts
             {
                 StepRecords stepData = step.Value;
                 if (stepData.diagnosticAnswer.Count > 1) patientCaseRecords.totDiagnosticError++;
+                else patientCaseRecords.totDiagnosticCorrect++;
+
                 if (stepData.actionAnswer.Count > 1) patientCaseRecords.totActionError++;
-                if (stepData.succeeded) { patientCaseRecords.nbStepSucced++; Debug.Log("Step: Succee"); }
-                else { patientCaseRecords.nbStepFailed++; Debug.Log("Step: Failed"); }
+                else patientCaseRecords.totActionCorrect++;
+
+                if (stepData.succeeded) patientCaseRecords.nbStepSucced++;
+                else patientCaseRecords.nbStepFailed++;
             }
 
-            Debug.Log($"Step succed : {patientCaseRecords.nbStepSucced}, Step failed: {patientCaseRecords.nbStepFailed}");
-            Debug.Log($"Succee rate: {patientCaseRecords.nbStepSucced / (patientCaseRecords.nbStepSucced + patientCaseRecords.nbStepFailed)}");
             patientCaseRecords.timePassed = Time.time - _levelTimer.startTime;
             patientCaseRecords.stepRecords = _stepRecords;
 

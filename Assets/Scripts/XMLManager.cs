@@ -5,11 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Schema;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Assets.Scripts.GameData;
 using static Assets.Scripts.Managers.GameStateManager;
@@ -113,7 +110,7 @@ namespace Assets.Scripts
                 totGames = int.Parse(root["totGames"].InnerText),
                 nbGameSession = int.Parse(root["nbGameSession"].InnerText),
                 gameTime = float.Parse(root["gameTime"].InnerText),
-                //sessionTimeQueue = float.Parse(root["sessionTimeQueue"].), TODO
+                sessionTimeQueue = LoadQueue(root.SelectSingleNode("sessionTimeQueue")),
                 levelRecords = LoadLevelRecords(root.SelectSingleNode("levelRecords"))
             };
 
@@ -218,13 +215,15 @@ namespace Assets.Scripts
                 PatientCaseRecords record = new PatientCaseRecords
                 {
                     nbAttempt = int.Parse(patientNode["nbAttempt"].InnerText),
+                    totDiagnosticCorrect = int.Parse(patientNode["totDiagnosticCorrect"].InnerText),
                     totDiagnosticError = int.Parse(patientNode["totDiagnosticError"].InnerText),
+                    totActionCorrect = int.Parse(patientNode["totActionCorrect"].InnerText),
                     totActionError = int.Parse(patientNode["totActionError"].InnerText),
                     nbStepSucced = int.Parse(patientNode["nbStepSucced"].InnerText),
                     nbStepFailed = int.Parse(patientNode["nbStepFailed"].InnerText),
                     timePassed = float.Parse(patientNode["timePassed"].InnerText),
                     stepRecords = LoadStepRecords(patientNode.SelectSingleNode("stepRecords")),
-                };
+                }; 
                 patientCaseRecords[patientNode.Name] = record;
             }
             return patientCaseRecords;
@@ -267,6 +266,21 @@ namespace Assets.Scripts
                 list.Add(item.InnerText);
             }
             return list;
+        }
+
+        /// <summary>
+        /// Return Queue<float> store in xml in the "sessionTimeQueue". Take xml node as input.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private static Queue<float> LoadQueue(XmlNode node)
+        {
+            Queue<float> queue = new Queue<float>();
+            foreach (XmlNode item in node.ChildNodes)
+            {
+                queue.Enqueue(float.Parse(item.InnerText));
+            }
+            return queue;
         }
     }
 }
