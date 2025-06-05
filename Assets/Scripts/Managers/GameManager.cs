@@ -103,13 +103,16 @@ namespace Assets.Scripts.Managers
         // LOAD STEP
         internal void LoadStep(Step stepIndex)
         {
+            var currentLevel = GameStateManager.GetCurrentLevel();
+            var currentPatient = GameStateManager.GetCurrentPatientCase();
+
             if (stepIndex == 0)
             {
                 AudioManager.PlayBGM("tense_dark");
                 AudioManager.StopCurrentSfx();
                 ClearScreen();
-                _stepMenu.SetActive(true);
-                StepManagerN.Initialize(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()]);
+                _stepMenu.SetActive(true);                
+                StepManagerN.Initialize(LevelsData.patientByLevel[currentLevel].patientsCase[currentPatient]);
             }
             StepManagerN.LoadStep(stepIndex);
         }
@@ -158,8 +161,11 @@ namespace Assets.Scripts.Managers
             ClearAnimation();
             _gameMenu.SetActive(true);
 
+            var currentLevel = GameStateManager.GetCurrentLevel();
+            var currentPatient = GameStateManager.GetCurrentPatientCase();
+
             // LOAD SPRITE ON SCREEN (BY DEFAULT SPRITE 0 MUST A STAND CHARACTER) 
-            PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()].characterSprites[0]);
+            PatientAnimation.SetNewCharacterInArea(LevelsData.patientByLevel[currentLevel].patientsCase[currentPatient].characterSprites[0]);
             // SHOW TUTORIAL
             Invoke(nameof(EnableTutorial), 4.5f); // total time during the animation done before
         }
@@ -192,9 +198,12 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(0.5f);
             
             GameData.UpdateMainRecordsOnLevelStart();
-            
+
+            var currentLevel = GameStateManager.GetCurrentLevel();
+            var currentPatient = GameStateManager.GetCurrentPatientCase();
+
             // SET ALGO STEP BY DEFAULT LOAD STEP 0 (RESTART THE PARCOURS EVEN IF PLAYER STOP DURING)
-            GameStateManager.SetStep(LevelsData.patientByLevel[GameStateManager.GetCurrentLevel()].patientsCase[GameStateManager.GetCurrentPatientCase()].steps[0].type);
+            GameStateManager.SetStep(LevelsData.patientByLevel[currentLevel].patientsCase[currentPatient].steps[0].type);
         }
 
         // TOGGLE PAUSE

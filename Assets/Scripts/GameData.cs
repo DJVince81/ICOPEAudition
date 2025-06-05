@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using static Assets.Scripts.Managers.GameStateManager;
@@ -32,7 +33,7 @@ namespace Assets.Scripts
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        public class PatientCaseRecords
+        public struct PatientCaseRecords
         {
             // TOT Data on the current patient
             public int nbAttempt { get; set; } // Number of attempts for this patient
@@ -221,6 +222,17 @@ namespace Assets.Scripts
             Debug.Log("PL");
         }
 
+        public void ResetPatientCase(string patientName)
+        {
+            var patientCase = _patientCaseRecords[patientName];
+            patientCase.numberDiagCorrect = 0;
+            patientCase.numberDiagIncorrect = 0;
+            patientCase.numberActionCorrect = 0;
+            patientCase.numberActionIncorrect = 0;
+            patientCase.numberStepSucceed = 0;
+            patientCase.numberStepFailed = 0;
+        }
+
         /// <summary>
         /// Set the dictionary<LevelState, LevelRecords> _levelRecords as a key a LevelState (input parameter: currentLevelState) and value a new LevelRecords.
         /// </summary>
@@ -294,6 +306,7 @@ namespace Assets.Scripts
         {
             _MainData.nbGameSession++;
             _MainData.totGames = _MainData.totGames + _MainData.nbGameSession;
+            
             if (_MainData.sessionTimeQueue == null) _MainData.sessionTimeQueue = new Queue<float>();
         }
 

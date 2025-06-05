@@ -1,22 +1,22 @@
 <GameData>
-  <totGames>20</totGames>
-  <gameTime>700,4242</gameTime>
-  <nbGameSession>3</nbGameSession>
+  <totGames>30</totGames>
+  <gameTime>950,8821</gameTime>
+  <nbGameSession>4</nbGameSession>
   <sessionTimeQueue>
-    <Item>32,8757</Item>
-    <Item>7,718214</Item>
-    <Item>50,65119</Item>
-    <Item>153,2556</Item>
     <Item>10,27168</Item>
     <Item>40,99808</Item>
     <Item>168,7415</Item>
     <Item>11,38186</Item>
     <Item>57,33474</Item>
     <Item>129,3236</Item>
+    <Item>9,122594</Item>
+    <Item>42,50483</Item>
+    <Item>85,82343</Item>
+    <Item>113,007</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>11</levelNbAttempt>
+      <levelNbAttempt>15</levelNbAttempt>
       <totPatientCompleted>3</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
@@ -118,31 +118,34 @@
           </stepRecords>
         </Michel>
         <Jeanne>
-          <nbAttempt>4</nbAttempt>
-          <totDiagnosticCorrect>102</totDiagnosticCorrect>
-          <totDiagnosticError>3</totDiagnosticError>
-          <totActionCorrect>94</totActionCorrect>
+          <nbAttempt>5</nbAttempt>
+          <totDiagnosticCorrect>124</totDiagnosticCorrect>
+          <totDiagnosticError>9</totDiagnosticError>
+          <totActionCorrect>122</totActionCorrect>
           <totActionError>11</totActionError>
-          <totError>14</totError>
-          <totStepSucceed>91</totStepSucceed>
-          <totStepFailed>14</totStepFailed>
-          <numberDiagCorrect>7</numberDiagCorrect>
-          <numberDiagIncorrect>0</numberDiagIncorrect>
+          <totError>20</totError>
+          <totStepSucceed>113</totStepSucceed>
+          <totStepFailed>20</totStepFailed>
+          <numberDiagCorrect>5</numberDiagCorrect>
+          <numberDiagIncorrect>2</numberDiagIncorrect>
           <numberActionCorrect>7</numberActionCorrect>
           <numberActionIncorrect>0</numberActionIncorrect>
-          <numberStepSucceed>7</numberStepSucceed>
-          <numberStepFailed>0</numberStepFailed>
-          <successRate>100</successRate>
-          <timePassed>128,8691</timePassed>
+          <numberStepSucceed>5</numberStepSucceed>
+          <numberStepFailed>2</numberStepFailed>
+          <successRate>71,42857</successRate>
+          <timePassed>85,49378</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>0</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer />
+              <diagnosticAnswer>
+                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
+                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
+              </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je lui fais passer le test Go-No-Go.</Item>
+                <Item>Je l’adresse chez l’ORL.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Case_presentation>
             <Wisper_test>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -156,15 +159,16 @@
               <succeeded>True</succeeded>
             </Wisper_test>
             <Questionnary>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
+                <Item>Ses réponses ne montrent pas de problème significatifs.</Item>
                 <Item>Elle n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Questionnary>
             <Otoscopy>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -200,44 +204,48 @@
               <succeeded>True</succeeded>
             </HHIES_test>
             <Audiometry>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
+                <Item>Le score montre une surdité de perception. </Item>
                 <Item>Le score montre une surdité neurosensorielle bilatérale.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je prescris à la patiente une appareillage audioprothétique bilatéral.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Audiometry>
           </stepRecords>
         </Jeanne>
         <Elisabeth>
-          <nbAttempt>6</nbAttempt>
-          <totDiagnosticCorrect>87</totDiagnosticCorrect>
-          <totDiagnosticError>21</totDiagnosticError>
-          <totActionCorrect>94</totActionCorrect>
+          <nbAttempt>9</nbAttempt>
+          <totDiagnosticCorrect>194</totDiagnosticCorrect>
+          <totDiagnosticError>34</totDiagnosticError>
+          <totActionCorrect>214</totActionCorrect>
           <totActionError>14</totActionError>
-          <totError>35</totError>
-          <totStepSucceed>74</totStepSucceed>
-          <totStepFailed>34</totStepFailed>
-          <numberDiagCorrect>7</numberDiagCorrect>
-          <numberDiagIncorrect>1</numberDiagIncorrect>
-          <numberActionCorrect>8</numberActionCorrect>
+          <totError>48</totError>
+          <totStepSucceed>181</totStepSucceed>
+          <totStepFailed>47</totStepFailed>
+          <numberDiagCorrect>12</numberDiagCorrect>
+          <numberDiagIncorrect>3</numberDiagIncorrect>
+          <numberActionCorrect>15</numberActionCorrect>
           <numberActionIncorrect>0</numberActionIncorrect>
-          <numberStepSucceed>7</numberStepSucceed>
-          <numberStepFailed>1</numberStepFailed>
-          <successRate>87,5</successRate>
-          <timePassed>56,88024</timePassed>
+          <numberStepSucceed>12</numberStepSucceed>
+          <numberStepFailed>3</numberStepFailed>
+          <successRate>80</successRate>
+          <timePassed>112,6774</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>0</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer />
+              <diagnosticAnswer>
+                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
+                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
+              </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je lui fais passer le test Go-No-Go.</Item>
+                <Item>Je l’adresse chez l’ORL.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Case_presentation>
             <Wisper_test>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -251,15 +259,16 @@
               <succeeded>True</succeeded>
             </Wisper_test>
             <Questionnary>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
+                <Item>Ses réponses ne montrent pas de problème significatifs.</Item>
                 <Item>Elle n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Questionnary>
             <Otoscopy>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -295,15 +304,16 @@
               <succeeded>True</succeeded>
             </HHIES_test>
             <Audiometry>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
+                <Item>Le score montre une surdité de perception. </Item>
                 <Item>Le score montre une surdité neurosensorielle bilatérale.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je prescris à la patiente une appareillage audioprothétique bilatéral.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Audiometry>
           </stepRecords>
         </Elisabeth>
