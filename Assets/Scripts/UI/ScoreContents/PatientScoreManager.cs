@@ -205,7 +205,7 @@ namespace Assets.Scripts.UI
         //CALL BY 'RETURN TO WAITING ROOM' BUTTON FROM SCORE CONTENT
         public static void GoToMenu()
         {
-            GameManager.Instance.GameStateManager.ReturnToGameMenu();
+            GameManager.Instance.GameStateManager.NextPatientCase();
         }
     }
 }

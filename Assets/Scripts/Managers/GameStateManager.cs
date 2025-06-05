@@ -115,20 +115,29 @@ namespace Assets.Scripts.Managers
             if ((int)currentLevel < LevelsData.patientByLevel.Count)
             {
                 SetLevel(currentLevel, patientCaseData);
+                //Return to game menu
+                ReturnToGameMenu();
             }
             else
             {
-                Debug.Log("Tout les niveau sont terminer !");
+                Debug.Log("Tout les niveau sont terminer ! Restart du jeu!");
+                // TAMPORARY FIX - Restart the game
+                currentLevel = LevelState.LEVEL_0;
+                currentPatientCase = PatientCase.PATIENT_0;
+
                 // LOAD GAME END SCREEN + SET RANDOM MOD (load patient in random make list of all patient)
-            }
-            
+                //Return to game menu
+                ReturnToGameMenu();
+            }    
         }
 
         public void NextPatientCase()
         {
-            if ((int)currentPatientCase < patientCaseData.patientsCase.Count)
+            currentPatientCase++;
+            if ((int)currentPatientCase < patientCaseData.patientsCase.Count - 1 )
             {
                 SetPatientCase(currentPatientCase, patientCaseData.patientsCase[(int)currentPatientCase]);
+                ReturnToGameMenu();
             }
             else
             {
@@ -163,12 +172,8 @@ namespace Assets.Scripts.Managers
         }
 
         // CALL FORM 'PatientScoreManager' BY 'GoToMenu' FUNCTION
-        public void ReturnToGameMenu()
+        private static void ReturnToGameMenu()
         {
-            // Load next patient 
-            currentPatientCase++;
-            NextPatientCase();
-
             //return Game menu selection patient
             GameManager.Instance.LoadGameMenu();
             GameManager.Instance.AudioManager.PlayBGM("skyline");
