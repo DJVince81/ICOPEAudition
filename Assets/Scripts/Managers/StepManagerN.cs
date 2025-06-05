@@ -116,7 +116,6 @@ namespace Assets.Scripts.Managers
                     break;
                 case Step.Questionnary:
                     // Load questionary & answer
-                    print("Index step should be 2 but is : "+_indexStep); 
                     List<QuestionData> questions = patientData.steps[_indexStep].questionnaireData.questions;
                     List<PatientQuestionAnswer> answers = patientData.steps[_indexStep].predefinedAnwser;
                     // Set texts

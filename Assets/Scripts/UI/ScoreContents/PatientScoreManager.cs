@@ -22,6 +22,7 @@ namespace Assets.Scripts.UI
         ActionSuccess, 
         ActionFailed, 
         Scores,
+        SuccessRate,
         StepName,
         DiangnoticsDetails,
         ActionsDetails
@@ -73,7 +74,7 @@ namespace Assets.Scripts.UI
             return nbStepSucc * _stepMulticateur - nbStepFailed * _stepMulticateur + nbDiagSucc * _diagActionMulticateur - nbDiagFailed * _diagActionMulticateur + nbActionSucc * _diagActionMulticateur + nbActionFailed * _diagActionMulticateur;
         }
 
-        private void SetSyntheseScore(string patientName, int nbStepSucc, int nbStepFailed, int nbDiagSucc, int nbDiagFailed, int nbActionSucc, int nbActionFailed)
+        private void SetSyntheseScore(string patientName, int nbStepSucc, int nbStepFailed, int nbDiagSucc, int nbDiagFailed, int nbActionSucc, int nbActionFailed, float succesRate)
         {
             foreach (FieldsTable fieldsTable in fieldsList)
             {
@@ -103,6 +104,9 @@ namespace Assets.Scripts.UI
                     case FieldsName.Scores:
                         fieldsTable.fields.text = CalculateTotalScore(nbStepSucc, nbStepFailed, nbDiagSucc, nbDiagFailed, nbActionSucc, nbActionFailed).ToString();
                         break;
+                    case FieldsName.SuccessRate:
+                        fieldsTable.fields.text = succesRate.ToString();
+                        break;
                 }
             }
         }
@@ -121,7 +125,7 @@ namespace Assets.Scripts.UI
                 stepsList.Add(key);
             }
 
-            SetSyntheseScore(patientName, pRecords.nbStepSucced, pRecords.nbStepFailed, pRecords.totDiagnosticCorrect, pRecords.totDiagnosticError, pRecords.totActionCorrect, pRecords.totActionError);
+            SetSyntheseScore(patientName, pRecords.numberStepSucceed, pRecords.numberStepFailed, pRecords.numberDiagCorrect, pRecords.numberDiagIncorrect, pRecords.numberActionCorrect, pRecords.numberActionIncorrect, pRecords.successRate);
             SetStepDetailsText(stepsList[_currentStepToDisplay].ToString(), pRecords.stepRecords[stepsList[_currentStepToDisplay]].diagnosticAnswer, pRecords.stepRecords[stepsList[_currentStepToDisplay]].actionAnswer);
         }
 

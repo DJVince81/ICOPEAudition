@@ -32,33 +32,29 @@ namespace Assets.Scripts
         }
 
         // RECORD OF CURRENT LEVEL - DATA TO SHOW IN LEVEL SELECTOR OR STORE
-        public struct PatientCaseRecords
+        public class PatientCaseRecords
         {
-            public int nbAttempt; // Number of attempts for this patient
-            public int totDiagnosticCorrect;
-            public int totDiagnosticError; // length of diagnosticError
-            public int totActionCorrect; 
-            public int totActionError; // length of actionError
+            // TOT Data on the current patient
+            public int nbAttempt { get; set; } // Number of attempts for this patient
+            public int totDiagnosticCorrect { get; set; }
+            public int totDiagnosticError { get; set; } // length of diagnosticError
+            public int totActionCorrect { get; set; }
+            public int totActionError { get; set; } // length of actionError
             public int totError => totActionError + totDiagnosticError; // totActionError + totDiagnosticError
-            public int nbStepSucced; // Number of succeeded (count number of succeeded in StepRecord)
-            public int nbStepFailed; // Number of failed (count number of failed in StepRecord)
-            public int successRate => nbStepSucced * 100 / (nbStepSucced + nbStepFailed);
-            
-            public float timePassed; // Time spent on the level
-            public Dictionary<Step, StepRecords> stepRecords; // StepRecords of the level {Step name, Steps}
+            public int totStepSucceed { get; set; } // Number of succeeded (count number of succeeded in StepRecord)
+            public int totStepFailed { get; set; } // Number of failed (count number of failed in StepRecord)
 
-            public PatientCaseRecords(int nbAttempt, int totDiagnosticCorrect, int totDiagnosticError, int totActionCorrect, int totActionError, int nbStepSucced, int nbStepFailed, float timePassed, Dictionary<Step, StepRecords> stepRecords)
-            {
-                this.nbAttempt = nbAttempt;
-                this.totDiagnosticCorrect = totDiagnosticCorrect;
-                this.totDiagnosticError = totDiagnosticError;
-                this.totActionCorrect =
-                this.totActionError = totActionError;
-                this.nbStepSucced = nbStepSucced;
-                this.nbStepFailed = nbStepFailed;
-                this.timePassed = timePassed;
-                this.stepRecords = stepRecords;
-            }
+            // data we want the show for the player for his last attempt
+            public int numberDiagCorrect { get; set; }
+            public int numberDiagIncorrect { get; set; }
+            public int numberActionCorrect { get; set; }
+            public int numberActionIncorrect { get; set; }
+            public int numberStepSucceed { get; set; }
+            public int numberStepFailed { get; set; }
+            public float successRate => (numberStepSucceed + numberStepFailed) == 0 ? 0f : (float)numberStepSucceed * 100 / ((float)numberStepSucceed + (float)numberStepFailed);
+            
+            public float timePassed { get; set; } // Time spent on the level
+            public Dictionary<Step, StepRecords> stepRecords { get; set; } // StepRecords of the level {Step name, Steps}
         }
 
         public struct LevelRecords
@@ -174,7 +170,8 @@ namespace Assets.Scripts
             // Check if has diagnotics or action.
             if (stepData.actionAttempt == 1 && stepData.diagnoticsAttempt == 1) stepData.succeeded = true;
             else if (stepData.actionAttempt == 1 && stepData.diagnoticsAttempt == 0) stepData.succeeded = true;
-            
+            else stepData.succeeded = false;
+
             _stepRecords[algoStep] = stepData;
         }
         
@@ -198,23 +195,31 @@ namespace Assets.Scripts
             foreach (var step in _stepRecords)
             {
                 StepRecords stepData = step.Value;
-                if (stepData.diagnosticAnswer.Count > 1) patientCaseRecords.totDiagnosticError++;
-                else patientCaseRecords.totDiagnosticCorrect++;
+                if (stepData.diagnosticAnswer.Count > 1) patientCaseRecords.numberDiagIncorrect++;
+                else patientCaseRecords.numberDiagCorrect++;
 
-                if (stepData.actionAnswer.Count > 1) patientCaseRecords.totActionError++;
-                else patientCaseRecords.totActionCorrect++;
+                if (stepData.actionAnswer.Count > 1) patientCaseRecords.numberActionIncorrect++;
+                else patientCaseRecords.numberActionCorrect++;
 
-                if (stepData.succeeded) patientCaseRecords.nbStepSucced++;
-                else patientCaseRecords.nbStepFailed++;
+                if (stepData.succeeded) patientCaseRecords.numberStepSucceed++;
+                else patientCaseRecords.numberStepFailed++;
+
+                patientCaseRecords.totDiagnosticCorrect += patientCaseRecords.numberDiagCorrect;
+                patientCaseRecords.totDiagnosticError += patientCaseRecords.numberDiagIncorrect;
+
+                patientCaseRecords.totActionCorrect += patientCaseRecords.numberActionCorrect;
+                patientCaseRecords.totActionError += patientCaseRecords.numberActionIncorrect;
+
+                patientCaseRecords.totStepSucceed += patientCaseRecords.numberStepSucceed;
+                patientCaseRecords.totStepFailed += patientCaseRecords.numberStepFailed;
             }
 
             patientCaseRecords.timePassed = Time.time - _levelTimer.startTime;
             patientCaseRecords.stepRecords = _stepRecords;
 
             _patientCaseRecords[patientName] = patientCaseRecords;
+            Debug.Log("PL");
         }
-
-
 
         /// <summary>
         /// Set the dictionary<LevelState, LevelRecords> _levelRecords as a key a LevelState (input parameter: currentLevelState) and value a new LevelRecords.

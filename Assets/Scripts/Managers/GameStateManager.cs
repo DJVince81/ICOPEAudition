@@ -124,8 +124,8 @@ namespace Assets.Scripts.Managers
                 // TAMPORARY FIX - Restart the game
                 currentLevel = LevelState.LEVEL_0;
                 currentPatientCase = PatientCase.PATIENT_0;
-
-                // LOAD GAME END SCREEN + SET RANDOM MOD (load patient in random make list of all patient)
+                
+                //SET RANDOM MOD (load patient in random make list of all patient)
                 //Return to game menu
                 ReturnToGameMenu();
             }    
@@ -134,7 +134,7 @@ namespace Assets.Scripts.Managers
         public void NextPatientCase()
         {
             currentPatientCase++;
-            if ((int)currentPatientCase < patientCaseData.patientsCase.Count - 1 )
+            if ((int)currentPatientCase < patientCaseData.patientsCase.Count )
             {
                 SetPatientCase(currentPatientCase, patientCaseData.patientsCase[(int)currentPatientCase]);
                 ReturnToGameMenu();

@@ -219,8 +219,8 @@ namespace Assets.Scripts
                     totDiagnosticError = int.Parse(patientNode["totDiagnosticError"].InnerText),
                     totActionCorrect = int.Parse(patientNode["totActionCorrect"].InnerText),
                     totActionError = int.Parse(patientNode["totActionError"].InnerText),
-                    nbStepSucced = int.Parse(patientNode["nbStepSucced"].InnerText),
-                    nbStepFailed = int.Parse(patientNode["nbStepFailed"].InnerText),
+                    totStepSucceed = int.Parse(patientNode["totStepSucceed"].InnerText),
+                    totStepFailed = int.Parse(patientNode["totStepFailed"].InnerText),
                     timePassed = float.Parse(patientNode["timePassed"].InnerText),
                     stepRecords = LoadStepRecords(patientNode.SelectSingleNode("stepRecords")),
                 }; 
