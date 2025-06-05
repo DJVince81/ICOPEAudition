@@ -417,7 +417,7 @@ namespace Assets.Scripts.Managers
             if (isStepCompleted && patientData.steps[_indexStep].isTerminatingStep )
             {
                 // Show player scores
-                GameManager.Instance.GameStateManager.ShowScores();
+                GameManager.Instance.GameStateManager.SaveShowScores();
             } else if (isStepCompleted && _indexStep < patientData.steps.Count)
             {
                 // LOAD NEXT STEP 

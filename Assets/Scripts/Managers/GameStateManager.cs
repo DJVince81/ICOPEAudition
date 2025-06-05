@@ -145,16 +145,13 @@ namespace Assets.Scripts.Managers
             SetStep(currentStep);
         }
 
-        public void ShowScores()
+        public void SaveShowScores()
         {
             Debug.Log("Level completed ! ");
             // Saving player data
             SavePlayerData();
-            // Load next patient - to call when player hit next button
-            currentPatientCase++;
-            NextPatientCase();
             // Load resume screen - Same
-            ReturnToGameMenu();
+            GameManager.Instance.LoadScore(patientData.fisrtName);
         }
 
 
@@ -165,8 +162,13 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.GameData.UpdateMainRecordsOnLevelEnd();
         }
 
-        private static void ReturnToGameMenu()
+        // CALL FORM 'PatientScoreManager' BY 'GoToMenu' FUNCTION
+        public void ReturnToGameMenu()
         {
+            // Load next patient 
+            currentPatientCase++;
+            NextPatientCase();
+
             //return Game menu selection patient
             GameManager.Instance.LoadGameMenu();
             GameManager.Instance.AudioManager.PlayBGM("skyline");

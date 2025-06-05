@@ -1852,6 +1852,7 @@ MonoBehaviour:
   _tipsPanel: {fileID: 1448690914}
   _stepMenu: {fileID: 819833200}
   _isTutoriaActive: {fileID: 406108346}
+  _scorePanel: {fileID: 805963848}
   _pausePanel: {fileID: 196237873}
   _mainPanel: {fileID: 478458197}
   _shopPanel: {fileID: 1264572359}
@@ -2688,6 +2689,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!1 &805963848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1149916104884820911, guid: e0204674cd23cb943b9d4e91e386d7f7, type: 3}
+  m_PrefabInstance: {fileID: 3396346427376655936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812440125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1237416911077160691, guid: e2c341d1748dea041b60eec46655436e, type: 3}

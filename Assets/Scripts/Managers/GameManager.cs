@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Assets.Scripts.Managers.GameStateManager;
 using Assets.Scripts.PatientData.AlgoData;
+using Assets.Scripts.UI;
 
 namespace Assets.Scripts.Managers
 {
@@ -34,7 +35,6 @@ namespace Assets.Scripts.Managers
 
         public StepManagerN StepManagerN { get; private set; }
 
-        [SerializeField] public LevelsData LevelsData;
 
         #region Structures
         public int Money
@@ -66,6 +66,9 @@ namespace Assets.Scripts.Managers
         #endregion
 
         #region Configurable Attributes
+        [Header("Levels")]
+        [SerializeField] public LevelsData LevelsData;
+
         [Header("Tutoriel")]
         [SerializeField] private bool _isTutorialEnable = true; // Par défault true car on suppose que le joueur y joue pour la première fois.
         public readonly string _pathXmlFile = "Assets/Resources/XML_Text/Tutorial.xml";
@@ -79,6 +82,7 @@ namespace Assets.Scripts.Managers
         [SerializeField] private TipsPanel _tipsPanel;
         [SerializeField] private GameObject _stepMenu;
         [SerializeField] private GameObject _isTutoriaActive;
+        [SerializeField] private GameObject _scorePanel;
 
         [Header("Panels")]
         [SerializeField] private GameObject _pausePanel;
@@ -99,20 +103,6 @@ namespace Assets.Scripts.Managers
         // LOAD STEP
         internal void LoadStep(Step stepIndex)
         {
-            /*
-            if (stepIndex == 0)
-            {
-                AudioManager.PlayBGM("tense_dark");
-                AudioManager.StopCurrentSfx();
-                ClearScreen();
-                _stepMenu.SetActive(true);
-                StepManager.Initialize();
-                TelemetryManager.IncrGames();
-            }
-            StepManager.LoadStep(stepIndex);
-            */
-
-
             if (stepIndex == 0)
             {
                 AudioManager.PlayBGM("tense_dark");
@@ -124,12 +114,21 @@ namespace Assets.Scripts.Managers
             StepManagerN.LoadStep(stepIndex);
         }
 
+        internal void LoadScore(string patientName)
+        {
+            ClearScreen();
+            var go = _scorePanel.GetComponent<PatientScoreManager>();
+            go.GetSetDisplayScore(patientName);
+            _scorePanel.SetActive(true);
+        }
+
         // CLEAR SCREEN
         internal void ClearScreen()
         {
             _mainMenu.SetActive(false);
             _gameMenu.SetActive(false);
             _stepMenu.SetActive(false);
+            _scorePanel.SetActive(false);
             _isTutoriaActive.SetActive(false);
         }
 
