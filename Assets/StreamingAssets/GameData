@@ -1,22 +1,22 @@
 <GameData>
-  <totGames>20</totGames>
-  <gameTime>293,4822</gameTime>
+  <totGames>31</totGames>
+  <gameTime>442,3516</gameTime>
   <nbGameSession>1</nbGameSession>
   <sessionTimeQueue>
-    <Item>10,71933</Item>
-    <Item>9,518643</Item>
-    <Item>7,935247</Item>
-    <Item>13,59575</Item>
-    <Item>11,30159</Item>
-    <Item>10,85992</Item>
-    <Item>9,340282</Item>
-    <Item>12,80146</Item>
-    <Item>15,2786</Item>
-    <Item>7,56235</Item>
+    <Item>12,6002</Item>
+    <Item>11,71385</Item>
+    <Item>12,38603</Item>
+    <Item>9,624723</Item>
+    <Item>13,47059</Item>
+    <Item>14,12025</Item>
+    <Item>17,01563</Item>
+    <Item>12,40661</Item>
+    <Item>19,02986</Item>
+    <Item>11,64906</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>20</levelNbAttempt>
+      <levelNbAttempt>31</levelNbAttempt>
       <totPatientCompleted>3</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
@@ -203,29 +203,30 @@
           <successRate>83</successRate>
         </Jeanne>
         <Elisabeth>
-          <nbAttempt>18</nbAttempt>
+          <nbAttempt>29</nbAttempt>
           <totDiagnosticCorrect>7</totDiagnosticCorrect>
-          <totDiagnosticError>11</totDiagnosticError>
-          <totActionCorrect>14</totActionCorrect>
-          <totActionError>4</totActionError>
+          <totDiagnosticError>22</totDiagnosticError>
+          <totActionCorrect>18</totActionCorrect>
+          <totActionError>11</totActionError>
           <nbStepSucced>7</nbStepSucced>
-          <nbStepFailed>11</nbStepFailed>
-          <timePassed>7,067025</timePassed>
+          <nbStepFailed>22</nbStepFailed>
+          <timePassed>11,1024</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
+              <diagnoticsAttempt>2</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
+                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
                 <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je l’adresse chez l’ORL.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Case_presentation>
           </stepRecords>
-          <totError>15</totError>
-          <successRate>38</successRate>
+          <totError>33</totError>
+          <successRate>24</successRate>
         </Elisabeth>
       </patientCaseRecords>
     </LEVEL_0>

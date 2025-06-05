@@ -47,7 +47,6 @@ namespace Assets.Scripts.UI
     public class PatientScoreManager : MonoBehaviour
     {
         [Header("Section synthese patient")]
-        [SerializeField] private GameObject syntheseGameObject;
         [SerializeField] private List<FieldsTable> fieldsList;
 
         [Header("Section details patient")]
@@ -59,8 +58,8 @@ namespace Assets.Scripts.UI
         [SerializeField] private static int _diagActionMulticateur = 5;
 
         [Header("Details image sprite")]
-        [SerializeField] private static Sprite _correctSprite;
-        [SerializeField] private static Sprite _wrongSprite;
+        [SerializeField] private Sprite _correctSprite;
+        [SerializeField] private Sprite _wrongSprite;
 
 
         // ---- PRIVATES VARIABLES ----
@@ -145,7 +144,7 @@ namespace Assets.Scripts.UI
                     fieldsTable.fields.text = diagAnswer[indexDiagnotics];
                     LayoutRebuilder.ForceRebuildLayoutImmediate(fieldsTable.fields.rectTransform);
                     // Set image (error / correct) last anwser = correct, other false
-                    if (indexDiagnotics == diagAnswer.Count) fieldsTable.image.sprite = _correctSprite; // Set correct image
+                    if (indexDiagnotics == diagAnswer.Count - 1) fieldsTable.image.sprite = _correctSprite; // Set correct image
                     else fieldsTable.image.sprite = _wrongSprite;
                     fieldsTable.fields.transform.parent.gameObject.SetActive(true);
                     indexDiagnotics++;
@@ -154,7 +153,7 @@ namespace Assets.Scripts.UI
                 {
                     fieldsTable.fields.text = actionAnswer[indexAction];
                     // Set image (error / correct) last anwser = correct, other false
-                    if (indexAction == actionAnswer.Count) fieldsTable.image.sprite = _correctSprite;
+                    if (indexAction == actionAnswer.Count - 1) fieldsTable.image.sprite = _correctSprite;
                     else fieldsTable.image.sprite = _wrongSprite;
                     fieldsTable.fields.transform.parent.gameObject.SetActive(true);
                     indexAction++;
