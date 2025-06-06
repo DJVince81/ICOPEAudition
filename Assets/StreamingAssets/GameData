@@ -1,9 +1,8 @@
 <GameData>
-  <totGames>54</totGames>
-  <gameTime>1340,353</gameTime>
+  <totGames>55</totGames>
+  <gameTime>1370,802</gameTime>
   <nbGameSession>1</nbGameSession>
   <sessionTimeQueue>
-    <Item>8,071606</Item>
     <Item>8,793021</Item>
     <Item>11,0896</Item>
     <Item>7,746887</Item>
@@ -13,10 +12,11 @@
     <Item>9,521882</Item>
     <Item>10,90947</Item>
     <Item>10,12231</Item>
+    <Item>30,44891</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>37</levelNbAttempt>
+      <levelNbAttempt>38</levelNbAttempt>
       <totPatientCompleted>3</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
@@ -218,13 +218,13 @@
           </stepRecords>
         </Jeanne>
         <Elisabeth>
-          <nbAttempt>31</nbAttempt>
-          <totDiagnosticCorrect>271</totDiagnosticCorrect>
+          <nbAttempt>32</nbAttempt>
+          <totDiagnosticCorrect>272</totDiagnosticCorrect>
           <totDiagnosticError>47</totDiagnosticError>
-          <totActionCorrect>299</totActionCorrect>
+          <totActionCorrect>300</totActionCorrect>
           <totActionError>19</totActionError>
           <totError>66</totError>
-          <totStepSucceed>253</totStepSucceed>
+          <totStepSucceed>254</totStepSucceed>
           <totStepFailed>65</totStepFailed>
           <numberDiagCorrect>1</numberDiagCorrect>
           <numberDiagIncorrect>0</numberDiagIncorrect>
@@ -233,7 +233,7 @@
           <numberStepSucceed>1</numberStepSucceed>
           <numberStepFailed>0</numberStepFailed>
           <successRate>100</successRate>
-          <timePassed>9,516075</timePassed>
+          <timePassed>28,59732</timePassed>
           <stepRecords>
             <Case_presentation>
               <diagnoticsAttempt>1</diagnoticsAttempt>

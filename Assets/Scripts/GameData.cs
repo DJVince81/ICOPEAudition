@@ -219,7 +219,6 @@ namespace Assets.Scripts
             patientCaseRecords.stepRecords = _stepRecords;
 
             _patientCaseRecords[patientName] = patientCaseRecords;
-            Debug.Log("PL");
         }
 
         public void ResetPatientCase(string patientName)
