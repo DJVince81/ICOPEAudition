@@ -32,8 +32,8 @@ namespace Assets.Scripts.PatientData.Steps
 
         // DELAI
         [Header("Delay animation")]
-        [SerializeField] private float delayBetweenWords = 0.5f;
-        [SerializeField] private float delayBetweenText = 0.25f;
+        [SerializeField] private float delayBetweenWords = 2f;
+        [SerializeField] private float delayBetweenText = 2f;
 
 
         // TO change in a scriptable object
@@ -73,20 +73,26 @@ namespace Assets.Scripts.PatientData.Steps
             return strings;
         }
         
-        private void AnimateText(GameObject goTargert,TextMeshProUGUI target, string[] words, float startDelay = 0f, TweenCallback onComplete = null)
+        private void AnimateText(GameObject goTargert, TextMeshProUGUI target, string[] words, float startDelay = 0f, TweenCallback onComplete = null)
         {
             target.text = "";
-            goTargert.SetActive(true);
+            goTargert.SetActive(false);
 
             for (int i = 0; i < words.Length; i++)
-            {
-                
+            { 
                 string word = words[i];
                 float delay = startDelay + i * delayBetweenWords;
 
                 DOVirtual.DelayedCall(delay, () =>
                 {
                     target.text = word;
+                    goTargert.SetActive(true);
+                });
+
+                float hideDelay = delay + delayBetweenWords * 0.8f;
+                DOVirtual.DelayedCall(hideDelay, () =>
+                {
+                    goTargert.SetActive(false);
                 });
             }
 
@@ -122,8 +128,7 @@ namespace Assets.Scripts.PatientData.Steps
             string[] strings = GetRandomListWord();
             AnimateText(goDoctorText1, targerDoctorText1, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
-                DOVirtual.DelayedCall(totalDelay, PlaySecondText);
+                DOVirtual.DelayedCall(delayBetweenText, PlaySecondText);
             });
         }
 
@@ -138,14 +143,15 @@ namespace Assets.Scripts.PatientData.Steps
             string[] strings = GetRandomListWord();
             AnimateText(goDoctorText2 ,targerDoctorText2, strings, 0f, () =>
             {
-                float totalDelay = strings.Length * delayBetweenWords + delayBetweenText;
-                DOVirtual.DelayedCall(totalDelay, ShowPatientText);
+                DOVirtual.DelayedCall(delayBetweenText, ShowPatientText);
             });
         }
 
         private void ShowPatientText()
         {
             ClearTexts();
+            ClearDialogueBox();
+
             goPatientText.SetActive(true);
             targetPatientText.text = patientText;
         }

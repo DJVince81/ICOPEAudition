@@ -1,22 +1,22 @@
 <GameData>
-  <totGames>30</totGames>
-  <gameTime>950,8821</gameTime>
-  <nbGameSession>4</nbGameSession>
+  <totGames>47</totGames>
+  <gameTime>1201,034</gameTime>
+  <nbGameSession>1</nbGameSession>
   <sessionTimeQueue>
-    <Item>10,27168</Item>
-    <Item>40,99808</Item>
-    <Item>168,7415</Item>
-    <Item>11,38186</Item>
-    <Item>57,33474</Item>
-    <Item>129,3236</Item>
-    <Item>9,122594</Item>
-    <Item>42,50483</Item>
-    <Item>85,82343</Item>
-    <Item>113,007</Item>
+    <Item>10,32875</Item>
+    <Item>12,27467</Item>
+    <Item>8,471764</Item>
+    <Item>11,00511</Item>
+    <Item>12,2463</Item>
+    <Item>8,31198</Item>
+    <Item>8,071606</Item>
+    <Item>8,793021</Item>
+    <Item>11,0896</Item>
+    <Item>7,746887</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>15</levelNbAttempt>
+      <levelNbAttempt>31</levelNbAttempt>
       <totPatientCompleted>3</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
@@ -126,13 +126,13 @@
           <totError>20</totError>
           <totStepSucceed>113</totStepSucceed>
           <totStepFailed>20</totStepFailed>
-          <numberDiagCorrect>5</numberDiagCorrect>
-          <numberDiagIncorrect>2</numberDiagIncorrect>
-          <numberActionCorrect>7</numberActionCorrect>
+          <numberDiagCorrect>0</numberDiagCorrect>
+          <numberDiagIncorrect>0</numberDiagIncorrect>
+          <numberActionCorrect>0</numberActionCorrect>
           <numberActionIncorrect>0</numberActionIncorrect>
-          <numberStepSucceed>5</numberStepSucceed>
-          <numberStepFailed>2</numberStepFailed>
-          <successRate>71,42857</successRate>
+          <numberStepSucceed>0</numberStepSucceed>
+          <numberStepFailed>0</numberStepFailed>
+          <successRate>0</successRate>
           <timePassed>85,49378</timePassed>
           <stepRecords>
             <Case_presentation>
@@ -156,7 +156,7 @@
               <actionAnswer>
                 <Item>Je réalise le questionnaire HHIE-S.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Wisper_test>
             <Questionnary>
               <diagnoticsAttempt>2</diagnoticsAttempt>
@@ -179,7 +179,7 @@
               <actionAnswer>
                 <Item>Je refais le test de chuchotement.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Otoscopy>
             <Weber_test>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -190,7 +190,7 @@
               <actionAnswer>
                 <Item>Je continue le parcours audition et lui fait passer le test HHIE-S.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </Weber_test>
             <HHIES_test>
               <diagnoticsAttempt>1</diagnoticsAttempt>
@@ -201,7 +201,7 @@
               <actionAnswer>
                 <Item>Il est pertinent de réaliser l'audiométrie.</Item>
               </actionAnswer>
-              <succeeded>True</succeeded>
+              <succeeded>False</succeeded>
             </HHIES_test>
             <Audiometry>
               <diagnoticsAttempt>2</diagnoticsAttempt>
@@ -218,103 +218,34 @@
           </stepRecords>
         </Jeanne>
         <Elisabeth>
-          <nbAttempt>9</nbAttempt>
-          <totDiagnosticCorrect>194</totDiagnosticCorrect>
-          <totDiagnosticError>34</totDiagnosticError>
-          <totActionCorrect>214</totActionCorrect>
-          <totActionError>14</totActionError>
-          <totError>48</totError>
-          <totStepSucceed>181</totStepSucceed>
-          <totStepFailed>47</totStepFailed>
-          <numberDiagCorrect>12</numberDiagCorrect>
-          <numberDiagIncorrect>3</numberDiagIncorrect>
-          <numberActionCorrect>15</numberActionCorrect>
+          <nbAttempt>25</nbAttempt>
+          <totDiagnosticCorrect>237</totDiagnosticCorrect>
+          <totDiagnosticError>41</totDiagnosticError>
+          <totActionCorrect>259</totActionCorrect>
+          <totActionError>19</totActionError>
+          <totError>60</totError>
+          <totStepSucceed>219</totStepSucceed>
+          <totStepFailed>59</totStepFailed>
+          <numberDiagCorrect>1</numberDiagCorrect>
+          <numberDiagIncorrect>0</numberDiagIncorrect>
+          <numberActionCorrect>1</numberActionCorrect>
           <numberActionIncorrect>0</numberActionIncorrect>
-          <numberStepSucceed>12</numberStepSucceed>
-          <numberStepFailed>3</numberStepFailed>
-          <successRate>80</successRate>
-          <timePassed>112,6774</timePassed>
+          <numberStepSucceed>1</numberStepSucceed>
+          <numberStepFailed>0</numberStepFailed>
+          <successRate>100</successRate>
+          <timePassed>7,679253</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
+              <diagnoticsAttempt>1</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
               <diagnosticAnswer>
-                <Item>Je convoque la patiente pour réaliser le questionnaire Go-No-Go</Item>
                 <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
               </diagnosticAnswer>
               <actionAnswer>
                 <Item>Je l’adresse chez l’ORL.</Item>
               </actionAnswer>
-              <succeeded>False</succeeded>
+              <succeeded>True</succeeded>
             </Case_presentation>
-            <Wisper_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Il y a une anomalie car elle n’a pas su restituer les 3 mots minimum de chaque  côté.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je réalise le questionnaire HHIE-S.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Wisper_test>
-            <Questionnary>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Ses réponses ne montrent pas de problème significatifs.</Item>
-                <Item>Elle n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Questionnary>
-            <Otoscopy>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Cette otoscopie peut être considérée comme normale, en tous cas, cet aspect n’est généralement pas associé à une surdité.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je refais le test de chuchotement.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Otoscopy>
-            <Weber_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Ses réponses ne révèlent pas d’anomalie.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fait passer le test HHIE-S.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Weber_test>
-            <HHIES_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score est en faveur de difficultés modérées.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Il est pertinent de réaliser l'audiométrie.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </HHIES_test>
-            <Audiometry>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score montre une surdité de perception. </Item>
-                <Item>Le score montre une surdité neurosensorielle bilatérale.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je prescris à la patiente une appareillage audioprothétique bilatéral.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Audiometry>
           </stepRecords>
         </Elisabeth>
       </patientCaseRecords>

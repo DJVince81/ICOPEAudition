@@ -53,6 +53,7 @@ namespace Assets.Scripts.PatientData.Steps
         public void SetSprites(Sprite patient)
         {
             patientSprite.sprite = patient;
+            patientSprite.SetNativeSize();
         }
     }
 }
