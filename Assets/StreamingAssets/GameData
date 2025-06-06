@@ -1,11 +1,8 @@
 <GameData>
-  <totGames>51</totGames>
-  <gameTime>1309,8</gameTime>
-  <nbGameSession>2</nbGameSession>
+  <totGames>54</totGames>
+  <gameTime>1340,353</gameTime>
+  <nbGameSession>1</nbGameSession>
   <sessionTimeQueue>
-    <Item>11,00511</Item>
-    <Item>12,2463</Item>
-    <Item>8,31198</Item>
     <Item>8,071606</Item>
     <Item>8,793021</Item>
     <Item>11,0896</Item>
@@ -13,10 +10,13 @@
     <Item>8,149322</Item>
     <Item>10,86611</Item>
     <Item>89,75117</Item>
+    <Item>9,521882</Item>
+    <Item>10,90947</Item>
+    <Item>10,12231</Item>
   </sessionTimeQueue>
   <levelRecords>
     <LEVEL_0>
-      <levelNbAttempt>34</levelNbAttempt>
+      <levelNbAttempt>37</levelNbAttempt>
       <totPatientCompleted>3</totPatientCompleted>
       <patientCaseRecords>
         <Michel>
@@ -218,104 +218,34 @@
           </stepRecords>
         </Jeanne>
         <Elisabeth>
-          <nbAttempt>28</nbAttempt>
-          <totDiagnosticCorrect>268</totDiagnosticCorrect>
+          <nbAttempt>31</nbAttempt>
+          <totDiagnosticCorrect>271</totDiagnosticCorrect>
           <totDiagnosticError>47</totDiagnosticError>
-          <totActionCorrect>296</totActionCorrect>
+          <totActionCorrect>299</totActionCorrect>
           <totActionError>19</totActionError>
           <totError>66</totError>
-          <totStepSucceed>250</totStepSucceed>
+          <totStepSucceed>253</totStepSucceed>
           <totStepFailed>65</totStepFailed>
-          <numberDiagCorrect>5</numberDiagCorrect>
-          <numberDiagIncorrect>3</numberDiagIncorrect>
-          <numberActionCorrect>8</numberActionCorrect>
+          <numberDiagCorrect>1</numberDiagCorrect>
+          <numberDiagIncorrect>0</numberDiagIncorrect>
+          <numberActionCorrect>1</numberActionCorrect>
           <numberActionIncorrect>0</numberActionIncorrect>
-          <numberStepSucceed>5</numberStepSucceed>
-          <numberStepFailed>3</numberStepFailed>
-          <successRate>62,5</successRate>
-          <timePassed>89,1627</timePassed>
+          <numberStepSucceed>1</numberStepSucceed>
+          <numberStepFailed>0</numberStepFailed>
+          <successRate>100</successRate>
+          <timePassed>9,516075</timePassed>
           <stepRecords>
             <Case_presentation>
-              <diagnoticsAttempt>0</diagnoticsAttempt>
+              <diagnoticsAttempt>1</diagnoticsAttempt>
               <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer />
+              <diagnosticAnswer>
+                <Item>J’interroge la patiente par téléphone pour repérer une situation No-Go et directement l’adresser vers l’ORL.</Item>
+              </diagnosticAnswer>
               <actionAnswer>
-                <Item>Je réalise le test de chuchotement.</Item>
+                <Item>Je l’adresse chez l’ORL.</Item>
               </actionAnswer>
               <succeeded>True</succeeded>
             </Case_presentation>
-            <Wisper_test>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Il y a une anomalie car il n’a pas su restituer les 3/4 mots des 2 côtés.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je fais passer le questionnaire Go-No-Go.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Wisper_test>
-            <Questionnary>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Il n’a répondu que des "non", ce qui indique une suspicion de cas simple.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fais passer une vidéo otoscopie.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Questionnary>
-            <Otoscopy>
-              <diagnoticsAttempt>1</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Il s’agit d’un tympan normal.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fait passer le test de Weber.</Item>
-              </actionAnswer>
-              <succeeded>True</succeeded>
-            </Otoscopy>
-            <Weber_test>
-              <diagnoticsAttempt>3</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Ses réponses révèlent un bouchon de cérumen.</Item>
-                <Item>Ses réponses révèlent une surdité de transmission.</Item>
-                <Item>Ses réponses ne révèlent pas d’anomalie.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Je continue le parcours audition et lui fait passer le test HHIE-S.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Weber_test>
-            <HHIES_test>
-              <diagnoticsAttempt>4</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score indique une absence totale de gêne auditive.</Item>
-                <Item>Le résultat suggère que les troubles auditifs sont uniquement liés à une fatigue passagère.</Item>
-                <Item>Le test montre des difficultés auditives sévères.</Item>
-                <Item>Le score est en faveur de difficultés modérées.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>Il est pertinent de réaliser l’audiométrie </Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </HHIES_test>
-            <Audiometry>
-              <diagnoticsAttempt>2</diagnoticsAttempt>
-              <actionAttempt>1</actionAttempt>
-              <diagnosticAnswer>
-                <Item>Le score montre une audition normale.</Item>
-                <Item>Le score montre une surdité de perception.</Item>
-              </diagnosticAnswer>
-              <actionAnswer>
-                <Item>En accord avec votre médecin référent, une prescription de prothèse auditive est délivrée à Mr Dupont.</Item>
-              </actionAnswer>
-              <succeeded>False</succeeded>
-            </Audiometry>
           </stepRecords>
         </Elisabeth>
       </patientCaseRecords>

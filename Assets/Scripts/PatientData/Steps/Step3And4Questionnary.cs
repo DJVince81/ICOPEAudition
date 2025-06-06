@@ -22,7 +22,7 @@ namespace Assets.Scripts.PatientData.Steps
 
             for (int i = 0; i < max; i++)
             {
-                testMeshes[i].text = questions[i].questionText + " " + (answers[i].patientAnswer == 0 ? "Oui" : "Non");
+                testMeshes[i].text = "- " + questions[i].questionText + " " + (answers[i].patientAnswer == 0 ? "<b>Oui</b>" : "<b>Non</b>");
             }
         }
 
