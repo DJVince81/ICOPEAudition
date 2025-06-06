@@ -101,7 +101,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Il y a une anomalie car il n\u2019a pas su restituer les 2 mots
           du c\xF4t\xE9 droit."
@@ -192,7 +192,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Ses r\xE9ponses montrent des signes d\u2019un trouble neurologique
           avanc\xE9. "
@@ -271,7 +271,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: 21300000, guid: f4e141a2e0556b14c8f81bfe3032f699, type: 3}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Il s\u2019agit d\u2019une otite moyenne aigu\xEB."
         isCorrect: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: 0}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Ses r\xE9ponses r\xE9v\xE8lent une surdit\xE9 de perception."
         isCorrect: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: 21300000, guid: a50fa5d32fa79a642b558b1fdc55654f, type: 3}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Le score est en faveur de difficult\xE9s mod\xE9r\xE9es."
         isCorrect: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
     spriteEarExams: {fileID: -5245042425183677352, guid: 5b62bf5af497b444fbc1267b2524724b, type: 3}
     hasDiagnosticPhase: 1
     diagnosticPhase:
-      questionText: Quel est votre diagnotic ?
+      questionText: Quel est votre diagnostic ?
       answerData:
       - answerText: "Le score montre une surdit\xE9 de transmission."
         isCorrect: 0
